@@ -54,7 +54,7 @@ const TableBody = () => {
   ) : (
     <tbody>
       {data
-        .filter((planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()))
+        .filter((planet) => planet.name.toLowerCase().includes(filterByName.toLowerCase()))
         .map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
