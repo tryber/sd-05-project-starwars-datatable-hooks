@@ -38,11 +38,11 @@ const Films = {
 // };
 
 const TableBody = () => {
-  const { data, setData, fetching, setFetching } = useContext(SWContext);
+  const { data, setData, fetching, setFetching, filterByName } = useContext(SWContext);
   useEffect(() => {
     setFetching(true);
     fetchPlanets()
-      .then((data) => data)
+      .then((response) => response)
       .then((json) => {
         setData(json.results);
         setFetching(false);
@@ -54,7 +54,7 @@ const TableBody = () => {
   ) : (
     <tbody>
       {data
-        // .filter((planet) => planet.name.toLowerCase().includes(nameFilter.toLowerCase()))
+        .filter((planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()))
         .map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>

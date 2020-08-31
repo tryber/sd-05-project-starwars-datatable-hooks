@@ -84,11 +84,11 @@ describe('Fazer uma requisição para o endpoint `/planets` da API de Star Wars 
   });
 });
 
-describe('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
+describe.only('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
-  it.only('renderiza campo de texto para filtro de nomes', async () => {
+  it('renderiza campo de texto para filtro de nomes', async () => {
     await act(async () => {
       render(<App />);
     });

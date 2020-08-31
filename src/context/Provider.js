@@ -14,14 +14,17 @@ const SWProvider = ({ children }) => {
     'rotation_period',
     'surface_water',
   ]);
-  const context = { data, setData, fetching, setFetching, columns };
-  return <SWContext.Provider value={context}>
-    {children}
-  </SWContext.Provider>;
+  const [filterByName, setFilterByName] = useState({ name: '' });
+  const searchText = (text) => {
+    setFilterByName({ name: text });
+  };
+  
+  const context = { data, setData, fetching, setFetching, columns, filterByName, searchText };
+  return <SWContext.Provider value={context}>{children}</SWContext.Provider>;
 };
 
 SWProvider.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default SWProvider;
