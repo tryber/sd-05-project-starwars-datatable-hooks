@@ -3,10 +3,10 @@ import TableHead from './TableHead';
 import TableBody from './TableBody';
 
 const Table = () => (
-  <div>
+  <table>
     <TableHead />
     <TableBody />
-  </div>
+  </table>
 );
 
 export default Table;

@@ -49,31 +49,29 @@ const TableBody = () => {
       });
   }, [setData, setFetching]);
 
-  return (
+  return fetching ? (
+    <tbody><tr><td>Loading...</td></tr></tbody>
+  ) : (
     <tbody>
-      {fetching ? (
-        <div>Loading...</div>
-      ) : (
-        data
-          // .filter((planet) => planet.name.toLowerCase().includes(nameFilter.toLowerCase()))
-          .map((planet) => (
-            <tr key={planet.name}>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-              <td>{planet.films.map((film) => Films[film]).join(', ')}</td>
-              <td>{planet.created}</td>
-              <td>{planet.edited}</td>
-              <td>{planet.url}</td>
-            </tr>
-          ))
-      )}
+      {data
+        // .filter((planet) => planet.name.toLowerCase().includes(nameFilter.toLowerCase()))
+        .map((planet) => (
+          <tr key={planet.name}>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            <td>{planet.films.map((film) => Films[film]).join(', ')}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td>
+          </tr>
+        ))}
     </tbody>
   );
 };
