@@ -8,7 +8,8 @@ function Select(props) {
       <select
         name={name}
         onChange={onChange}
-        data-testid={name === 'column' ? 'column-filter' : 'comparison-filter'}>
+        data-testid={name === 'column' ? 'column-filter' : 'comparison-filter'}
+      >
         {options.map((each) => (
           <option key={each}>{each}</option>
         ))}

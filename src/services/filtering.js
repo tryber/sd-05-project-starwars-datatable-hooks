@@ -1,4 +1,4 @@
-export default function filtering(planets, nameFilter, filters, columnOrder) {
+export default function filtering(planets, nameFilter) {
   /* let finalArr = ordering(planets, columnOrder, nameOrder); */
   const {
     filterByName: { name },
