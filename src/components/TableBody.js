@@ -8,7 +8,7 @@ export default function TableBody() {
   useEffect(() => {
     getPlanets()
       .then(
-        () => setData(() => data.results),
+        (data) => setData(() => data.results),
         (error) => setError(() => error),
       );
   }, []);
