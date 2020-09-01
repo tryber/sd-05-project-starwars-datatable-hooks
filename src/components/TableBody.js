@@ -9,7 +9,7 @@ export default function TableBody() {
     getPlanets()
       .then(
         () => setData(() => data.results),
-        () => setError(() => error),
+        (error) => setError(() => error),
       );
   }, []);
 
