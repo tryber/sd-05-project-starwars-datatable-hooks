@@ -1,31 +1,36 @@
-import propTypes from 'prop-types';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { handleGoFetch } from '../reducers';
+// import propTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { handleGoFetch } from '../reducers';
 import HeaderTable from './HeaderTable';
-import datafilterfunction from '../dfilters';
+import { datafilterfunction } from './Dropfilters';
 
-class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { test: 'HelloWorld' };
-  }
+import React, { useEffect, useContext } from 'react';
+import { StarWarsContext } from '../context/starWarsContext';
+import FetchData from '../../src/services/API';
 
-  componentDidMount() {
-    const { handleFetch } = this.props;
-    handleFetch();
-  }
+const Table = () => {
 
-  render() {
-    const { isfetching, data, filterByName, filterByNumericValues } = this.props;
-    const NameFilteredPlanets = data.filter((planets) => planets.name.includes(filterByName));
-    return (
+  const { isfetching, data, name, filterByNumericValues } = useContext(StarWarsContext);
+  
+  // componentDidMount() {
+  //   const { handleFetch } = this.props;
+  //   handleFetch(); //FetchData
+  // }
+  useEffect(() => {
+    FetchData()
+  },[])
+
+  const NameFilteredPlanets = data.filter((planets) => planets.name.includes(name));
+  
+  return (
+    // const { isfetching, data, filterByName, filterByNumericValues } = this.props;
+    // return (
       <div>
         {isfetching && <h1>Loading...</h1>}
         {!data && <h2>Error fetching data!</h2>}
         <table><HeaderTable />
           {!isfetching &&
-          ((filterByNumericValues.length > 0) ?
+          ((filterByNumericValues) ?
             (datafilterfunction(NameFilteredPlanets, filterByNumericValues)) : NameFilteredPlanets)
           .map((planet) => (
             <tbody key={planet.name}><tr>
@@ -45,29 +50,26 @@ class Table extends Component {
             </tr></tbody>
           ))}
         </table></div>
-    );
-  }
+  );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  handleFetch: (e) => dispatch(handleGoFetch(e)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   handleFetch: (e) => dispatch(handleGoFetch(e)),
+// });
 
-const mapStateToProps = (state) => ({
-  isfetching: state.fetchReducer.isfetching,
-  data: state.fetchReducer.data,
-  filterByName: state.filters.filterByName.name,
-  filterByNumericValues: state.filters.filterByNumericValues,
-});
+// const mapStateToProps = (state) => ({
+//   isfetching: state.fetchReducer.isfetching,
+//   data: state.fetchReducer.data,
+//   filterByName: state.filters.filterByName.name,
+//   filterByNumericValues: state.filters.filterByNumericValues,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default Table;
 
-Table.propTypes = {
-  isfetching: propTypes.bool.isRequired,
-  data: propTypes.arrayOf(propTypes.object).isRequired,
-  handleFetch: propTypes.func.isRequired,
-  filterByName: propTypes.string.isRequired,
-  filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
-};
-
-// Disscussed and did some pair programing with Paulo D'Andrea on this code
+// Table.propTypes = {
+//   isfetching: propTypes.bool.isRequired,
+//   data: propTypes.arrayOf(propTypes.object).isRequired,
+//   handleFetch: propTypes.func.isRequired,
+//   filterByName: propTypes.string.isRequired,
+//   filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
+// };

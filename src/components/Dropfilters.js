@@ -1,39 +1,53 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { filterByNumericValues } from '../reducers/filters';
+// import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import { StarWarsContext } from '../context/starWarsContext';
+// import { connect } from 'react-redux';
+// import { filterByNumericValues } from '../reducers/filters';
 
-
-class Dropfilters extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: '',
-      comparison: '',
-      value: '',
-    };
-
-    this.colChange = this.colChange.bind(this);
-    this.compChange = this.compChange.bind(this);
-    this.vChange = this.vChange.bind(this);
-   // this.handleSubmit = this.handleSubmit.bind(this);
+export function datafilterfunction(filteredPlanets, filterByNumericValues) {
+  let planets = filteredPlanets;
+  for (let i = 0; i < filterByNumericValues.length; i += 1) {
+    if (filterByNumericValues[i].comparison === 'maior que') {
+      planets = planets.filter((planet) =>
+        Number(planet[filterByNumericValues[i].column]) > Number(filterByNumericValues[i].value));
+    } else if (filterByNumericValues[i].comparison === 'menor que') {
+      planets = planets.filter((planet) =>
+        Number(planet[filterByNumericValues[i].column]) < Number(filterByNumericValues[i].value));
+    } else if (filterByNumericValues[i].comparison === 'igual a') {
+      planets = planets.filter((planet) =>
+        Number(planet[filterByNumericValues[i].column]) === Number(filterByNumericValues[i].value));
+    }
   }
+  return planets;
+}
 
-  colChange(event) {
-    this.setState({ column: event.target.value });
-  }
+const Dropfilters = () => {
+  // this.state = {
+  //     column: '',
+  //     comparison: '',
+  //     value: '',
+  //   };
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState('');
 
-  compChange(event) {
-    this.setState({ comparison: event.target.value });
-  }
+  // colChange(event) {
+  //   setColumn(event.target.value);
+  // }
 
-  vChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  // compChange(event) {
+  //   setComparison(event.target.value);
+  // }
 
-  columnOptions() {
-    const { numericValuesFilter } = this.props;
-    const selectedFilterColumns = numericValuesFilter.map((filter) => filter.column);
+  // vChange(event) {
+  //   setValue(event.target.value);
+  // }
+
+  const { filterByNumericValues, setfilterByNumericValues } = useContext(StarWarsContext);
+  
+  const columnOptions = () => {
+    // const { numericValuesFilter } = this.props;
+    const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
     let columns = [
       'coluna',
       'population',
@@ -43,86 +57,44 @@ class Dropfilters extends Component {
       'surface_water'];
     columns = columns.filter((column) => !selectedFilterColumns.includes(column));
     return columns.map((column) => <option value={column} key={column}>{column}</option>);
-  }
+  };
 
-  render() {
-    const tsc = this.state.comparison;
-    return (
-      <form>
-        <label htmlFor="column"> Selecione a coluna:
-          <select data-testid="column-filter" value={this.state.column} onChange={this.colChange}>
-            {this.columnOptions()}
-          </select>
-        </label>
-        <label htmlFor="comparison"> Selecione a comparação:
-          <select data-testid="comparison-filter" value={tsc} onChange={this.compChange}>
-            <option>selecione:</option>
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
-        </label>
-        <input type="number" data-testid="value-filter" onChange={this.vChange} />
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={() => { this.props.handleSubmit(this.state); }}
-        >Filtrar</button></form>
-    );
-  }
+  //  const tsc = this.state.comparison;
+  return (
+    <form>
+      <label htmlFor="column"> Selecione a coluna:
+        <select data-testid="column-filter" value={column} onChange={(event) => setColumn(event.target.value)}>
+          {columnOptions}
+        </select>
+      </label>
+      <label htmlFor="comparison"> Selecione a comparação:
+        <select data-testid="comparison-filter" value={comparison} onChange={(event) => setComparison(event.target.value)}>
+          <option>selecione:</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
+        </select>
+      </label>
+      <input type="number" data-testid="value-filter" onChange={(event) => setValue(event.target.value)} />
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ setfilterByNumericValues({column, comparison, value}) }
+      >Filtrar</button></form>
+  )
 }
 
-const mapStateToProps = (state) => ({
-  numericValuesFilter: state.filters.filterByNumericValues,
-});
+// const mapStateToProps = (state) => ({
+//   numericValuesFilter: state.filters.filterByNumericValues,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit: (values) => dispatch(filterByNumericValues(values)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   handleSubmit: (values) => dispatch(filterByNumericValues(values)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dropfilters);
+export default Dropfilters;
 
-Dropfilters.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  numericValuesFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-// inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content:
-
-//  <button type="submit" value="Enviar" data-testid="button-filter">Filtrar</button>
-// form onSubmit={this.handleSubmit}
-// class FlavorForm extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {value: 'coco'};
-
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({value: event.target.value});
-//   }
-
-//   handleSubmit(event) {
-//     alert('Seu sabor favorito é: ' + this.state.value);
-//     event.preventDefault();
-//   }
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <label>
-//           Escolha seu sabor favorito:
-//           <select value={this.state.value} onChange={this.handleChange}>
-//             <option value="laranja">Laranja</option>
-//             <option value="limao">Limão</option>
-//             <option value="coco">Coco</option>
-//             <option value="manga">Manga</option>
-//           </select>
-//         </label>
-//         <input type="submit" value="Enviar" />
-//       </form>
-//     );
-//   }
-// }
+// Dropfilters.propTypes = {
+//   handleSubmit: PropTypes.func.isRequired,
+//   numericValuesFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };
