@@ -50,16 +50,14 @@ const TableBody = () => {
         setFetching(false);
       });
   }, [setData, setFetching]);
-  let planetList = data.sort((a, b) => a.name.localeCompare(b.name));;
-  planetList = sortPlanets(planetList, sort )
+  let planetList = data.sort((a, b) => a.name.localeCompare(b.name));
+  planetList = sortPlanets(planetList, sort);
   numericFilter.forEach((filter) => {
     planetList = filterPlanet(planetList, filter);
   });
   return fetching ? (
     <tbody>
-      <tr>
-        <td>Loading...</td>
-      </tr>
+      <tr><td>Loading...</td></tr>
     </tbody>
   ) : (
     <tbody>

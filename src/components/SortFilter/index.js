@@ -1,6 +1,7 @@
 import React from 'react';
-import Input from './Input';
 import { useContext } from 'react';
+
+import Input from './Input';
 import SWContext from '../../context/SWContext';
 
 const SortFilter = () => {
@@ -17,12 +18,10 @@ const SortFilter = () => {
       <label htmlFor="ASC">ASC</label>
       <Input>ASC</Input>
       <label htmlFor="DESC">DESC</label>
-      <Input id={'column-sort-input-desc'}>
-        DESC
-      </Input>
+      <Input id={'column-sort-input-desc'}>DESC</Input>
       <button
         data-testid="column-sort-button"
-        onClick={() => setSort({columnValue, sortValue})}
+        onClick={() => setSort({ columnValue, sortValue })}
         type="button"
       >
         Sort

@@ -20,4 +20,5 @@ export default Input;
 
 Input.propTypes = {
   children: PropTypes.string.isRequired,
+  id: PropTypes.id.isRequired,
 };
