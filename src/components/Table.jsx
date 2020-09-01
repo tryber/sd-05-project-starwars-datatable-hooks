@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import TableData from './TableData';
-// import SearchBar from './SearchBar';
+import SearchBar from './SearchBar';
 import './Table.css';
 import { StarWarsContext } from '../context/StarWarsContext';
 
@@ -41,7 +41,7 @@ export default function Table() {
   return (
     <div>
       <div>StarWars Datatable with Filters</div>
-      {/* <SearchBar /> */}
+      <SearchBar />
       <table>
         {tableHead()}
         <TableData />

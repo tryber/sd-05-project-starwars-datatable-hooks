@@ -8,18 +8,17 @@ const Provider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
-  /* const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({
     filterByName: {
       name: '',
     },
     filterByNumericValues: [],
-  }); */
+  });
 
   function fetchPlanetsSuccess(response) {
     const { results } = response;
     setIsFetching(false);
     setData(results);
-    //    console.log(results);
   }
 
   function fetchPlanetsFail(error1) {
@@ -30,19 +29,30 @@ const Provider = ({ children }) => {
   function fetchPlanets() {
     if (isFetching) return;
     setIsFetching(true);
-    /* fetchAPI().then(
-      (data) => setData(data.results),
-      (error) => setError(error.message),
-    ); */
     fetchAPI()
     .then(fetchPlanetsSuccess, fetchPlanetsFail);
   }
 
+  function changeFilterByName(nameInput) {
+    setFilters({
+      filterByName: {
+        name: nameInput,
+      },
+      filterByNumericValues: [{
+        column: '',
+        comparison: '',
+        value: '',
+      }],
+    });
+  }
+
   const context = {
+    filters,
     error,
     data,
     isFetching,
     fetchPlanets,
+    changeFilterByName,
   };
 
   return (

@@ -1,12 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import { StarWarsContext } from '../context/StarWarsContext';
+// import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import { changeFilterByName, changeFilterByNumeric } from './actions/actionsFilter';
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export default function SearchBar() {
+  const [inputText, setInputText] = useState('');
+  /* const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState(''); */
+
+  const { changeFilterByName } = useContext(StarWarsContext);
+    /* this.state = {
       inputText: '',
       column: '',
       comparison: '',
@@ -18,9 +23,9 @@ class SearchBar extends React.Component {
     this.handleNumericValue = this.handleNumericValue.bind(this);
     this.submitToStore = this.submitToStore.bind(this);
     this.selectParameter = this.selectParameter.bind(this);
-  }
+  } */
 
-  selectParameter() {
+  /* function selectParameter() {
     return (
       <select
         data-testid="column-filter"
@@ -36,7 +41,7 @@ class SearchBar extends React.Component {
     );
   }
 
-  filterForm() {
+  function filterForm() {
     const { value } = this.state;
     return (
       <div>
@@ -62,53 +67,48 @@ class SearchBar extends React.Component {
         </button>
       </div>
     );
-  }
+  } */
 
-  handleSelectColumn(event) {
+  /* function handleSelectColumn(event) {
     this.setState({
       column: event.target.value,
     });
   }
 
-  handleSelectComparison(event) {
+  function handleSelectComparison(event) {
     this.setState({
       comparison: event.target.value,
     });
+  } */
+
+  function handleChange(event) {
+    setInputText(event.target.value);
+    return changeFilterByName(event.target.value);
   }
 
-  handleChange(event) {
-    this.setState({
-      inputText: event.target.value,
-    });
-    /* this.props.changeFilterByName(event.target.value); */
-  }
-
-  handleNumericValue(event) {
+  /* function handleNumericValue(event) {
     this.setState({ value: event.target.value });
-  }
+  } */
 
   /* submitToStore() {
     const { column, comparison, value } = this.state;
      this.props.changeFilterByNumeric(column, comparison, value);
   } */
-
-  render() {
-    const { inputText } = this.state;
-    return (
-      <div>
-        <form>
-          <label htmlFor="name-filter">Procurar</label>
-          <input
-            placeholder="Name"
-            onChange={this.handleChange}
-            value={inputText}
-            data-testid="name-filter"
-          />
-        </form>
-        {this.filterForm()}
-      </div>
-    );
-  }
+    /* const { inputText } = this.state; */
+  return (
+    <div>
+      <form>
+        <label htmlFor="name-filter">Procurar</label>
+        <input
+          placeholder="Name"
+          onChange={handleChange}
+          value={inputText}
+          data-testid="name-filter"
+        />
+      </form>
+      {/* {this.filterForm()} */}
+    </div>
+  );
 }
 
 /* const mapStateToProps = (state) => ({
@@ -122,9 +122,9 @@ const mapDispatchToProps = (dispatch) => ({
   ),
 }); */
 
-SearchBar.propTypes = {
+/* SearchBar.propTypes = {
   changeFilterByName: PropTypes.instanceOf(Object).isRequired,
   changeFilterByNumeric: PropTypes.instanceOf(Object).isRequired,
-};
+}; */
 
 /* export default connect(mapStateToProps, mapDispatchToProps)(SearchBar); */

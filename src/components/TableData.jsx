@@ -24,7 +24,8 @@ function tableBody(planet) {
 }
 
 export default function TableData() {
-  const { data } = useContext(StarWarsContext);
+  const { data, filters } = useContext(StarWarsContext);
+  const { filterByName } = filters;
 
   /* console.log(data); */
 
@@ -61,17 +62,16 @@ export default function TableData() {
         {planetas.map((planet) => tableBody(planet))}
       </tbody>
     );
-  }
+  }*/
 
-  nameFilter() {
-    const { name, data } = this.props;
-    const dataFilteredByName = data.filter((planet) => planet.name.includes(name));
+  function nameFilter() {
+    const dataFilteredByName = data.filter((planet) => planet.name.includes(filterByName.name));
     return (
       <tbody className="table">
         {dataFilteredByName.map((planet) => tableBody(planet))}
       </tbody>
     );
-  } */
+  }
 
   function allPlanets() {
     return (
@@ -81,10 +81,10 @@ export default function TableData() {
     );
   }
 
-    /* const { name, comparison, column, value } = data;
-    if (name !== '') {
-      return this.nameFilter();
-    }
+  if (filterByName.name !== '') {
+    return nameFilter();
+  }
+    /*
     if (
       name === '' &&
       comparison !== '' &&
