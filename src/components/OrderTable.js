@@ -30,14 +30,14 @@ function OrderTable() {
         <label htmlFor="ASC">
           ASC
           <input
-            data-testid="column-sort-input" type="radio" id="ASC"
+            data-testid="column-sort-input-asc" type="radio" id="ASC"
             name="sort" value="ASC" onClick={handleChange}
           />
         </label>
         <label htmlFor="DESC">
           DESC
           <input
-            data-testid="column-sort-input" type="radio" id="DESC"
+            data-testid="column-sort-input-desc" type="radio" id="DESC"
             name="sort" value="DESC" onClick={handleChange}
           />
         </label>
