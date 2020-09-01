@@ -38,8 +38,12 @@ function mapArray(array) {
   ));
 }
 
+function filterName(name, array) {
+  return array.filter((arr) => arr.name.includes(name));
+}
+
 function Table() {
-  const { data, isFetching, fetchingDone, fetchPlanets } = useContext(
+  const { data, isFetching, fetchingDone, fetchPlanets, filters } = useContext(
     PlanetContext,
   );
   fetchPlanets();
@@ -54,7 +58,7 @@ function Table() {
           ))}
         </tr>
       </thead>
-      <tbody>{mapArray(data.results)}</tbody>
+      <tbody>{mapArray(filterName(filters, data.results))}</tbody>
     </table>
   );
 }

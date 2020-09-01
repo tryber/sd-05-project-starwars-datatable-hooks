@@ -7,6 +7,7 @@ const PlanetContext = createContext();
 const PlanetsProvider = ({ children }) => {
   const [data, setPlanets] = useState('');
   const [isFetching, setFetching] = useState(true);
+  const [filters, setFilterByName] = useState('');
 
   const fetchingDone = () => {
     if (data !== '') setFetching(false);
@@ -16,11 +17,17 @@ const PlanetsProvider = ({ children }) => {
     requestPlanets().then((response) => setPlanets(response));
   };
 
+  const filterByName = (e) => {
+    setFilterByName(e.target.value);
+  }
+
   const pContext = {
+    filters,
     data,
     isFetching,
     fetchingDone,
     fetchPlanets,
+    filterByName,
   };
 
   return (
