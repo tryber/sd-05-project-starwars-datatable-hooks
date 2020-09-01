@@ -18,7 +18,7 @@ function filterByNumber(planets, filtro) {
 
 function orderASC(planets, order) {
   const { column } = order;
-  if (column === 'Name') {
+  if (column === 'name') {
     return planets.sort((a, b) => {
       if (a[column] > b[column]) {
         return 1;
@@ -33,7 +33,7 @@ function orderASC(planets, order) {
 
 function orderDESC(planets, order) {
   const { column } = order;
-  if (column === 'Name') {
+  if (column === 'name') {
     return planets.sort((a, b) => {
       if (b[column] > a[column]) {
         return 1;
@@ -58,8 +58,7 @@ function orderTable(planets, order) {
 }
 
 function Table() {
-  const state = useContext(StarWarsContext); 
-  const { data, filterByName, filterByNumericValues, order } = state;
+  const { data, filterByName, filterByNumericValues, order } = useContext(StarWarsContext);
   if (!data) return <div>Sem dados</div>;
   let planets = data;
   filterByNumericValues.forEach((filtro) => { planets = filterByNumber(planets, filtro); });
