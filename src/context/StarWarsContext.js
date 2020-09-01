@@ -35,7 +35,6 @@ export const StarWarsProvider = ({ children }) => {
       {children}
     </StarWarsContext.Provider>
   );
-  
 };
 
 StarWarsProvider.propTypes = {
