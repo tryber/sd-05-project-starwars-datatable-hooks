@@ -23,14 +23,16 @@ const FilterNumber = () => {
             data-testid="column-filter"
             onChange={(e) => setLocalFilter({ ...localFilter, column: e.target.value })}>
             {remainingColumns.map((c) => (
-              <option key={c} value={c}>
+              <option key={c} value={c}
+          >
                 {c}
               </option>
             ))}
           </select>
           <select
             data-testid="comparison-filter"
-            onChange={(e) => setLocalFilter({ ...localFilter, comparison: e.target.value })}>
+            onChange={(e) => setLocalFilter({ ...localFilter, comparison: e.target.value })}
+          >
             {comparisonOptions.map((c) => (
               <option key={c} value={c}>
                 {c}
@@ -42,7 +44,11 @@ const FilterNumber = () => {
             type="number"
             onChange={(e) => setLocalFilter({ ...localFilter, value: e.target.value })}
           />
-          <button type="button" data-testid="button-filter" onClick={() => setFilterNumber([localFilter])}>
+          <button
+            type="button"
+            data-testid="button-filter"
+            onClick={() => setFilterNumber([localFilter])}
+          >
             Filtrar
           </button>
         </div>
