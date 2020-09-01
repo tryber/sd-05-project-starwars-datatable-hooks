@@ -8,7 +8,7 @@ export default function Home() {
   fetchGetPlanet } = useContext(StarWarsContext);
 
   useEffect(() => {
-    fetchGetPlanet();
+    fetchGetPlanet(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

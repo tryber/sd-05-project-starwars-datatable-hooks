@@ -68,6 +68,9 @@ const StarWarsProvider = ({ children }) => {
     setName,
     setChange,
     filterValues,
+    parameter,
+    property,
+    number,
   };
 
   return (

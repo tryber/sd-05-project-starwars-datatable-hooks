@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-import '../layouts/StarWars.css';
+// import '../layouts/StarWars.css';
 
 export default function Filter() {
   const { setName } = useContext(StarWarsContext);
 
   return (
-    <div className="filter">
+    // <div className="filter">
+    <div>
       <form>
         <label htmlFor="name-filter">
           Pesquise pelo nome do planeta:

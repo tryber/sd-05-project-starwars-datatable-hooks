@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import compareFunc from '../services/compareFunc';
 import StarWarsContext from '../context/StarWarsContext';
-import '../layouts/StarWars.css';
+// import '../layouts/StarWars.css';
 
 export default function Table() {
   const { data, filters } = useContext(StarWarsContext);
@@ -11,7 +11,8 @@ export default function Table() {
     ? Object.keys(data[0]).filter((attribute) => attribute !== 'residents')
     : [];
   return (
-    <div className="filter">
+    // <div className="filter">
+    <div>
       <thead>
         <tr>
           {attributes.map((index) => (<th key={index}>{`${index}`}</th>))}

@@ -11,7 +11,8 @@ const properties = [
 ];
 
 const InputColumn = () => {
-  const { filters, filterByNumericValues, setChange } = useContext(StarWarsContext);
+  const { filters, property, setChange } = useContext(StarWarsContext);
+  // filterByNumericValues, 
   const getProperty = () => {
     const propUpdated = filters.filterByNumericValues.map(({ column }) => column);
     return properties.filter((property) => !propUpdated.includes(property));
@@ -23,7 +24,8 @@ const InputColumn = () => {
         Filtrar por:
         <select
           data-testid="column-filter"
-          value={filterByNumericValues.column}
+          // value={filterByNumericValues?.column}
+          value={property}
           onChange={(e) => setChange(e.target.value, 'column')}
         >
           {attributes.map((attribute) => (
