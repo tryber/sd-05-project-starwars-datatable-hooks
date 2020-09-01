@@ -8,11 +8,11 @@ export default function TableBody() {
   useEffect(() => {
     getPlanets()
       .then(
-        (data) => setData(() => data.results),
-        (error) => setError(() => error),
+        () => setData(() => data.results),
+        () => setError(() => error),
       );
   }, []);
-  
+
   return (
     <tbody>
       {data.map((planet) => (

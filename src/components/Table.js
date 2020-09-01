@@ -1,7 +1,7 @@
 import React from 'react';
 import TableBody from './TableBody';
 
-const Table = () => {
+export default function Table() {
   return (
     <div>
       <table>
@@ -26,6 +26,4 @@ const Table = () => {
       </table>
     </div>
   );
-}
-
-export default Table;
+};
