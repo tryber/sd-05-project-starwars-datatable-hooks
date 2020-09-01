@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import StarWarsContext from './StarWarsContext';
 import propTypes from 'prop-types';
+import StarWarsContext from './StarWarsContext';
 
 const StarWarsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
