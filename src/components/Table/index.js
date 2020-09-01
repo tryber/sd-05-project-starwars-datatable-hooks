@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
-import queryFilters from '../../services/queryFilters';
 import { useContext } from 'react';
+import queryFilters from '../../services/queryFilters';
 import { StarWarsContext } from '../../context/StarWarsContext';
 import fetchPlanets from '../../services/fetchPlanets';
 
 const Table = () => {
-  const { data, setData, isFetching, setIsFetching, name, filterByNumericValues, order:{column}, order:{sort}} = useContext(StarWarsContext);
+  const {
+    data,
+    setData,
+    isFetching,
+    setIsFetching,
+    name,
+    filterByNumericValues,
+    order:{ column },
+    order:{ sort },
+  } = useContext(StarWarsContext);
   useEffect(() => {
     setIsFetching(true);
     fetchPlanets()
@@ -19,7 +28,7 @@ const Table = () => {
   let ths = [];
   if (data.length > 0) ths = Object.keys(data[0]);
   ths.splice(ths.indexOf('residents'), 1);
-  const allPlanets = queryFilters(data, name, filterByNumericValues, column, sort); //;
+  const allPlanets = queryFilters(data, name, filterByNumericValues, column, sort);
   if (isFetching) return <h2>Loading</h2>;
   return (
     <table>
@@ -33,14 +42,14 @@ const Table = () => {
       <tbody>
         {allPlanets.map((info) => (
           <tr key={Math.random(99999999)}>
-            {ths.map((data) => (
-              <td key={Math.random(9999999)}>{info[data]}</td>
+            {ths.map((datas) => (
+              <td key={Math.random(9999999)}>{info[datas]}</td>
             ))}
           </tr>
         ))}
       </tbody>
     </table>
   );
-}
+};
 
 export default Table;

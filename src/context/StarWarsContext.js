@@ -1,9 +1,9 @@
-import React, { useState ,createContext } from 'react';
+import React, { useState, createContext } from 'react';
+import PropTypes from 'prop-types';
 
 export const StarWarsContext = createContext();
 
 export const StarWarsProvider = ({ children }) => {
-  
   const [data, setData] = useState([]);
   const [isFetching, setIsFetching] = useState('false');
   const [filters, setFilters] = useState({
@@ -13,8 +13,8 @@ export const StarWarsProvider = ({ children }) => {
   });
   const [filterByNumericValues, SetFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({
-      column: 'Name',
-      sort: 'ASC',
+    column: 'Name',
+    sort: 'ASC',
   });
 
   const context = {
@@ -34,5 +34,9 @@ export const StarWarsProvider = ({ children }) => {
     <StarWarsContext.Provider value={context}>
       {children}
     </StarWarsContext.Provider>
-  )
+  );
+};
+
+StarWarsContext.propTypes = {
+  children: PropTypes.element.isRequired,
 }
