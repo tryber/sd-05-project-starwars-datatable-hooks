@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-import getPlanets from '../services/starAPI';
+import PropTypes from 'prop-types';
 
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
@@ -11,13 +11,17 @@ const Provider = ({ children }) => {
     setData,
     error,
     setError,
-  }
+  };
 
   return (
     <StarWarsContext.Provider value={context}>
       {children}
     </StarWarsContext.Provider>
   );
-}
+};
+
+Provider.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 
 export default Provider;

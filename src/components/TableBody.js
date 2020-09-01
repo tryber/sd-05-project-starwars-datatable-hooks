@@ -10,7 +10,7 @@ export default function TableBody() {
       .then(
         (data) => setData(() => data.results),
         (error) => setError(() => error),
-      )
+      );
   }, []);
   
   return (
