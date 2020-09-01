@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import SWContext from '../../context/SWContext';
 
-const Input = ({ children, id }) => {
+const Input = ({ children, id = 'column-sort-input-asc'}) => {
   const { setSortValue } = useContext(SWContext);
   return (
     <input
@@ -18,7 +18,11 @@ const Input = ({ children, id }) => {
 };
 export default Input;
 
+Input.defaultProps = {
+  id: undefined,
+};
+
 Input.propTypes = {
   children: PropTypes.string.isRequired,
-  id: PropTypes.id.isRequired,
+  id: PropTypes.string,
 };
