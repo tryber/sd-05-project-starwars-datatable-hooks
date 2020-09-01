@@ -18,10 +18,10 @@ function Table() {
     requestAPI().then((response) => getData(response));
   }, []);
 
-    return (
-      loading
+  return (
+    loading
       ? <p>Loading...</p>
-      : 
+      :
       <div>
         <SearchBar />
         <table>
@@ -29,7 +29,7 @@ function Table() {
           <TableBody />
         </table>
       </div>
-    );
+  );
 }
 
 export default Table;

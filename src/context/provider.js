@@ -20,11 +20,11 @@ const StarWarsProvider = ({ children }) => {
     <StarWarsContext.Provider value={estadao}>
       {children}
     </StarWarsContext.Provider>
-  )
+  );
 };
 
 export default StarWarsProvider;
 
 StarWarsProvider.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
