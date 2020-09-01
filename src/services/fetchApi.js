@@ -1,6 +1,6 @@
 const api = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
-export function handleAsyncFetch() {
+export default function handleAsyncFetch() {
   return fetch(api)
     .then((response) => response.json())
     .then(

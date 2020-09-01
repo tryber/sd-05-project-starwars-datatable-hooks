@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import FilterInput from './FilterInput';
-import { useState } from 'react';
 import { useContext } from 'react';
+import { useState } from 'react';
+import FilterInput from './FilterInput';
 import { StarWarsContext } from '../context/StarWarsContext';
 import SelectComparison from './SelectComparison';
 import BtnToSubmit from './BtnToSubmit';
@@ -42,7 +42,7 @@ const Filter = () => {
       <form>
         <select
           data-testid="column-filter"
-          onChange={(e) => setFilter({...filter, column: e.target.value})}
+          onChange={(e) => setFilter({ ...filter, column: e.target.value })}
         >
           <option>Coluna</option>
           {filtrosFiltrados.map((filtro) => (
@@ -51,18 +51,13 @@ const Filter = () => {
             </option>
           ))}
         </select>
-        <SelectComparison change={(e) => setFilter({...filter, comparison: e.target.value})} />
+        <SelectComparison change={(e) => setFilter({ ...filter, comparison: e.target.value })} />
         {/* input do number */}
         <input
           type="number"
           data-testid="value-filter"
-          onChange={(e) => setFilter({...filter, value: e.target.value})}
+          onChange={(e) => setFilter({ ...filter, value: e.target.value })}
         />
-        {/* <input
-          type="number"
-          data-testid="value-filter"
-          onChange={(e) => setnumberFilter( e.target.value )}
-        /> */}
         <BtnToSubmit click={() => setFilterByNumericValues([filter])} />
       </form>
     </Fragment>

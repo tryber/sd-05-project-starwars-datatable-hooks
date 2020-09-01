@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './App.css';
 import { StarWarsProvider } from './context/StarWarsContext';
 import Table from './components/Table';
