@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 
 const InputValue = () => {
   const { number, setChange } = useContext(StarWarsContext);
-  // filterByNumericValues, 
+  // filterByNumericValues,
   const setValue = (k, v) => setChange(k, v);
   return (
     <form>

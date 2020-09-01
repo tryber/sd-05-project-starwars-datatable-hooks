@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 
 const InputComparison = () => {
   const { parameter, setChange } = useContext(StarWarsContext);
-  // filterByNumericValues, 
+  // filterByNumericValues,
   const operators = ['', 'maior que', 'menor que', 'igual a'];
   return (
     <form>
