@@ -35,8 +35,9 @@ export const StarWarsProvider = ({ children }) => {
       {children}
     </StarWarsContext.Provider>
   );
+  
 };
 
-StarWarsContext.propTypes = {
+StarWarsProvider.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };

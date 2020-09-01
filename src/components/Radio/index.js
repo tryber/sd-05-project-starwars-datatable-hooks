@@ -8,7 +8,7 @@ const Radio = () => {
     'diameter', 'climate', 'gravity', 'terrain',
     'surface_water', 'population', 'films',
     'created', 'edited', 'url',
-    ];
+  ];
 
   const [order, setOrders] = useState({
     columnValue: '',
