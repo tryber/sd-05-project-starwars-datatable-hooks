@@ -6,7 +6,7 @@ export default function Home() {
   const {
   isFetching,
   fetchGetPlanet } = useContext(StarWarsContext);
-  
+
   useEffect(() => {
     fetchGetPlanet();
   }, []);

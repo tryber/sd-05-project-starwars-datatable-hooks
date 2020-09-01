@@ -6,7 +6,7 @@ const InputComparison = () => {
   const operators = ['', 'maior que', 'menor que', 'igual a'];
   return (
     <form>
-      <label>
+      <label htmlFor="comparison-filter">
         Comparação:
         <select
           data-testid="comparison-filter"

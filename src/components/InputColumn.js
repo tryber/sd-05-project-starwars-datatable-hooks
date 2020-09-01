@@ -19,7 +19,7 @@ const InputColumn = () => {
   const attributes = getProperty();
   return (
     <form>
-      <label>
+      <label htmlFor="column-filter">
         Filtrar por:
         <select
           data-testid="column-filter"

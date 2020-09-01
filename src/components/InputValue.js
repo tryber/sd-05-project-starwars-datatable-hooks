@@ -6,7 +6,7 @@ const InputValue = () => {
   const setValue = (k, v) => setChange(k, v);
   return (
     <form>
-      <label>
+      <label htmlFor="value-filter">
         Valor:
         <input
           type="number"

@@ -8,7 +8,7 @@ export default function Filter() {
   return (
     <div className="filter">
       <form>
-        <label>
+        <label htmlFor="name-filter">
           Pesquise pelo nome do planeta:
           <input
             data-testid="name-filter"
