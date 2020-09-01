@@ -30,5 +30,5 @@ export const StarWarsProvider = ({ children }) => {
 };
 
 StarWarsProvider.propTypes = {
-  children: Proptypes.array.isRequired,
-}
+  children: Proptypes.arrayOf(Proptypes.element).isRequired,
+};
