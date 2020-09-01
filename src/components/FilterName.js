@@ -1,7 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { filterNameAction } from '../actions';
+// import { filterNameAction } from '../actions';
 
 class FilterName extends React.Component {
 
@@ -25,17 +23,18 @@ class FilterName extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  fetching: state.planetReducer.fetching,
-});
+// const mapStateToProps = (state) => ({
+//   fetching: state.planetReducer.fetching,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  getInput: (input) => dispatch(filterNameAction(input)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   getInput: (input) => dispatch(filterNameAction(input)),
+// });
 
-FilterName.propTypes = {
-  fetching: propTypes.bool.isRequired,
-  getInput: propTypes.func.isRequired,
-};
+// FilterName.propTypes = {
+//   fetching: propTypes.bool.isRequired,
+//   getInput: propTypes.func.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
+// export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
+export default FilterName;

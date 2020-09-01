@@ -1,7 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { cancelFilterAction } from '../actions';
+// import { cancelFilterAction } from '../actions';
 
 class FilterList extends React.Component {
 
@@ -24,19 +22,19 @@ class FilterList extends React.Component {
     );
   }
 }
-// [HA] - Modelo span https://www.w3schools.com/tags/tag_span.asp#:~:text=The%20tag%20is%20an,span%3E%20is%20an%20inline%20element .
 
-const mapStateToProps = (state) => ({
-  filterNumber: state.filters.filterByNumericValues,
-});
+// const mapStateToProps = (state) => ({
+//   filterNumber: state.filters.filterByNumericValues,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  cancelFilter: (index) => dispatch(cancelFilterAction(index)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   cancelFilter: (index) => dispatch(cancelFilterAction(index)),
+// });
 
-FilterList.propTypes = {
-  filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
-  cancelFilter: propTypes.func.isRequired,
-};
+// FilterList.propTypes = {
+//   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
+//   cancelFilter: propTypes.func.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterList);
+// export default connect(mapStateToProps, mapDispatchToProps)(FilterList);
+export default FilterList;

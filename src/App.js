@@ -13,14 +13,14 @@ function App() {
       <header className="App-header">
         <Title />
       </header>
-      <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
+      {/* <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
         <FilterName />
         <FilterNumber />
         <FilterList />
       </section>
       <section className="App-section">
         <Table />
-      </section>
+      </section> */}
       <section className="planet-image" />
       <footer className="App-footer">
         <Footer />
@@ -30,4 +30,3 @@ function App() {
 }
 
 export default App;
-

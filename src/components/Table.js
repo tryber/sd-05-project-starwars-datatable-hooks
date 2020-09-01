@@ -1,10 +1,12 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchPlanetsThunk } from '../actions';
+import React, { useContext } from 'react';
+import { StarWarsContext } from '../context/StarWarsContext';
+// import { fetchPlanetsThunk } from '../actions';
 import TableHeader from './TableHeader';
 import TableData from './TableData';
 
+// function Table() {
+
+// }
 class Table extends React.Component {
 
   componentDidMount() {
@@ -30,18 +32,19 @@ class Table extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  fetching: state.planetReducer.fetching,
-  data: state.planetReducer.data,
-});
+// const mapStateToProps = (state) => ({
+//   fetching: state.planetReducer.fetching,
+//   data: state.planetReducer.data,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  async: (data) => dispatch(fetchPlanetsThunk(data)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   async: (data) => dispatch(fetchPlanetsThunk(data)),
+// });
 
-Table.propTypes = {
-  fetching: propTypes.bool.isRequired,
-  async: propTypes.func.isRequired,
-};
+// Table.propTypes = {
+//   fetching: propTypes.bool.isRequired,
+//   async: propTypes.func.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+// export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default Table;

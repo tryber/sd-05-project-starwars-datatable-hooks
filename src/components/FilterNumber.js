@@ -1,7 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { filterNumberAction } from '../actions';
+// import { filterNumberAction } from '../actions';
 
 class FilterNumber extends React.Component {
   constructor(props) {
@@ -15,7 +13,6 @@ class FilterNumber extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // [HA] - Modelo (Trybe Course, 'Forms em React').
   hChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -55,22 +52,15 @@ class FilterNumber extends React.Component {
     );
   }
 }
- // [HA]{R4} - Ajuda. (subtrair arrays, Paulo Dandrea, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/17/files).
 
-const mapStateToProps = (state) => ({
-  fetching: state.planetReducer.fetching,
-  filterNumber: state.filters.filterByNumericValues,
-});
+// const mapStateToProps = (state) => ({
+//   fetching: state.planetReducer.fetching,
+//   filterNumber: state.filters.filterByNumericValues,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  getNumberInput: (column, comparison, value) =>
-    dispatch(filterNumberAction(column, comparison, value)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   getNumberInput: (column, comparison, value) =>
+//     dispatch(filterNumberAction(column, comparison, value)),
+// });
 
-FilterNumber.propTypes = {
-  fetching: propTypes.bool.isRequired,
-  getNumberInput: propTypes.func.isRequired,
-  filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterNumber);
+export default FilterNumber;

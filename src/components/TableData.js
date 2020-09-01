@@ -1,6 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 function filterByNumber(planets, myFilter) {
   if (myFilter.comparison === 'maior que') {
@@ -12,10 +10,8 @@ function filterByNumber(planets, myFilter) {
   }
   return planets;
 }
-// [HA]{R3} - Ajuda (Lucas Allan, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/16/files ).
 
 class TableData extends React.Component {
-  // [HA]{R1} - Grupo.
 
   render() {
     const { data, filterName, filterNumber } = this.props;
@@ -23,8 +19,6 @@ class TableData extends React.Component {
     filterNumber.forEach((filter) => {
       allPlanets = filterByNumber(allPlanets, filter);
     });
-    // iterar entre os três filtros para aplicar a function condicionada ao data
-    // data -> allPlanets para alterar e integrar filtros numéricos
     return (
       <tbody className="planets-table">
         {allPlanets
@@ -51,18 +45,19 @@ class TableData extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  data: state.planetReducer.data,
-  filterName: state.filters.filterByName,
-  filterNumber: state.filters.filterByNumericValues,
-});
+// const mapStateToProps = (state) => ({
+//   data: state.planetReducer.data,
+//   filterName: state.filters.filterByName,
+//   filterNumber: state.filters.filterByNumericValues,
+// });
 
-TableData.propTypes = {
-  data: propTypes.arrayOf(propTypes.object).isRequired,
-  filterName: propTypes.shape({
-    filterByName: propTypes.object,
-  }).isRequired,
-  filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
-};
+// TableData.propTypes = {
+//   data: propTypes.arrayOf(propTypes.object).isRequired,
+//   filterName: propTypes.shape({
+//     filterByName: propTypes.object,
+//   }).isRequired,
+//   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
+// };
 
-export default connect(mapStateToProps, null)(TableData);
+// export default connect(mapStateToProps, null)(TableData);
+export default TableData;
