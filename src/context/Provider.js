@@ -4,14 +4,15 @@ import StarWarsContext from './StarWarsContext';
 import { fetchPlanets } from '../services/apiService';
 
 function Provider({ children }) {
-  const apiData = () => fetchPlanets();
   const [planets, setPlanets] = useState([]);
   const [textForm, setTextForm] = useState('');
   const [column, setColumn] = useState('');
   const [comparison, setCO] = useState('');
   const [value, setValue] = useState('');
   const [numberFilter, setNumberFilter] = useState([]);
-
+  
+  
+  const apiData = () => fetchPlanets();
   useEffect(() => {
     apiData().then((data) => setPlanets(data.results));
   }, []);

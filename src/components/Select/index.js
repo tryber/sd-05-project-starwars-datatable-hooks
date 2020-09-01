@@ -5,7 +5,7 @@ function Select(props) {
   const { name, onChange, id, options } = props;
   return (
     <label htmlFor={name}>
-      <select name={name} onChange={onChange} data-testid={id}>
+      <select name={name} onChange={onChange} data-testid={(name === 'column' ? 'column-filter': 'comparison-filter')}>
         {options.map((each) => (
           <option key={each}>{each}</option>
         ))}
@@ -16,7 +16,6 @@ function Select(props) {
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
 };
