@@ -5,6 +5,7 @@ import FilterInput from './FilterInput';
 import { StarWarsContext } from '../context/StarWarsContext';
 import SelectComparison from './SelectComparison';
 import BtnToSubmit from './BtnToSubmit';
+import FiltrosAtivos from './FiltrosAtivos';
 
 const filtrosColuna = [
   'population',
@@ -38,6 +39,7 @@ const Filter = () => {
 
   return (
     <Fragment>
+      <FiltrosAtivos />
       <FilterInput />
       <form>
         <select
@@ -58,7 +60,7 @@ const Filter = () => {
           data-testid="value-filter"
           onChange={(e) => setFilter({ ...filter, value: e.target.value })}
         />
-        <BtnToSubmit click={() => setFilterByNumericValues([filter])} />
+        <BtnToSubmit click={() => setFilterByNumericValues([...filterByNumericValues, filter])} />
       </form>
     </Fragment>
   );
