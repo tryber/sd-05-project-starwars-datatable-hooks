@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     fetchGetPlanet();
   }, []);
-  
+
   return (
     isFetching
     ? <p>Loading...</p>
