@@ -5,20 +5,27 @@ import StarWarsContext from '../context/StarWarsContext';
 const StarWarsProvider = ({ children }) => {
   // put all states that were part of former reducers and their initial value
   const [dataApi, setDataApi] = useState([]);
-  const [allFilters, setAllFilters] = useState({
+  const [filterName, setFilterName] = useState({
     filterByName: {
       name: '',
     },
-    filterByNumericValues: [],
+    // filterByNumericValues: [{
+    //   column: '',
+    //   comparison: '',
+    //   value: '',
+    // }],
+    // abandoned this version, too heavy to manipulate in onClick
   });
+  const [filterNumber, setFilterNumber] = useState([]);
 
-  // create a unique value as if it was the redux store
+  // create an equivalent of redux store to pass on to all consumers
   const allInfos = {
     dataApi,
     setDataApi,
-    filterName: allFilters.filterByName,
-    filterNumber: allFilters.filterByNumericValues,
-    setAllFilters,
+    filterName: filterName.filterByName,
+    setFilterName,
+    filterNumber,
+    setFilterNumber,
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const FilterName = () => {
-  const { dataApi, setAllFilters } = useContext(StarWarsContext);
+  const { dataApi, setFilterName } = useContext(StarWarsContext);
   return (
     <div>
       {dataApi.length !== 0 && (
@@ -12,7 +12,7 @@ const FilterName = () => {
             data-testid="name-filter"
             type="text"
             name=""
-            onChange={(e) => setAllFilters({ filterByName: { name: e.target.value } })}
+            onChange={(e) => setFilterName({ filterByName: { name: e.target.value } })}
           />
         </div>
       )}
