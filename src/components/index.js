@@ -1,6 +1,6 @@
 import Compare from './Compare';
 import Filter from './Filter';
-import Header from './Header';
+// import Header from './Header';
 import Home from './Home';
 import InputColumn from './InputColumn';
 import InputComparison from './InputComparison';
@@ -10,7 +10,7 @@ import Table from './Table';
 export {
   Compare,
   Filter,
-  Header,
+  // Header,
   Home,
   InputColumn,
   InputComparison,
