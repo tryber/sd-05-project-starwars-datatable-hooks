@@ -21,9 +21,11 @@ const Radio = () => {
       ];
 
       const [order, setOrders] = useState({
-        columnValue:'name',
-        radio: 'ASC',
+        columnValue:'',
+        radio: '',
       })
+
+      console.log(order);
       const { setOrder } = useContext(StarWarsContext);
   return (
     <div>
@@ -47,7 +49,7 @@ const Radio = () => {
       />
       <label htmlFor="DESC">DESC</label>
       <button
-        type="button" onClick={() => setOrder([order])}
+        type="button" onClick={() => setOrder({order})}
         data-testid="column-sort-button"
       >
         Filtrar

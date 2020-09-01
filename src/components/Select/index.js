@@ -28,7 +28,6 @@ const Select = () => {
   });
   
 
-  console.log(filter);
 
   // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
   const filteredColumns = columnsOptions.filter ((item) => !filtered.includes(item));
@@ -47,7 +46,7 @@ const Select = () => {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={() => SetFilterByNumericValues([filter])}
+        onClick={() => SetFilterByNumericValues([...filterByNumericValues, filter])}
       >
         Buscar
       </button>

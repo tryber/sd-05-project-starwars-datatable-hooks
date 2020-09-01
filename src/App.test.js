@@ -158,7 +158,7 @@ describe.only('Sua página deve ter um campo de texto que filtra a tabela para s
   });
 });
 
-describe('Sua página deve ter um filtro para valores numéricos', () => {
+describe.only('Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -248,7 +248,7 @@ describe('Sua página deve ter um filtro para valores numéricos', () => {
   });
 });
 
-describe('Sua página não deve utilizar filtros repetidos', () => {
+describe.only('Sua página não deve utilizar filtros repetidos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
