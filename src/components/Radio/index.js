@@ -10,10 +10,10 @@ const Radio = () => {
     'created', 'edited', 'url',
     ];
 
-    const [order, setOrders] = useState({
-      columnValue: '',
-      radio: '',
-    });
+  const [order, setOrders] = useState({
+    columnValue: '',
+    radio: '',
+  });
 
   const { setOrder } = useContext(StarWarsContext);
   return (
@@ -24,9 +24,7 @@ const Radio = () => {
           onChange={(e) => setOrders({ ...order, columnValue: e.target.value })}
           id="order" data-testid="column-sort"
         >
-          { options.map((item) => (
-            <option key={item}>{item}</option>
-          ))};
+          { options.map((item) => <option key={item}>{item}</option>) };
         </select>
       </div>
       <input

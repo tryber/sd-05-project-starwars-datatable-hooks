@@ -3,12 +3,8 @@ import { StarWarsContext } from '../../context/StarWarsContext';
 
 const Select = () => {
   const columnsOptions = [
-    'selecione',
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
+    'selecione', 'population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water',
   ];
 
   const { filterByNumericValues, SetFilterByNumericValues } = useContext(StarWarsContext);
@@ -20,9 +16,7 @@ const Select = () => {
   });
 
   const filtered = filterByNumericValues.map((fil) => {
-    if (fil.column) {
-      return fil.column;
-    }
+    if (fil.column) return fil.column;
     return null;
   });
 
@@ -32,8 +26,8 @@ const Select = () => {
   return (
     <div>
       <select
-        data-testid="column-filter"
-        name="column" onChange={(e) => setFilter({ ...filter, column: e.target.value })}
+        data-testid="column-filter" name="column"
+        onChange={(e) => setFilter({ ...filter, column: e.target.value })}
       >
         {filteredColumns.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
@@ -46,13 +40,11 @@ const Select = () => {
         )}
       </select>
       <input
-        type="number"
-        data-testid="value-filter"
-        name="value" onChange={(e) => setFilter({ ...filter, value: e.target.value })} 
+        type="number" data-testid="value-filter"
+        name="value" onChange={(e) => setFilter({ ...filter, value: e.target.value })}
       />
       <button
-        type="button"
-        data-testid="button-filter"
+        type="button" data-testid="button-filter"
         onClick={() => SetFilterByNumericValues([...filterByNumericValues, filter])}
       >
         Buscar

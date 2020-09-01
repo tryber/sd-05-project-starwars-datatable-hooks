@@ -12,8 +12,8 @@ const Table = () => {
     setIsFetching,
     name,
     filterByNumericValues,
-    order:{ column },
-    order:{ sort },
+    order: { column },
+    order: { sort },
   } = useContext(StarWarsContext);
   useEffect(() => {
     setIsFetching(true);
