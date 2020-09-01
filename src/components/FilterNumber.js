@@ -1,19 +1,22 @@
 import React, { useState, useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
+const columnOptions = [
+  '',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+const comparisonOptions = ['', 'maior que', 'menor que', 'igual a'];
+
+// generating first local react state like was done before
 const FilterNumber = () => {
-  // first generate local react state we had before
-  const [localFilter, setLocalFilter] = useState({
-    column: '',
-    comparison: '',
-    value: '',
-  });
+  const [localFilter, setLocalFilter] = useState({ column: '', comparison: '', value: '' });
   const { dataApi, filterNumber, setFilterNumber } = useContext(StarWarsContext);
-  const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-  const comparisonOptions = ['', 'maior que', 'menor que', 'igual a'];
   const columnFilters = filterNumber.map((filter) => filter.column);
   const remainingColumns = columnOptions.filter((column) => !columnFilters.includes(column));
-
   return (
     <div>
       {dataApi.length !== 0 && (
@@ -21,12 +24,10 @@ const FilterNumber = () => {
           <h4>Apply more filters:</h4>
           <select
             data-testid="column-filter"
-            onChange={(e) => setLocalFilter({ ...localFilter, column: e.target.value })}>
-            {remainingColumns.map((c) => (
-              <option key={c} value={c}
+            onChange={(e) => setLocalFilter({ ...localFilter, column: e.target.value })}
           >
-                {c}
-              </option>
+            {remainingColumns.map((c) => (
+              <option key={c} value={c}>{c}</option>
             ))}
           </select>
           <select
@@ -34,9 +35,7 @@ const FilterNumber = () => {
             onChange={(e) => setLocalFilter({ ...localFilter, comparison: e.target.value })}
           >
             {comparisonOptions.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
+              <option key={c} value={c}>{c}</option>
             ))}
           </select>
           <input
