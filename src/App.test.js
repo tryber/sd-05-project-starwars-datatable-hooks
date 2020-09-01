@@ -84,7 +84,7 @@ describe('Fazer uma requisição para o endpoint `/planets` da API de Star Wars 
   });
 });
 
-describe.only('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
+describe('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -158,7 +158,7 @@ describe.only('Sua página deve ter um campo de texto que filtra a tabela para s
   });
 });
 
-describe.skip('Sua página deve ter um filtro para valores numéricos', () => {
+describe.only('Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -208,7 +208,7 @@ describe.skip('Sua página deve ter um filtro para valores numéricos', () => {
     expect(await screen.findByTestId(BUTTON_FILTER_SELECTOR)).toHaveProperty('nodeName', 'BUTTON');
   });
 
-  it('filtra utilizando a comparação "menor que"', async () => {
+  it.only('filtra utilizando a comparação "menor que"', async () => {
     await act(async () => {
       render(<App />);
     });
