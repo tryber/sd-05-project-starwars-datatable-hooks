@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import FilterNumber from './FilterNumber';
 import FilterNumberOptions from './FilterNumberOptions';
 import StarWarsContext from '../context/StarWarsContext';
@@ -6,7 +6,7 @@ import StarWarsContext from '../context/StarWarsContext';
 function SearchBar() {
   const { setFilterByName } = useContext(StarWarsContext);
   const handleChange = (e) => {
-    setFilterByName({name: e.target.value});
+    setFilterByName({ name: e.target.value });
   };
   return (
     <div>

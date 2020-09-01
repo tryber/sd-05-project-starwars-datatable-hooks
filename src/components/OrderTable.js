@@ -10,12 +10,16 @@ function OrderTable() {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    name === 'column' ? setColumn(value) : setSort(value);
-  }
+    if (name === 'column') {
+      setColumn(value);
+    } else {
+      setSort(value);
+    } 
+  };
 
   const handleClick = () => {
-    setOrder({ column, sort, });
-  }
+    setOrder({ column, sort });
+  };
 
   return (
     <div>

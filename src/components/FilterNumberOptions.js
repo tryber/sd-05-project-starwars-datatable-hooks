@@ -7,8 +7,8 @@ function FilterNumberOptions() {
   const handleClick = (column) => {
     const removed = filterByNumericValues.filter((e) => e.column !== column);
     setFilterByNumericValues(removed);
-  }
-  
+  };
+
   return (
     <div>
       {filterByNumericValues.map((e) => (
@@ -26,7 +26,6 @@ function FilterNumberOptions() {
       ))}
     </div>
   );
-
 }
 
 export default FilterNumberOptions;

@@ -4,9 +4,9 @@ import StarWarsContext from './StarWarsContext';
 export default function Provider(props) {
   const [isFetching, setIsFetching] = useState(false);
   const [data, setData] = useState([]);
-  const [filterByName, setFilterByName] = useState({name: ''});
+  const [filterByName, setFilterByName] = useState({ name: '' });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
-  const [order, setOrder] = useState({ column: 'name', sort: 'ASC', });
+  const [order, setOrder] = useState({ column: 'name', sort: 'ASC' });
 
   const state = {
     isFetching,
@@ -21,9 +21,13 @@ export default function Provider(props) {
     setOrder,
   };
 
-  return(
+  return (
     <StarWarsContext.Provider value={state}>
       {props.children}
     </StarWarsContext.Provider>
   );
 }
+
+Provider.PropTypes = {
+
+};
