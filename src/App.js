@@ -15,11 +15,11 @@ function App() {
         <header className="App-header">
           <Title />
         </header>
-          {/* <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
+          <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
           <FilterName />
-          <FilterNumber />
-          <FilterList />
-        </section> */}
+          {/* <FilterNumber />
+          <FilterList /> */}
+        </section>
         <section className="App-section">
           <Table />
         </section>

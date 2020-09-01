@@ -25,7 +25,7 @@ function Table() {
   return (
     <div>
       {dataApi.length === 0 && <h5>Loading...</h5>}
-      {dataApi.length !== 0 && console.log(dataApi)}
+      {/* {dataApi.length !== 0 && console.log(dataApi)} */}
       {dataApi.length !== 0 && (
         <table>
           <TableHeader />

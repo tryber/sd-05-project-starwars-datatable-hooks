@@ -1,40 +1,23 @@
-import React from 'react';
-// import { filterNameAction } from '../actions';
+import React, { useContext } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 
-class FilterName extends React.Component {
+const FilterName = () => {
+  const { dataApi, setAllFilters } = useContext(StarWarsContext);
+  return (
+    <div>
+      {dataApi.length !== 0 && (
+        <div>
+          <h4>Search for specific planet:</h4>
+          <input
+            data-testid="name-filter"
+            type="text"
+            name=""
+            onChange={(e) => setAllFilters({ filterByName: { name: e.target.value } })}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
-  render() {
-    const { fetching, getInput } = this.props;
-    return (
-      <div>
-        {!fetching && (
-          <div>
-            <h4>Search for specific planet:</h4>
-            <input
-              data-testid="name-filter"
-              type="text"
-              name=""
-              onChange={(e) => getInput(e.target.value)}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
-}
-
-// const mapStateToProps = (state) => ({
-//   fetching: state.planetReducer.fetching,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   getInput: (input) => dispatch(filterNameAction(input)),
-// });
-
-// FilterName.propTypes = {
-//   fetching: propTypes.bool.isRequired,
-//   getInput: propTypes.func.isRequired,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
 export default FilterName;
