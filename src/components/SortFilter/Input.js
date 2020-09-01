@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import SWContext from '../../context/SWContext';
 
-const Input = ({ children, id = 'column-sort-input-asc'}) => {
+const Input = ({ children, id }) => {
   const { setSortValue } = useContext(SWContext);
   return (
     <input
