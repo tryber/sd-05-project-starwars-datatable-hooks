@@ -6,6 +6,7 @@ import InputColumn from './InputColumn';
 import InputComparison from './InputComparison';
 import InputValue from './InputValue';
 import Table from './Table';
+import Remove from './Remove';
 
 export {
   Compare,
@@ -16,4 +17,5 @@ export {
   InputComparison,
   InputValue,
   Table,
+  Remove,
 };

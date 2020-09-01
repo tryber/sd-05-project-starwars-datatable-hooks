@@ -34,11 +34,22 @@ const StarWarsProvider = ({ children }) => {
     }
   };
 
+  const deleteFilter = (erased) => {
+    setFilters({
+      ...filters,
+      filterByNumericValues: [
+        ...filters.filterByNumericValues.filter((option) => option !== erased),
+      ],
+    });
+  };
+
   const filterValues = () => {
     setFilters({
       ...filters,
-      filterByNumericValues:
-  [...filters.filterByNumericValues, { column: property, comparison: parameter, value: number }],
+      filterByNumericValues: [
+        ...filters.filterByNumericValues,
+        { column: property, comparison: parameter, value: number },
+      ],
     });
     setProperty('');
     setParameter('');
@@ -52,9 +63,7 @@ const StarWarsProvider = ({ children }) => {
 
   const fetchGetPlanet = () => {
     setIsFetching(true);
-    getPlanets().then(
-      (planet) => requestPlanets(planet),
-    );
+    getPlanets().then((planet) => requestPlanets(planet));
   };
 
   const context = {
@@ -71,13 +80,10 @@ const StarWarsProvider = ({ children }) => {
     parameter,
     property,
     number,
+    deleteFilter,
   };
 
-  return (
-    <StarWarsContext.Provider value={context}>
-      {children}
-    </StarWarsContext.Provider>
-  );
+  return <StarWarsContext.Provider value={context}>{children}</StarWarsContext.Provider>;
 };
 export default StarWarsProvider;
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-import { Filter, Compare, Table } from './';
+import { Filter, Compare, Table, Remove } from './';
 
 export default function Home() {
   const {
@@ -19,6 +19,7 @@ export default function Home() {
       {/* <Header /> */}
       <Filter />
       <Compare />
+      <Remove />
       <Table />
     </div>
 

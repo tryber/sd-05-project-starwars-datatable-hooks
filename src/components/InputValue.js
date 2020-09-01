@@ -3,7 +3,6 @@ import StarWarsContext from '../context/StarWarsContext';
 
 const InputValue = () => {
   const { number, setChange } = useContext(StarWarsContext);
-  // filterByNumericValues,
   const setValue = (k, v) => setChange(k, v);
   return (
     <form>
@@ -12,7 +11,6 @@ const InputValue = () => {
         <input
           type="number"
           data-testid="value-filter"
-          // value={filterByNumericValues?.value}
           value={number}
           onChange={(e) => setValue(e.target.value, 'value')}
         />
