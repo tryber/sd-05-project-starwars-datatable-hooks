@@ -8,13 +8,13 @@ const SearchBar = () => {
       <label htmlFor="input-name-filter">
         Search for a planet by its name:
           <input
-          data-testid="name-filter"
-          type="text"
-          onChange={(event) => setName(event.target.value)}
-        />
+            data-testid="name-filter"
+            type="text"
+            onChange={(event) => setName(event.target.value)}
+          />
       </label>
     </div>
   );
-}
+};
 
 export default SearchBar;
