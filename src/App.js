@@ -1,11 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Provider from './context/Provider';
+import Table from './components/table';
+import Inputs from './components/inputs';
 
 function App() {
   return (
     <div>
-      
+      <Provider>
+        <header>
+          <Inputs />
+        </header>
+        <Table />
+      </Provider>
     </div>
   );
 }
