@@ -24,7 +24,7 @@ const Provider = ({ children }) => {
 };
 
 Provider.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default Provider;
