@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createContext } from 'react';
+import Proptypes from 'prop-types';
 
 export const StarWarsContext = createContext();
 
@@ -10,7 +11,7 @@ export const StarWarsProvider = ({ children }) => {
       name: '',
     },
   });
-  const [ filterByNumericValues, setFilterByNumericValues ] = useState([]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const store = {
     data,
@@ -27,3 +28,7 @@ export const StarWarsProvider = ({ children }) => {
     </StarWarsContext.Provider>
   );
 };
+
+StarWarsContext.proptypes = {
+  children: Proptypes.element.isRequired,
+}

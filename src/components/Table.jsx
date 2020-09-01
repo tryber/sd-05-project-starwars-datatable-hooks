@@ -2,20 +2,16 @@ import React, { Fragment } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { StarWarsContext } from '../context/StarWarsContext';
-import { handleAsyncFetch } from '../services/fetchApi';
 import Thead from './THead';
 import allFilteredFunc from '../services/functions';
+import handleAsyncFetch from '../services/fetchApi';
 
 const Table = () => {
   const { data, setData, filterByNumericValues } = useContext(StarWarsContext);
   const { name } = useContext(StarWarsContext);
 
   useEffect(() => {
-    // console.log('debugger');
-    // setMovies(handleAsyncFetch())
     handleAsyncFetch().then((res) => setData(res));
-    // console.log(filmes)
-    // setMovies(handleAsyncFetch())
   }, []);
 
   return (
