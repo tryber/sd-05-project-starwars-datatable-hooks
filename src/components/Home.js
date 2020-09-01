@@ -4,7 +4,7 @@ import { Filter, Compare, Table } from './';
 
 export default function Home() {
   const {
-  isFetching, 
+  isFetching,
   fetchGetPlanet } = useContext(StarWarsContext);
   
   useEffect(() => {

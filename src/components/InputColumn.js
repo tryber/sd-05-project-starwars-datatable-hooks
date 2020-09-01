@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const properties = [
@@ -11,16 +11,16 @@ const properties = [
 ];
 
 const InputColumn = () => {
-  const { filters, filterByNumericValues, setChange } = useContext( StarWarsContext );
-  const getProperty = () => {    
+  const { filters, filterByNumericValues, setChange } = useContext(StarWarsContext);
+  const getProperty = () => {
     const propUpdated = filters.filterByNumericValues.map(({ column }) => column);
     return properties.filter((property) => !propUpdated.includes(property));
-  }
+  };
   const attributes = getProperty();
   return (
     <form>
       <label>
-        Filtrar por: 
+        Filtrar por:
         <select
           data-testid="column-filter"
           value={filterByNumericValues.column}
@@ -35,6 +35,6 @@ const InputColumn = () => {
       </label>
     </form>
   );
-}
+};
 
 export default InputColumn;

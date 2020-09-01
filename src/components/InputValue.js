@@ -1,13 +1,13 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const InputValue = () => {
-  const { filterByNumericValues, setChange } = useContext( StarWarsContext );
+  const { filterByNumericValues, setChange } = useContext(StarWarsContext);
   const setValue = (k, v) => setChange(k, v);
   return (
     <form>
       <label>
-        Valor: 
+        Valor:
         <input
           type="number"
           data-testid="value-filter"
@@ -17,6 +17,6 @@ const InputValue = () => {
       </label>
     </form>
   );
-}
+};
 
 export default InputValue;
