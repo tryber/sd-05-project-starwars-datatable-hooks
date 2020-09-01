@@ -9,7 +9,7 @@ function fetchPlanets() {
     .then((response) => response.json())
     .then(
       (data) => data.results,
-      (error) => console.log(error.message)
+      (error) => console.log(error.message),
     );
 }
 // taken from former fetchPlanetsThunk
@@ -21,7 +21,7 @@ function Table() {
     fetchPlanets().then((data) => setDataApi(data));
   }, []);
   // to replace componentDidMount fetching planet endpoint
-  
+
   return (
     <div>
       {dataApi.length === 0 && <h5>Loading...</h5>}

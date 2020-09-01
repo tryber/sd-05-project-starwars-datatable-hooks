@@ -7,7 +7,8 @@ import StarWarsContext from '../context/StarWarsContext';
 //   } else if (myFilter.comparison === 'menor que') {
 //     return planets.filter((planet) => Number(planet[myFilter.column]) < Number(myFilter.value));
 //   } else if (myFilter.comparison === 'igual a') {
-//     return planets.filter((planet) => Number(planet[myFilter.column]) === Number(myFilter.value));
+//     return planets.filter((planet) => Number(planet[myFilter.column])
+//       === Number(myFilter.value));
 //   }
 //   return planets;
 // }

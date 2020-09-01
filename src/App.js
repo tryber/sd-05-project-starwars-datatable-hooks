@@ -3,8 +3,8 @@ import './App.css';
 import StarWarsProvider from './provider/StarWarsProvider';
 import Title from './components/Title';
 import FilterName from './components/FilterName';
-import FilterNumber from './components/FilterNumber';
-import FilterList from './components/FilterList';
+// import FilterNumber from './components/FilterNumber';
+// import FilterList from './components/FilterList';
 import Table from './components/Table';
 import Footer from './components/Footer';
 
@@ -15,7 +15,7 @@ function App() {
         <header className="App-header">
           <Title />
         </header>
-          <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
+        <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
           <FilterName />
           {/* <FilterNumber />
           <FilterList /> */}

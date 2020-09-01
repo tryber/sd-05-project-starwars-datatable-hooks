@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
 import Proptypes from 'prop-types';
+import StarWarsContext from '../context/StarWarsContext';
 
-const StarWarsProvider = ({children}) => {
+const StarWarsProvider = ({ children }) => {
   // put all states that were part of former reducers and their initial value
   const [dataApi, setDataApi] = useState([]);
   const [allFilters, setAllFilters] = useState({
@@ -19,14 +19,14 @@ const StarWarsProvider = ({children}) => {
     filterName: allFilters.filterByName,
     filterNumber: allFilters.filterByNumericValues,
     setAllFilters,
-  }
+  };
 
   return (
     <StarWarsContext.Provider value={allInfos}>
       {children}
     </StarWarsContext.Provider>
-  )
-} 
+  );
+};
 
 StarWarsProvider.propTypes = {
   children: Proptypes.arrayOf(Proptypes.element).isRequired,
