@@ -14,7 +14,7 @@ function OrderTable() {
       setColumn(value);
     } else {
       setSort(value);
-    } 
+    }
   };
 
   const handleClick = () => {

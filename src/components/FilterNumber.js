@@ -10,13 +10,13 @@ function FilterNumber() {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    const valueChange = e.target.value;
     if (name === 'column') {
-      setColumn(value);
+      setColumn(valueChange);
     } else if (name === 'comparison') {
-      setComparison(value);
+      setComparison(valueChange);
     } else {
-      setValue(value);
+      setValue(valueChange);
     }
   };
 
