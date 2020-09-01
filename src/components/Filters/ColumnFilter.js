@@ -2,15 +2,14 @@ import React, { useContext } from 'react';
 import SWContext from '../../context/SWContext';
 
 const ColumnFilter = () => {
-  const { columns } = useContext(SWContext);
+  const { columns, setColumnFilter } = useContext(SWContext);
   // let newOptions = options;
   // filters.forEach((filter) => {
   //   newOptions = newOptions.filter((opt) => filter.column !== opt);
   // });
 
   return (
-    <select data-testid="column-filter">
-      <option>Coluna</option>
+    <select onChange={({ target }) => setColumnFilter(target.value)} data-testid="column-filter">
       {columns.map((option) => (
         <option value={option} key={option}>
           {option}

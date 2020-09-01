@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import SWContext from '../../context/SWContext';
 
-const ValueFilter = () => (
-  <input
-    type="text"
-    data-testid="value-filter"
-  />
-);
-
+const ValueFilter = () => {
+  const { setValueFilter } = useContext(SWContext);
+  return (
+    <input
+      type="text"
+      onChange={({ target }) => setValueFilter(target.value)}
+      data-testid="value-filter"
+    />
+  );
+};
 export default ValueFilter;

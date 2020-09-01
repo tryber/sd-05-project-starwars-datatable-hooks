@@ -15,8 +15,33 @@ const SWProvider = ({ children }) => {
     'surface_water',
   ]);
   const [filterByName, setFilterByName] = useState('');
-  
-  const context = { data, setData, fetching, setFetching, columns, filterByName, setFilterByName };
+  const [columnFilter, setColumnFilter] = useState('');
+  const [comparisonFilter, setComparisonFilter] = useState('');
+  const [valueFilter, setValueFilter] = useState('');
+  const [numericFilter, setNumericFilter] = useState([]);
+
+  const addNewFilter = (column, comparison, value) => {
+    setNumericFilter([...numericFilter, { column, comparison, value }]);
+  };
+
+  const context = {
+    data,
+    setData,
+    fetching,
+    setFetching,
+    columns,
+    filterByName,
+    setFilterByName,
+    columnFilter,
+    setColumnFilter,
+    comparisonFilter,
+    setComparisonFilter,
+    valueFilter,
+    setValueFilter,
+    numericFilter,
+    addNewFilter,
+  };
+
   return <SWContext.Provider value={context}>{children}</SWContext.Provider>;
 };
 

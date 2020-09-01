@@ -208,7 +208,7 @@ describe.only('Sua página deve ter um filtro para valores numéricos', () => {
     expect(await screen.findByTestId(BUTTON_FILTER_SELECTOR)).toHaveProperty('nodeName', 'BUTTON');
   });
 
-  it.only('filtra utilizando a comparação "menor que"', async () => {
+  it('filtra utilizando a comparação "menor que"', async () => {
     await act(async () => {
       render(<App />);
     });

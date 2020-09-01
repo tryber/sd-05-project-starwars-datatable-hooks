@@ -11,21 +11,21 @@ const Films = {
   'https://swapi-trybe.herokuapp.com/api/films/6/': 'Revenge of the Sith',
 };
 
-// const filterPlanet = (planetList = [], filter) => {
-//   const { column, comparison, value } = filter;
-//   return planetList.filter((planet) => {
-//     switch (comparison) {
-//       case 'maior que':
-//         return Number(planet[column]) > Number(value);
-//       case 'igual a':
-//         return Number(planet[column]) === Number(value);
-//       case 'menor que':
-//         return Number(planet[column]) < Number(value);
-//       default:
-//         return planet;
-//     }
-//   });
-// };
+const filterPlanet = (planetList = [], filter) => {
+  const { column, comparison, value } = filter;
+  return planetList.filter((planet) => {
+    switch (comparison) {
+      case 'maior que':
+        return Number(planet[column]) > Number(value);
+      case 'igual a':
+        return Number(planet[column]) === Number(value);
+      case 'menor que':
+        return Number(planet[column]) < Number(value);
+      default:
+        return planet;
+    }
+  });
+};
 
 // const sortPlanets = (planets, sort, column) => {
 //   if (sort === 'DESC') {
@@ -38,7 +38,9 @@ const Films = {
 // };
 
 const TableBody = () => {
-  const { data, setData, fetching, setFetching, filterByName } = useContext(SWContext);
+  const { data, setData, fetching, setFetching, filterByName, numericFilter } = useContext(
+    SWContext,
+  );
   useEffect(() => {
     setFetching(true);
     fetchPlanets()
@@ -48,12 +50,19 @@ const TableBody = () => {
         setFetching(false);
       });
   }, [setData, setFetching]);
-
+  let planetList = data;
+  numericFilter.forEach((filter) => {
+    planetList = filterPlanet(planetList, filter);
+  });
   return fetching ? (
-    <tbody><tr><td>Loading...</td></tr></tbody>
+    <tbody>
+      <tr>
+        <td>Loading...</td>
+      </tr>
+    </tbody>
   ) : (
     <tbody>
-      {data
+      {planetList
         .filter((planet) => planet.name.toLowerCase().includes(filterByName.toLowerCase()))
         .map((planet) => (
           <tr key={planet.name}>
