@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
+import StarWarsContext from '../context/context';
 
-function filterNumber(allPlanets, filter) {
+/* function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
@@ -13,53 +12,43 @@ function filterNumber(allPlanets, filter) {
     default:
       return allPlanets;
   }
-}
+} */
 
-function filterName(allPlanets, filterByName) {
+/* function filterName(allPlanets) {
+  const { name } = useContext(StarWarsContext);
   return (allPlanets.filter(
-    (planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()),
+    (planet) => planet.name.toLowerCase().includes(name.toLowerCase()),
   ));
+}  */
+
+export default function TableBody() {
+  //  const { data, filterByName, filterByNumericValues } = this.props;
+  const { data, name } = useContext(StarWarsContext);
+  let allPlanets = data;
+  //    filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
+  //    allPlanets = filterName(allPlanets, filterByName);
+  const filteredPlanets = allPlanets.filter(
+    (planet) => planet.name.toLowerCase().includes(name.toLowerCase()),
+  );
+
+  return (
+    filteredPlanets.map((planet) => (
+      <tbody key={planet.name}>
+        <tr>
+          <td>{planet.name}</td>
+          <td>{planet.rotation_period}</td>
+          <td>{planet.orbital_period}</td>
+          <td>{planet.diameter}</td>
+          <td>{planet.climate}</td>
+          <td>{planet.gravity}</td>
+          <td>{planet.terrain}</td>
+          <td>{planet.surface_water}</td>
+          <td>{planet.population}</td>
+          <td>{planet.films}</td>
+          <td>{planet.created}</td>
+          <td>{planet.edited}</td>
+          <td>{planet.url}</td>
+        </tr>
+      </tbody>
+    )));
 }
-
-class TableBody extends Component {
-  render() {
-    const { data, filterByName, filterByNumericValues } = this.props;
-    let allPlanets = data;
-    filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
-    allPlanets = filterName(allPlanets, filterByName);
-    return (
-      allPlanets.map((planet) => (
-        <tbody key={planet.name}>
-          <tr>
-            <td>{planet.name}</td>
-            <td>{planet.rotation_period}</td>
-            <td>{planet.orbital_period}</td>
-            <td>{planet.diameter}</td>
-            <td>{planet.climate}</td>
-            <td>{planet.gravity}</td>
-            <td>{planet.terrain}</td>
-            <td>{planet.surface_water}</td>
-            <td>{planet.population}</td>
-            <td>{planet.films}</td>
-            <td>{planet.created}</td>
-            <td>{planet.edited}</td>
-            <td>{planet.url}</td>
-          </tr>
-        </tbody>
-      )));
-  }
-}
-
-const mapStateToProps = (state) => ({
-  data: state.requestReducer.data,
-  filterByName: state.filters.filterByName,
-  filterByNumericValues: state.filters.filterByNumericValues,
-});
-
-TableBody.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterByName: PropTypes.string.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-export default connect(mapStateToProps)(TableBody);

@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import React, { useEffect, useContext } from 'react';
+import StarWarsContext from '../context/context';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
-import { thunkRequest } from '../actions';
+import { requestAPI } from '../services/index';
+import SearchBar from './SearchBar';
 
-class Table extends Component {
-  componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.thunkRequest();
-  }
+function Table() {
+  const { setData, setLoading, loading } = useContext(StarWarsContext);
+  
+  const getData = async (response) => {
+    setLoading(true);
+    await setData([...response.results]);
+    setLoading(false);
+  };
 
-  render() {
+  useEffect(() => {
+    requestAPI().then((response) => getData(response));
+  }, []);
+
     return (
+      loading
+      ? <p>Loading...</p>
+      : 
       <div>
+          <SearchBar />
         <table>
           <TableHeader />
           <TableBody />
@@ -21,14 +31,5 @@ class Table extends Component {
       </div>
     );
   }
-}
 
-const mapDispatchToProps = (dispatch) => ({
-  thunkRequest: () => dispatch(thunkRequest()),
-});
-
-Table.propTypes = {
-  thunkRequest: propTypes.func.isRequired,
-};
-
-export default connect(null, mapDispatchToProps)(Table);
+export default Table;
