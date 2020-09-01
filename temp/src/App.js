@@ -9,7 +9,7 @@ function App() {
       <h1>The StarWars Planets Table:</h1>
       <SearchBar />
       <Table />
-      <h3>Made with Love <a href="www.bycd.com.br">BYCD</a></h3>
+      <h3>Made with Love</h3>
     </div>
   );
 }
