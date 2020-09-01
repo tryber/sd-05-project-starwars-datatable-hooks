@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
-import { fetchPlanets } from '../services/apiService';
+import fetchPlanets from '../services/apiService';
 
 function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
@@ -10,8 +10,6 @@ function Provider({ children }) {
   const [comparison, setCO] = useState('');
   const [value, setValue] = useState('');
   const [numberFilter, setNumberFilter] = useState([]);
-  
-  
   const apiData = () => fetchPlanets();
   useEffect(() => {
     apiData().then((data) => setPlanets(data.results));
@@ -23,7 +21,6 @@ function Provider({ children }) {
     },
     filterByNumericValues: numberFilter,
   };
-  
   const context = {
     planets,
     setTextForm,

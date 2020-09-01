@@ -42,13 +42,14 @@ function SelectForm() {
         onChange={(e) => setCO(e.target.value)}
         options={CO}
       />
-      <ValueInput onChange={(e) => setValue(e.target.value)}/>
+      <ValueInput onChange={(e) => setValue(e.target.value)} />
       <button
         type="button"
         data-testid="button-filter"
         onClick={() =>
           setNumberFilter([...numberFilter, { column, comparison, value }])
-        }>
+        }
+      >
         Filtrar
       </button>
     </div>
@@ -56,14 +57,3 @@ function SelectForm() {
 }
 
 export default SelectForm;
-
-{
-  /* {filtro.map((each) => (
-  <span key={each.column} data-testid="filter">
-    {`Filtrando ${each.column} ${each.comparison} ${each.value}`}{' '}
-    <button name={each.column} type="button" onClick={this.hClick}>
-      X
-    </button>
-  </span>
-))} */
-}
