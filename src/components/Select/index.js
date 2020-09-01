@@ -15,6 +15,19 @@ const Select = () => {
     value: '',
   });
 
+
+  function handleClick(e) {
+    const newFilter = [];
+
+    for (let i = 0; i < filterByNumericValues.length; i += 1) {
+      if (filterByNumericValues[i].column !== e.target.name) {
+        newFilter.push(filterByNumericValues[i]);
+      }
+    }
+
+    SetFilterByNumericValues(newFilter);
+  }
+
   const filtered = filterByNumericValues.map((fil) => {
     if (fil.column) return fil.column;
     return null;
@@ -49,6 +62,9 @@ const Select = () => {
       >
         Buscar
       </button>
+      {filterByNumericValues.map((list) =>
+          <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={(e) => handleClick(e)}>X</button> </span>,
+        )}
     </div>
   );
 };
