@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StarWarsContext from './StarWarsContext';
+import propTypes from 'prop-types';
 
 const StarWarsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
@@ -17,5 +18,5 @@ const StarWarsProvider = ({ children }) => {
 export default StarWarsProvider;
 
 StarWarsProvider.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: propTypes.string.isRequired,
 };
