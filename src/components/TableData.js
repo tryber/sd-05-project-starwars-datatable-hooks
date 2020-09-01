@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
-function filterByNumber(planets, myFilter) {
-  if (myFilter.comparison === 'maior que') {
-    return planets.filter((planet) => Number(planet[myFilter.column]) > Number(myFilter.value));
-  } else if (myFilter.comparison === 'menor que') {
-    return planets.filter((planet) => Number(planet[myFilter.column]) < Number(myFilter.value));
-  } else if (myFilter.comparison === 'igual a') {
-    return planets.filter((planet) => Number(planet[myFilter.column]) === Number(myFilter.value));
-  }
-  return planets;
-}
+// function filterByNumber(planets, myFilter) {
+//   if (myFilter.comparison === 'maior que') {
+//     return planets.filter((planet) => Number(planet[myFilter.column]) > Number(myFilter.value));
+//   } else if (myFilter.comparison === 'menor que') {
+//     return planets.filter((planet) => Number(planet[myFilter.column]) < Number(myFilter.value));
+//   } else if (myFilter.comparison === 'igual a') {
+//     return planets.filter((planet) => Number(planet[myFilter.column]) === Number(myFilter.value));
+//   }
+//   return planets;
+// }
 
 function TableData() {
-  const { dataApi, filterName, filterNumber } = useContext(StarWarsContext);
-
-  let allPlanets = dataApi;
-  filterNumber.forEach((filter) => {
-    allPlanets = filterByNumber(allPlanets, filter);
-  });
+  const { dataApi, filterName } = useContext(StarWarsContext);
+  // const { filterNumber } = useContext(StarWarsContext);
+  // let allPlanets = dataApi;
+  // filterNumber.forEach((filter) => {
+  //   allPlanets = filterByNumber(allPlanets, filter);
+  // });
   return (
     <tbody className="planets-table">
-      {allPlanets
+      {dataApi
         .filter((planet) => planet.name.includes(filterName.name))
         .map((planet) => (
           <tr key={planet.name}>
@@ -43,11 +43,5 @@ function TableData() {
     </tbody>
   );
 }
-
-// const mapStateToProps = (state) => ({
-//   data: state.planetReducer.data,
-//   filterName: state.filters.filterByName,
-//   filterNumber: state.filters.filterByNumericValues,
-// });
 
 export default TableData;

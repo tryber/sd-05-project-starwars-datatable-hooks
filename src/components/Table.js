@@ -12,7 +12,7 @@ function fetchPlanets() {
       (error) => console.log(error.message)
     );
 }
-// came from former fetchPlanetsThunk
+// taken from former fetchPlanetsThunk
 
 function Table() {
   const { dataApi, setDataApi } = useContext(StarWarsContext);
@@ -20,24 +20,21 @@ function Table() {
   useEffect(() => {
     fetchPlanets().then((data) => setDataApi(data));
   }, []);
-  // replacing componentDidMount fetching planet endpoint
+  // to replace componentDidMount fetching planet endpoint
   
   return (
     <div>
       {dataApi.length === 0 && <h5>Loading...</h5>}
       {dataApi.length !== 0 && console.log(dataApi)}
       {dataApi.length !== 0 && (
-        <h1>
-          Hello
-          {/* <table>
-            <TableHeader />
-            <TableData />
-          </table> */}
-        </h1>
+        <table>
+          <TableHeader />
+          <TableData />
+        </table>
       )}
     </div>
   );
 }
-// instead of creating boolean fetching, check if dataApi was filled
+// instead of boolean isFetching, checked if dataApi was filled
 
 export default Table;
