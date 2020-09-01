@@ -3,7 +3,7 @@ import './App.css';
 import { StarWarsProvider } from './context/StarWarsContext';
 import Table from './components/Table';
 import Form from './components/Form';
-// import Select from './components/Select';
+import Select from './components/Select';
 import Radio from './components/Radio';
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
         <StarWarsProvider>
           <Form />
           <Radio />
-          {/* <Select /> */}
+          <Select />
           <Table />
         </StarWarsProvider>
       </div>

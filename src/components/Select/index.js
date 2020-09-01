@@ -12,14 +12,13 @@ const Select = () => {
     'surface_water',
   ];
 
+  const { filterByNumericValues, SetFilterByNumericValues } = useContext(StarWarsContext);
+
   const [filter, setFilter] = useState({
     column: '',
     comparison: '',
     value: '',
   });
-
-  const { filterByNumericValues, setFilterByNumericValues } = useContext(StarWarsContext);
-
 
   const filtered = filterByNumericValues.map((filter) => {
     if (filter.column) {
@@ -29,10 +28,11 @@ const Select = () => {
   });
   
 
+  console.log(filter);
+
   // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
   const filteredColumns = columnsOptions.filter ((item) => !filtered.includes(item));
   const optionsValues = ['selecione', 'maior que', 'menor que', 'igual a'];
-
   return (
     <div>
       <select data-testid="column-filter" name="column" onChange={(e) => setFilter({ ...filter, column: e.target.value })}>
@@ -47,13 +47,11 @@ const Select = () => {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={() => setFilterByNumericValues([filter])}
+        onClick={() => SetFilterByNumericValues([filter])}
       >
         Buscar
       </button>
-      {filter.map((list) =>
-        <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={this.handleClick}>X</button> </span>,
-      )}
+      
     </div>
   );
 }
