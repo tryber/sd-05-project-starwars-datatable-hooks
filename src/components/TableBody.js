@@ -1,21 +1,24 @@
 import React, { useEffect, useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 import getPlanets from '../services/starAPI';
+import queryFilters from '../services/queryFilters';
 
 export default function TableBody() {
-  const { data, setData, setError } = useContext(StarWarsContext);
+  const { data, setData, setError, textFilter } = useContext(StarWarsContext);
 
   useEffect(() => {
     getPlanets()
       .then(
-        (planets) => setData(() => planets.results),
+        (response) => setData(() => response.results),
         (error) => setError(() => error),
       );
   }, []);
 
+  const planets = queryFilters(data, textFilter);
+
   return (
     <tbody>
-      {data.map((planet) => (
+      {planets.map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td>
           <td>{planet.climate}</td>
