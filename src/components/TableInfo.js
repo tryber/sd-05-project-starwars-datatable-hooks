@@ -8,7 +8,7 @@
 //     return arrayPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
 //   }
 //   if (filter.comparison === 'igual a') {
-//     return arrayPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+//return arrayPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
 //   }
 //   return arrayPlanets;
 // }

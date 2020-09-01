@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import TableFirstLine from '../components/TableFirstLine';
-import TableInfo from '../components/TableInfo';
+// import TableFirstLine from '../components/TableFirstLine';
+// import TableInfo from '../components/TableInfo';
 import StarWarsContext from '../context/StarWarsContext';
 import planetAPI from '../services/requestAPI';
 
