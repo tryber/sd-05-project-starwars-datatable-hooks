@@ -24,6 +24,13 @@ const SWProvider = ({ children }) => {
     setNumericFilter([...numericFilter, { column, comparison, value }]);
   };
 
+  const removeNumericFilter = (removedFilter) => {
+    setNumericFilter(numericFilter.filter((filter) => filter.column !== removedFilter));
+  };
+
+  const [columnValue, setColumnValue] = useState('name');
+  const [sortValue, setSortValue] = useState('ASC');
+  const [sort, setSort] = useState({ columnValue: 'name', sortValue: 'ASC' });
   const context = {
     data,
     setData,
@@ -40,6 +47,13 @@ const SWProvider = ({ children }) => {
     setValueFilter,
     numericFilter,
     addNewFilter,
+    removeNumericFilter,
+    sort,
+    setSort,
+    columnValue,
+    setColumnValue,
+    sortValue,
+    setSortValue,
   };
 
   return <SWContext.Provider value={context}>{children}</SWContext.Provider>;

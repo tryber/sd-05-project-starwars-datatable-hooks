@@ -27,18 +27,18 @@ const filterPlanet = (planetList = [], filter) => {
   });
 };
 
-// const sortPlanets = (planets, sort, column) => {
-//   if (sort === 'DESC') {
-//     return planets.sort((a, b) => Number(b[column]) - Number(a[column]));
-//   }
-//   if (sort === 'ASC') {
-//     return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
-//   }
-//   return false;
-// };
+const sortPlanets = (planets, { columnValue, sortValue }) => {
+  if (sortValue === 'DESC') {
+    return planets.sort((a, b) => Number(b[columnValue]) - Number(a[columnValue]));
+  }
+  if (sortValue === 'ASC') {
+    return planets.sort((a, b) => Number(a[columnValue]) - Number(b[columnValue]));
+  }
+  return planets;
+};
 
 const TableBody = () => {
-  const { data, setData, fetching, setFetching, filterByName, numericFilter } = useContext(
+  const { data, setData, fetching, setFetching, filterByName, numericFilter, sort } = useContext(
     SWContext,
   );
   useEffect(() => {
@@ -50,7 +50,8 @@ const TableBody = () => {
         setFetching(false);
       });
   }, [setData, setFetching]);
-  let planetList = data;
+  let planetList = data.sort((a, b) => a.name.localeCompare(b.name));;
+  planetList = sortPlanets(planetList, sort )
   numericFilter.forEach((filter) => {
     planetList = filterPlanet(planetList, filter);
   });
@@ -66,7 +67,7 @@ const TableBody = () => {
         .filter((planet) => planet.name.toLowerCase().includes(filterByName.toLowerCase()))
         .map((planet) => (
           <tr key={planet.name}>
-            <td>{planet.name}</td>
+            <td data-testid="planet-name">{planet.name}</td>
             <td>{planet.rotation_period}</td>
             <td>{planet.orbital_period}</td>
             <td>{planet.diameter}</td>

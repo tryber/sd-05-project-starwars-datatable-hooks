@@ -4,6 +4,8 @@ import SWProvider from  './context/Provider';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import Filters from './components/Filters';
+import ActiveFilters from './components/ActiveFilters';
+import SortFilter from './components/SortFilter';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <SWProvider>
         <SearchBar />
         <Filters />
+        <SortFilter />
+        <ActiveFilters />
         <Table />
       </SWProvider>
     </div>
