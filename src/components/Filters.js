@@ -49,11 +49,25 @@ function ValueFilter() {
   );
 }
 
+function FilterButton() {
+  const { numericValue, setNumericValue, column, comparison, value } = useContext(StarWarsContext);
+
+  return (
+    <button
+      data-testid="button-filter" type="button"
+      onClick={() => setNumericValue([...numericValue, { column, comparison, value }])}
+    >
+      Find Planet
+    </button>
+  );
+}
+
 function Filters() {
   return (
     <section>
       <NameFilter />
       <ValueFilter />
+      <FilterButton />
     </section>
   );
 }
