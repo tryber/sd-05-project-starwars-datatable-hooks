@@ -3,12 +3,25 @@ import React, { useContext } from 'react';
 import { StarWarsContext } from '../context/StarWarsContextProvider';
 
 function ApplyFilters() {
-  const { data, nameFilter } = useContext(StarWarsContext);
+  const { data, nameFilter, numericValue } = useContext(StarWarsContext);
   let planets = data;
 
   if (nameFilter !== '') {
     planets = data.filter((planet) =>
       planet.name.toUpperCase().includes(nameFilter.toUpperCase()));
+  }
+  if (numericValue.length > 0) {
+    numericValue.forEach(({ column, comparison, value }) => {
+      if (comparison === 'maior que') {
+        planets = planets.filter((planet) => Number(planet[column]) > Number(value));
+      } else if (comparison === 'igual a') {
+        planets = planets.filter((planet) => Number(planet[column]) === Number(value));
+      } else if (comparison === 'menor que') {
+        planets = planets.filter((planet) => Number(planet[column]) < Number(value));
+      } else {
+        planets = null;
+      }
+    });
   }
 
   return planets;
