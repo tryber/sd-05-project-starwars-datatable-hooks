@@ -44,7 +44,7 @@ function ActivatedFilters() {
           <div>
             <h4>Filtros</h4>
             {
-              filters.numberFilters.map(({ column, comparison, value }, i) => (
+              filters.filterByNumericValues.map(({ column, comparison, value }, i) => (
                 <p key={rKey(column)} data-testid="filter">
                   {`${column} ${comparison} ${value}`}
                   <button

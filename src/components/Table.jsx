@@ -68,7 +68,7 @@ class Table extends Component {
       <StarwarsContext.Consumer>
         {
           ({ isLoading, planetList }) => {
-            if (isLoading) return <div>Carregando...</div>;
+            if (isLoading) return <div>Carregando..</div>;
             return planetList.length ?
             (
               <table>

@@ -22,6 +22,11 @@ function App() {
     setFilterByNumericValues([...filterByNumericValues, entries]);
   };
 
+  const removeFilter = (index) => {
+    const f = filterByNumericValues.filter((a, i) => i !== index);
+    setFilterByNumericValues(f);
+  };
+
   const filters = {
     filterByName,
     setFilterByName,
@@ -29,7 +34,7 @@ function App() {
     setNumberFilters,
     filterByNumericValues,
     addFilterByNumericValues,
-    removeFilter: () => {},
+    removeFilter,
   };
 
   const data = {
