@@ -12,10 +12,10 @@ const FilterDisplay = () => {
 
   const removeThisFilter = (filterCol) => {
     const newFilters = filterByValues.filter(
-      ({ col }) => col !== filterCol
+      ({ col }) => col !== filterCol,
     );
     setValues(newFilters);
-  }
+  };
     // const { handleChangeName } = this.props;
   // const { filterByNumericValues, removeThisFilter } = this.props;
   if (filterByValues.length > 0) {
@@ -36,7 +36,7 @@ const FilterDisplay = () => {
     );
   }
   return null;
-}
+};
 
 // // const mapDispatchToProps = { removeThisFilter: removeFilter };
 

@@ -1,9 +1,9 @@
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 // import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import FilterDisplay from './FilterDisplay';
 // import { filterByName } from '../reducers/filters';
-import React, { useContext } from 'react';
 import { StarWarsContext } from '../../context/starWarsContext';
 import Dropfilters from './Dropfilters';
 
