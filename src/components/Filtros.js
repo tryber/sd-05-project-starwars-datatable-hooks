@@ -3,11 +3,9 @@ import StarWarsContext from '../context/StarWarsContext';
 
 export default function Filtros() {
   const { setFiltros, options } = useContext(StarWarsContext);
-
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-
   const changeFilters = () => {
     if (column === 'selecione' || comparison === 'selecione' || value === '') {
       alert('Todos os campos são Obrigatórios');
@@ -15,10 +13,13 @@ export default function Filtros() {
       setFiltros([{ column, comparison, value }]);
     }
   };
-
   return (
     <div>
-      <select data-testid="column-filter" name="column" onChange={(event) => setColumn(event.target.value)}>
+      <select
+        data-testid="column-filter"
+        name="column"
+        onChange={(event) => setColumn(event.target.value)}
+      >
         {options.map((option) => (
           <option key={option} value={option}>{option}</option>
         ))}
