@@ -8,7 +8,6 @@ const Select = () => {
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-  console.log(column, comparison, value);
 
   const handleClick = (columns) => {
     const newFilter = filterByNumericValues.filter((e) => e.column !== columns);
