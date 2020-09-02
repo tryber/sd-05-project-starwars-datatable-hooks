@@ -3,8 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 import Select from './Select';
 
 function TextForm() {
-  const { setColumn, setCO, setValue, setNumberFilter, column,
-    comparison,
+  const { setColumn, setCO, setValue, setNumberFilter, column, comparison,
     value,
     numberFilter,
   } = useContext(StarWarsContext);
@@ -15,10 +14,10 @@ function TextForm() {
     'surface_water',
   ];
 
-  if (numberFilter.length > 0) { 
+  if (numberFilter.length > 0) {
     numberFilter.forEach((each) => {
-    colunas.splice(colunas.indexOf(each.column), 1);
-  });
+      colunas.splice(colunas.indexOf(each.column), 1);
+    });
   }
 
   return (
