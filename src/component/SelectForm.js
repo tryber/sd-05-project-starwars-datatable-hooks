@@ -15,9 +15,10 @@ function TextForm() {
     'surface_water',
   ];
 
-  if (numberFilter.length > 0) { numberFilter.forEach((each) => {
-      colunas.splice(colunas.indexOf(each.column), 1);
-    });
+  if (numberFilter.length > 0) { 
+    numberFilter.forEach((each) => {
+    colunas.splice(colunas.indexOf(each.column), 1);
+  });
   }
 
   return (
