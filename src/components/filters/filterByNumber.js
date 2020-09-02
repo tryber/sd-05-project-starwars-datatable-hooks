@@ -43,8 +43,9 @@ function FilterByNumeric() {
           column,
           comparison,
           value,
-        }])
-        }>
+        }
+        ])}
+      >
         Filtrar
         </button>
     </div>

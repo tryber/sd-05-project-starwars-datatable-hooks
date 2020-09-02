@@ -1,6 +1,6 @@
 import React from 'react';
 
-const renderTableBody = (allPlanets) => {
+function renderTableBody(allPlanets) {
   return allPlanets.map((planet) => (
     <tbody className="table-body">
       <tr key={planet.name}>
@@ -19,8 +19,7 @@ const renderTableBody = (allPlanets) => {
         <td key={planet.edited}>{planet.edited}</td>
       </tr>
     </tbody>
-  ),
-  );
+  ))
 };
 
 export default renderTableBody;

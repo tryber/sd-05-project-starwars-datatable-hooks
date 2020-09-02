@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 import MyContext from './context';
 import fetchSWAPI from '../services/api';
 
@@ -32,6 +33,10 @@ const Provider = ({ children }) => {
       {children}
     </MyContext.Provider>
   );
+};
+
+Provider.propTypes = {
+  children: propTypes.element.isRequired,
 };
 
 export default Provider;
