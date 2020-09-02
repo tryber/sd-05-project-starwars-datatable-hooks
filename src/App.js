@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <StarWarsProvider>
         <div>
-          {/* <TextFilter />
-            <NumberFilter />
+          {/* <TextFilter /> */}
+            {/* <NumberFilter />
           <DeleteFilter /> */}
           <Table />
         </div>
