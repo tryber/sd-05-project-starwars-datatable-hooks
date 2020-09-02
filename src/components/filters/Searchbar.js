@@ -12,7 +12,6 @@ const SearchBar = () => {
   //  const { handleChangeName } = this.props;
   return (
     <div>
-      {data.length !== 0 && (
       <label htmlFor="name-filter-input"> Search planet by name:
         <input
           data-testid="name-filter"
@@ -20,8 +19,7 @@ const SearchBar = () => {
           name=""
           onChange={(event) => setFilterByName({ filterByName: { name: event.target.value } })}
         />
-      </label>)
-      }
+      </label>
       <Dropfilters />
     </div>
   );

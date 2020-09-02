@@ -21,15 +21,18 @@ const Table = () => {
 
   useEffect(() => {
     FetchData().then((dataApi) => setData(dataApi));
+    console.log("fetched");
   });
 
   return (
     <div>
       {!data && <h2>Error fetching data!</h2>}
+      {data &&
       <table>
         <TableHeader />
         {data && <TableBody />}
       </table>
+      }
     </div>
   );
 };

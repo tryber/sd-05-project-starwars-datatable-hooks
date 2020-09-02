@@ -10,13 +10,13 @@ const StarProvider = ({ children }) => {
       name: '',
     },
   });
-  const [filterByNumericValues, setfilterByNumericValues] = useState([]);
+  const [filterByValues, setfilterByNumericValues] = useState([]);
 
   const context = {
     data,
     setData,
     nameFilter: nameFilter.filterByName,
-    filterByNumericValues,
+    filterByValues,
       // filterByNumericValues: [
       //   {
       //     column,

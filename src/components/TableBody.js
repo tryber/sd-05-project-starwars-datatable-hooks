@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { StarWarsContext } from '../context/starWarsContext';
+import { datafilterfunction } from '../components/filters/Dropfilters';
 
-const TableBody = () => {
-  // filterByNumericValues
-  const { data, nameFilter } = useContext(StarWarsContext);
+const TableBody = () => { 
+  const { data, nameFilter, filterByValues} = useContext(StarWarsContext);
   const NameFilteredPlanets = data.filter((planets) => planets.name.includes(nameFilter.name));
-  // {(name)}
-  //   NameFilteredPlanets
-
+ 
   return (
-    ((NameFilteredPlanets.length > 0) ? NameFilteredPlanets : NameFilteredPlanets)
+    ((filterByValues.length > 0)
+    ? (datafilterfunction(NameFilteredPlanets, filterByValues))
+    : NameFilteredPlanets)
       .map((planet) => (
         <tbody key={planet.name}>
           <tr>
