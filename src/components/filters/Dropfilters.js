@@ -4,15 +4,15 @@ import { StarWarsContext } from '../../context/starWarsContext';
 export function datafilterfunction(filteredPlanets, filterByValues) {
   let planets = filteredPlanets;
   for (let i = 0; i < filterByValues.length; i += 1) {
-    if (filterByValues[i].comparison === 'maior que') {
+    if (filterByValues[i].comp === 'maior que') {
       planets = planets.filter((planet) =>
-        Number(planet[filterByValues[i].column]) > Number(filterByValues[i].value));
-    } else if (filterByValues[i].comparison === 'menor que') {
+        Number(planet[filterByValues[i].col]) > Number(filterByValues[i].val));
+    } else if (filterByValues[i].comp === 'menor que') {
       planets = planets.filter((planet) =>
-        Number(planet[filterByValues[i].column]) < Number(filterByValues[i].value));
-    } else if (filterByValues[i].comparison === 'igual a') {
+        Number(planet[filterByValues[i].col]) < Number(filterByValues[i].val));
+    } else if (filterByValues[i].comp === 'igual a') {
       planets = planets.filter((planet) =>
-        Number(planet[filterByValues[i].column]) === Number(filterByValues[i].value));
+        Number(planet[filterByValues[i].col]) === Number(filterByValues[i].val));
     }
   }
   return planets;

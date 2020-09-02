@@ -22,7 +22,7 @@ const Table = () => {
   useEffect(() => {
     FetchData().then((dataApi) => setData(dataApi));
     console.log('fetched');
-  });
+  }, []);
 
   return (
     <div>
