@@ -1,25 +1,23 @@
-import TableHeader from './TableHeader';
 // import { datafilterfunction } from './Dropfilters';
-
 import React, { useEffect, useContext } from 'react';
 import { StarWarsContext } from '../context/starWarsContext';
+import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 // import FetchData from '../services/API';
 
 const apiUrl = 'https://swapi-trybe.herokuapp.com/api/planets/';
-
 function FetchData() {
   // const { setData } = useContext(StarWarsContext);
   return fetch(apiUrl)
     .then((response) => response.json())
     .then(
       (data) => data.results,
-      (error) => { console.log(`erro: ${error.message}`) },
+      (error) => { console.log(`erro: ${error.message}`); },
     );
-};
+}
 
 const Table = () => {
-  const { data, setData, name, filterByNumericValues } = useContext(StarWarsContext);
+  const { data, setData } = useContext(StarWarsContext);
 
   useEffect(() => {
     FetchData().then((dataApi) => setData(dataApi));
@@ -34,7 +32,7 @@ const Table = () => {
       </table>
     </div>
   );
-}
+};
 
 // const mapDispatchToProps = (dispatch) => ({
 //   handleFetch: (e) => dispatch(handleGoFetch(e)),

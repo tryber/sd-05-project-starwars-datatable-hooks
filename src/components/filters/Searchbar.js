@@ -1,15 +1,13 @@
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 // import React, { Component } from 'react';
-import Dropfilters from './Dropfilters';
 // import FilterDisplay from './FilterDisplay';
 // import { filterByName } from '../reducers/filters';
-
 import React, { useContext } from 'react';
-import { StarWarsContext } from '../context/starWarsContext';
+import { StarWarsContext } from '../../context/starWarsContext';
+import Dropfilters from './Dropfilters';
 
 const SearchBar = () => {
-
   const { setFilterByName } = useContext(StarWarsContext);
   //  const { handleChangeName } = this.props;
   return (
@@ -18,13 +16,13 @@ const SearchBar = () => {
         <input
           data-testid="name-filter"
           type="text"
-          onChange={ (event) => setFilterByName(event.target.value) }
+          onChange={(event) => setFilterByName(event.target.value)}
         />
       </label>
       <Dropfilters />
     </div>
-  )
-}
+  );
+};
 
 // <FilterDisplay />
 // {event => this.props.filterByName({ name: event.target.value })}

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StarWarsContext } from '../context/starWarsContext';
+import { StarWarsContext } from '../../context/starWarsContext';
 
 export function datafilterfunction(filteredPlanets, filterByNumericValues) {
   let planets = filteredPlanets;
@@ -16,51 +16,54 @@ export function datafilterfunction(filteredPlanets, filterByNumericValues) {
     }
   }
   return planets;
-};
+}
 
 const Dropfilters = () => {
-
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
 
   const { filterByNumericValues, setfilterByNumericValues } = useContext(StarWarsContext);
-  
+
   const columnOptions = () => {
     const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
-    let columns = [
+    let startColumns = [
       'coluna',
       'population',
       'orbital_period',
       'diameter',
       'rotation_period',
       'surface_water'];
-    columns = columns.filter((column) => !selectedFilterColumns.includes(column));
+    columns = startColumns.filter((column) => !selectedFilterColumns.includes(column));
     return columns.map((column) => <option value={column} key={column}>{column}</option>);
   };
+
+  const Scolumn = (event) => setColumn(event.target.value);
+  const Scomp = (event) => setComparison(event.target.value);
+  const Sval = (event) => setValue(event.target.value);
 
   return (
     <form>
       <label htmlFor="column"> Selecione a coluna:
-        <select data-testid="column-filter" value={column} onChange={(event) => setColumn(event.target.value)}>
-          {columnOptions}
+        <select data-testid="column-filter" value={column} onChange={(event) => Scolumn(event)}>
+          {columnOptions()}
         </select>
       </label>
       <label htmlFor="comparison"> Selecione a comparação:
-        <select data-testid="comparison-filter" value={comparison} onChange={(event) => setComparison(event.target.value)}>
+        <select data-testid="comparison-filter" value={comparison} onChange={(e) => Scomp(e)}>
           <option>selecione:</option>
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>
         </select>
       </label>
-      <input type="number" data-testid="value-filter" onChange={(event) => setValue(event.target.value)} />
+      <input type="number" data-testid="value-filter" onChange={(event) => Sval(event)} />
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => {setfilterByNumericValues({column, comparison, value})} }
+        onClick={() => {setfilterByNumericValues({ column, comparison, value });}}
       >Filtrar</button></form>
-  )
-}
+  );
+};
 
 export default Dropfilters;

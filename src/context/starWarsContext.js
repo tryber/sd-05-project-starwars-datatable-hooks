@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import Proptypes from 'prop-types';
+
 export const StarWarsContext = createContext();
 
 const StarProvider = ({ children }) => {
@@ -12,7 +13,7 @@ const StarProvider = ({ children }) => {
   const [filterByNumericValues, setfilterByNumericValues] = useState([]);
 
   const context = {
-    data, 
+    data,
     setData,
     nameFilter: nameFilter.filterByName,
     filterByNumericValues,
@@ -24,14 +25,14 @@ const StarProvider = ({ children }) => {
       //   }
       // ],
     setFilterByName,
-    setfilterByNumericValues, 
+    setfilterByNumericValues,
   };
 
   return (
     <StarWarsContext.Provider value={context}>{children}</StarWarsContext.Provider>
-  )
-} 
- 
+  );
+};
+
 export default StarProvider;
 
 StarProvider.propTypes = {
