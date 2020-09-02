@@ -4,12 +4,14 @@ import StarWarsProvider from './context/Provider';
 import Table from './components/Table';
 import NameFilter from './components/NameFilter';
 import NumericFilter from './components/NumericFilter';
+import ActiveFilters from './components/ActiveFilters';
 
 function App() {
   return (
     <StarWarsProvider>
       <NameFilter />
       <NumericFilter />
+      <ActiveFilters />
       <Table />
     </StarWarsProvider>
   );

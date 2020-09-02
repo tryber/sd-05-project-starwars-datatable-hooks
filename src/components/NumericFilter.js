@@ -16,8 +16,11 @@ const NumericFilter = () => {
   const [column, setColumn] = useState('');
   const [value, setValue] = useState('');
   const [comparison, setComparison] = useState('');
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const { updateFilterByNumericValues } = useContext(StarWarsContext);
+  const { updateFilterByNumericValues, updateSelectedOptions, selectedOptions } = useContext(
+    StarWarsContext,
+  );
+  const selectedColumns = selectedOptions.map((filter) => filter.column);
+
   return (
     <form>
       <select
@@ -26,7 +29,7 @@ const NumericFilter = () => {
         onChange={(event) => setColumn(event.target.value)}
       >
         {columnOptions.map((option) =>
-          (selectedOptions.includes(option) ? null : <option value={option}>{option}</option>),
+          (selectedColumns.includes(option) ? null : <option value={option}>{option}</option>),
         )}
       </select>
 
@@ -52,7 +55,7 @@ const NumericFilter = () => {
         data-testid="button-filter"
         onClick={() => {
           updateFilterByNumericValues(column, value, comparison);
-          setSelectedOptions([...selectedOptions, column]);
+          updateSelectedOptions(column, value, comparison);
         }}
       >
         Filtrar

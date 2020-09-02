@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
-
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [filters, setFilters] = useState({
     filterByName: {
       name: '',
@@ -51,6 +51,25 @@ const Provider = ({ children }) => {
     });
   };
 
+  const updateSelectedOptions = (column, value, comparison) => {
+    setSelectedOptions([...selectedOptions, { column, comparison, value }]);
+  };
+
+  const removeSelectedOption = (column) => {
+    setSelectedOptions(selectedOptions.filter((option) => option.column !== column));
+  };
+
+  const removeFilter = (column) => {
+    const updatedNumericFilter = filters.filterByNumericValues.filter(
+      (filter) => filter.column !== column,
+    );
+    const updatedFilters = {
+      ...filters,
+      filterByNumericValues: updatedNumericFilter,
+    };
+    setFilters(updatedFilters);
+  };
+
   useEffect(() => {
     api().then((response) => setData(response.results) && setFilteredData(response.results));
     setLoading(false);
@@ -84,6 +103,10 @@ const Provider = ({ children }) => {
   const contextValue = {
     updateFilterByName,
     updateFilterByNumericValues,
+    updateSelectedOptions,
+    removeFilter,
+    removeSelectedOption,
+    selectedOptions,
     filteredData,
     loading,
   };
