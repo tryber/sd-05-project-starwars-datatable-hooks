@@ -22,7 +22,8 @@ function Filters() {
           <button
             name={each.column}
             type="button"
-            onClick={(e) => handleClick(e)}>
+            onClick={(e) => handleClick(e)}
+          >
             X
           </button>
         </span>

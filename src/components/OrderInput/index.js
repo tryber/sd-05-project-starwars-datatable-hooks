@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import RI from '../RadioInput';
 import SortButton from '../SortButton';
-import StarWarsContext from '../../context/StarWarsContext';
 
 class Ordering extends React.Component {
   constructor(props) {
@@ -43,7 +41,8 @@ class Ordering extends React.Component {
         <select
           name="columnValue"
           onChange={this.handleEvent}
-          data-testid="column-sort">
+          data-testid="column-sort"
+        >
           {columnOptions.map((each) => (
             <option key={each}>{each}</option>
           ))}

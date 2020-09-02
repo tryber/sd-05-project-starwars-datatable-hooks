@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../../context/StarWarsContext';
+import PropTypes from 'prop-types';
 
 function Button(props) {
   const { setOrder } = useContext(StarWarsContext);
@@ -8,10 +9,16 @@ function Button(props) {
     <button
       type="button"
       data-testid="column-sort-button"
-      onClick={() => setOrder({ column: columnValue, sort: radio })}>
+      onClick={() => setOrder({ column: columnValue, sort: radio })}
+    >
       Ordenar
     </button>
   );
 }
+
+Button.propTypes = {
+  columnValue: PropTypes.string.isRequired,
+  radio: PropTypes.string.isRequired,
+};
 
 export default Button;

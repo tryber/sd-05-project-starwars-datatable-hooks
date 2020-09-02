@@ -20,7 +20,7 @@ function Provider({ children }) {
       name: textForm,
     },
     filterByNumericValues: numberFilter,
-    order: order,
+    order,
   };
   const context = {
     planets,
