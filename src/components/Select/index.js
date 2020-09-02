@@ -5,20 +5,13 @@ const columnsOptions = ['selecione', 'population', 'orbital_period', 'diameter',
 
 const Select = () => {
   const { filterByNumericValues, SetFilterByNumericValues } = useContext(StarWarsContext);
-  const [filter, setFilter] = useState({
-    column: '',
-    comparison: '',
-    value: '',
-  });
-
-
-  function handleClick(e) {
-    const newFilter = [];
-    for (let i = 0; i < filterByNumericValues.length; i += 1) {
-      if (filterByNumericValues[i].column !== e.target.name) {
-        newFilter.push(filterByNumericValues[i]);
-      }
-    }
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState('');
+  console.log(column, comparison, value)
+  
+  const handleClick = (column) => {
+    const newFilter = filterByNumericValues.filter((e) => e.column !== column);
     SetFilterByNumericValues(newFilter);
   }
 
@@ -34,13 +27,13 @@ const Select = () => {
     <div>
       <select
         data-testid="column-filter" name="column"
-        onChange={(e) => setFilter({ ...filter, column: e.target.value })}
+        onChange={(e) => setColumn(e.target.value)}
       >
         {filteredColumns.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
       <select
         data-testid="comparison-filter"
-        name="comparison" onChange={(e) => setFilter({ ...filter, comparison: e.target.value })}
+        name="comparison" onChange={(e) => setComparison(e.target.value)}
       >
         {optionsValues.map((values) =>
           <option key={values} value={values}>{values}</option>,
@@ -48,16 +41,16 @@ const Select = () => {
       </select>
       <input
         type="number" data-testid="value-filter"
-        name="value" onChange={(e) => setFilter({ ...filter, value: e.target.value })}
+        name="value" onChange={(e) => setValue(e.target.value)}
       />
       <button
         type="button" data-testid="button-filter"
-        onClick={() => SetFilterByNumericValues([...filterByNumericValues, filter])}
+        onClick={() => SetFilterByNumericValues([...filterByNumericValues, {column, comparison, value}])}
       >
         Buscar
       </button>
       {filterByNumericValues.map((list) =>
-        <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={(e) => handleClick(e)}>X</button> </span>,
+        <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={() => handleClick(list.column)}>X</button> </span>,
       )}
     </div>
   );
