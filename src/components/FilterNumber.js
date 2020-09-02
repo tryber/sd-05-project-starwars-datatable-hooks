@@ -46,7 +46,7 @@ const FilterNumber = () => {
           <button
             type="button"
             data-testid="button-filter"
-            onClick={() => setFilterNumber([localFilter])}
+            onClick={() => setFilterNumber([...filterNumber, localFilter])}
           >
             Filtrar
           </button>
