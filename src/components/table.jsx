@@ -5,7 +5,9 @@ import StarWarsContext from '../context/StarWarsContext';
 import TableValues from './tabelvalues';
 
 function Table() {
-  const { swData, setPlanetas, planetas } = useContext(StarWarsContext);
+  const { swData, setPlanetas, planetas, searchText } = useContext(
+    StarWarsContext,
+  );
   useEffect(() => {
     swData().then((data) => setPlanetas(data.results));
   }, []);
@@ -13,9 +15,13 @@ function Table() {
     <section>
       <table>
         <Tableheaders />
-        {planetas.map((elements) => (
-          <TableValues key={elements.diameter} elements={elements} />
-        ))}
+        {planetas
+          .filter((planets) =>
+            planets.name.toLowerCase().includes(searchText.toLowerCase()),
+          )
+          .map((elements) => (
+            <TableValues key={elements.diameter} elements={elements} />
+          ))}
       </table>
     </section>
   );
