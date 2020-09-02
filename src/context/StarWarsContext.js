@@ -48,7 +48,7 @@ const Provider = ({ children }) => {
 
   function changeFilterByNumeric(coluna, comparacao, valor) {
     setFilters((prevState) => ({
-      filterByName: { 
+      filterByName: {
         name: undefined,
       },
       filterByNumericValues: [...prevState.filterByNumericValues, {
