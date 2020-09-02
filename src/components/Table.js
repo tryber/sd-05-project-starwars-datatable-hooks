@@ -99,7 +99,7 @@ function Table() {
         </thead>
         <tbody>
           { <RenderTableData /> }
-          {/* antes estava como RenderTableData() - ref1 */}
+          {/* antes estava como RenderTableData() - ref3 */}
         </tbody>
       </table>
     );
@@ -109,4 +109,12 @@ function Table() {
 
 export default Table;
 
-//  ref1: https://kentcdodds.com/blog/dont-call-a-react-function-component
+//  ref1: https://app.slack.com/client/TMDDFEPFU/C013105FU2C/thread/C013105FU2C-1597370726.050700
+//  thead em: https://www.w3schools.com/tags/tag_thead.asp
+//  https://medium.com/@ricardoreis_22930/operadores-de-compara%C3%A7%C3%A3o-comparison-operators-d2bc3ed734a3
+//  https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+//  ref2: https://www.educative.io/edpresso/how-to-sort-an-array-of-objects-in-javascript
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+//  https://www.w3schools.com/jsref/jsref_sort.asp#:~:text=The%20sort()%20method%20sorts,comes%20before%20%22Banana%22).
+
+//  ref3: https://kentcdodds.com/blog/dont-call-a-react-function-component
