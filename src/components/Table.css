@@ -1,18 +1,18 @@
-table, td, th {
+table , td , th {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-table, th {
+table , th {
   background-color: lightgray;
 }
 
-table.tabela {
+.tabela {
   background: white;
 }
 
 
-table.tabela tr:nth-child(even) /* CSS3 */ {
+.tabela tr:nth-child( even ) /* CSS3 */ {
   background: lightgray;
 }
 
