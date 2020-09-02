@@ -23,7 +23,7 @@ const Dropfilters = () => {
   const [comp, setComparison] = useState('');
   const [val, setValue] = useState('');
 
-  const { filterByValues, setfilterByNumericValues } = useContext(StarWarsContext);
+  const { filterByValues, setValues } = useContext(StarWarsContext);
 
   const columnOptions = () => {
     const selectedFilterColumns = filterByValues.map((filter) => filter.column);
@@ -61,7 +61,7 @@ const Dropfilters = () => {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={(filterByValues) => { setfilterByNumericValues([...filterByValues, { col, comp, val }]); }}
+        onClick={() => { setValues([...filterByValues, { col, comp, val }]); }}
       >Filtrar</button></form>
   );
 };

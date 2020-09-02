@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { StarWarsContext } from '../context/starWarsContext';
 import { datafilterfunction } from '../components/filters/Dropfilters';
 
-const TableBody = () => { 
-  const { data, nameFilter, filterByValues} = useContext(StarWarsContext);
+const TableBody = () => {
+  const { data, nameFilter, filterByValues } = useContext(StarWarsContext);
   const NameFilteredPlanets = data.filter((planets) => planets.name.includes(nameFilter.name));
- 
+
   return (
     ((filterByValues.length > 0)
     ? (datafilterfunction(NameFilteredPlanets, filterByValues))

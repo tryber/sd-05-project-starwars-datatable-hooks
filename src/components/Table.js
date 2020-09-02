@@ -21,7 +21,7 @@ const Table = () => {
 
   useEffect(() => {
     FetchData().then((dataApi) => setData(dataApi));
-    console.log("fetched");
+    console.log('fetched');
   });
 
   return (

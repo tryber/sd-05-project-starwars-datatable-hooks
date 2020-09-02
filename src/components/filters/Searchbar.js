@@ -8,7 +8,7 @@ import { StarWarsContext } from '../../context/starWarsContext';
 import Dropfilters from './Dropfilters';
 
 const SearchBar = () => {
-  const { data, setFilterByName } = useContext(StarWarsContext);
+  const { setFilterByName } = useContext(StarWarsContext);
   //  const { handleChangeName } = this.props;
   return (
     <div>

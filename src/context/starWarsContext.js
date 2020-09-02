@@ -10,7 +10,7 @@ const StarProvider = ({ children }) => {
       name: '',
     },
   });
-  const [filterByValues, setfilterByNumericValues] = useState([]);
+  const [filterByValues, setValues] = useState([]);
 
   const context = {
     data,
@@ -25,7 +25,7 @@ const StarProvider = ({ children }) => {
       //   }
       // ],
     setFilterByName,
-    setfilterByNumericValues,
+    setValues,
   };
 
   return (
