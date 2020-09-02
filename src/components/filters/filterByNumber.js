@@ -43,7 +43,7 @@ function FilterByNumeric() {
           column,
           comparison,
           value,
-        }
+        },
         ])}
       >
         Filtrar

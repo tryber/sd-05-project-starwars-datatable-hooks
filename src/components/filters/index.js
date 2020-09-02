@@ -19,7 +19,7 @@ function renderTableBody(allPlanets) {
         <td key={planet.edited}>{planet.edited}</td>
       </tr>
     </tbody>
-  ))
-};
+  ));
+}
 
 export default renderTableBody;
