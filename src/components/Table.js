@@ -32,15 +32,15 @@ function dynamicsort(key, order) {
   };
 }
 
-function ManyFilter() {
+function RenderTableData() {
   const { data, filterParameter, filterNumeric, filterSortedColumn,
     filterSortedOrder } = useContext(StarWarsContext);
   const colunaSort = (filterSortedColumn.column === 'Name') ? 'name' : filterSortedColumn.column;
   //  Ternário manobra técnica, pois há uma diferença entre o nome do campo e
   //  a forma com o que store deve armazenar o column. (requisito dos testes)
+  // let array = data.slice(); //  copia o conteudo do data, sem a referencia a data
   let array = data.slice(); //  copia o conteudo do data, sem a referencia a data
   //  assim, não se altera o estado devido a ligação por endereço (sem mutação)
-  array.sort(dynamicsort(colunaSort, filterSortedOrder.sort));
   if (filterParameter.name !== '') {
     array = data.filter((item) => item.name.includes(filterParameter.name));
   }
@@ -62,12 +62,7 @@ function ManyFilter() {
       }
     });
   }
-  return array;
-}
-
-function RenderTableData() {
-  const array = ManyFilter();
-
+  array.sort(dynamicsort(colunaSort, filterSortedOrder.sort));
   return (array.map((item) => (
     <tr key={item.name}>
       <td data-testid="planet-name">{item.name}</td>

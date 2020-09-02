@@ -21,6 +21,7 @@ const StarWarsProvider = ({ children }) => {
 
   const context = {
     data,
+    setData,
     isFetching,
     filterParameter,
     filterNumeric,
