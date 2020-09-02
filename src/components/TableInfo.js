@@ -1,29 +1,28 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
-// function filterByNumber(arrayPlanets, filter) {
-//   if (filter.comparison === 'maior que') {
-//     return arrayPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
-//   }
-//   if (filter.comparison === 'menor que') {
-//     return arrayPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
-//   }
-//   if (filter.comparison === 'igual a') {
-// urn arrayPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
-//   }
-//   return arrayPlanets;
-// }
+function filterByNumber(filterPlanets, filter) {
+  if (filter.comparison === 'maior que') {
+    return filterPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
+  }
+  if (filter.comparison === 'menor que') {
+    return filterPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
+  }
+  if (filter.comparison === 'igual a') {
+    return filterPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+  }
+  return filterPlanets;
+}
 
 // tabela que receberá o corpo da função
 export default function TableInfo() {
-  const { data, textInput } = useContext(StarWarsContext);
+  const { data, textInput, filterByNumericValues } = useContext(StarWarsContext);
 
-  // // Filtro por numero
   let filterPlanets = data;
-  // filterByNumericValues.forEach((filter) => {
-  //   filterPlanets = filterByNumber(filterPlanets, filter);
-  // });
-  console.log(textInput);
+  // Filtro por numero
+  filterByNumericValues.forEach((filter) => {
+    filterPlanets = filterByNumber(filterPlanets, filter);
+  });
 
   filterPlanets = filterPlanets.filter(
     (planet) => planet.name.toUpperCase().includes(textInput.toUpperCase()),
