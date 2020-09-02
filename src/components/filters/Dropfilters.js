@@ -27,15 +27,15 @@ const Dropfilters = () => {
 
   const columnOptions = () => {
     const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
-    let startColumns = [
+    const startColumns = [
       'coluna',
       'population',
       'orbital_period',
       'diameter',
       'rotation_period',
       'surface_water'];
-    columns = startColumns.filter((column) => !selectedFilterColumns.includes(column));
-    return columns.map((column) => <option value={column} key={column}>{column}</option>);
+    const columns = startColumns.filter((col) => !selectedFilterColumns.includes(col));
+    return columns.map((coluna) => <option value={coluan} key={coluna}>{coluna}</option>);
   };
 
   const Scolumn = (event) => setColumn(event.target.value);
@@ -61,7 +61,7 @@ const Dropfilters = () => {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={() => {setfilterByNumericValues({ column, comparison, value });}}
+        onClick={() => { setfilterByNumericValues({ column, comparison, value }); }}
       >Filtrar</button></form>
   );
 };
