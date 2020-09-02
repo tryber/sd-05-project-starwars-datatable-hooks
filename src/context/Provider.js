@@ -5,6 +5,8 @@ import fetchSWAPI from '../services/api';
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filterName, setFilterName] = useState('');
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   useEffect(() => {
     fetchSWAPI()
@@ -15,12 +17,23 @@ const Provider = ({ children }) => {
         }
       )
   }, [])
+
+  const state = {
+    loading,
+    data,
+    filterName,
+    setFilterName,
+    filterByNumericValues,
+    setFilterByNumericValues,
+  };
+
   return (
-    loading ? <p>Loading</p> :
-      <MyContext.Provider value={{ planets: data }}>
+      <MyContext.Provider value={state}>
         {children}
       </MyContext.Provider>
   )
 }
+
+
 
 export default Provider;

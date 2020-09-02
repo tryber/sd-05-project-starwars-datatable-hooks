@@ -1,17 +1,15 @@
 import React from 'react';
 import './App.css';
-import Provider from './context/Provider';
 import Table from './pages/Table';
+import Provider from './context/Provider';
 
 function App() {
   return (
-    <section>
-      <Provider>
-        <table>
-          <Table />
-        </table>
-      </Provider>
-    </section>
+    <Provider>
+      <section>
+        <Table />
+      </section>
+    </Provider>
   );
 }
 
