@@ -16,19 +16,19 @@ import StarWarsContext from '../context/StarWarsContext';
 
 // tabela que receberá o corpo da função
 export default function TableInfo() {
-  const { data } = useContext(StarWarsContext);
+  const { data, textInput } = useContext(StarWarsContext);
 
   // // Filtro por numero
-  // let filterPlanets = data;
+  let filterPlanets = data;
   // filterByNumericValues.forEach((filter) => {
   //   filterPlanets = filterByNumber(filterPlanets, filter);
   // });
+  console.log(textInput);
 
-  // filterPlanets = filterPlanets.filter(
-  //   (input) => input.name.toUpperCase().includes(text.name.toUpperCase()),
-  // );
-
-  return data.map((planet) => (
+  filterPlanets = filterPlanets.filter(
+    (planet) => planet.name.toUpperCase().includes(textInput.toUpperCase()),
+  );
+  return filterPlanets.map((planet) => (
     <tbody key={planet.name}>
       <tr>
         <td>{planet.name}</td>
