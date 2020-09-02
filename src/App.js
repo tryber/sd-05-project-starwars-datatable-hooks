@@ -1,12 +1,14 @@
 import React from 'react';
 import StarWarsContextProvider from './context/StarWarsContextProvider';
 
+import Table from './components/Table';
+
 function App() {
   return (
     <StarWarsContextProvider>
-      <h1>StarWars Context + Hooks</h1>
+      <Table />
     </StarWarsContextProvider>
-  )
+  );
 }
 
 export default App;
