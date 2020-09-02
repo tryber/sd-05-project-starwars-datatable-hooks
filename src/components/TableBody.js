@@ -4,7 +4,8 @@ import getPlanets from '../services/starAPI';
 import queryFilters from '../services/queryFilters';
 
 export default function TableBody() {
-  const { data, setData, setError, textFilter, filterByNumericValues } = useContext(StarWarsContext);
+  const { data, setData, setError } = useContext(StarWarsContext);
+  const { textFilter, filterByNumericValues } = useContext(StarWarsContext);
 
   useEffect(() => {
     getPlanets()
