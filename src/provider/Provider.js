@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import fetchStarWarsAPI from '../services/starWarsAPI';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function MyProvider(props) {
-  
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   const refreshLoading = () => {
-    setLoading((loading) => !loading);
+    setLoading(() => !loading);
   }
 
   const savePlanets = (results) => {
@@ -22,6 +22,14 @@ export default function MyProvider(props) {
     savePlanets,
   }
 
+  useEffect(() => {
+    fetchStarWarsAPI().then((data) => {
+      savePlanets(data.results);
+      refreshLoading();
+    });
+    console.log(data);
+  }, []);
+
   return (
     <StarWarsContext.Provider value={state}>
       {props.children}
@@ -29,3 +37,6 @@ export default function MyProvider(props) {
   );
 }
 
+MyProvider.propTypes = {
+  children: propTypes.node.isRequired,
+}
