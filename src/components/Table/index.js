@@ -17,8 +17,8 @@ const Table = () => {
   } = useContext(StarWarsContext);
   useEffect(() => {
     setIsFetching(true);
-    fetchPlanets().then((response) => response).then((json) => { 
-      setData(json.results); setIsFetching(false); 
+    fetchPlanets().then((response) => response).then((json) => {
+      setData(json.results); setIsFetching(false);
     });
   }, [setData, setIsFetching]);
 
