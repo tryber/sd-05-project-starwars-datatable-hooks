@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useContext, useEffect } from 'react';
+import propTypes from 'prop-types';
 import './App.css';
+import Table from './components/Table';
+import StarWarsContext from '../context/StarWarsContext';
+import fetchStarWarsAPI from '../services/starWarsAPI';
 
-function App() {
+export default function App() {
+  const { refreshLoading, savePlanets } = useContext(StarWarsContext);
+
+  useEffect(() => {
+    fetchStarWarsAPI().then((data) => {
+      savePlanets(data.results);
+      refreshLoading();
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Table />
     </div>
   );
 }
 
-export default App;
+App.propTypes = {
+  refreshLoading: propTypes.func.isRequired,
+  savePlanets: propTypes.func.isRequired,
+};
