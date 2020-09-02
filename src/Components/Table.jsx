@@ -18,6 +18,25 @@ const columns = [
   'edited',
 ];
 
+function filterNum(arr, filter) {
+  if (filter === undefined) {
+    return arr;
+  }
+  switch (filter.comparison) {
+    case 'maior que':
+      return arr.filter(
+        (item) => Number(item[filter.column]) > Number(filter.value));
+    case 'menor que':
+      return arr.filter(
+        (item) => Number(item[filter.column]) < Number(filter.value));
+    case 'igual a':
+      return arr.filter(
+        (item) => Number(item[filter.column]) === Number(filter.value));
+    default:
+      return arr;
+  }
+}
+
 function mapArray(array) {
   return array.map((arr) => (
     <tr key={arr.name}>
@@ -43,9 +62,20 @@ function filterName(name, array) {
 }
 
 function Table() {
-  const { data, isFetching, fetchingDone, fetchPlanets, filters } = useContext(
-    PlanetContext,
-  );
+  const {
+    data,
+    isFetching,
+    fetchingDone,
+    fetchPlanets,
+    filters,
+    filterByNumericValues,
+  } = useContext(PlanetContext);
+  const filter1 = filterNum(
+    data.results,
+    filterByNumericValues[filterByNumericValues.length - 1]);
+  const filter2 = filterNum(
+    filter1,
+    filterByNumericValues[filterByNumericValues.length - 2]);
   fetchPlanets();
   fetchingDone();
   if (isFetching) return <Loading />;
@@ -58,7 +88,7 @@ function Table() {
           ))}
         </tr>
       </thead>
-      <tbody>{mapArray(filterName(filters, data.results))}</tbody>
+      <tbody>{mapArray(filterName(filters, filterNum(filter2)))}</tbody>
     </table>
   );
 }
