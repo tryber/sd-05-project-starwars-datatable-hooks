@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StarwarsContext from '../context/StarwarsContext';
+import PropTypes from 'prop-types';
 
 import { rKey } from '../services/Utils';
 
@@ -114,7 +115,7 @@ class Filters extends Component {
               <input
                 data-testid="name-filter"
                 type="text"
-                onChange={({ target: {value: name} }) => {
+                onChange={({ target: { value: name } }) => {
                   filters.setFilterByName({name});
                 }}
               />
@@ -133,6 +134,12 @@ class Filters extends Component {
       </StarwarsContext.Consumer>
     );
   }
+}
+
+Select.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataTest: PropTypes.string.isRequired,
+  selected: PropTypes.func.isRequired,
 }
 
 export default Filters;
