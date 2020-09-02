@@ -32,43 +32,42 @@ class Table extends Component {
   renderFiltered(planetList) {
     return (
       <StarwarsContext.Consumer>
-      {
-        ({ filters: { filterByNumericValues, filterByName } }) => {
-          planetList.forEach((planet) => {
-            planet.visible = true;
-            filterByNumericValues.forEach(({ column, comparison, value }) => {
-              if (planet.visible) {
-                switch (comparison) {
-                  case 'menor que':
-                    planet.visible = Number(planet[column]) < Number(value);
-                    break;
-                  case 'maior que':
-                    planet.visible = Number(planet[column]) > Number(value);
-                    break;
-                  case 'igual a':
-                    planet.visible = Number(planet[column]) === Number(value);
-                    break;
-                  default:
-                    break;
+        {
+          ({ filters: { filterByNumericValues, filterByName } }) => {
+            planetList.forEach((planet) => {
+              planet.visible = true;
+              filterByNumericValues.forEach(({ column, comparison, value }) => {
+                if (planet.visible) {
+                  switch (comparison) {
+                    case 'menor que':
+                      planet.visible = Number(planet[column]) < Number(value);
+                      break;
+                    case 'maior que':
+                      planet.visible = Number(planet[column]) > Number(value);
+                      break;
+                    case 'igual a':
+                      planet.visible = Number(planet[column]) === Number(value);
+                      break;
+                    default:
+                      break;
+                  }
                 }
-              }
+              });
             });
-          });
-          return (
-            planetList
-              .filter((planet) => planet.visible)
-              .filter(({ name }) => name.toUpperCase().includes(filterByName.name.toUpperCase()))
-              .map((planet) => (
-                <tr key={rKey(planet.name)}>
-                  {TABLE_KEYS.map((keys) => <td key={rKey(planet.url)}>{planet[keys]}</td>)}
-                </tr>
-              ))
-          );
+            return (
+              planetList
+                .filter((planet) => planet.visible)
+                .filter(({ name }) => name.toUpperCase().includes(filterByName.name.toUpperCase()))
+                .map((planet) => (
+                  <tr key={rKey(planet.name)}>
+                    {TABLE_KEYS.map((keys) => <td key={rKey(planet.url)}>{planet[keys]}</td>)}
+                  </tr>
+                ))
+            );
+          }
         }
-      }
-    </StarwarsContext.Consumer>
+      </StarwarsContext.Consumer>
     );
-
   }
 
   render() {

@@ -18,9 +18,9 @@ function App() {
       .then(() => { setIsLoading(false); });
   }, []);
 
-  const addFilterByNumericValues = entries => {
+  const addFilterByNumericValues = (entries) => {
     setFilterByNumericValues([...filterByNumericValues, entries]);
-  }
+  };
 
   const filters = {
     filterByName,

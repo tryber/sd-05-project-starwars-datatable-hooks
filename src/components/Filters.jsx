@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import StarwarsContext from '../context/StarwarsContext';
 import PropTypes from 'prop-types';
+import StarwarsContext from '../context/StarwarsContext';
 
 import { rKey } from '../services/Utils';
 
@@ -59,9 +59,8 @@ function ActivatedFilters() {
           </div>
         )
       }
-      
     </StarwarsContext.Consumer>
-  )
+  );
 }
 
 class Filters extends Component {
@@ -75,12 +74,11 @@ class Filters extends Component {
     return (
       <StarwarsContext.Consumer>
         {
-          ({ filters: {filterByNumericValues: fltr} }) => (
+          ({ filters: { filterByNumericValues: fltr } }) => (
             <div>
               <Select
                 options={
-                  columns
-                    .filter(({ value }) => fltr.filter(
+                  columns.filter(({ value }) => fltr.filter(
                       ({ column }) => (column === value)
                     ).length === 0)
                 }
@@ -116,7 +114,7 @@ class Filters extends Component {
                 data-testid="name-filter"
                 type="text"
                 onChange={({ target: { value: name } }) => {
-                  filters.setFilterByName({name});
+                  filters.setFilterByName({ name });
                 }}
               />
               {this.RenderSelects()}
@@ -140,6 +138,6 @@ Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   dataTest: PropTypes.string.isRequired,
   selected: PropTypes.func.isRequired,
-}
+};
 
 export default Filters;
