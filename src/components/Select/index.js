@@ -8,12 +8,12 @@ const Select = () => {
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-  console.log(column, comparison, value)
-  
-  const handleClick = (column) => {
-    const newFilter = filterByNumericValues.filter((e) => e.column !== column);
+  console.log(column, comparison, value);
+
+  const handleClick = (columns) => {
+    const newFilter = filterByNumericValues.filter((e) => e.column !== columns);
     SetFilterByNumericValues(newFilter);
-  }
+  };
 
   const filtered = filterByNumericValues.map((fil) => {
     if (fil.column) return fil.column;
@@ -26,8 +26,7 @@ const Select = () => {
   return (
     <div>
       <select
-        data-testid="column-filter" name="column"
-        onChange={(e) => setColumn(e.target.value)}
+        data-testid="column-filter" name="column" onChange={(e) => setColumn(e.target.value)}
       >
         {filteredColumns.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
@@ -44,8 +43,8 @@ const Select = () => {
         name="value" onChange={(e) => setValue(e.target.value)}
       />
       <button
-        type="button" data-testid="button-filter"
-        onClick={() => SetFilterByNumericValues([...filterByNumericValues, {column, comparison, value}])}
+        type="button" data-testid="button-filter" onClick={() => 
+          SetFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])}
       >
         Buscar
       </button>
