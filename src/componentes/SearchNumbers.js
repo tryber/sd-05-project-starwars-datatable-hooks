@@ -22,10 +22,13 @@ export default function SearchNumbers() {
       <select data-testid="comparison-filter" onChange={(e) => setComparison(e.target.value)}>
         {dropdownComparison.map((comp) => (<option key={comp}>{comp}</option>))}
       </select>
-      <input type="number" data-testid="value-filter" onChange={(e) => setValue(e.target.value)}/>
-      <button type="button" data-testid="button-filter" onClick={
-        () => setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])}>
-          Filter
+      <input type="number" data-testid="value-filter" onChange={(e) => setValue(e.target.value)} />
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={() => setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])}
+      >
+        Filter
       </button>
     </div>
   );
