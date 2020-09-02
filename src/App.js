@@ -12,7 +12,7 @@ function App() {
       <StarWarsProvider>
         <div>
           {/* <TextFilter /> */}
-            {/* <NumberFilter />
+          {/* <NumberFilter />
           <DeleteFilter /> */}
           <Table />
         </div>
