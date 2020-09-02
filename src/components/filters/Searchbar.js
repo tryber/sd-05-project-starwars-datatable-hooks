@@ -8,17 +8,20 @@ import { StarWarsContext } from '../../context/starWarsContext';
 import Dropfilters from './Dropfilters';
 
 const SearchBar = () => {
-  const { setFilterByName } = useContext(StarWarsContext);
+  const { data, setFilterByName } = useContext(StarWarsContext);
   //  const { handleChangeName } = this.props;
   return (
     <div>
+      {data.length !== 0 && (
       <label htmlFor="name-filter-input"> Search planet by name:
         <input
           data-testid="name-filter"
           type="text"
-          onChange={(event) => setFilterByName(event.target.value)}
+          name=""
+          onChange={(event) => setFilterByName({ filterByName: { name: event.target.value } })}
         />
-      </label>
+      </label>)
+      }
       <Dropfilters />
     </div>
   );

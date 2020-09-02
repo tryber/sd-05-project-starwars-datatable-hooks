@@ -4,12 +4,12 @@ import { StarWarsContext } from '../context/starWarsContext';
 const TableBody = () => {
   // filterByNumericValues
   const { data, nameFilter } = useContext(StarWarsContext);
-  const NameFilteredPlanets = data.filter((planets) => planets.name.includes(nameFilter));
+  const NameFilteredPlanets = data.filter((planets) => planets.name.includes(nameFilter.name));
   // {(name)}
   //   NameFilteredPlanets
 
   return (
-    ((NameFilteredPlanets.length > 0) ? NameFilteredPlanets : data)
+    ((NameFilteredPlanets.length > 0) ? NameFilteredPlanets : NameFilteredPlanets)
       .map((planet) => (
         <tbody key={planet.name}>
           <tr>
