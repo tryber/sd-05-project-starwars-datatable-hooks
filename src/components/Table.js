@@ -7,8 +7,9 @@ function ApplyFilters() {
   let planets = data;
 
   if (nameFilter !== '') {
+    console.log(nameFilter);
     planets = data.filter((planet) =>
-      planet.name.includes(nameFilter));
+      planet.name.toUpperCase().includes(nameFilter.toUpperCase()));
   }
 
   return planets;
@@ -37,7 +38,6 @@ function TableHead() {
 }
 
 function TableBody() {
-  // const { data } = useContext(StarWarsContext);
   const planets = ApplyFilters();
 
   return (
