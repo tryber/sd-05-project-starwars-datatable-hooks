@@ -9,7 +9,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [planetList, setPlanetList] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
-  const [numberFilters, setNumberFilters] = useState([]);
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   useEffect(() => {
@@ -30,8 +29,6 @@ function App() {
   const filters = {
     filterByName,
     setFilterByName,
-    numberFilters,
-    setNumberFilters,
     filterByNumericValues,
     addFilterByNumericValues,
     removeFilter,
