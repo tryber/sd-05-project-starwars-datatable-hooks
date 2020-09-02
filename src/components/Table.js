@@ -8,6 +8,7 @@ export default function Table(props) {
 
   const { data, loading } = useContext(StarWarsContext);
   if (loading) return <h2>Loading...</h2>;
+  
   return (
     <div>
       <h2>StarWars Datatable with Filters</h2>
