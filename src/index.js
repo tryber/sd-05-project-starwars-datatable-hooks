@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { debugContextDevtool } from 'react-context-devtool';
 import './index.css';
 import App from './App';
-import MyProvider from '../provider/Provider';
+import MyProvider from './provider/Provider';
 
 const container = document.getElementById("root");
 

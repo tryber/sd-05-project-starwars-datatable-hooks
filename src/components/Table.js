@@ -8,12 +8,12 @@ export default function Table(props) {
 
   const { data, loading } = useContext(StarWarsContext);
   if (loading) return <h2>Loading...</h2>;
-  
+
   return (
     <div>
       <h2>StarWars Datatable with Filters</h2>
       <div>
-        <FilterBar />
+        {/* <FilterBar /> */}
       </div>
       <table>
         <thead>
@@ -22,7 +22,7 @@ export default function Table(props) {
               title === 'residents' ? false : <th key={title}>{title}</th>))}
           </tr>
         </thead>
-        <TBody />
+        {/* <TBody /> */}
       </table>
     </div>
   );

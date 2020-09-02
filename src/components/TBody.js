@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
 class TBody extends React.Component {
@@ -36,14 +35,6 @@ class TBody extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  data: state.fetchReducer.data,
-  name: state.filters.filterByName.name,
-  filterByNum: state.filters.filterByNumericValues,
-});
-
-export default connect(mapStateToProps)(TBody);
 
 TBody.propTypes = {
   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
