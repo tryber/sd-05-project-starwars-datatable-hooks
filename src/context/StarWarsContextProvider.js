@@ -8,6 +8,7 @@ export const StarWarsContext = createContext();
 function StarWarsContextProvider(props) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [nameFilter, setNameFilter] = useState({ filterByName: { name: '' } });
 
   useEffect(() => {
     setLoading(true);
@@ -15,7 +16,7 @@ function StarWarsContextProvider(props) {
     setLoading(false);
   }, []);
 
-  const context = { loading, setLoading, data, setData };
+  const context = { loading, data, nameFilter, setNameFilter };
 
   return <StarWarsContext.Provider value={context}>{props.children}</StarWarsContext.Provider>;
 }
