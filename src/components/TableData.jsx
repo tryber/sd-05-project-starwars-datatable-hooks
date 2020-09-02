@@ -25,29 +25,18 @@ function tableBody(planet) {
 
 export default function TableData() {
   const { data, filters } = useContext(StarWarsContext);
-  const { filterByName } = filters;
-
-  /* console.log(data); */
-
-  /* constructor(props) {
-    super(props);
-    this.numericFilter = this.numericFilter.bind(this);
-    this.nameFilter = this.nameFilter.bind(this);
-    this.allPlanets = this.allPlanets.bind(this);
-  }
-
-  componentDidMount() {
-    const { filters } = this.props;
-    filters.forEach((filtro) => {
+  const { filterByName, filterByNumericValues } = filters;
+  /* useEffect(() => {
+    console.log(filterByNumericValues)
+    filterByNumericValues.forEach((filtro) => {
       const { column } = filtro;
       document.getElementById(column).remove();
     });
-  }
+  }, []); */
 
-  numericFilter() {
-    const { data, filters } = this.props;
+  function numericFilter() {
     let planetas = data;
-    filters.forEach((filtro) => {
+    filterByNumericValues.forEach((filtro) => {
       const { comparison, column, value } = filtro;
       if (comparison === 'maior que') {
         planetas = planetas.filter((planet) => planet[column] > Number(value));
@@ -58,11 +47,9 @@ export default function TableData() {
       }
     });
     return (
-      <tbody className="table">
-        {planetas.map((planet) => tableBody(planet))}
-      </tbody>
+      <tbody className="table">{planetas.map((planet) => tableBody(planet))}</tbody>
     );
-  }*/
+  }
 
   function nameFilter() {
     const dataFilteredByName = data.filter((planet) => planet.name.includes(filterByName.name));
@@ -81,36 +68,15 @@ export default function TableData() {
     );
   }
 
-  if (filterByName.name !== '') {
+  if (filterByName.name !== undefined) {
     return nameFilter();
+  } if (
+    filterByName.name === undefined &&
+    filterByNumericValues.comparison !== '' &&
+    filterByNumericValues.column !== '' &&
+    filterByNumericValues.value !== ''
+  ) {
+    return numericFilter();
   }
-    /*
-    if (
-      name === '' &&
-      comparison !== '' &&
-      column !== '' &&
-      value !== ''
-    ) {
-      return this.numericFilter();
-    } */
   return allPlanets();
 }
-
-/* const mapStateToProps = (state) => ({
-  data: state.data,
-  name: state.filters.filterByName.name,
-  filters: state.filters.filterByNumericValues,
-}); */
-
-// Para resolver o problema do codeclimate 'prop-type array is forbiden', utilizei a função InstanceOf que encontrei neste site: https://github.com/yannickcr/eslint-plugin-react/issues/2079
-
-/* TableData.propTypes = {
-  data: PropTypes.instanceOf(Array).isRequired,
-  name: PropTypes.string.isRequired,
-  filters: PropTypes.instanceOf(Array).isRequired,
-  column: PropTypes.string,
-  value: PropTypes.string,
-  comparison: PropTypes.string,
-}; */
-
-/* export default connect(mapStateToProps)(TableData); */

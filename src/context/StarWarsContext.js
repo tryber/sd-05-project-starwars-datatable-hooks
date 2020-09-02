@@ -46,6 +46,19 @@ const Provider = ({ children }) => {
     });
   }
 
+  function changeFilterByNumeric(coluna, comparacao, valor) {
+    setFilters((prevState) => ({
+      filterByName: { 
+        name: undefined,
+      },
+      filterByNumericValues: [...prevState.filterByNumericValues, {
+        column: coluna,
+        comparison: comparacao,
+        value: valor,
+      }],
+    }));
+  }
+
   const context = {
     filters,
     error,
@@ -53,6 +66,7 @@ const Provider = ({ children }) => {
     isFetching,
     fetchPlanets,
     changeFilterByName,
+    changeFilterByNumeric,
   };
 
   return (
