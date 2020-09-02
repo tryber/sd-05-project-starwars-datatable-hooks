@@ -16,7 +16,7 @@ const columns = [
   'films',
   'created',
   'edited',
-]
+];
 
 function filterNum(arr, filter) {
   if (filter === undefined) {
