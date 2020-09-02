@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function Filtros() {
-  const { setFiltros, filterByNumericValues } = useContext(StarWarsContext);
+  const { setFiltros } = useContext(StarWarsContext);
 
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
@@ -14,7 +14,7 @@ export default function Filtros() {
     'orbital_period',
     'diameter',
     'rotation_period',
-    'surface_water'
+    'surface_water',
   ];
 
   const changeFilters = () => {
@@ -27,7 +27,7 @@ export default function Filtros() {
         value,
       }]);
     }
-  }
+  };
 
   return (
     <div>
