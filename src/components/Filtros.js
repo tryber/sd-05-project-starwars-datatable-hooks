@@ -40,11 +40,7 @@ export default function Filtros() {
         name="value"
         onChange={(event) => setValue(event.target.value)}
       />
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={() => changeFilters()}
-      >
+      <button type="button" data-testid="button-filter" onClick={() => changeFilters()}>
         Filtrar
         </button>
     </div>
