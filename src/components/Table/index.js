@@ -37,7 +37,7 @@ const Table = () => {
           <tr key={Math.random(99999999)}>
             {ths.map((datas) => (
               <td
-                data-test-id={datas === 'name' ? 'planet-name' : ''}
+                data-testid={datas === 'name' ? 'planet-name' : ''}
                 key={Math.random(9999999)}
               >
                 {info[datas]}
