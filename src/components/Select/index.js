@@ -3,8 +3,12 @@ import { StarWarsContext } from '../../context/StarWarsContext';
 
 const Select = () => {
   const columnsOptions = [
-    'selecione', 'population', 'orbital_period',
-    'diameter', 'rotation_period', 'surface_water',
+    'selecione',
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
   ];
 
   const { filterByNumericValues, SetFilterByNumericValues } = useContext(StarWarsContext);
@@ -63,8 +67,8 @@ const Select = () => {
         Buscar
       </button>
       {filterByNumericValues.map((list) =>
-          <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={(e) => handleClick(e)}>X</button> </span>,
-        )}
+        <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={(e) => handleClick(e)}>X</button> </span>,
+      )}
     </div>
   );
 };
