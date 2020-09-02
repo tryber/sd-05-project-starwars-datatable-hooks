@@ -5,13 +5,14 @@ import TableBody from './TableBody';
 import requestAPI from '../services/index';
 import SearchBar from './SearchBar';
 import SearchNumbers from './SearchNumbers';
+import SelectedFilter from './SelectedFilter';
 
 function Table() {
   const { setData, setLoading, loading } = useContext(StarWarsContext);
 
-  const getData = async (response) => {
+  const getData = (response) => {
     setLoading(true);
-    await setData([...response.results]);
+    setData([...response.results]);
     setLoading(false);
   };
 
@@ -26,6 +27,7 @@ function Table() {
       <div>
         <SearchBar />
         <SearchNumbers />
+        <SelectedFilter />
         <table>
           <TableHeader />
           <TableBody />
