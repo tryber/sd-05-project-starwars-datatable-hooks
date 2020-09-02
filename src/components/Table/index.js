@@ -43,7 +43,12 @@ const Table = () => {
         {allPlanets.map((info) => (
           <tr key={Math.random(99999999)}>
             {ths.map((datas) => (
-              <td key={Math.random(9999999)}>{info[datas]}</td>
+              <td
+                data-test-id={datas === 'name' ? 'planet-name' : ''}
+                key={Math.random(9999999)}
+              >
+                {info[datas]}
+              </td>
             ))}
           </tr>
         ))}
