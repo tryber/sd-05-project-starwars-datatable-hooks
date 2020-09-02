@@ -26,7 +26,8 @@ export default function SearchNumbers() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={() => setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])}
+        onClick={() => setFilterByNumericValues(
+          [...filterByNumericValues, { column, comparison, value }])}
       >
         Filter
       </button>

@@ -14,16 +14,16 @@ function filterNumber(allPlanets, filter) {
   }
 }
 
-function filterName(allPlanets, name) {
-  return (allPlanets = allPlanets.filter(
-    (planet) => planet.name.toLowerCase().includes(name.toLowerCase()),
+function filterName(planets, input) {
+  return (planets.filter(
+    (planet) => planet.name.toLowerCase().includes(input.toLowerCase()),
   ));
 }
 
 export default function TableBody() {
   const { data, name, filterByNumericValues } = useContext(StarWarsContext);
   let allPlanets = data;
-  filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter) });
+  filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
   allPlanets = filterName(allPlanets, name);
   return (
     allPlanets.map((planet) => (
