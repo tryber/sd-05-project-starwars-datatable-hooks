@@ -1,27 +1,21 @@
 import React, { createContext, useState } from 'react';
-
-
+import Proptypes from 'prop-types';
 export const StarWarsContext = createContext();
 
 const StarProvider = ({ children }) => {
-  const [isfetching, setIsFetching] = useState(false);
-  const [error, setError] = useState('');
   const [data, setData] = useState([]);
-  const [name, setFilterByName] = useState('');
+  const [nameFilter, setFilterByName] = useState({
+    filterByName: {
+      name: '',
+    },
+  });
   const [filterByNumericValues, setfilterByNumericValues] = useState([]);
 
   const context = {
-    isfetching, 
-    setIsFetching,
-    error, 
-    setError, 
     data, 
-    setData, 
-    filters: {
-      filterByName: {
-        name,
-      },
-      filterByNumericValues,
+    setData,
+    nameFilter: nameFilter.filterByName,
+    filterByNumericValues,
       // filterByNumericValues: [
       //   {
       //     column,
@@ -29,7 +23,6 @@ const StarProvider = ({ children }) => {
       //     value,
       //   }
       // ],
-    },
     setFilterByName,
     setfilterByNumericValues, 
   };
@@ -40,3 +33,7 @@ const StarProvider = ({ children }) => {
 } 
  
 export default StarProvider;
+
+StarProvider.propTypes = {
+  children: Proptypes.arrayOf(Proptypes.element).isRequired,
+};

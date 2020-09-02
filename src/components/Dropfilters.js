@@ -1,8 +1,5 @@
-// import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
 import { StarWarsContext } from '../context/starWarsContext';
-// import { connect } from 'react-redux';
-// import { filterByNumericValues } from '../reducers/filters';
 
 export function datafilterfunction(filteredPlanets, filterByNumericValues) {
   let planets = filteredPlanets;
@@ -19,34 +16,17 @@ export function datafilterfunction(filteredPlanets, filterByNumericValues) {
     }
   }
   return planets;
-}
+};
 
 const Dropfilters = () => {
-  // this.state = {
-  //     column: '',
-  //     comparison: '',
-  //     value: '',
-  //   };
+
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
 
-  // colChange(event) {
-  //   setColumn(event.target.value);
-  // }
-
-  // compChange(event) {
-  //   setComparison(event.target.value);
-  // }
-
-  // vChange(event) {
-  //   setValue(event.target.value);
-  // }
-
   const { filterByNumericValues, setfilterByNumericValues } = useContext(StarWarsContext);
   
   const columnOptions = () => {
-    // const { numericValuesFilter } = this.props;
     const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
     let columns = [
       'coluna',
@@ -59,7 +39,6 @@ const Dropfilters = () => {
     return columns.map((column) => <option value={column} key={column}>{column}</option>);
   };
 
-  //  const tsc = this.state.comparison;
   return (
     <form>
       <label htmlFor="column"> Selecione a coluna:
@@ -79,22 +58,9 @@ const Dropfilters = () => {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ setfilterByNumericValues({column, comparison, value}) }
+        onClick={ () => {setfilterByNumericValues({column, comparison, value})} }
       >Filtrar</button></form>
   )
 }
 
-// const mapStateToProps = (state) => ({
-//   numericValuesFilter: state.filters.filterByNumericValues,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   handleSubmit: (values) => dispatch(filterByNumericValues(values)),
-// });
-
 export default Dropfilters;
-
-// Dropfilters.propTypes = {
-//   handleSubmit: PropTypes.func.isRequired,
-//   numericValuesFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };

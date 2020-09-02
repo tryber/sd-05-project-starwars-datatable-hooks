@@ -2,7 +2,7 @@
 // import PropTypes from 'prop-types';
 // import React, { Component } from 'react';
 import Dropfilters from './Dropfilters';
-import FilterDisplay from './FilterDisplay';
+// import FilterDisplay from './FilterDisplay';
 // import { filterByName } from '../reducers/filters';
 
 import React, { useContext } from 'react';
@@ -15,18 +15,18 @@ const SearchBar = () => {
   return (
     <div>
       <label htmlFor="name-filter-input"> Search planet by name:
-      <input
-        data-testid="name-filter"
-        type="text"
-        onChange={ (event) => setFilterByName(event.target.value) }
-      />
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={ (event) => setFilterByName(event.target.value) }
+        />
       </label>
       <Dropfilters />
-      <FilterDisplay />
     </div>
-  );
+  )
 }
 
+// <FilterDisplay />
 // {event => this.props.filterByName({ name: event.target.value })}
 
 // const mapDispatchToProps = (dispatch) => ({
@@ -38,5 +38,4 @@ const SearchBar = () => {
 // SearchBar.propTypes = {
 //   handleChangeName: PropTypes.func.isRequired,
 // };
-
 export default SearchBar;

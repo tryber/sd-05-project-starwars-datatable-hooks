@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderTable = () => {
+const TableHeader = () => {
   return (
     <thead>
       <tr>
@@ -22,4 +22,4 @@ const HeaderTable = () => {
   );
 }
 
-export default HeaderTable;
+export default TableHeader;
