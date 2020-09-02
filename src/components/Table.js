@@ -7,7 +7,6 @@ function ApplyFilters() {
   let planets = data;
 
   if (nameFilter !== '') {
-    console.log(nameFilter);
     planets = data.filter((planet) =>
       planet.name.toUpperCase().includes(nameFilter.toUpperCase()));
   }
