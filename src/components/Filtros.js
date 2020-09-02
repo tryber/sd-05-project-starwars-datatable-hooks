@@ -2,20 +2,11 @@ import React, { useState, useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function Filtros() {
-  const { setFiltros } = useContext(StarWarsContext);
+  const { setFiltros, options } = useContext(StarWarsContext);
 
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-
-  const options = [
-    'selecione',
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
 
   const changeFilters = () => {
     if (column === 'selecione' || comparison === 'selecione' || value === '') {

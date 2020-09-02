@@ -6,7 +6,15 @@ const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [textFilter, setTextFilter] = useState('');
-  const [filterByNumericValues, setFiltros] = useState({});
+  const [filterByNumericValues, setFiltros] = useState([{}]);
+  const [options] = useState([
+    'selecione',
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   const context = {
     data,
@@ -17,6 +25,7 @@ const Provider = ({ children }) => {
     setTextFilter,
     filterByNumericValues,
     setFiltros,
+    options,
   };
 
   return (

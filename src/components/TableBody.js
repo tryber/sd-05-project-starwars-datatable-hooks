@@ -9,7 +9,7 @@ export default function TableBody() {
     setData,
     setError,
     textFilter,
-    filterByNumericValues
+    filterByNumericValues,
   } = useContext(StarWarsContext);
 
   useEffect(() => {
