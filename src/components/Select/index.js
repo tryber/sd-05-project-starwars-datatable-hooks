@@ -43,7 +43,7 @@ const Select = () => {
         name="value" onChange={(e) => setValue(e.target.value)}
       />
       <button
-        type="button" data-testid="button-filter" onClick={() => 
+        type="button" data-testid="button-filter" onClick={() =>
           SetFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])}
       >
         Buscar
