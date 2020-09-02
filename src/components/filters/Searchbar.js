@@ -1,7 +1,7 @@
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 // import React, { Component } from 'react';
-// import FilterDisplay from './FilterDisplay';
+import FilterDisplay from './FilterDisplay';
 // import { filterByName } from '../reducers/filters';
 import React, { useContext } from 'react';
 import { StarWarsContext } from '../../context/starWarsContext';
@@ -21,11 +21,11 @@ const SearchBar = () => {
         />
       </label>
       <Dropfilters />
+      <FilterDisplay />
     </div>
   );
 };
 
-// <FilterDisplay />
 // {event => this.props.filterByName({ name: event.target.value })}
 
 // const mapDispatchToProps = (dispatch) => ({

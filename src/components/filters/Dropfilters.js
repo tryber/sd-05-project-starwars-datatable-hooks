@@ -26,7 +26,7 @@ const Dropfilters = () => {
   const { filterByValues, setValues } = useContext(StarWarsContext);
 
   const columnOptions = () => {
-    const selectedFilterColumns = filterByValues.map((filter) => filter.column);
+    const selectedFilterColumns = filterByValues.map((filter) => filter.col);
     const startColumns = [
       'coluna',
       'population',
