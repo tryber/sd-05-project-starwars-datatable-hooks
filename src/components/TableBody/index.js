@@ -14,7 +14,9 @@ class TableBody extends React.Component {
         {planetas.map((data) => (
           <tr key={data.terrain}>
             {tableHeaders.map((each) => (
-              <td key={each}>{data[each]}</td>
+              <td data-testid={each === 'name' ? 'planet-name' : ''} key={each}>
+                {data[each]}
+              </td>
             ))}
           </tr>
         ))}

@@ -48,8 +48,7 @@ function SelectForm() {
         data-testid="button-filter"
         onClick={() =>
           setNumberFilter([...numberFilter, { column, comparison, value }])
-        }
-      >
+        }>
         Filtrar
       </button>
     </div>

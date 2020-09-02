@@ -10,16 +10,17 @@ function Provider({ children }) {
   const [comparison, setCO] = useState('');
   const [value, setValue] = useState('');
   const [numberFilter, setNumberFilter] = useState([]);
+  const [order, setOrder] = useState({ column: 'name', sort: 'ASC' });
   const apiData = () => fetchPlanets();
   useEffect(() => {
     apiData().then((data) => setPlanets(data.results));
   }, []);
-
   const filters = {
     filterByName: {
       name: textForm,
     },
     filterByNumericValues: numberFilter,
+    order: order,
   };
   const context = {
     planets,
@@ -33,6 +34,8 @@ function Provider({ children }) {
     column,
     comparison,
     value,
+    order,
+    setOrder,
   };
 
   return (

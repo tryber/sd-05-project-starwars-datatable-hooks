@@ -5,9 +5,9 @@ import TableBody from '../TableBody';
 import filtering from '../../services/filtering';
 
 function Table() {
-  const { planets, filters } = useContext(StarWarsContext);
+  const { planets, filters, order } = useContext(StarWarsContext);
   if (!planets) return <h1>Loading</h1>;
-  const planetas = filtering(planets, filters);
+  const planetas = filtering(planets, filters, order);
   return (
     <table>
       <TableHeader planets={planetas} />

@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Provider from './context/Provider';
 import TextForm from './components/TextForm';
 import SelectForm from './components/SelectForm';
+import OrderInput from './components/OrderInput';
+import Filters from './components/Filters';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Header />
         <TextForm />
         <SelectForm />
+        <OrderInput />
+        <Filters />
         <Table />
       </Provider>
     </div>
