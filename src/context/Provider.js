@@ -6,7 +6,7 @@ const StarWarsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [textInput, setTextInput] = useState('');
-  const [filterByNumericValues,setFilterByNumericValues] = useState([]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const mainState = {
     loading,
