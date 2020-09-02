@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import StarWarsContext from '../../context/StarWarsContext';
 import PropTypes from 'prop-types';
+import StarWarsContext from '../../context/StarWarsContext';
 
 function Button(props) {
   const { setOrder } = useContext(StarWarsContext);
