@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-// import SelectInputs from './selectinputs';
+import SelectInputs from './selectinputs';
 
 function SearchBar() {
   const { setText } = useContext(StarWarsContext);
@@ -13,7 +13,7 @@ function SearchBar() {
         id="searchbar"
         onChange={(event) => setText(event.target.value)}
       />
-      {/* <SelectInputs /> */}
+      <SelectInputs />
     </form>
   );
 }

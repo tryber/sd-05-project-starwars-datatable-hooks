@@ -8,6 +8,9 @@ const SwProvider = ({ children }) => {
   const [planetas, setPlanetas] = useState([]);
   const [searchText, setText] = useState('');
   const [filterNumber, setFilter] = useState([]);
+  const [column, setCol] = useState('');
+  const [comparison, setComp] = useState('');
+  const [value, setNumb] = useState(0);
 
   const filters = {
     filterByName: {
@@ -24,6 +27,12 @@ const SwProvider = ({ children }) => {
     searchText,
     setText,
     setFilter,
+    column,
+    comparison,
+    value,
+    setCol,
+    setComp,
+    setNumb,
   };
 
   return (
