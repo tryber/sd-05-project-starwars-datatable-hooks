@@ -1,4 +1,4 @@
-export default function queryFilters(data, textFilter, filters) {
+export default function queryFilters(data, textFilter, filters = []) {
   let planetsFiltered = data;
   if (!filters.length) {
     const text = planetsFiltered.filter((fil) =>

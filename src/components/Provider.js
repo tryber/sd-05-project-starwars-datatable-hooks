@@ -6,7 +6,7 @@ const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [textFilter, setTextFilter] = useState('');
-  const [filterByNumericValues, setFiltros] = useState([{}]);
+  const [filterByNumericValues, setFiltros] = useState([]);
   const [options] = useState([
     'selecione',
     'population',
