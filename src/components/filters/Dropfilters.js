@@ -35,7 +35,7 @@ const Dropfilters = () => {
       'rotation_period',
       'surface_water'];
     const columns = startColumns.filter((col) => !selectedFilterColumns.includes(col));
-    return columns.map((coluna) => <option value={coluan} key={coluna}>{coluna}</option>);
+    return columns.map((coluna) => <option value={coluna} key={coluna}>{coluna}</option>);
   };
 
   const Scolumn = (event) => setColumn(event.target.value);
