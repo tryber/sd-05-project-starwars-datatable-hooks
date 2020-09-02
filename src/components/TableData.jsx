@@ -28,10 +28,10 @@ export default function TableData() {
   const { filterByName, filterByNumericValues } = filters;
 
   useEffect(() => {
-    console.log(filterByNumericValues)
+    console.log(filterByNumericValues);
     filterByNumericValues.forEach((filtro) => {
       const { column } = filtro;
-      document.getElementById(column).setAttribute("hidden", "");
+      document.getElementById(column).setAttribute('hidden', '');
     });
   }, [filterByNumericValues]);
 
@@ -55,29 +55,22 @@ export default function TableData() {
   function nameFilter() {
     const dataFilteredByName = data.filter((planet) => planet.name.includes(filterByName.name));
     return (
-      <tbody className="table">
-        {dataFilteredByName.map((planet) => tableBody(planet))}
-      </tbody>
+      <tbody className="table">{dataFilteredByName.map((planet) => tableBody(planet))}</tbody>
     );
   }
 
   function allPlanets() {
     return (
-      <tbody className="table">
-        {data.map((planet) => tableBody(planet))}
-      </tbody>
+      <tbody className="table">{data.map((planet) => tableBody(planet))}</tbody>
     );
   }
 
-  if (filterByName.name !== undefined) {
-    return nameFilter();
-  } if (
+  if (filterByName.name !== undefined) { return nameFilter(); }
+  if (
     filterByName.name === undefined &&
     filterByNumericValues.comparison !== '' &&
     filterByNumericValues.column !== '' &&
     filterByNumericValues.value !== ''
-  ) {
-    return numericFilter();
-  }
+  ) { return numericFilter(); }
   return allPlanets();
 }
