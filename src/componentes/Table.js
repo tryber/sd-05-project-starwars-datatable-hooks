@@ -4,6 +4,7 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import requestAPI from '../services/index';
 import SearchBar from './SearchBar';
+import SearchNumbers from './SearchNumbers';
 
 function Table() {
   const { setData, setLoading, loading } = useContext(StarWarsContext);
@@ -24,6 +25,7 @@ function Table() {
       :
       <div>
         <SearchBar />
+        <SearchNumbers />
         <table>
           <TableHeader />
           <TableBody />

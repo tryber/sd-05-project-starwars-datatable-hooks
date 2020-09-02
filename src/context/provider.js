@@ -6,14 +6,17 @@ const StarWarsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const estadao = {
     loading,
     data,
     name,
+    filterByNumericValues,
     setLoading,
     setData,
     setName,
+    setFilterByNumericValues,
   };
 
   return (

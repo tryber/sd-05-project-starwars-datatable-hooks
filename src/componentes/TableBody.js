@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/context';
 
-/* function filterNumber(allPlanets, filter) {
+function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
@@ -12,28 +12,23 @@ import StarWarsContext from '../context/context';
     default:
       return allPlanets;
   }
-} */
-
-/* function filterName(allPlanets) {
-  const { name } = useContext(StarWarsContext);
-  return (allPlanets.filter(
-    (planet) => planet.name.toLowerCase().includes(name.toLowerCase()),
-  ));
-}  */
+}
 
 export default function TableBody() {
-  // const { data, filterByName, filterByNumericValues } = this.props;
-  const { data, name } = useContext(StarWarsContext);
-  // let allPlanets = data;
-  // filterByNumericValues.forEach((filter) =>
-  // { allPlanets = filterNumber(allPlanets, filter); });
-  // allPlanets = filterName(allPlanets, filterByName);
-  const filteredPlanets = data.filter(
+  const { data, name, filterByNumericValues } = useContext(StarWarsContext);
+ 
+  let allPlanets = data;
+
+  filterByNumericValues.forEach((filter) => {
+    allPlanets = filterNumber(allPlanets, filter);
+  });
+
+  allPlanets = allPlanets.filter(
     (planet) => planet.name.toLowerCase().includes(name.toLowerCase()),
   );
 
   return (
-    filteredPlanets.map((planet) => (
+    allPlanets.map((planet) => (
       <tbody key={planet.name}>
         <tr>
           <td>{planet.name}</td>
