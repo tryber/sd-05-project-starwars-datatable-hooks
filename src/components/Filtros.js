@@ -12,28 +12,15 @@ export default function Filtros() {
     if (column === 'selecione' || comparison === 'selecione' || value === '') {
       alert('Todos os campos são Obrigatórios');
     } else {
-      setFiltros([{
-        column,
-        comparison,
-        value,
-      }]);
+      setFiltros([{ column, comparison, value }]);
     }
   };
 
   return (
     <div>
-      <select
-        data-testid="column-filter"
-        name="column"
-        onChange={(event) => setColumn(event.target.value)}
-      >
+      <select data-testid="column-filter" name="column" onChange={(event) => setColumn(event.target.value)}>
         {options.map((option) => (
-          <option
-            key={option}
-            value={option}
-          >
-            {option}
-          </option>
+          <option key={option} value={option}>{option}</option>
         ))}
       </select>
       <select
