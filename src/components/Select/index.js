@@ -1,18 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
 
+const columnsOptions = ['selecione', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
 const Select = () => {
-  const columnsOptions = [
-    'selecione',
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
-
   const { filterByNumericValues, SetFilterByNumericValues } = useContext(StarWarsContext);
-
   const [filter, setFilter] = useState({
     column: '',
     comparison: '',
@@ -22,13 +14,11 @@ const Select = () => {
 
   function handleClick(e) {
     const newFilter = [];
-
     for (let i = 0; i < filterByNumericValues.length; i += 1) {
       if (filterByNumericValues[i].column !== e.target.name) {
         newFilter.push(filterByNumericValues[i]);
       }
     }
-
     SetFilterByNumericValues(newFilter);
   }
 

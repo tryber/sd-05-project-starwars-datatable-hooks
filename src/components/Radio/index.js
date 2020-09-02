@@ -8,19 +8,19 @@ const Radio = () => {
   const [sort, setSort] = useState('');
   const { setOrder } = useContext(StarWarsContext);
 
- const handleChange = (e) => {
-   const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-   if(name === 'column') {
-     setColumn(value);
-   } else {
-     setSort(value);
-   }
- }
+    if (name === 'column') {
+      setColumn(value);
+    } else {
+      setSort(value);
+    }
+  };
 
- const handleClick = () => {
-   setOrder({ column, sort })
- }
+  const handleClick = () => {
+    setOrder({ column, sort });
+  };
 
   return (
     <div>
