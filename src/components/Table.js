@@ -98,7 +98,8 @@ function Table() {
           <tr>{header.map((item) => <th key={item}>{item}</th>)}</tr>
         </thead>
         <tbody>
-          { RenderTableData() }
+          { <RenderTableData /> }
+          {/* antes estava como RenderTableData() - ref1 */}
         </tbody>
       </table>
     );
@@ -107,3 +108,5 @@ function Table() {
 }
 
 export default Table;
+
+//  ref1: https://kentcdodds.com/blog/dont-call-a-react-function-component
