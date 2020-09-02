@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StarWarsContext } from '../context/StarWarsContext';
 // import PropTypes from 'prop-types';
 import './Table.css';
@@ -26,13 +26,14 @@ function tableBody(planet) {
 export default function TableData() {
   const { data, filters } = useContext(StarWarsContext);
   const { filterByName, filterByNumericValues } = filters;
-  /* useEffect(() => {
+
+  useEffect(() => {
     console.log(filterByNumericValues)
     filterByNumericValues.forEach((filtro) => {
       const { column } = filtro;
-      document.getElementById(column).remove();
+      document.getElementById(column).setAttribute("hidden", "");
     });
-  }, []); */
+  }, [filterByNumericValues]);
 
   function numericFilter() {
     let planetas = data;
