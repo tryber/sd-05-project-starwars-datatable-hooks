@@ -79,7 +79,7 @@ class Filters extends Component {
               <Select
                 options={
                   columns.filter(({ value }) => fltr.filter(
-                      ({ column }) => (column === value)
+                      ({ column }) => (column === value),
                     ).length === 0)
                 }
                 dataTest="column-filter"
