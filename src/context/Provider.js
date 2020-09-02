@@ -11,12 +11,12 @@ const Provider = ({ children }) => {
   useEffect(() => {
     fetchSWAPI()
       .then(
-        (data) => {
-          setData(data)
-          setLoading(false)
-        }
-      )
-  }, [])
+        (planets) => {
+          setData(planets);
+          setLoading(false);
+        },
+      );
+  }, []);
 
   const state = {
     loading,
@@ -28,12 +28,10 @@ const Provider = ({ children }) => {
   };
 
   return (
-      <MyContext.Provider value={state}>
-        {children}
-      </MyContext.Provider>
-  )
-}
-
-
+    <MyContext.Provider value={state}>
+      {children}
+    </MyContext.Provider>
+  );
+};
 
 export default Provider;

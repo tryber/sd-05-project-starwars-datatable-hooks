@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useContext } from 'react';
-import MyContext from '../../context/context';
 import propTypes from 'prop-types';
+import MyContext from '../../context/context';
 
 function FilterByName() {
-  const { setFilterName } = useContext(MyContext)
+  const { setFilterName } = useContext(MyContext);
   return (
     <input
       data-testid="name-filter"

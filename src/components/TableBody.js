@@ -21,9 +21,9 @@ function filterNumber(allPlanets, filter) {
 function TableBody() {
   const { data, filterName, filterByNumericValues, loading } = useContext(MyContext);
   let allPlanets = data;
-  allPlanets = filterInput(data, filterName)
+  allPlanets = filterInput(data, filterName);
   filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
- return loading ? <p>Loading</p> : renderTableBody(allPlanets)
+  return loading ? <p>Loading</p> : renderTableBody(allPlanets);
 }
 
 export default TableBody;

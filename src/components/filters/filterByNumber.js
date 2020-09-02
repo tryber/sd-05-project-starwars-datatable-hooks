@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import MyContext from '../../context/context';
-import propTypes from 'prop-types';
 
 function FilterByNumeric() {
   const { filterByNumericValues, setFilterByNumericValues } = useContext(MyContext);
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const comparisonArray = [[], 'maior que', 'igual a', 'menor que'];
   const columnArray = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
@@ -44,7 +43,8 @@ function FilterByNumeric() {
           column,
           comparison,
           value,
-        }])}>
+        }])
+        }>
         Filtrar
         </button>
     </div>
@@ -52,11 +52,3 @@ function FilterByNumeric() {
 }
 
 export default FilterByNumeric;
-
-FilterByNumeric.propTypes = {
-  handleClick: propTypes.shape({
-    column: propTypes.string.isRequired,
-    comparison: propTypes.string.isRequired,
-    values: propTypes.number.isRequired,
-  }).isRequired,
-};
