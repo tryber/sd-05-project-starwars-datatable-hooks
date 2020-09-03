@@ -17,7 +17,7 @@ function Element1(props) {
       </button>
     </div>
   );
-};
+}
 
 export default function FilterBar() {
   const {

@@ -14,11 +14,10 @@ export default function MyProvider(props) {
   const savePlanets = (results) => setData(results);
   const handleText = (inputText) => filterByName(inputText);
   const handleValues = (e) => setFiltersValues({ ...filtersValues, ...e });
-  
   const handleFiltersNum = (values) => {
     setFiltersByNum([...filtersByNum, values]);
     setFiltersValues({});
-  }
+  };
 
   const resetFilters = (filters) => setFiltersByNum([...filters]);
 
