@@ -8,10 +8,10 @@ export default function TBody() {
   filtersByNum.forEach((obj) => {
     switch (obj.comparison) {
       case 'maior que':
-        dataFilter = dataFilter.filter((planet) => planet[obj.column] > obj.value);
+        dataFilter = dataFilter.filter((planet) => Number(planet[obj.column]) > obj.value);
         break;
       case 'menor que':
-        dataFilter = dataFilter.filter((planet) => planet[obj.column] < obj.value);
+        dataFilter = dataFilter.filter((planet) => Number(planet[obj.column]) < obj.value);
         break;
       case 'igual a':
         dataFilter = dataFilter.filter((planet) => (planet[obj.column]) === obj.value);

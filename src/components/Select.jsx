@@ -10,7 +10,7 @@ function Select(props) {
   } = props;
   return (
     <select data-testid={dataTestId} required onChange={onChange}>
-      <option disabled selected>{defaultOpt}</option>
+      <option disabled defaultValue>{defaultOpt}</option>
       {arrayOpt.map((item) => <option key={item} value={item}>{item}</option>)}
     </select>
   );
@@ -21,6 +21,6 @@ export default Select;
 Select.propTypes = {
   dataTestId: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
-  defaultOpt: propTypes.arrayOf(propTypes.string).isRequired,
+  defaultOpt: propTypes.string.isRequired,
   arrayOpt: propTypes.arrayOf(propTypes.string).isRequired,
 };
