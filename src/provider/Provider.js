@@ -6,6 +6,9 @@ import StarWarsContext from '../context/StarWarsContext';
 export default function MyProvider(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [name, filterByName] = useState('');
+  const [filtersValues, setFiltersValues] = useState({});
+  const [filtersByNum, setFiltersByNum] = useState([]);
 
   const refreshLoading = () => {
     setLoading(() => !loading);
@@ -14,12 +17,37 @@ export default function MyProvider(props) {
   const savePlanets = (results) => {
     setData(results);
   }
+
+  const handleText = (inputText) => {
+    console.log(inputText);
+    filterByName(inputText);
+  }
+
+  const handleValues = (e) => {
+    setFiltersValues({...filtersValues, ...e})
+  }
   
+  const handleFiltersNum = (values) => {
+    setFiltersByNum([...filtersByNum, values]);
+    setFiltersValues({});
+  }
+
+  const resetFilters = (filters) => {
+    setFiltersByNum([...filters])
+  }
+
   const state = {
     loading,
-    data,
     refreshLoading,
+    data,
     savePlanets,
+    name,
+    handleText,
+    filtersValues,
+    handleValues,
+    filtersByNum,
+    handleFiltersNum,
+    resetFilters,
   }
 
   useEffect(() => {

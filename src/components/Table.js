@@ -13,7 +13,7 @@ export default function Table(props) {
     <div>
       <h2>StarWars Datatable with Filters</h2>
       <div>
-        {/* <FilterBar /> */}
+        <FilterBar />
       </div>
       <table>
         <thead>
@@ -22,7 +22,7 @@ export default function Table(props) {
               title === 'residents' ? false : <th key={title}>{title}</th>))}
           </tr>
         </thead>
-        {/* <TBody /> */}
+        <TBody />
       </table>
     </div>
   );
