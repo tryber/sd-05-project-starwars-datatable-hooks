@@ -4,7 +4,7 @@ import StarWarsContext from '../context/StarWarsContext';
 const columns = [
   'Nome',
   'Período de rotação',
-  'Perído de órbita',
+  'Período de órbita',
   'Diâmetro',
   'Clima',
   'Gravidade',
@@ -30,7 +30,14 @@ const Table = () => {
       <tbody>
         {filteredData.map((planet) => (
           <tr>
-            {Object.keys(planet).map((key) => (key !== 'residents' ? <td>{planet[key]}</td> : null))}
+            {Object.keys(planet).map((key) => {
+              if (key === 'residents') {
+                return null;
+              } else if (key === 'name') {
+                return <td data-testid="planet-name">{planet[key]}</td>;
+              }
+              return <td>{planet[key]}</td>;
+            })}
           </tr>
         ))}
       </tbody>

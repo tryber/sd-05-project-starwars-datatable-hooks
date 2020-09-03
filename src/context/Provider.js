@@ -22,6 +22,10 @@ const Provider = ({ children }) => {
         value: '',
       },
     ],
+    order: {
+      column: 'name',
+      sort: 'ASC',
+    },
   });
 
   const comparisonOperator = (column, comparison, value) => {
@@ -35,6 +39,16 @@ const Provider = ({ children }) => {
       default:
         return true;
     }
+  };
+
+  const updateOrder = (sort, column) => {
+    setFilters({
+      ...filters,
+      order: {
+        column,
+        sort,
+      },
+    });
   };
 
   const updateFilterByName = (name) => {
@@ -78,6 +92,7 @@ const Provider = ({ children }) => {
   useEffect(() => {
     const { name: planetName } = filters.filterByName;
     const { filterByNumericValues } = filters;
+    const { sort, column } = filters.order;
 
     const updateData = data
       .filter((planet) => planet.name.toLowerCase().includes(planetName.toLowerCase()))
@@ -97,6 +112,16 @@ const Provider = ({ children }) => {
         return retorno;
       });
 
+    if (column !== 'name' && sort === 'ASC') {
+      updateData.sort((a, b) => (Number(a[column]) > Number(b[column]) ? 1 : -1));
+    } else if (column === 'name' && sort === 'ASC') {
+      updateData.sort((a, b) => (a[column] > b[column] ? 1 : -1));
+    } else if (column !== 'name' && sort === 'DESC') {
+      updateData.sort((a, b) => (Number(a[column]) > Number(b[column]) ? -1 : 1));
+    } else {
+      updateData.sort((a, b) => (a[column] > b[column] ? -1 : 1));
+    }
+
     setFilteredData(updateData);
   }, [filters, data]);
 
@@ -104,6 +129,7 @@ const Provider = ({ children }) => {
     updateFilterByName,
     updateFilterByNumericValues,
     updateSelectedOptions,
+    updateOrder,
     removeFilter,
     removeSelectedOption,
     selectedOptions,
