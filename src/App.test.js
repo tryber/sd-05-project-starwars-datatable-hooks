@@ -248,7 +248,7 @@ describe('Sua página deve ter um filtro para valores numéricos', () => {
   });
 });
 
-describe.only('Sua página não deve utilizar filtros repetidos', () => {
+describe('Sua página não deve utilizar filtros repetidos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 

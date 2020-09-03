@@ -38,11 +38,7 @@ const Provider = ({ children }) => {
       filterByName: {
         name: nameInput,
       },
-      filterByNumericValues: [{
-        column: '',
-        comparison: '',
-        value: '',
-      }],
+      filterByNumericValues: [],
     });
   }
 
