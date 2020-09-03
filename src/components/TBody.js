@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import propTypes from 'prop-types';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function TBody() {
@@ -34,9 +33,3 @@ export default function TBody() {
     </tbody>
   );
 }
-
-// TBody.propTypes = {
-//   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-//   name: propTypes.string.isRequired,
-//   filterByNum: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-// };

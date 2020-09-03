@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import propTypes from 'prop-types';
 import TBody from './TBody';
 import FilterBar from './FilterBar';
 import StarWarsContext from '../context/StarWarsContext';
@@ -25,10 +24,4 @@ export default function Table() {
       </table>
     </div>
   );
-
 }
-
-// Table.propTypes = {
-//   loading: propTypes.bool.isRequired,
-//   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-// };

@@ -17,7 +17,7 @@ function Element1(props) {
       </button>
     </div>
   );
-}
+};
 
 export default function FilterBar() {
   const {
@@ -26,7 +26,7 @@ export default function FilterBar() {
     handleValues,
     filtersByNum,
     handleFiltersNum,
-    resetFilters
+    resetFilters,
   } = useContext(StarWarsContext);
   const dafaultColumnOpt = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
   const comparisonOpt = ['maior que', 'menor que', 'igual a'];
@@ -48,7 +48,7 @@ export default function FilterBar() {
         dataTestId="comparison-filter" defaultOpt="Comparacao" arrayOpt={comparisonOpt}
         onChange={(e) => handleValues({ comparison: e.target.value })}
       />
-      <Element1 
+      <Element1
         getChange={(e) => handleValues({ value: e.target.value })}
         getClick={() => (checks ? handleFiltersNum(filtersValues) : false)}
       />
@@ -66,13 +66,6 @@ export default function FilterBar() {
     </div>
   );
 }
-
-// FilterBar.propTypes = {
-//   nameInput: propTypes.func.isRequired,
-//   filterByNum: propTypes.func.isRequired,
-//   selectedFilters: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-//   replaceAll: propTypes.func.isRequired,
-// };
 
 Element1.propTypes = {
   getChange: propTypes.func.isRequired,
