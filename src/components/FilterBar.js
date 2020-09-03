@@ -52,8 +52,8 @@ export default function FilterBar() {
         getChange={(e) => handleValues({ value: e.target.value })}
         getClick={() => (checks ? handleFiltersNum(filtersValues) : false)}
       />
-      {filtersByNum.map((filter, index) => (
-        <div data-testid="filter" key={index}>
+      {filtersByNum.map((filter) => (
+        <div data-testid="filter" key={filter.column}>
           <span>{`${filter.column} ${filter.comparison} ${filter.value}`}</span>
           <button
             type="button"
