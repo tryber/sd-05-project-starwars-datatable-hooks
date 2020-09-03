@@ -8,15 +8,15 @@ import Planet from './planet';
 import '../App.css';
 
 function Table() {
-  const { planets } = useContext(StarWarsContext);
+  const { planets, filterByName } = useContext(StarWarsContext);
     
      if (!planets) { return <h1>Loading...</h1>; }
     let planetas = planets;
     console.log(planetas);
-/*    if (filters.filterByName.name !== {}) {
-      planetas = planetas.filter((planeta) => planeta.name.includes(filters.filterByName.name));
+   if (filterByName.name !== {}) {
+      planetas = planetas.filter((planeta) => planeta.name.includes(filterByName.name));
     }
-    filters.filterByNumericValues.forEach((filtro) => {
+    /* filters.filterByNumericValues.forEach((filtro) => {
       const { column, comparison, value } = filtro;
       if (column !== 'COLUNAS' && comparison === 'maior que' && value !== '') {
         planetas = planetas.filter((planeta) => (planeta[column] > Number(value)));

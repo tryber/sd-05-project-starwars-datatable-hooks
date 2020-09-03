@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Provider>
-        {/* <Header /> */}
+        <Header />
         <Table />
       </Provider>
     </div>

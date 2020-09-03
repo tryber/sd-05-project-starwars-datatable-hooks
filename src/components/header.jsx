@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 /* import { connect } from 'react-redux'; */
 /* import { filterByName, filterByNumericValues, clearFilter } from '../actions'; */
 
@@ -125,21 +126,22 @@ class Header extends Component {
 
   // header visual para o usuário.
   render() {
+    const { setFilterByName } = useContext(StarWarsContext);
     return (
       <div className="header">
         <div className="prourarNome">
           <p className="textHeder">Procurar pelo nome:</p>
           <input
             data-testid="name-filter" type="text" name="name-filter"
-            onChange={(event) => { this.props.filterByName(event.target.value); }}
+            onChange={(event) => { setFilterByName({name: event.target.value}); }}
           />
         </div>
-        <div className="filtrarValorNumber">
+        {/* <div className="filtrarValorNumber">
           {this.filterValues()}
         </div>
         <div className="removeFilter">
           {this.removeFilter()}
-        </div>
+        </div> */}
       </div>
     );
   }

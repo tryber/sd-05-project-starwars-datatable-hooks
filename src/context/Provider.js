@@ -7,10 +7,13 @@ export default function Provider(props) {
 
   const [isFetching, setIsFetching] = useState(false);
   const [planets, setPlanets] = useState(null);
+  const [filterByName, setFilterByName] = useState({name: ""});
 
   const state = {
     isFetching,
     planets,
+    filterByName,
+    setFilterByName,
   };
 
   useEffect(() => {
