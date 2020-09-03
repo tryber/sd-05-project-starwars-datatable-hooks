@@ -51,5 +51,4 @@ export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const clearFilter = (column) => ({
   type: 'CLEAR_FILTER',
   column,
-});
- */
+}); */

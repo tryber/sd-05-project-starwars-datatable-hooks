@@ -4,10 +4,9 @@ import StarWarsContext from './StarWarsContext';
 import getCurrentSW from '../services/API';
 
 export default function Provider(props) {
-
   const [isFetching, setIsFetching] = useState(false);
   const [planets, setPlanets] = useState(null);
-  const [filterByName, setFilterByName] = useState({name: ""});
+  const [filterByName, setFilterByName] = useState({ name: '' });
 
   const state = {
     isFetching,
@@ -18,37 +17,15 @@ export default function Provider(props) {
 
   useEffect(() => {
     getCurrentSW()
-      .then((planets) => { setPlanets(planets); })
-      .then(() => {setIsFetching(true); })
-      .then(console.log(planets))
+      .then((listPlanets) => { setPlanets(listPlanets); })
+      .then(() => { setIsFetching(true); });
   }, []);
 
-  /* useEffect(() => {
-    fechStarWars() {
-      const { isFetching } = this.state;
-      if ( isFetching ) return;
-
-      this.setState({ isFetching: true });
-      getCurrentSW().then(this.receiveSWSuccess, this.receiveSWFailure)
-    }
-  }, []); */
-
-/*   receiveSWSuccess = (results) => {
-    console.log(results)
-    this.setState({ planets: results.results })
-  };
-
-  receiveSWFailure = (error) => ({
-    error: error.message,
-  }); */
-  
-/*   render() { */
-
-    return (
-      <StarWarsContext.Provider value={state}>
-        {props.children}
-      </StarWarsContext.Provider>
-    );
+  return (
+    <StarWarsContext.Provider value={state}>
+      {props.children}
+    </StarWarsContext.Provider>
+  );
 }
 
 Provider.propTypes = {

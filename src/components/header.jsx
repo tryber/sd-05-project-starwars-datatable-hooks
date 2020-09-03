@@ -1,18 +1,15 @@
-import PropTypes from 'prop-types';
-import React, { Component, useContext } from 'react';
+import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-/* import { connect } from 'react-redux'; */
-/* import { filterByName, filterByNumericValues, clearFilter } from '../actions'; */
 
-const comparação = [
+/* const comparação = [
   ['COMPARAÇÃO'],
   ['maior que'],
   ['igual a'],
   ['menor que'],
-];
+]; */
 
-class Header extends Component {
-  constructor(props) {
+function Header() {
+  /* constructor(props) {
     super(props);
     this.state = {
       columnFilter: [
@@ -122,51 +119,28 @@ class Header extends Component {
   clickRemove(filtro) {
     this.props.clearFilter(filtro.column);
     this.colunasSelact();
-  }
+  } */
 
   // header visual para o usuário.
-  render() {
-    const { setFilterByName } = useContext(StarWarsContext);
-    return (
-      <div className="header">
-        <div className="prourarNome">
-          <p className="textHeder">Procurar pelo nome:</p>
-          <input
-            data-testid="name-filter" type="text" name="name-filter"
-            onChange={(event) => { setFilterByName({name: event.target.value}); }}
-          />
-        </div>
-        {/* <div className="filtrarValorNumber">
-          {this.filterValues()}
-        </div>
-        <div className="removeFilter">
-          {this.removeFilter()}
-        </div> */}
+  /* render() { */
+  const { setFilterByName } = useContext(StarWarsContext);
+  return (
+    <div className="header">
+      <div className="prourarNome">
+        <p className="textHeder">Procurar pelo nome:</p>
+        <input
+          data-testid="name-filter" type="text" name="name-filter"
+          onChange={(event) => { setFilterByName({ name: event.target.value }); }}
+        />
       </div>
-    );
-  }
+      {/* <div className="filtrarValorNumber">
+        {this.filterValues()}
+      </div>
+      <div className="removeFilter">
+        {this.removeFilter()}
+      </div> */}
+    </div>
+  );
 }
 
 export default Header;
-
-/* const mapStateToProps = (state) => ({
-  filters: state.filters.filterByNumericValues,
-  filtersArray: state.filters.filterByNumericValues.map((filtro) => (filtro.column)),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  filterByName: (name) => dispatch(filterByName(name)),
-  filterByNumericValues: (column, comparison, value) =>
-    dispatch(filterByNumericValues(column, comparison, value)),
-  clearFilter: (column) => dispatch(clearFilter(column)),
-});
-
-Header.propTypes = {
-  filterByName: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.func.isRequired,
-  filters: PropTypes.instanceOf(Object).isRequired,
-  filtersArray: PropTypes.instanceOf(Object).isRequired,
-  clearFilter: PropTypes.func.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header); */
