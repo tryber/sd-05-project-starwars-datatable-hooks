@@ -33,6 +33,3 @@ const TableBody = () => {
 };
 
 export default TableBody;
-
-// ((filterByNumericValues) ?
-// ..(datafilterfunction(NameFilteredPlanets, filterByNumericValues)) : NameFilteredPlanets)

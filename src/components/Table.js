@@ -1,13 +1,10 @@
-// import { datafilterfunction } from './Dropfilters';
 import React, { useEffect, useContext } from 'react';
 import { StarWarsContext } from '../context/starWarsContext';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
-// import FetchData from '../services/API';
 
 const apiUrl = 'https://swapi-trybe.herokuapp.com/api/planets/';
 function FetchData() {
-  // const { setData } = useContext(StarWarsContext);
   return fetch(apiUrl)
     .then((response) => response.json())
     .then(
@@ -21,7 +18,6 @@ const Table = () => {
 
   useEffect(() => {
     FetchData().then((dataApi) => setData(dataApi));
-    console.log('fetched');
   }, []);
 
   return (
@@ -37,23 +33,4 @@ const Table = () => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   handleFetch: (e) => dispatch(handleGoFetch(e)),
-// });
-
-// const mapStateToProps = (state) => ({
-//   isfetching: state.fetchReducer.isfetching,
-//   data: state.fetchReducer.data,
-//   filterByName: state.filters.filterByName.name,
-//   filterByNumericValues: state.filters.filterByNumericValues,
-// });
-
 export default Table;
-
-// Table.propTypes = {
-//   isfetching: propTypes.bool.isRequired,
-//   data: propTypes.arrayOf(propTypes.object).isRequired,
-//   handleFetch: propTypes.func.isRequired,
-//   filterByName: propTypes.string.isRequired,
-//   filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
-// };

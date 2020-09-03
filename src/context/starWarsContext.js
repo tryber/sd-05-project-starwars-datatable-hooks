@@ -17,13 +17,6 @@ const StarProvider = ({ children }) => {
     setData,
     nameFilter: nameFilter.filterByName,
     filterByValues,
-      // filterByNumericValues: [
-      //   {
-      //     column,
-      //     comparison,
-      //     value,
-      //   }
-      // ],
     setFilterByName,
     setValues,
   };

@@ -1,15 +1,10 @@
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
-// import React, { Component } from 'react';
 import React, { useContext } from 'react';
 import FilterDisplay from './FilterDisplay';
-// import { filterByName } from '../reducers/filters';
 import { StarWarsContext } from '../../context/starWarsContext';
 import Dropfilters from './Dropfilters';
 
 const SearchBar = () => {
   const { setFilterByName } = useContext(StarWarsContext);
-  //  const { handleChangeName } = this.props;
   return (
     <div>
       <label htmlFor="name-filter-input"> Search planet by name:
@@ -26,15 +21,4 @@ const SearchBar = () => {
   );
 };
 
-// {event => this.props.filterByName({ name: event.target.value })}
-
-// const mapDispatchToProps = (dispatch) => ({
-//   handleChangeName: (event) => dispatch(filterByName(event.target.value)),
-// });
-
-// export default connect(null, mapDispatchToProps)(SearchBar);
-
-// SearchBar.propTypes = {
-//   handleChangeName: PropTypes.func.isRequired,
-// };
 export default SearchBar;
