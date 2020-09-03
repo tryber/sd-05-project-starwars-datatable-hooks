@@ -9,13 +9,6 @@ import '../App.css';
 
 function Table() {
   const { planets } = useContext(StarWarsContext);
-
-/*   componentDidMount() {
-    const { getCurrentSW } = this.props;
-    getCurrentSW();
-  } */
-
-/*   render() { */
     
      if (!planets) { return <h1>Loading...</h1>; }
     let planetas = planets;
@@ -36,15 +29,15 @@ function Table() {
     return (
       <div>
         <table className="table">
-          {/* <thead>
+          <thead>
             <PlanetHeder />
-          </thead> */}
+          </thead>
           <tbody>
             {planetas.map((planet) => <Planet planet={planet} key={planet.name} />)}
           </tbody>
         </table>
-        {this.props.planets.isFetching && 'Loading...'}
-        {/* {!this.props.planets.isFetching && this.props.planets.error} */}
+        {planets.isFetching && 'Loading...'}
+        {!planets.isFetching && planets.error}
       </div>
     );
 }
