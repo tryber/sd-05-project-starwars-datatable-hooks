@@ -10,31 +10,17 @@ export default function MyProvider(props) {
   const [filtersValues, setFiltersValues] = useState({});
   const [filtersByNum, setFiltersByNum] = useState([]);
 
-  const refreshLoading = () => {
-    setLoading(() => !loading);
-  }
-
-  const savePlanets = (results) => {
-    setData(results);
-  }
-
-  const handleText = (inputText) => {
-    console.log(inputText);
-    filterByName(inputText);
-  }
-
-  const handleValues = (e) => {
-    setFiltersValues({...filtersValues, ...e})
-  }
+  const refreshLoading = () => setLoading(() => !loading);
+  const savePlanets = (results) => setData(results);
+  const handleText = (inputText) => filterByName(inputText);
+  const handleValues = (e) => setFiltersValues({ ...filtersValues, ...e });
   
   const handleFiltersNum = (values) => {
     setFiltersByNum([...filtersByNum, values]);
     setFiltersValues({});
   }
 
-  const resetFilters = (filters) => {
-    setFiltersByNum([...filters])
-  }
+  const resetFilters = (filters) => setFiltersByNum([...filters]);
 
   const state = {
     loading,
@@ -48,14 +34,13 @@ export default function MyProvider(props) {
     filtersByNum,
     handleFiltersNum,
     resetFilters,
-  }
+  };
 
   useEffect(() => {
-    fetchStarWarsAPI().then((data) => {
-      savePlanets(data.results);
+    fetchStarWarsAPI().then((allData) => {
+      savePlanets(allData.results);
       refreshLoading();
     });
-    console.log(data);
   }, []);
 
   return (
@@ -67,4 +52,4 @@ export default function MyProvider(props) {
 
 MyProvider.propTypes = {
   children: propTypes.node.isRequired,
-}
+};

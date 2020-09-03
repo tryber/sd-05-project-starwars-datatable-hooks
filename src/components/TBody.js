@@ -35,8 +35,8 @@ export default function TBody() {
   );
 }
 
-TBody.propTypes = {
-  data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-  name: propTypes.string.isRequired,
-  filterByNum: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
+// TBody.propTypes = {
+//   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+//   name: propTypes.string.isRequired,
+//   filterByNum: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+// };

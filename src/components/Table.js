@@ -4,8 +4,7 @@ import TBody from './TBody';
 import FilterBar from './FilterBar';
 import StarWarsContext from '../context/StarWarsContext';
 
-export default function Table(props) {
-
+export default function Table() {
   const { data, loading } = useContext(StarWarsContext);
   if (loading) return <h2>Loading...</h2>;
 
@@ -29,7 +28,7 @@ export default function Table(props) {
 
 }
 
-Table.propTypes = {
-  loading: propTypes.bool.isRequired,
-  data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
+// Table.propTypes = {
+//   loading: propTypes.bool.isRequired,
+//   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+// };
