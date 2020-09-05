@@ -1,129 +1,112 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import useForceUpdate from 'use-force-update';
 
-/* const comparação = [
-  ['COMPARAÇÃO'],
-  ['maior que'],
-  ['igual a'],
-  ['menor que'],
-]; */
+
+// comondos a executar ao aparter o botão do filtro.
+function clickDuplo(column, comparison, value, filterByNumericValues, setFilterByNumericValues, setColumnFilter) {
+  setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }]);
+  const colunas = ['COLUNAS', 'population', 'orbital_period',
+  'diameter', 'rotation_period', 'surface_water',
+];
+if (filterByNumericValues.length > 0) {
+    filterByNumericValues.forEach((Select) => {
+      colunas.splice(colunas.indexOf(Select.column), 1);
+      setColumnFilter(colunas);
+    });
+  }
+};
+
+// filtrar pela coluna.
+function FilterValues() {
+  const { filterByNumericValues, setFilterByNumericValues, setColumnFilter, columnFilter } = useContext(StarWarsContext);
+  const comparação = [['COMPARAÇÃO'], ['maior que'], ['igual a'], ['menor que']];
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState('');
+  const forceUpdate = useForceUpdate();
+  const SelectFilter = (event) => {
+    if (event.target.name === 'column') {
+      setColumn(event.target.value);
+    } else if (event.target.name === 'comparison') {
+      setComparison(event.target.value);
+    } else {
+      setValue(event.target.value);
+    }
+  };
+  
+  return (
+    <div>
+      <div>
+        <select
+          data-testid="column-filter" type="ComboBox"
+          name="column" onChange={(event) => SelectFilter(event)}
+        >
+          {(columnFilter.filter((parametro) => (parametro))).map((value) =>
+            <option key={value}>{value}</option>)}
+        </select>
+        <select
+          data-testid="comparison-filter" type="ComboBox"
+          name="comparison" onChange={(event) => SelectFilter(event)}
+        >
+          {comparação.map((value) => <option key={value}>{value}</option>)}
+        </select>
+      </div>
+      <div>
+        <input
+          data-testid="value-filter" type="number" name="value"
+          onChange={(event) => SelectFilter(event)}
+        />
+      </div>
+      <button
+        data-testid="button-filter" onClick={() => {
+          clickDuplo(column, comparison, value, filterByNumericValues, setFilterByNumericValues, setColumnFilter);
+          forceUpdate()
+        }}
+      >
+      Filtrar
+      </button>
+    </div>
+  );
+}
 
 function Header() {
-  /* constructor(props) {
-    super(props);
-    this.state = {
-      columnFilter: [
-        'COLUNAS',
-        'population',
-        'orbital_period',
-        'diameter',
-        'rotation_period',
-        'surface_water',
-      ],
-      column: [],
-      comparison: [],
-      value: [],
-    };
-    this.trocarState = this.trocarState.bind(this);
-  }
+  const { setFilterByName, filterByNumericValues } = useContext(StarWarsContext);
+  console.log(filterByNumericValues)
 
-  // alterar valores no State.
-  trocarState(event) {
-    const { name, value } = event.target;
-    this.setState(() => ({
-      [name]: value,
-    }));
-  }
-
-  // comondos a executar ao aparter o botão do filtro.
-  async clickDuplo() {
-    await this.props.filterByNumericValues(this.state.column,
-      this.state.comparison, this.state.value);
-    this.colunasSelact();
-  }
-
-  // filtrar pela coluna.
-  filterValues() {
+// excluir seleção.
+/* function removeFilter() {
+  const { filters } = this.props;
+  console.log(filters)
+  if (filters.length > 0) {
     return (
       <div>
         <div>
-          <select
-            data-testid="column-filter" type="ComboBox"
-            name="column" onChange={this.trocarState}
-          >
-            {(this.state.columnFilter.filter((parametro) => !this.props.filtersArray
-              .includes(parametro))).map((value) => <option key={value}>{value}</option>)}
-          </select>
-          <select
-            data-testid="comparison-filter" type="ComboBox"
-            name="comparison" onChange={this.trocarState}
-          >
-            {comparação.map((value) => <option key={value}>{value}</option>)}
-          </select>
+          <p className="textHeder">Filtros</p>
         </div>
-        <div>
-          <input
-            data-testid="value-filter" type="number" name="value"
-            onChange={this.trocarState}
-          />
+        <div >
+          {filters.map((filtro) => (
+            <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
+              <button className="buttonRemove" onClick={() => (this.clickRemove(filtro))}>
+                X
+              </button>
+              <div>
+                {filtro.column} {filtro.comparison} {filtro.value}
+              </div>
+            </div>
+          ))}
         </div>
-        <button
-          data-testid="button-filter" onClick={() => (this.clickDuplo())}
-        >Filtrar</button>
       </div>
     );
   }
-
-  // remover o item selecionado da filtro.
-  colunasSelact() {
-    const { filters } = this.props;
-    const colunas = ['COLUNAS', 'population', 'orbital_period',
-      'diameter', 'rotation_period', 'surface_water',
-    ];
-    if (filters.length > 0) {
-      filters.forEach((Select) => {
-        colunas.splice(colunas.indexOf(Select.column), 1);
-        this.setState({ columnFilter: colunas });
-      });
-    }
-  }
-
-  // excluir seleção.
-  removeFilter() {
-    const { filters } = this.props;
-    console.log(filters)
-    if (filters.length > 0) {
-      return (
-        <div>
-          <div>
-            <p className="textHeder">Filtros</p>
-          </div>
-          <div >
-            {filters.map((filtro) => (
-              <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
-                <button className="buttonRemove" onClick={() => (this.clickRemove(filtro))}>
-                  X
-                </button>
-                <div>
-                  {filtro.column} {filtro.comparison} {filtro.value}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-    return ('');
-  }
-
-  clickRemove(filtro) {
-    this.props.clearFilter(filtro.column);
-    this.colunasSelact();
-  } */
+  return ('');
+}
+function clickRemove(filtro) {
+  this.props.clearFilter(filtro.column);
+  this.colunasSelact();
+} */
 
   // header visual para o usuário.
-  /* render() { */
-  const { setFilterByName } = useContext(StarWarsContext);
   return (
     <div className="header">
       <div className="prourarNome">
@@ -133,11 +116,11 @@ function Header() {
           onChange={(event) => { setFilterByName({ name: event.target.value }); }}
         />
       </div>
-      {/* <div className="filtrarValorNumber">
-        {this.filterValues()}
+      <div className="filtrarValorNumber">
+        <FilterValues />
       </div>
-      <div className="removeFilter">
-        {this.removeFilter()}
+      {/* <div className="removeFilter">
+        {removeFilter()}
       </div> */}
     </div>
   );

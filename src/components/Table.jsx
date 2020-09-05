@@ -5,14 +5,14 @@ import Planet from './planet';
 import '../App.css';
 
 function Table() {
-  const { planets, filterByName } = useContext(StarWarsContext);
+  const { planets, filterByName, filterByNumericValues } = useContext(StarWarsContext);
 
   if (!planets) { return <h1>Loading...</h1>; }
   let planetas = planets;
   if (filterByName.name !== {}) {
     planetas = planetas.filter((planeta) => planeta.name.includes(filterByName.name));
   }
-  /* filters.filterByNumericValues.forEach((filtro) => {
+  filterByNumericValues.forEach((filtro) => {
     const { column, comparison, value } = filtro;
     if (column !== 'COLUNAS' && comparison === 'maior que' && value !== '') {
       planetas = planetas.filter((planeta) => (planeta[column] > Number(value)));
@@ -21,7 +21,7 @@ function Table() {
     } else if (column !== 'COLUNAS' && comparison === 'igual a' && value !== '') {
       planetas = planetas.filter((planeta) => (Number(planeta[column]) === Number(value)));
     }
-  }); */
+  });
   return (
     <div>
       <table className="table">

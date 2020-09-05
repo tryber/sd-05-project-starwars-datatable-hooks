@@ -7,10 +7,10 @@ import Table from './components/Table';
 function App() {
   return (
     <div className="App">
-      <Provider>
-        <Header />
-        <Table />
-      </Provider>
+        <Provider>
+          <Header />
+          <Table />
+        </Provider>
     </div>
   );
 }
