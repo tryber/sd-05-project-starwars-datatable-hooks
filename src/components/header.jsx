@@ -1,31 +1,43 @@
 import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-import useForceUpdate from 'use-force-update';
-
 
 // comondos a executar ao aparter o botão do filtro.
-function clickDuplo(column, comparison, value, filterByNumericValues, setFilterByNumericValues, setColumnFilter) {
-  setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }]);
+function clickDuplo(conteiner, filterByNumericValues,
+  setFilterByNumericValues, setColumnFilter) {
+  const set = [...filterByNumericValues, { ...conteiner }];
   const colunas = ['COLUNAS', 'population', 'orbital_period',
-  'diameter', 'rotation_period', 'surface_water',
-];
-if (filterByNumericValues.length > 0) {
-    filterByNumericValues.forEach((Select) => {
-      colunas.splice(colunas.indexOf(Select.column), 1);
-      setColumnFilter(colunas);
-    });
-  }
-};
+    'diameter', 'rotation_period', 'surface_water',
+  ];
+  set.forEach((Select) => {
+    colunas.splice(colunas.indexOf(Select.column), 1);
+    setColumnFilter(colunas);
+  });
+  setFilterByNumericValues(set);
+}
+
+function ButtonFilter(conteiner) {
+  const { filterByNumericValues, setFilterByNumericValues,
+    setColumnFilter } = useContext(StarWarsContext);
+  return (
+    <button
+      data-testid="button-filter" onClick={() => {
+        clickDuplo(conteiner, filterByNumericValues,
+          setFilterByNumericValues, setColumnFilter);
+      }}
+    >
+    Filtrar
+    </button>
+  );
+}
 
 // filtrar pela coluna.
 function FilterValues() {
-  const { filterByNumericValues, setFilterByNumericValues, setColumnFilter, columnFilter } = useContext(StarWarsContext);
+  const { columnFilter } = useContext(StarWarsContext);
   const comparação = [['COMPARAÇÃO'], ['maior que'], ['igual a'], ['menor que']];
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-  const forceUpdate = useForceUpdate();
-  const SelectFilter = (event) => {
+  const selectFilter = (event) => {
     if (event.target.name === 'column') {
       setColumn(event.target.value);
     } else if (event.target.name === 'comparison') {
@@ -34,45 +46,38 @@ function FilterValues() {
       setValue(event.target.value);
     }
   };
-  
+
   return (
     <div>
       <div>
         <select
           data-testid="column-filter" type="ComboBox"
-          name="column" onChange={(event) => SelectFilter(event)}
+          name="column" onChange={(event) => selectFilter(event)}
         >
-          {(columnFilter.filter((parametro) => (parametro))).map((value) =>
-            <option key={value}>{value}</option>)}
+          {(columnFilter.filter((parametro) => (parametro))).map((colunmValue) =>
+            <option key={colunmValue}>{colunmValue}</option>)}
         </select>
         <select
           data-testid="comparison-filter" type="ComboBox"
-          name="comparison" onChange={(event) => SelectFilter(event)}
+          name="comparison" onChange={(event) => selectFilter(event)}
         >
-          {comparação.map((value) => <option key={value}>{value}</option>)}
+          {comparação.map((comparacaoValue) => <option key={comparacaoValue}>
+            {comparacaoValue}</option>)}
         </select>
       </div>
       <div>
         <input
           data-testid="value-filter" type="number" name="value"
-          onChange={(event) => SelectFilter(event)}
+          onChange={(event) => selectFilter(event)}
         />
       </div>
-      <button
-        data-testid="button-filter" onClick={() => {
-          clickDuplo(column, comparison, value, filterByNumericValues, setFilterByNumericValues, setColumnFilter);
-          forceUpdate()
-        }}
-      >
-      Filtrar
-      </button>
+      <ButtonFilter column={column} comparison={comparison} value={value} />
     </div>
   );
 }
 
 function Header() {
-  const { setFilterByName, filterByNumericValues } = useContext(StarWarsContext);
-  console.log(filterByNumericValues)
+  const { setFilterByName } = useContext(StarWarsContext);
 
 // excluir seleção.
 /* function removeFilter() {
