@@ -3,16 +3,16 @@ import StarWarsContext from '../context/StarWarsContext';
 // import propTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
-// function filterByNumber(planets, filterComp) {
-//   if (filterComp.comparison === 'maior que') {
-//     return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
-//   } else if (filterComp.comparison === 'menor que') {
-//     return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
-//   } else if (filterComp.comparison === 'igual a') {
-//     return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.));
-//   }
-//   return planets;
-// }
+function filterByNumber(planets, filterComp) {
+  if (filterComp.comparison === 'maior que') {
+    return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
+  } else if (filterComp.comparison === 'menor que') {
+    return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
+  } else if (filterComp.comparison === 'igual a') {
+    return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.value));
+  }
+  return planets;
+}
 
 // const sortPlanets = (planets, sort, column) => {
 //   if (sort === 'DESC') {
@@ -28,15 +28,15 @@ import StarWarsContext from '../context/StarWarsContext';
 
 function TableBody() {
   // const { data, filterText, filterNumber, column, sort } = this.props;
-  const { data, filterText } = useContext(StarWarsContext);
+  const { data, filterText, filterNumber } = useContext(StarWarsContext);
 
   let planets = data;
   // planets = planets.sort((a, b) => a.name.localeCompare(b.name));
   // sortPlanets(planets, sort, column);
 
-  // filterNumber.forEach((filter) => {
-  //   planets = filterByNumber(planets, filter);
-  // });
+  filterNumber.forEach((filter) => {
+    planets = filterByNumber(planets, filter);
+  });
 
   if (filterText.name !== '') {
     planets = planets.filter((planet) =>

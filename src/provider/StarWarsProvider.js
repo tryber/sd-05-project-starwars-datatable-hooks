@@ -10,7 +10,7 @@ const StarWarsProvider = ({ children }) => {
       name: '',
     },
   });
-  // const [filterNumber, setFilterNumber] = useState([]);
+  const [filterNumber, setFilterNumber] = useState([]);
 
   const states = {
     isFetching,
@@ -19,8 +19,8 @@ const StarWarsProvider = ({ children }) => {
     setData,
     filterText: filterText.filterByName,
     setFilterText,
-    // filterNumber,
-    // setFilterNumber,
+    filterNumber,
+    setFilterNumber,
   };
 
   return (
