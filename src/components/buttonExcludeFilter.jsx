@@ -20,6 +20,6 @@ const ExcludeFilter = () => {
       ))}
     </div>
   );
-}
+};
 
 export default ExcludeFilter;

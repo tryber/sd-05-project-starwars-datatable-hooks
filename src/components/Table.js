@@ -7,8 +7,8 @@ import TableBody from './TableBody';
 import StarWarsContext from '../context/StarWarsContext';
 
 const Table = () => {
-  const  {error, data, sortingColumn, isFetching }  = useContext(StarWarsContext);
-    return ( 
+  const { error } = useContext(StarWarsContext);
+  return (
     <div>
       {error && (
         <div>
@@ -17,8 +17,8 @@ const Table = () => {
             {error}
           </span>
         </div>
-      )}  
-      {!error  && (
+      )}
+      {!error && (
         <div className="table">
           <table className="border">
             <thead>
@@ -29,7 +29,7 @@ const Table = () => {
         </div>)}
     </div>
   );
-}
+};
 
 // validacao de propTypes seguindo exemplos do conteudo do course.
 

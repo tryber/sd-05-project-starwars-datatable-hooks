@@ -1,5 +1,41 @@
  import React, { useState } from 'react';
  import StarWarsContext from './StarWarsContext';
+
+  const sortingColumn = (planets, sort, column, callback) => {
+    let testOrder = 1;
+    if (sort === 'DESC') testOrder = -1;
+    if (column === 'name' || column === 'climate' || column === 'edited' || column === 'gravity'
+    || column === 'terrain' || column === 'url' || column === 'films' || column === 'created') {
+      // funcao pra fazer um sort() em strings pura
+      planets.sort((a, b) => {
+        let x;
+        let y;
+        if (column === 'films') {
+          x = a[column].sort().reverse()[0].toLowerCase();
+          y = b[column].sort().reverse()[0].toLowerCase();
+        } else {
+          x = a[column].toLowerCase();
+          y = b[column].toLowerCase();
+        }
+
+        if (x < y) {
+          return -1 * testOrder;
+        }
+        if (x > y) {
+          return 1 * testOrder;
+        }
+        return 0;
+      });
+      callback([...planets]);
+    }
+
+    if (sort === 'ASC') {
+      callback([...planets.sort((a, b) => (a[column] - b[column]))]);
+    } // aqui sort() pra comparar string numeros dependendo do sort attribute( ASD, DESC)
+    if (sort === 'DESC') {
+        callback([...planets.sort((a, b) => (b[column] - a[column]))]);
+      }
+    }
  
  function Provider(props) {
   const [data, setData] = useState([]);
@@ -18,42 +54,6 @@
     setFilterByNumericValues([...filterByNumericValues.filter(({ column }) => column !== id)])
   )
 
-  const sortingColumn = (planets, sort, column) => {  
-    let testOrder = 1;
-    if (sort === 'DESC') testOrder = -1;
-    if (column === 'name' || column === 'climate' || column === 'edited' || column === 'gravity'
-    || column === 'terrain' || column === 'url' || column === 'films' || column === 'created') {
-      // funcao pra fazer um sort() em strings pura
-      planets.sort((a, b) => {
-        let x;
-        let y;
-        if (column === 'films') {
-          x = a[column].sort().reverse()[0].toLowerCase();
-          y = b[column].sort().reverse()[0].toLowerCase();
-        } else {
-          x = a[column].toLowerCase();
-          y = b[column].toLowerCase();
-        }
-    
-        if (x < y) {
-          return -1 * testOrder;
-        }
-        if (x > y) {
-          return 1 * testOrder;
-        }
-        return 0;
-      });
-      setData([...planets]);
-      }
-      
-    if (sort === 'ASC') {
-      setData([...planets.sort((a, b) => (a[column] - b[column]))]);
-    } // aqui sort() pra comparar string numeros dependendo do sort attribute( ASD, DESC)
-    if (sort === 'DESC') {
-        setData([...planets.sort((a, b) => (b[column] - a[column]))]);
-      }
-    }
-
     const contextValue = {
       data, setData,
       error, setError,
@@ -65,7 +65,8 @@
       addFilter,
       excludeFilterButton,
       sortingColumn,
-    };    
+    };
+     
     return(
       <StarWarsContext.Provider value={contextValue}>
         {props.children}
@@ -73,4 +74,4 @@
     );
 }
 
-export default Provider ;
+export default Provider;

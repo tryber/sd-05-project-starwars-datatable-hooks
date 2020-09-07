@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { filterByColumn } from '../reducers/createActions';
 import StarWarsContext from '../context/StarWarsContext';
 
@@ -8,49 +8,41 @@ const options = ['Coluna', 'population', 'orbital_period', 'diameter', 'rotation
 const SelectColumn = () => {
   const [column, selectColumn] = useState('');
 
-    const { currentFilter, setCurrentFilter, filterByNumericValues } = useContext(StarWarsContext);
-    useEffect(() => { 
-      
-      setCurrentFilter(()=> ({...currentFilter, column }))
-    }, [column]);
+  const { currentFilter, setCurrentFilter, filterByNumericValues } = useContext(StarWarsContext);
+  useEffect(() => {
+    setCurrentFilter(() => ({ ...currentFilter, column }));
+  }, [column]);
 
-    let optionHidden = options;
-    if (filterByNumericValues.length !== 0) {
-      filterByNumericValues.forEach(({ column }) => {
-        optionHidden = optionHidden.filter((option) => option !== column);
-      });
-    }
+  let optionHidden = options;
+  if (filterByNumericValues.length !== 0) {
+    filterByNumericValues.forEach((c) => {
+      optionHidden = optionHidden.filter((option) => option !== c.column);
+    });
+  }
 
-    // console.log(optionHidden);
-    return (
-      <div className="select_column-filter">
-        <label htmlFor="select" />
-        <select data-testid="column-filter" name="select" onChange={({target}) => selectColumn(target.value)}>
-          {optionHidden.map((option) => (
-            <option key={option} value={option}>{option}</option>))}
-        </select>
-      </div>
-    );
-}
-
-// const mapStateToProps = (state) => {
-//   const { filters: { filterByNumericValues: filterSet } } = state;
-//   return ({
-//     filterSet,
-//   });
-// };
-
-// const mapDispatchToProps = (dispatch) => ({
-  // selectColumn: (e) => dispatch(filterByColumn(e)),
-// });
+  return (
+    <div className="select_column-filter">
+      <label htmlFor="select" />
+      <select
+        data-testid="column-filter"
+        name="select"
+        onChange={({ target }) => selectColumn(target.value)}
+      >
+        {optionHidden.map((option) => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </select>
+    </div>
+  );
+};
 
 export default SelectColumn;
 
-SelectColumn.propTypes = {
-  selectColumn: PropTypes.func.isRequired,
-  filterSet: PropTypes.arrayOf(PropTypes.object),
-};
+// SelectColumn.propTypes = {
+//   selectColumn: PropTypes.func.isRequired,
+//   filterSet: PropTypes.arrayOf(PropTypes.object),
+// };
 
-SelectColumn.defaultProps = {
-  filterSet: null,
-};
+// SelectColumn.defaultProps = {
+//   filterSet: null,
+// };

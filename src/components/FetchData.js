@@ -9,4 +9,4 @@ export default function fetchData() {
       (obj) => obj.results,
       (error) => (error.message || error),
     );
-};
+}

@@ -3,9 +3,10 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const comparingTable = (filteredPlanets, arrayOfFilter) => {
+  let planets = filteredPlanets;
   arrayOfFilter.forEach((filter) => {
     const { column, comparison, value } = filter;
-    filteredPlanets = filteredPlanets.filter((planet) => {
+    planets = planets.filter((planet) => {
       switch (comparison) {
         case 'igual a':
           return parseInt(planet[column], 10) === parseInt(value, 10);
@@ -18,44 +19,43 @@ const comparingTable = (filteredPlanets, arrayOfFilter) => {
       }
     });
   });
-  return filteredPlanets;
+  return planets;
 };
 
 const TableBody = () => {
-
-    const  { data, filterByNumericValues, filterByName: {name}, sortingColumn } = useContext(StarWarsContext);
-    let filteredPlanets = [...data];
+  const { data, filterByNumericValues, filterByName: { name } } = useContext(StarWarsContext);
+  let filteredPlanets = [...data];
     // Filtro que compara dados da tabela
-    filteredPlanets = comparingTable(filteredPlanets, filterByNumericValues);
+  filteredPlanets = comparingTable(filteredPlanets, filterByNumericValues);
     // Filtro que procura por um nome  de planeta na tabela
-    filteredPlanets = filteredPlanets.filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
-    
-      return (
-      <tbody>
-          {filteredPlanets.map((planet) => (
-          <tr key={planet.name}>
-            <td data-testid="planet-name">{planet.name}</td>
-            <td>{planet.climate}</td>
-            <td>{planet.population}</td>
-            <td>{planet.diameter}</td>
-            <td>{planet.created}</td>
-            <td>{planet.edited}</td>
-            <td>{planet.gravity}</td>
-            <td>{planet.orbital_period}</td>
-            <td>{planet.rotation_period}</td>
-            <td>{planet.surface_water}</td>
-            <td>{planet.terrain}</td>
-            <td>{planet.url}</td>
-            <td>
-              {planet.films.map((film) => (
-                <li key={film}>{film}</li>
-              ))}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    );
-}
+  filteredPlanets = filteredPlanets.filter((planet) => planet.name.toLowerCase()
+  .includes(name.toLowerCase()));
+  return (
+    <tbody>
+      {filteredPlanets.map((planet) => (
+        <tr key={planet.name}>
+          <td data-testid="planet-name">{planet.name}</td>
+          <td>{planet.climate}</td>
+          <td>{planet.population}</td>
+          <td>{planet.diameter}</td>
+          <td>{planet.created}</td>
+          <td>{planet.edited}</td>
+          <td>{planet.gravity}</td>
+          <td>{planet.orbital_period}</td>
+          <td>{planet.rotation_period}</td>
+          <td>{planet.surface_water}</td>
+          <td>{planet.terrain}</td>
+          <td>{planet.url}</td>
+          <td>
+            {planet.films.map((film) => (
+              <li key={film}>{film}</li>
+            ))}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+};
 
 export default TableBody;
 
