@@ -26,8 +26,8 @@ function sortingString(column, planets, testOrder) {
 const sortingColumn = (planets, sort, column, callback) => {
   let testOrder = 1;
   if (sort === 'DESC') testOrder = -1;
-  const names = ['name', 'climate', 'edited', 'gravity', 'terrain', 'url', 'films', 'created']
-  if (names.some(name => name === column)) {
+  const names = ['name', 'climate', 'edited', 'gravity', 'terrain', 'url', 'films', 'created'];
+  if (names.some((name) => name === column)) {
     // funcao pra fazer um sort() em strings pura
     const planet = sortingString(column, planets, testOrder);
     callback([...planet]);
