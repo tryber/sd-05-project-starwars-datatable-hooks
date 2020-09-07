@@ -4,10 +4,9 @@ import StarWarsContext from '../context/StarWarsContext';
 // comondos a executar ao aparter o botão do filtro.
 function clickDuplo(conteiner, filterByNumericValues,
   setFilterByNumericValues, setColumnFilter) {
-  const set = [...filterByNumericValues, { ...conteiner }];
   const colunas = ['COLUNAS', 'population', 'orbital_period',
-    'diameter', 'rotation_period', 'surface_water',
-  ];
+    'diameter', 'rotation_period', 'surface_water'];
+  const set = [...filterByNumericValues, { ...conteiner }];
   set.forEach((Select) => {
     colunas.splice(colunas.indexOf(Select.column), 1);
     setColumnFilter(colunas);
@@ -76,40 +75,50 @@ function FilterValues() {
   );
 }
 
-function Header() {
-  const { setFilterByName } = useContext(StarWarsContext);
-
-// excluir seleção.
-/* function removeFilter() {
-  const { filters } = this.props;
-  console.log(filters)
-  if (filters.length > 0) {
-    return (
-      <div>
-        <div>
-          <p className="textHeder">Filtros</p>
+// botão para remover a seleção.
+function ButtonRemove() {
+  const { filterByNumericValues, setFilterByNumericValues,
+    setColumnFilter, columnFilter } = useContext(StarWarsContext);
+  return (
+    <div >
+      {filterByNumericValues.map((filtro) => (
+        <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
+          <button
+            className="buttonRemove"
+            onClick={async () => {
+              (setFilterByNumericValues(filterByNumericValues
+              .filter((elementRemove) => elementRemove.column !== filtro.column)));
+              setColumnFilter([...columnFilter, filtro.column]);
+            }}
+          >
+            X
+          </button>
+          <div>
+            {filtro.column} {filtro.comparison} {filtro.value}
+          </div>
         </div>
-        <div >
-          {filters.map((filtro) => (
-            <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
-              <button className="buttonRemove" onClick={() => (this.clickRemove(filtro))}>
-                X
-              </button>
-              <div>
-                {filtro.column} {filtro.comparison} {filtro.value}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-  return ('');
+      ))}
+    </div>
+  );
 }
-function clickRemove(filtro) {
-  this.props.clearFilter(filtro.column);
-  this.colunasSelact();
-} */
+
+function Header() {
+  const { setFilterByName, filterByNumericValues } = useContext(StarWarsContext);
+
+  // excluir seleção.
+  function removeFilter() {
+    if (filterByNumericValues.length > 0) {
+      return (
+        <div>
+          <div>
+            <p className="textHeder">Filtros</p>
+          </div>
+          <ButtonRemove />
+        </div>
+      );
+    }
+    return ('');
+  }
 
   // header visual para o usuário.
   return (
@@ -124,9 +133,9 @@ function clickRemove(filtro) {
       <div className="filtrarValorNumber">
         <FilterValues />
       </div>
-      {/* <div className="removeFilter">
+      <div className="removeFilter">
         {removeFilter()}
-      </div> */}
+      </div>
     </div>
   );
 }
