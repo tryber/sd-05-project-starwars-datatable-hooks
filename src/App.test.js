@@ -18,7 +18,7 @@ const SORT_ORDER_ASC_SELECTOR = 'column-sort-input-asc';
 const SORT_ORDER_DESC_SELECTOR = 'column-sort-input-desc';
 const SORT_APPLY_SELECTOR = 'column-sort-button';
 const PLANET_NAME_SELECTOR = 'planet-name';
-
+//
 const mockFetch = () => {
   jest.spyOn(global, 'fetch')
     .mockImplementation(() => Promise.resolve({
@@ -28,7 +28,7 @@ const mockFetch = () => {
     }));
 }
 
-describe('Fazer uma requisição para o endpoint `/planets` da API de Star Wars e preencher uma tabela com os dados retornados, com exceção dos da coluna `residents`', () => {
+describe.only('Fazer uma requisição para o endpoint `/planets` da API de Star Wars e preencher uma tabela com os dados retornados, com exceção dos da coluna `residents`', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -84,7 +84,7 @@ describe('Fazer uma requisição para o endpoint `/planets` da API de Star Wars 
   });
 });
 
-describe('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
+describe.only('Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -158,7 +158,7 @@ describe('Sua página deve ter um campo de texto que filtra a tabela para soment
   });
 });
 
-describe('Sua página deve ter um filtro para valores numéricos', () => {
+describe.only('Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -248,7 +248,7 @@ describe('Sua página deve ter um filtro para valores numéricos', () => {
   });
 });
 
-describe('Sua página não deve utilizar filtros repetidos', () => {
+describe.only('Sua página não deve utilizar filtros repetidos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -284,7 +284,7 @@ describe('Sua página não deve utilizar filtros repetidos', () => {
   });
 });
 
-describe('Cada filtro de valores numéricos deve ter um ícone de `X` que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
+describe.only('Cada filtro de valores numéricos deve ter um ícone de `X` que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -336,7 +336,7 @@ describe('Cada filtro de valores numéricos deve ter um ícone de `X` que, ao se
   });
 });
 
-describe('As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
+describe.only('As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
