@@ -41,7 +41,7 @@ function TableBody() {
   if (filterText.name !== '') {
     planets = planets.filter((planet) =>
     planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
-  };
+  }
   // console.log(filterText);
 
   return (
