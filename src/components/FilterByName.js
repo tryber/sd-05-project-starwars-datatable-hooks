@@ -5,9 +5,8 @@ import StarWarsContext from '../context/StarWarsContext';
 // import { filterByName } from '../actions/index';
 
 function FilterByName() {
-  
   // const { isFetching, inputText } = this.props;
-  const { isFetching, setFilterText } = useContext(StarWarsContext);
+  const { setFilterText } = useContext(StarWarsContext);
   return (
     <div>
       {/* {!isFetching && ( */}

@@ -3,16 +3,16 @@ import StarWarsContext from '../context/StarWarsContext';
 // import propTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
-// function filterByNumber(planets, filterComp) {
-//   if (filterComp.comparison === 'maior que') {
-//     return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
-//   } else if (filterComp.comparison === 'menor que') {
-//     return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
-//   } else if (filterComp.comparison === 'igual a') {
-//     return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.value));
-//   }
-//   return planets;
-// }
+function filterByNumber(planets, filterComp) {
+  if (filterComp.comparison === 'maior que') {
+    return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
+  } else if (filterComp.comparison === 'menor que') {
+    return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
+  } else if (filterComp.comparison === 'igual a') {
+    return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.value));
+  }
+  return planets;
+}
 
 // const sortPlanets = (planets, sort, column) => {
 //   if (sort === 'DESC') {
@@ -27,10 +27,9 @@ import StarWarsContext from '../context/StarWarsContext';
 // Referência no sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 
 function TableBody() {
-  
   // const { data, filterText, filterNumber, column, sort } = this.props;
-  const { data, filterText, filterNumber } = useContext(StarWarsContext);
-  
+  const { data, filterText } = useContext(StarWarsContext);
+
   let planets = data;
   // planets = planets.sort((a, b) => a.name.localeCompare(b.name));
   // sortPlanets(planets, sort, column);
@@ -39,11 +38,11 @@ function TableBody() {
   //   planets = filterByNumber(planets, filter);
   // });
 
-  if (filterText.name !== '') {
-  planets = planets.filter((planet) =>
-  planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
-  }
-  // console.log(filterText);
+    if (filterText.name !== '') {
+    planets = planets.filter((planet) =>
+    planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
+    }
+    // console.log(filterText);
 
   return (
     <tbody>

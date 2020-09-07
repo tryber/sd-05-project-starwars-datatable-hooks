@@ -7,7 +7,6 @@ import TableBody from './TableBody';
 import StarWarsContext from '../context/StarWarsContext';
 
 function Table() {
-
   const { setIsFetching, setData } = useContext(StarWarsContext);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ function Table() {
   }, [setIsFetching, setData]);
 
   console.log(getPlanets());
-  
+
   return (
     <div>
       <table>
