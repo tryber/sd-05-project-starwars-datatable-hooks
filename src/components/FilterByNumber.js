@@ -62,7 +62,8 @@ function FilterByNumber() {
   return (
     <div>
       <select
-        name="column" data-testid="column-filter" onChange={(e) => setColumn(e.target.value)}>
+        name="column" data-testid="column-filter" onChange={(e) => setColumn(e.target.value)}
+      >
         {dropdownSel.map((options) => <option value={options}>{options}</option>)}
       </select>
       <select
@@ -81,13 +82,12 @@ function FilterByNumber() {
       >
         Filtrar
       </button>
-      {filterNumber.map((listParams) =>
-        <span data-testid="filter">
-          {`${listParams.column} ${listParams.comparison} ${listParams.value}`}
-          <button name={listParams.column} onClick={() => handleClick(listParams.column)}>
+      {filterNumber.map((listPar) =>
+        <span data-testid="filter">{`${listPar.column} ${listPar.comparison} ${listPar.value}`}
+          <button name={listPar.column} onClick={() => handleClick(listPar.column)}>
             X
           </button>
-        </span>
+        </span>,
       )}
     </div>
   );
