@@ -1,17 +1,17 @@
 import React from 'react';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import './App.css';
-import FilterBar from './components/FilterBar';
+// import FilterBar from './components/FilterBar';
 import Provider from './context/Provider';
 import MainPage from './components/MainPage';
 
 
 function App() {
-    return (
-      <Provider>
-        <MainPage />
-      </Provider>
-    );
+  return (
+    <Provider>
+      <MainPage />
+    </Provider>
+  );
 }
 
 // App.contextType = StarWarsContext;

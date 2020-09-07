@@ -4,14 +4,12 @@ import StarWarsContext from './StarWarsContext';
 
 function sortingString(column, planets, testOrder) {
   const planet = planets.sort((a, b) => {
-    let x;
-    let y;
     // if (column === 'films') {
     //   // x = a[column].sort().reverse()[0].toLowerCase();
     //   // y = b[column].sort().reverse()[0].toLowerCase();
     // } else {
-      x = a[column].toLowerCase();
-      y = b[column].toLowerCase();
+  const x = a[column].toLowerCase();
+  const y = b[column].toLowerCase();
     // }
 
     if (x < y) {
@@ -22,7 +20,7 @@ function sortingString(column, planets, testOrder) {
     }
     return 0;
   });
- return planet;
+  return planet;
 }
 
 const sortingColumn = (planets, sort, column, callback) => {
