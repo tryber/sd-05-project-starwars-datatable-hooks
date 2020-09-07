@@ -33,8 +33,8 @@ function FilterByNumber() {
   //   }
   // }
 
-  const handleClick = columns => {
-    const cleanedFilter = filterNumber.filter(e => e.column !== columns);
+  const handleClick = (columns) => {
+    const cleanedFilter = filterNumber.filter((e) => e.column !== columns);
     setFilterNumber(cleanedFilter);
   };
 
@@ -52,58 +52,43 @@ function FilterByNumber() {
   // const { dropdownSel } = this.state;
   // const { filterNumber } = this.props;
   // // const columnsFiltered = filterNumber.map((e) => e.column);
-  const columnsFiltered = [...dropdownSel];
+  // const columnsFiltered = [...dropdownSel];
   if (filterNumber.length > 0) {
-    filterNumber.forEach(item => {
-      columnsFiltered.splice(columnsFiltered.indexOf(item.column), 1);
+    filterNumber.forEach((item) => {
+      dropdownSel.splice(dropdownSel.indexOf(item.column), 1);
     });
   }
 
   return (
     <div>
       <select
-        name="column"
-        data-testid="column-filter"
-        onChange={e => setColumn(e.target.value)}
-      >
-        {columnsFiltered.map(options => (
-          <option value={options}>{options}</option>
-        ))}
+        name="column" data-testid="column-filter" onChange={(e) => setColumn(e.target.value)}>
+        {dropdownSel.map((options) => <option value={options}>{options}</option>)}
       </select>
       <select
         name="comparison"
-        data-testid="comparison-filter"
-        onChange={e => setComparison(e.target.value)}
+        data-testid="comparison-filter" onChange={(e) => setComparison(e.target.value)}
       >
-        {comparisonSel.map(options => (
-          <option value={options}>{options}</option>
-        ))}
+        {comparisonSel.map((options) => <option value={options}>{options}</option>)}
       </select>
       <input
-        name="value"
-        type="number"
-        data-testid="value-filter"
-        onChange={e => setValue(e.target.value)}
+        name="value" type="number"
+        data-testid="value-filter" onChange={(e) => setValue(e.target.value)}
       />
       <button
         data-testid="button-filter"
-        onClick={() =>
-          setFilterNumber([...filterNumber, { column, comparison, value }])
-        }
+        onClick={() => setFilterNumber([...filterNumber, { column, comparison, value }])}
       >
         Filtrar
       </button>
-      {filterNumber.map(listParams => (
+      {filterNumber.map((listParams) =>
         <span data-testid="filter">
           {`${listParams.column} ${listParams.comparison} ${listParams.value}`}
-          <button
-            name={listParams.column}
-            onClick={() => handleClick(listParams.column)}
-          >
+          <button name={listParams.column} onClick={() => handleClick(listParams.column)}>
             X
           </button>
         </span>
-      ))}
+      )}
     </div>
   );
 }
