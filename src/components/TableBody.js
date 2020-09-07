@@ -3,16 +3,16 @@ import StarWarsContext from '../context/StarWarsContext';
 // import propTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
-function filterByNumber(planets, filterComp) {
-  if (filterComp.comparison === 'maior que') {
-    return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
-  } else if (filterComp.comparison === 'menor que') {
-    return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
-  } else if (filterComp.comparison === 'igual a') {
-    return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.value));
-  }
-  return planets;
-}
+// function filterByNumber(planets, filterComp) {
+//   if (filterComp.comparison === 'maior que') {
+//     return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
+//   } else if (filterComp.comparison === 'menor que') {
+//     return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
+//   } else if (filterComp.comparison === 'igual a') {
+//     return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.));
+//   }
+//   return planets;
+// }
 
 // const sortPlanets = (planets, sort, column) => {
 //   if (sort === 'DESC') {
@@ -38,11 +38,11 @@ function TableBody() {
   //   planets = filterByNumber(planets, filter);
   // });
 
-    if (filterText.name !== '') {
+  if (filterText.name !== '') {
     planets = planets.filter((planet) =>
     planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
-    }
-    // console.log(filterText);
+  };
+  // console.log(filterText);
 
   return (
     <tbody>
