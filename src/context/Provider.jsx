@@ -8,8 +8,8 @@ function sortingString(column, planets, testOrder) {
     //   // x = a[column].sort().reverse()[0].toLowerCase();
     //   // y = b[column].sort().reverse()[0].toLowerCase();
     // } else {
-  const x = a[column].toLowerCase();
-  const y = b[column].toLowerCase();
+    const x = a[column].toLowerCase();
+    const y = b[column].toLowerCase();
     // }
 
     if (x < y) {
@@ -26,8 +26,8 @@ function sortingString(column, planets, testOrder) {
 const sortingColumn = (planets, sort, column, callback) => {
   let testOrder = 1;
   if (sort === 'DESC') testOrder = -1;
-  if (column === 'name' || column === 'climate' || column === 'edited' || column === 'gravity'
-  || column === 'terrain' || column === 'url' || column === 'films' || column === 'created') {
+  const names = ['name', 'climate', 'edited', 'gravity', 'terrain', 'url', 'films', 'created']
+  if (names.some(name => name === column)) {
     // funcao pra fazer um sort() em strings pura
     const planet = sortingString(column, planets, testOrder);
     callback([...planet]);
