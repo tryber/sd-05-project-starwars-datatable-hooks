@@ -3,27 +3,33 @@ import StarWarsContext from '../context/StarWarsContext';
 import planetAPI from '../services/api';
 import TableHead from './TableHead';
 
+function allFilters(data, filter) {
+  if (filter.comparison === 'maior que') {
+    return data.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
+  }
+  if (filter.comparison === 'menor que') {
+    return data.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
+  }
+  if (filter.comparison === 'igual a') {
+    return data.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+  }
+  return data;
+}
+
 export default function Table() {
-  const { isFetching, setIsFetching, data, setData, name, filterByNumbers } = useContext(StarWarsContext);
+  const { isFetching,
+    setIsFetching,
+    data,
+    setData,
+    name,
+    filterByNumbers
+  } = useContext(StarWarsContext);
 
   useEffect(() => {
     setIsFetching(true);
     planetAPI().then((response) => setData(response.results));
     setIsFetching(false);
   }, [setIsFetching, setData]);
-
-  function allFilters(data, filter) {
-    if (filter.comparison === 'maior que') {
-      return data.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
-    }
-    if (filter.comparison === 'menor que') {
-      return data.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
-    }
-    if (filter.comparison === 'igual a') {
-      return data.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
-    }
-    return data;
-  }
 
   let planets = data;
   filterByNumbers.forEach((filter) => { planets = allFilters(planets, filter); });
