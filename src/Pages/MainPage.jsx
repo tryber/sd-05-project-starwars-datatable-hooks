@@ -4,10 +4,8 @@ import PlanetsTable from '../Components/PlanetsTable';
 import { SWContext } from '../context';
 
 function MainPage() {
-
   const { getPlanets } = useContext(SWContext);
-  useEffect(() => getPlanets(), [])
-
+  useEffect(() => getPlanets(), []);
   return (
     <div>
       <h1>Star Wars Project</h1>

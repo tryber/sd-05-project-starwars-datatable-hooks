@@ -21,7 +21,7 @@ const TableFrame = () => {
   return (
     <tbody className="table-body">
       {filteredPlanets
-        .filter(({ name }) => name.toLowerCase().includes(name.toLowerCase()))
+        .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()))
         .map((rowItems, rowId) => (
           <TableRow
             rowItems={Object.entries(rowItems)}
