@@ -1,66 +1,66 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import proptypes from 'prop-types';
-import { sortFilter } from '../actions';
+// import React, { useContext, useState } from 'react';
+// import StarWarsContext from '../context/StarWarsContext';
+// // import { connect } from 'react-redux';
+// // import proptypes from 'prop-types';
+// // import { sortFilter } from '../actions';
 
-// Referência: ajuda Anderson Godoy e Felipe Vieira
+// // Referência: ajuda Anderson Godoy e Felipe Vieira
 
-const dropdownSel = [
-  'selecione',
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
+// const dropdownSel = [
+//   'selecione',
+//   'population',
+//   'orbital_period',
+//   'diameter',
+//   'rotation_period',
+//   'surface_water',
+// ];
 
-class OrderPlanets extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: 'Name',
-      sort: 'ASC',
-    };
-  }
+// function OrderPlanets() {
+//   const [column, setColumn] = useState('');
+//   const [sort, setSort] = useState('');
+//   const { setOrder } = useContext(StarWarsContext);
 
-  render() {
-    const { ordFilt } = this.props;
-    return (
-      <div>
-        <select
-          data-testid="column-sort"
-          onChange={(e) => this.setState({ column: e.target.value })}
-        >
-          {dropdownSel.map((option) => <option value={option} key={option}>{option}</option>)}
-        </select>
-        <label htmlFor="ASC">ASC</label>
-        <input
-          name="ordenar"
-          value="ASC"
-          type="radio"
-          data-testid="column-sort-input"
-          onChange={(e) => this.setState({ sort: e.target.value })}
-        />
-        <label htmlFor="DESC">DESC</label>
-        <input
-          name="ordenar"
-          value="DESC"
-          type="radio"
-          data-testid="column-sort-input"
-          onChange={(e) => this.setState({ sort: e.target.value })}
-        />
-        <button type="button" data-testid="column-sort-button" onClick={() => ordFilt(this.state)}>
-          Filtrar
-        </button>
-      </div>
-    );
-  }
-}
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
 
-const mapDispatchToProps = { ordFilt: sortFilter };
+//     if (name === 'column') {
+//       setColumn(value);
+//     } else {
+//       setSort(value);
+//     }
+//   };
 
-export default connect(null, mapDispatchToProps)(OrderPlanets);
+//   const handleClick = () => {
+//     setOrder({ column, sort });
+//   };
+  
+//   // const { ordFilt } = this.props;
+//   return (
+//     <div>
+//       <select data-testid="column-sort" onChange={handleChange}>
+//         {dropdownSel.map((option) => <option value={option} key={option}>{option}</option>)}
+//       </select>
+//       <label htmlFor="ASC">ASC</label>
+//       <input
+//         name="ordenar"
+//         value="ASC"
+//         type="radio"
+//         data-testid="column-sort-input"
+//         onClick={handleClick}
+//       />
+//       <label htmlFor="DESC">DESC</label>
+//       <input
+//         name="ordenar"
+//         value="DESC"
+//         type="radio"
+//         data-testid="column-sort-input"
+//         onClick={handleClick}
+//       />
+//       <button type="button" data-testid="column-sort-button" onClick={handleClick}>
+//         Filtrar
+//       </button>
+//     </div>
+//   );
+// }
 
-OrderPlanets.propTypes = {
-  ordFilt: proptypes.func.isRequired,
-};
+// export default OrderPlanets;

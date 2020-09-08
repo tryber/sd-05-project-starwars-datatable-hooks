@@ -10,7 +10,11 @@ const StarWarsProvider = ({ children }) => {
       name: '',
     },
   });
-  const [filterNumber, setFilterNumber] = useState([]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  // const [order, setOrder] = useState({
+  //   column: 'Name',
+  //   sort: 'ASC',
+  // });
 
   const states = {
     isFetching,
@@ -19,8 +23,10 @@ const StarWarsProvider = ({ children }) => {
     setData,
     filterText: filterText.filterByName,
     setFilterText,
-    filterNumber,
-    setFilterNumber,
+    filterByNumericValues,
+    setFilterByNumericValues,
+    // order,
+    // setOrder
   };
 
   return (

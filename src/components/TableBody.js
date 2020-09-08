@@ -21,20 +21,20 @@ function filterByNumber(planets, filterComp) {
 //   if (sort === 'ASC') {
 //     return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
 //   }
-//   return false;
+//   return planets;
 // };
 
 // Referência no sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 
 function TableBody() {
   // const { data, filterText, filterNumber, column, sort } = this.props;
-  const { data, filterText, filterNumber } = useContext(StarWarsContext);
+  const { data, filterText, filterByNumericValues } = useContext(StarWarsContext);
 
   let planets = data;
   // planets = planets.sort((a, b) => a.name.localeCompare(b.name));
   // sortPlanets(planets, sort, column);
 
-  filterNumber.forEach((filter) => {
+  filterByNumericValues.forEach((filter) => {
     planets = filterByNumber(planets, filter);
   });
 
