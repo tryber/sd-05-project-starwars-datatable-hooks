@@ -4,7 +4,7 @@ import planetAPI from '../services/api';
 import TableHead from './TableHead';
 
 export default function Table() {
-  const { isFetching, setIsFetching, data, setData } = useContext(StarWarsContext);
+  const { isFetching, setIsFetching, data, setData, name } = useContext(StarWarsContext);
 
   useEffect(() => {
     setIsFetching(true);
@@ -12,7 +12,8 @@ export default function Table() {
     setIsFetching(false);
   }, [setIsFetching, setData]);
 
-  const planets = data;
+  let planets = data;
+  planets = planets.filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
 
   return isFetching ? (
     <h1>Carregando...</h1>

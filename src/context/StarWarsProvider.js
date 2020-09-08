@@ -5,12 +5,15 @@ import StarWarsContext from './StarWarsContext';
 const StarWarsProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [data, setData] = useState([]);
+  const [name, setName] = useState('');
 
   const context = {
     isFetching,
     setIsFetching,
     data,
     setData,
+    name,
+    setName,
   };
 
   return (
