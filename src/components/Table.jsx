@@ -22,7 +22,7 @@ export default function Table() {
     data,
     setData,
     name,
-    filterByNumbers
+    filterByNumbers,
   } = useContext(StarWarsContext);
 
   useEffect(() => {
