@@ -11,7 +11,7 @@ export default function NumericFilters() {
     comparison,
     setComparison,
     value, setValue,
-    setFilterByNumbers
+    setFilterByNumbers,
   } = useContext(StarWarsContext);
   return (
     <div>
