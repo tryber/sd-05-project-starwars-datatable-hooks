@@ -46,18 +46,6 @@ class SWProvider extends Component {
     this.sendOrder = this.sendOrder.bind(this);
   }
 
-  handlePlanetSuccess(response) {
-    this.setState({
-      isFetching: false,
-      planets: [...response.results],
-      planetsColumns: [
-        ...Object.keys(response.results[0]).filter(
-          (item) => item !== 'residents',
-        ),
-      ],
-    });
-  }
-
   handleFilterByName(name) {
     this.setState({ name });
   }
@@ -76,6 +64,18 @@ class SWProvider extends Component {
       ...state,
       filterByNumericValues: [...state.filterByNumericValues, filter],
     }));
+  }
+
+  handlePlanetSuccess(response) {
+    this.setState({
+      isFetching: false,
+      planets: [...response.results],
+      planetsColumns: [
+        ...Object.keys(response.results[0]).filter(
+          (item) => item !== 'residents',
+        ),
+      ],
+    });
   }
 
   handlePlanetFailure(error) {
