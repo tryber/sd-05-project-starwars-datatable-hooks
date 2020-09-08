@@ -46,6 +46,13 @@ class SWProvider extends Component {
     this.sendOrder = this.sendOrder.bind(this);
   }
 
+  setNumericFilters(filter) {
+    this.setState((state) => ({
+      ...state,
+      filterByNumericValues: [...state.filterByNumericValues, filter],
+    }));
+  }
+
   fetchPlanets() {
     const { isFetching } = this.state;
     if (isFetching) return;
@@ -53,13 +60,6 @@ class SWProvider extends Component {
       isFetching: true,
     });
     getPlanets().then(this.handlePlanetSuccess, this.handlePlanetFailure);
-  }
-
-  setNumericFilters(filter) {
-    this.setState((state) => ({
-      ...state,
-      filterByNumericValues: [...state.filterByNumericValues, filter],
-    }));
   }
 
   handleFilterByName(name) {
