@@ -10,9 +10,13 @@ export default function NumericFilters() {
     setColumn,
     comparison,
     setComparison,
-    value, setValue,
+    value, 
+    setValue,
+    filterByNumbers,
     setFilterByNumbers,
   } = useContext(StarWarsContext);
+  const columns = filterByNumbers.map((filter) => filter.column);
+  const filterColumns = options.filter((option) => !columns.includes(option));
   return (
     <div>
       <select
@@ -21,7 +25,7 @@ export default function NumericFilters() {
         onChange={(e) => setColumn(e.target.value)}
       >
         <option defaultValue>Selecione</option>
-        {options.map((opcao) => (<option>{opcao}</option>))}
+        {filterColumns.map((opcao) => (<option>{opcao}</option>))}
       </select>
       <select
         data-testid="comparison-filter"
