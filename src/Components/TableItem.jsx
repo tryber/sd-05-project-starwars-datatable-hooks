@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 const TableItem = (props) => {
   const { collName, itemValue, cellId } = props;
   return (
-    <td className={`cell coll-${cellId}`} key={collName}>
+    <td
+      data-testid={
+        collName.toLowerCase() === 'name' ? 'planet-name' : 'other-column'
+      }
+      className={`cell coll-${cellId}`}
+      key={collName}
+    >
       {itemValue}
     </td>
   );

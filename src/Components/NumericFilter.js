@@ -1,66 +1,64 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useContext, useState } from 'react';
 import SelectOptions from './SelectOptions';
 import InputNumber from './InputNumber';
 import ButtonFilter from './ButtonFilter';
-import { addFilter } from '../Actions';
 import './NumericFilter.css';
+import { SWContext } from '../context';
 
 const DATA_TESTID = {
   COLUMN_FILTER: 'column-filter',
   COMPARISON_FILTER: 'comparison-filter',
 };
 
-class NumericFilters extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: '',
-      comparison: '',
-      value: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+const NumericFilters = () => {
+  const { setNumericValues } = useContext(SWContext);
 
-  handleChange(event) {
-    const { addingFilter } = this.props;
-    const { target } = event;
-    this.setState((state) => ({
+  const [filterToSend, setFilter] = useState({
+    column: '',
+    comparison: '',
+    value: '',
+  });
+
+  function handleChange({ target }) {
+    setFilter((state) => ({
       ...state,
       [target.name]: target.value,
     }));
-    addingFilter({ [target.name]: target.value });
   }
 
-  render() {
-    return (
-      <div className="numeric-filter-container">
-        <div className="numeric-selections">
-          <SelectOptions
-            name="column"
-            handleChange={this.handleChange}
-            testId={DATA_TESTID.COLUMN_FILTER}
-            key={DATA_TESTID.COLUMN_FILTER}
-          />
-          <SelectOptions
-            name="comparison"
-            handleChange={this.handleChange}
-            testId={DATA_TESTID.COMPARISON_FILTER}
-            key={DATA_TESTID.COMPARISON_FILTER}
-          />
-        </div>
-        <InputNumber handleChange={this.handleChange} />
-        <ButtonFilter />
+  const resetFilters = () => {
+    setFilter({
+      column: '',
+      comparison: '',
+      value: '',
+    });
+  };
+
+  const handleClick = () => {
+    setNumericValues(filterToSend);
+    resetFilters();
+  };
+
+  return (
+    <div className="numeric-filter-container">
+      <div className="numeric-selections">
+        <SelectOptions
+          name="column"
+          handleChange={handleChange}
+          testId={DATA_TESTID.COLUMN_FILTER}
+          key={DATA_TESTID.COLUMN_FILTER}
+        />
+        <SelectOptions
+          name="comparison"
+          handleChange={handleChange}
+          testId={DATA_TESTID.COMPARISON_FILTER}
+          key={DATA_TESTID.COMPARISON_FILTER}
+        />
       </div>
-    );
-  }
-}
+      <InputNumber handleChange={handleChange} />
+      <ButtonFilter handleClick={handleClick} />
+    </div>
+  );
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  addingFilter: (payload) => dispatch(addFilter(payload)),
-});
-
-export default connect(null, mapDispatchToProps)(NumericFilters);
-
-NumericFilters.propTypes = { addingFilter: PropTypes.func.isRequired };
+export default NumericFilters;

@@ -15,8 +15,14 @@ class SelectOptions extends React.Component {
           className="select-options"
           onChange={handleChange}
         >
-          <option>{testId === 'column-filter' ? 'Coluna' : 'Comparação'}</option>
-          <SelectOption testId={testId} handleChange={handleChange} name={name} />
+          <option>
+            {testId === 'column-filter' ? 'Coluna' : 'Comparação'}
+          </option>
+          <SelectOption
+            testId={testId}
+            handleChange={handleChange}
+            name={name}
+          />
         </select>
       </div>
     );

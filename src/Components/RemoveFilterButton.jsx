@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { removeFilter, toggleRender } from '../Actions';
+import { SWContext } from '../context';
 
 const RemoveFilterButton = (props) => {
-  const {
-    filterIndex, removingFilter, togglingRender, column,
-  } = props;
+  const { filterIndex } = props;
+  const { removeFilter } = useContext(SWContext);
   return (
     <button
       className="remove-filter-button"
       type="button"
       onClick={() => {
-        removingFilter(filterIndex);
-        togglingRender(column);
+        removeFilter(filterIndex);
+        // togglingRender(column);
       }}
     >
       X
@@ -21,16 +19,8 @@ const RemoveFilterButton = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  removingFilter: (itemIndex) => dispatch(removeFilter(itemIndex)),
-  togglingRender: (payload) => dispatch(toggleRender(payload)),
-});
-
-export default connect(null, mapDispatchToProps)(RemoveFilterButton);
+export default RemoveFilterButton;
 
 RemoveFilterButton.propTypes = {
-  column: PropTypes.string.isRequired,
   filterIndex: PropTypes.number.isRequired,
-  removingFilter: PropTypes.func.isRequired,
-  togglingRender: PropTypes.func.isRequired,
 };

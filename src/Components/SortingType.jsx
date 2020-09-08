@@ -12,22 +12,17 @@ class SortingType extends React.Component {
             value="ASC"
             name="sort"
             defaultChecked
-            data-testid="column-sort-input"
+            data-testid="column-sort-input-asc"
             onClick={change}
           />
           ASC
         </label>
-        <label
-          htmlFor="DESC"
-          key="sort-desc"
-          name="sort"
-          // onClick={change}
-        >
+        <label htmlFor="DESC" key="sort-desc" name="sort">
           <input
             type="radio"
             value="DESC"
             name="sort"
-            data-testid="column-sort-input"
+            data-testid="column-sort-input-desc"
             onClick={change}
           />
           DESC

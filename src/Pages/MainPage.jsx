@@ -1,33 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import Header from '../Components/Header';
 import PlanetsTable from '../Components/PlanetsTable';
-import { getStarWarsPlanets } from '../Actions';
+import { SWContext } from '../context';
 
-class MainPage extends Component {
-  componentDidMount() {
-    const { gettingPlanets } = this.props;
-    gettingPlanets();
-  }
+function MainPage() {
 
-  render() {
-    return (
-      <div>
-        <h1>Star Wars Project</h1>
-        <Header />
-        <PlanetsTable />
-      </div>
-    );
-  }
+  const { getPlanets } = useContext(SWContext);
+  useEffect(() => getPlanets(), [])
+
+  return (
+    <div>
+      <h1>Star Wars Project</h1>
+      <Header />
+      <PlanetsTable />
+    </div>
+  );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  gettingPlanets: () => dispatch(getStarWarsPlanets()),
-});
-
-export default connect(null, mapDispatchToProps)(MainPage);
-
-MainPage.propTypes = {
-  gettingPlanets: PropTypes.func.isRequired,
-};
+export default MainPage;

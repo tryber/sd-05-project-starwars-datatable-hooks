@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 
 const TableHeaderCell = (props) => {
   const { name } = props;
-  return (
-    <th className="column-name">
-      {name}
-    </th>
-  );
+  return <th className="column-name">{name}</th>;
 };
 
 export default TableHeaderCell;

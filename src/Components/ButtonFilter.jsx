@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { sendFilter, resetFilterToSend, toggleRender } from '../Actions';
 
 const ButtonFilter = (props) => {
-  const {
-    filterToSend, sendingFilter, resetingFilter, togglingRender,
-  } = props;
+  const { handleClick } = props;
   return (
     <div>
       <button
@@ -14,9 +10,7 @@ const ButtonFilter = (props) => {
         className="button-set-filter"
         data-testid="button-filter"
         onClick={() => {
-          sendingFilter(filterToSend);
-          resetingFilter();
-          togglingRender(filterToSend.column);
+          handleClick();
         }}
       >
         Filtrar
@@ -25,25 +19,8 @@ const ButtonFilter = (props) => {
   );
 };
 
-const mapStateToProps = ({ temporaryFilter: { filterToSend } }) => ({
-  filterToSend,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sendingFilter: (filter) => dispatch(sendFilter(filter)),
-  resetingFilter: () => dispatch(resetFilterToSend()),
-  togglingRender: (payload) => dispatch(toggleRender(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ButtonFilter);
+export default ButtonFilter;
 
 ButtonFilter.propTypes = {
-  filterToSend: PropTypes.shape({
-    column: PropTypes.string.isRequired,
-    comparison: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  }).isRequired,
-  sendingFilter: PropTypes.func.isRequired,
-  resetingFilter: PropTypes.func.isRequired,
-  togglingRender: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
