@@ -1,4 +1,5 @@
-import React, { Component, createContext, useState } from 'react';
+import React, { Component, createContext } from 'react';
+import PropTypes from 'prop-types';
 import getPlanets from '../Services/API';
 
 const SWContext = createContext();
@@ -45,13 +46,6 @@ class SWProvider extends Component {
     this.sendOrder = this.sendOrder.bind(this);
   }
 
-  handlePlanetFailure(error) {
-    this.setState({
-      isFetching: false,
-      error: error.message,
-    });
-  }
-
   handlePlanetSuccess(response) {
     this.setState({
       isFetching: false,
@@ -82,6 +76,13 @@ class SWProvider extends Component {
       ...state,
       filterByNumericValues: [...state.filterByNumericValues, filter],
     }));
+  }
+
+  handlePlanetFailure(error) {
+    this.setState({
+      isFetching: false,
+      error: error.message,
+    });
   }
 
   removeFilter(filter) {
@@ -115,3 +116,4 @@ class SWProvider extends Component {
 }
 
 export { SWContext, SWProvider as Provider };
+SWProvider.propTypes = { children: PropTypes.node.isRequired };
