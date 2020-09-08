@@ -10,7 +10,7 @@ export default function NumericFilters() {
     setColumn,
     comparison,
     setComparison,
-    value, 
+    value,
     setValue,
     filterByNumbers,
     setFilterByNumbers,
