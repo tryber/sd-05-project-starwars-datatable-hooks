@@ -33,7 +33,7 @@
 //   const handleClick = () => {
 //     setOrder({ column, sort });
 //   };
-  
+
 //   // const { ordFilt } = this.props;
 //   return (
 //     <div>

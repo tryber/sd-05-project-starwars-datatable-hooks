@@ -77,7 +77,7 @@ function FilterByNumber() {
       </select>
       <input
         name="value" type="number"
-        data-testid="value-filter" onChange={ ({ target : { value } }) => setValue(value) }
+        data-testid="value-filter" onChange={(e) => setValue(e.target.value)}
       />
       <button
         data-testid="button-filter" onClick={() => setFilterByNumericValues(
