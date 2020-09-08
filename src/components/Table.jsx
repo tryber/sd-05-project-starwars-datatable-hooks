@@ -4,9 +4,7 @@ import planetAPI from '../services/api';
 import TableHead from './TableHead';
 
 export default function Table() {
-  const { isFetching, setIsFetching, data, setData } = useContext(
-    StarWarsContext
-  );
+  const { isFetching, setIsFetching, data, setData } = useContext(StarWarsContext);
 
   useEffect(() => {
     setIsFetching(true);
