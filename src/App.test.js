@@ -290,9 +290,10 @@ describe('Cada filtro de valores numéricos deve ter um ícone de `X` que, ao se
 
   const removeFilter = async () => {
     const filters = await screen.findAllByTestId(REMOVE_FILTER_SELECTOR);
+    console.log(Array.from(filters))
     fireEvent.click(filters[0].querySelector('button'));
   };
-
+  console.log('******************************************************************')
   it('adiciona e remove um filtro', async () => {
     await act(async () => {
       render(<App />);
@@ -309,7 +310,6 @@ describe('Cada filtro de valores numéricos deve ter um ícone de `X` que, ao se
 
     expect(await screen.findAllByRole(ROW_ROLE_SELECTOR)).toHaveLength(11);
   });
-
   it('adiciona e remove dois filtros', async () => {
     await act(async () => {
       render(<App />);

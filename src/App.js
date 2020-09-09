@@ -1,33 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import Table from './Components/Table';
-import Procurar from './Components/Procurar';
-import { getAPI } from './Actions/actions';
+import Aux from './Components/aux';
 import './App.css';
+import { Provider } from './Context/contextSW';
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.getAPI();
-  }
-  render() {
-    return (
-      <div>
-        <header>
-          <Procurar />
-        </header>
-        <Table />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Provider >
+      <Aux />
+    </Provider>
+  );
+
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getAPI: () => dispatch(getAPI()),
-});
-
-export default connect(null, mapDispatchToProps)(App);
-
-App.propTypes = {
-  getAPI: propTypes.func.isRequired,
-};
+export default (App);

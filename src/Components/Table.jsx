@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import React, { useContext } from 'react';
+// import propTypes from 'prop-types';
 import Planet from './planet';
+import { Context } from '../Context/contextSW';
 
 function small(data, arrayFilter) {
   let planets = data.results.map((e) => {
@@ -42,11 +42,35 @@ function organizeMe(a, b, type) {
   }
   return parseInt(b[col], 10) - parseInt(a[col], 10);
 }
-function Table(props) {
-  if (props.isLoading) return <h1>No data</h1>;
-  const { filterUpdate, data, arrayFilter, order } = props;
-  const planets = small(data, arrayFilter).sort((a, b) => (order.sort === 'ASC' ? organizeMe(a, b, order) : organizeMe(a, b, order)));
-  const topo = Object.entries(planets[0]).map((e) => e[0].replace(/_/, ' '));
+const topo = [
+  'name',
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'climate',
+  'gravity',
+  'terrain',
+  'surface_water',
+  'population',
+  'films',
+  'created',
+  'edited',
+  'url',
+];
+
+function Table() {
+  const {
+    data,
+    name: filterUpdate,
+    isLoading,
+    filterByNumericValues: arrayFilter,
+    order,
+  } = useContext(Context);
+  if (isLoading) return <h1>No data</h1>;
+  /* const { filterUpdate, data, arrayFilter, order } = props; */
+  const planets = small(data, arrayFilter).sort((a, b) =>
+    (order.sort === 'ASC' ? organizeMe(a, b, order) : organizeMe(a, b, order)),
+  );
   return (
     <table>
       <thead>
@@ -67,20 +91,20 @@ function Table(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   filterUpdate: state.filters.filterByName.name,
   data: state.filters.data,
   isLoading: state.filters.isLoading,
   arrayFilter: state.filters.filterByNumericValues,
   order: state.filters.order,
 });
+ */
+export default Table;
 
-export default connect(mapStateToProps, null)(Table);
-
-Table.propTypes = {
+/* Table.propTypes = {
   filterUpdate: propTypes.string.isRequired,
   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   arrayFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   isLoading: propTypes.bool.isRequired,
   order: propTypes.instanceOf(Object).isRequired,
-};
+}; */

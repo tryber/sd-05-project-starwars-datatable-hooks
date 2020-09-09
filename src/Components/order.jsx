@@ -1,49 +1,61 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { headerOrder } from '../Actions/actions';
+import React, { useState, useContext } from 'react';
+// import propTypes from 'prop-types';
+// import { headerOrder } from '../Actions/actions';
+import { Context } from '../Context/contextSW';
 
-class OrderToMe extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: 'name',
-      sort: 'ASC',
-    };
-  }
-  render() {
-    return (
+function OrderToMe() {
+  const [orderBasico, setOrderBasico] = useState({
+    column: 'name',
+    sort: 'ASC',
+  });
+  const { header: columns, setOrder } = useContext(Context);
+  // console.log(columns)
+  return (
+    <div>
+      <select
+        data-testid="column-sort"
+        onChange={(e) => setOrderBasico({ ...orderBasico, column: e.target.value })}
+      >
+        {columns.map((e) => (
+          <option key={e}>{e}</option>
+        ))}
+      </select>
       <div>
-        <select
-          data-testid="column-sort"
-          onChange={(e) => this.setState({ column: e.target.value })}
-        >
-          {this.props.columns.map((e) => (
-            <option>{e}</option>
-          ))}
-        </select>
-        <div>
-          <input data-testid="column-sort-input" type="radio" name="ord" id="1" value="ASC" onClick={() => this.setState({ sort: 'ASC' })} />
-          <label htmlFor="1">ASC</label>
-          <input data-testid="column-sort-input" type="radio" name="ord" id="2" value="DESC" onClick={() => this.setState({ sort: 'DSC' })} />
-          <label htmlFor="2">DSC</label>
-        </div>
-        <button data-testid="column-sort-button" onClick={() => this.props.upOrder(this.state)}>
-          Ordernar
-        </button>
+        <input
+          data-testid="column-sort-input-asc"
+          type="radio"
+          name="ord"
+          id="1"
+          value="ASC"
+          onClick={() => setOrderBasico({ ...orderBasico, sort: 'ASC' })}
+        />
+        <label htmlFor="1">ASC</label>
+        <input
+          data-testid="column-sort-input-desc"
+          type="radio"
+          name="ord"
+          id="2"
+          value="DESC"
+          onClick={() => setOrderBasico({ ...orderBasico, sort: 'DSC' })}
+        />
+        <label htmlFor="2">DSC</label>
       </div>
-    );
-  }
+      <button data-testid="column-sort-button" onClick={() => setOrder(orderBasico)}>
+        Ordernar
+      </button>
+    </div>
+  );
 }
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   columns: state.filters.header,
 });
 const mapDispatchToProps = (dispatch) => ({
   upOrder: (sel) => dispatch(headerOrder(sel)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(OrderToMe);
+}); */
+export default OrderToMe;
 
-OrderToMe.propTypes = {
+/* OrderToMe.propTypes = {
   upOrder: propTypes.func.isRequired,
   columns: propTypes.arrayOf(propTypes.string).isRequired,
 };
+ */

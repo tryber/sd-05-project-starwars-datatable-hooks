@@ -1,15 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
-import { updateFilter, selectionFilter, replaceFilters } from '../Actions/actions';
+import { selectionFilter, replaceFilters } from '../Actions/actions';
 import OrderToMe from './order';
 import '../App.css';
+import { Context } from '../Context/contextSW';
 
-const basicOptionsSelect1 = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-const optionsSelect2 = ['maior que', 'menor que', 'igual a'];
-const values = {};
+const NumericOptions = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+const comparisonOptions = ['maior que', 'menor que', 'igual a'];
 
-function EntrySeach(props) {
+function NameSearch(props) {
   return (
     <div className="flex-me column-me">
       <label htmlFor="look">Procurar</label>
@@ -17,49 +22,60 @@ function EntrySeach(props) {
     </div>
   );
 }
-EntrySeach.propTypes = { handlerChange: propTypes.func.isRequired };
+
+NameSearch.propTypes = { handlerChange: propTypes.func.isRequired };
+
 function ColumnSearch(props) {
+  const { SetCol } = useContext(Context);
   return (
     <div className="flex-me center-me">
       <select
         data-testid="column-filter"
-        onChange={(e) => (values.column = e.target.value)}
+        onChange={(e) => SetCol(e.target.value)}
         className="center-me"
       >
-        <option value="" disabled selected>
+        <option value="" disabled="true" defaultValue>
           Coluna
         </option>
         {props.optionsSelect1.map((e) => (
-          <option value={e}>{e}</option>
+          <option key={e} value={e}>
+            {e}
+          </option>
         ))}
       </select>
     </div>
   );
 }
-ColumnSearch.propTypes = {
-  optionsSelect1: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
+
+ColumnSearch.propTypes = { optionsSelect1: propTypes.arrayOf(propTypes.string).isRequired };
 
 function ComparisonSearch(props) {
+  const { SetComp } = useContext(Context);
   return (
     <div className="flex-me center-me">
       <select
         className="center-me"
         data-testid="comparison-filter"
-        onChange={(e) => (values.comparison = e.target.value)}
+        onChange={(e) => SetComp(e.target.value)}
       >
-        <option value="" disabled selected>
+        <option value="" disabled defaultValue>
           Comparação
         </option>
         {props.optionsSelect2.map((e) => (
-          <option value={e}>{e}</option>
+          <option key={e} value={e}>
+            {e}
+          </option>
         ))}
       </select>
     </div>
   );
 }
 
-function ButtonAdd(props) {
+ComparisonSearch.propTypes = { optionsSelect2: propTypes.arrayOf(propTypes.string).isRequired };
+
+function ButtonAdd() {
+  const { filterByNumericValues, add, SetVal } = useContext(Context);
+  console.log(filterByNumericValues);
   return (
     <div className="flex-me column-me center-me">
       <input
@@ -67,87 +83,62 @@ function ButtonAdd(props) {
         type="number"
         name=""
         data-testid="value-filter"
-        onChange={(e) => (values.value = e.target.value)}
+        onChange={(e) => SetVal(e.target.value)}
       />
-      <button
-        data-testid="button-filter"
-        onClick={() => props.sF(values)}
-        className="center-me"
-      >
+      <button data-testid="button-filter" onClick={async () => add()} className="center-me">
         Add
       </button>
     </div>
   );
 }
-ButtonAdd.propTypes = {
-  sF: propTypes.func.isRequired,
-};
 
-function FiltersBox(actualProps) {
-  const { old: props, rF, uF } = actualProps;
+function FiltersBox() {
+  const { filterByNumericValues, setFilterByNumericValues } = useContext(Context);
   return (
     <div className="column-me">
-      {props.usedFilters.map((e) => (
-        <div data-testid="filter" key={`${e.column}d`}>
-          <button key={`${e.column}b`} id={e.column} onClick={() => rF(uF.filter((u) => u.column !== e.column))}>
+      {filterByNumericValues.map((e) => (
+        <div data-testid="filter" key={`${e.column}`}>
+          <button
+            key={`${e.column}b`}
+            id={e.column}
+            onClick={() =>
+              setFilterByNumericValues(filterByNumericValues.filter((u) => u.column !== e.column))
+            }
+          >
             x
           </button>
-          <label htmlFor={e.column} key={`${e.column}l`}>{`${e.column} ${e.comparison} ${e.value}`}</label>
+          <label
+            htmlFor={e.column}
+            key={`${e.column}l`}
+          >{`${e.column} ${e.comparison} ${e.value}`}</label>
         </div>
       ))}
     </div>
   );
 }
-FiltersBox.propTypes = {
-  /* actualProps: propTypes.instanceOf(Object).isRequired, */
-  usedFilters: propTypes.func.isRequired,
-};
+
 function Procurar(props) {
-  const { replaceFilters: rF, selectionFilter: sF, usedFilters: uF } = props;
+  const { setName, filterByNumericValues } = useContext(Context);
+  /* const { replaceFilters, selectionFilter, usedFilters } = props; */
   const handlerChange = (event) => {
-    props.updateFilter(event.target.value);
+    setName(event.target.value);
   };
-  let optionsSelect1 = basicOptionsSelect1;
-  props.usedFilters.forEach((e) => {
-    optionsSelect1 = optionsSelect1.filter((o) => o !== e.column);
+  let filtersDrop = NumericOptions;
+  filterByNumericValues.forEach((e) => {
+    filtersDrop = filtersDrop.filter((o) => o !== e.column);
   });
   return (
     <div className="flex-me header">
-      <div>
-        <OrderToMe />
-      </div>
-      <EntrySeach handlerChange={handlerChange} />
+      <NameSearch handlerChange={handlerChange} />
+      <OrderToMe />
       <div className="filters ">
-        <ColumnSearch optionsSelect1={optionsSelect1} />
-        <ComparisonSearch optionsSelect2={optionsSelect2} />
-        <ButtonAdd sF={sF} />
+        <ColumnSearch optionsSelect1={filtersDrop} />
+        <ComparisonSearch optionsSelect2={comparisonOptions} />
+        <ButtonAdd selectionFilter={selectionFilter} />
       </div>
-      <FiltersBox old={props} rF={rF} uF={uF} />
+      <FiltersBox old={props} rF={replaceFilters} usedFilters={filterByNumericValues} />
     </div>
   );
 }
 
-const mapStateToProps = (state) => ({
-  usedFilters: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  updateFilter: (text) => dispatch(updateFilter(text)),
-  selectionFilter: (enterFilter) => dispatch(selectionFilter(enterFilter)),
-  replaceFilters: (payload) => dispatch(replaceFilters(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Procurar);
-
-Procurar.propTypes = {
-  // updateFilter: propTypes.func.isRequired,
-  selectionFilter: propTypes.func.isRequired,
-  replaceFilters: propTypes.func.isRequired,
-  usedFilters: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
-EntrySeach.propTypes = {
-  // optionsSelect1: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
-ComparisonSearch.propTypes = {
-  optionsSelect2: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-};
+export default Procurar;
