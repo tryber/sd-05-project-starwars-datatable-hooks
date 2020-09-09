@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from 'react';
+import apiPlanet from './apiPlanet';
+import Table from './components/Table';
+import InputName from './components/InputName';
+import InputNumber from './components/InputNumber';
+
+const ISSContext = createContext(); // Declarando o contexto numa variável. Retorna 2 obj.
+
+const contextValue = { // valor que será passado para o Provider
+  // Funciona como se fosse o INITIAL_STATE do Redux
+  isFetching: true,
+  batatinhaResults: [],
+}
+
+// render props
+const ShowContext = () => (
+  // Acessando o ISSContext pelo Consumer que está sendo passado no Provider
+  <ISSContext.Consumer>
+    {
+      (context) => (<span>{`Context ${JSON.stringify(context)}`}</span>)
+    }
+  </ISSContext.Consumer>
+)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // todo componente abaixo do Provider tem acesso ao contexto
+    // temos que passar um valor para o Provider que vem do context
+    <ISSContext.Provider value={contextValue}>
+      <div className="App">
+        <header className="App-header">
+          <apiPlanet />
+          <ShowContext />
+          <InputName />
+          <InputNumber />
+          <Table />
+        </header>
+      </div>
+    </ISSContext.Provider>
   );
 }
 
