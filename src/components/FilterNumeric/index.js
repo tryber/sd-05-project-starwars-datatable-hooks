@@ -1,19 +1,16 @@
 import React from 'react';
-import Column from './Column';
-import Comparison from './Comparison';
-import ButtonFilter from './ButtonFilter';
-import Value from './Value';
-import './index.css';
+import ColumnFilter from './ColumnFilter';
+import ComparisonFilter from './ComparisonFilter';
+import ValueFilter from './ValueFilter';
+import FilterButton from './FilterButton';
 
-function FilterNumber() {
-  return (
-    <div>
-      <Column />
-      <Comparison />
-      <Value />
-      <ButtonFilter />
-    </div>
-  );
-}
+const Filters = () => (
+  <div>
+    <ColumnFilter />
+    <ComparisonFilter />
+    <ValueFilter />
+    <FilterButton />
+  </div>
+);
 
-export default FilterNumber;
+export default Filters;

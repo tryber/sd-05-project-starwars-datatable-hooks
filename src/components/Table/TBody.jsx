@@ -7,16 +7,17 @@ import filterSort from '../../services/FilterSort';
 
 const TBody = (props) => {
   const {
-    isFetching,
-    order: { column, sort },
+    fetching,
+    columnValue,
+    sortValue,
   } = useContext(StarWarsContext);
 
   const { allPlanets } = props;
-  const planetsFiltered = filterSort(allPlanets, column, sort);
+  const planetsFiltered = filterSort(allPlanets, columnValue, sortValue);
 
   return (
     <tbody>
-      {isFetching === false
+      {fetching === false
         ? planetsFiltered.map((infoPlaneta) => (
           <TableBody
             key={Math.floor(Math.random() * 0x100000)}

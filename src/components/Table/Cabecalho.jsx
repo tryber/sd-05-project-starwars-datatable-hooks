@@ -1,26 +1,23 @@
-import React, { useContext, useEffect } from 'react';
-import { StarWarsContext } from '../../context/StarWarsContext';
+import React from 'react';
 
-const Cabecalho = () => {
-  const {
-    data,
-    cabecalho,
-    setCabecalho,
-  } = useContext(StarWarsContext);
+const TableHead = () => (
+  <thead>
+    <tr>
+      <th><span>Name</span></th>
+      <th><span>Rotation Period</span></th>
+      <th><span>Orbital Period</span></th>
+      <th><span>Diameter</span></th>
+      <th><span>Climate</span></th>
+      <th><span>Gravity</span></th>
+      <th><span>Terrain</span></th>
+      <th><span>Surface Water</span></th>
+      <th><span>Population</span></th>
+      <th><span>Film</span></th>
+      <th><span>Created</span></th>
+      <th><span>Edited</span></th>
+      <th><span>Url</span></th>
+    </tr>
+  </thead>
+);
 
-  useEffect(() => {
-    setCabecalho(Object.keys(data[0]).filter((titulo) => (titulo !== 'residents')));
-  });
-
-  return (
-    <thead>
-      <tr>
-        {cabecalho.map((titulo) => (
-          <th key={Math.floor(Math.random() * 0x100000)}>{titulo}</th>
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-export default Cabecalho;
+export default TableHead;

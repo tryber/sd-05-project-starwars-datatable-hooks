@@ -2,42 +2,44 @@ import React, { useEffect, useContext } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
 import fetchPlanets from '../../services/planets';
 import FilterPlanet from '../FilterPlanet';
+import FilterNumeric from '../FilterNumeric';
 import FilterAsc from '../FilterAsc';
-// import FilterNumeric from '../FilterNumeric';
+import FilterActive from '../FilterActive';
 import Cabecalho from './Cabecalho';
 import TBody from './TBody';
+
 // Lucas Staroscky filterNumber
 
-// function filterNumber(allPlanets, filter) {
-//   switch (filter.comparison) {
-//     case 'maior que':
-//       return allPlanets.filter(
-//         (planet) => Number(planet[filter.column]) > Number(filter.value)
-//       );
-//     case 'menor que':
-//       return allPlanets.filter(
-//         (planet) => Number(planet[filter.column]) < Number(filter.value)
-//       );
-//     case 'igual a':
-//       return allPlanets.filter(
-//         (planet) => Number(planet[filter.column]) === Number(filter.value)
-//       );
-//     default:
-//       return allPlanets;
-//   }
-// }
+function filterNumber(allPlanets, filter) {
+  switch (filter.comparison) {
+    case 'maior que':
+      return allPlanets.filter(
+        (planet) => Number(planet[filter.column]) > Number(filter.value)
+      );
+    case 'menor que':
+      return allPlanets.filter(
+        (planet) => Number(planet[filter.column]) < Number(filter.value)
+      );
+    case 'igual a':
+      return allPlanets.filter(
+        (planet) => Number(planet[filter.column]) === Number(filter.value)
+      );
+    default:
+      return allPlanets;
+  }
+}
 
-function filterFunc(data, name) {
+function filterFunc(data, name, numericFilter) {
   let allPlanets = [];
 
   if (name !== '') {
     allPlanets = data.filter(
-      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0,
+      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0
     );
   }
-  //   filterByNumericValues.forEach((filter) => {
-  //    allPlanets = filterNumber(allPlanets, filter);
-  //   });
+  numericFilter.forEach((filter) => {
+    allPlanets = filterNumber(data, filter);
+  });
 
   if (allPlanets.length === 0) {
     allPlanets = data;
@@ -48,32 +50,32 @@ function filterFunc(data, name) {
 const Table = () => {
   const {
     data,
-    name,
+    filterByName,
     setData,
-    isFetching,
-    setIsFetching,
-    //filterByNumericValues,
+    fetching,
+    setFetching,
+    numericFilter,
   } = useContext(StarWarsContext);
-
   useEffect(() => {
-    setIsFetching(true);
+    setFetching(true);
     fetchPlanets()
       .then((response) => response)
       .then((json) => {
         setData(json.results);
-        setIsFetching(false);
+        setFetching(false);
       });
-  }, [setData, setIsFetching]);
+  }, [setData, setFetching]);
 
-  const allPlanets = filterFunc(data, name);
-
-  if (isFetching) return <h1>Carregando</h1>;
+  const allPlanets = filterFunc(data, filterByName, numericFilter);
+  if (fetching) return <h1>Carregando</h1>;
 
   return (
     <div>
       <div className="form">
         <FilterPlanet />
+        <FilterNumeric />
         <FilterAsc />
+        <FilterActive />
       </div>
       <table>
         <Cabecalho />
