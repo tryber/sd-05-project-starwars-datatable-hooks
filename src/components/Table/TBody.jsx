@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import TableBody from '../TableBody';
 import { StarWarsContext } from '../../context/StarWarsContext';
-// anderson godoy
+// anderson godoy ss
 // import filterSort from '../../services/FilterSort';
 
 const TBody = (props) => {
