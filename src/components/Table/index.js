@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
 import fetchPlanets from '../../services/planets';
 import FilterPlanet from '../FilterPlanet';
+import FilterAsc from '../FilterAsc';
 import Cabecalho from './Cabecalho';
 import TBody from './TBody';
 // Lucas Staroscky filterNumber
@@ -72,6 +73,7 @@ const Table = () => {
     <div>
       <div className="form">
         <FilterPlanet />
+        <FilterAsc />
       </div>
       <table>
         <Cabecalho />

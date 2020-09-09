@@ -17,6 +17,12 @@ export const StarWarsProvider = ({ children }) => {
     column: 'Name',
     sort: 'ASC',
   });
+  const [sort, setSort] = useState({
+    sort: '',
+  });
+  const [column, setColumn] = useState({
+    column: '',
+  });
 
   const context = {
     data,
@@ -29,6 +35,10 @@ export const StarWarsProvider = ({ children }) => {
     setFilters,
     filterByNumericValues,
     SetFilterByNumericValues,
+    sort,
+    setSort,
+    column,
+    setColumn,
     order,
     setOrder,
   };

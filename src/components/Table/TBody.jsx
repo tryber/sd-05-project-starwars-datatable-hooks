@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import TableBody from '../TableBody';
 import { StarWarsContext } from '../../context/StarWarsContext';
 // anderson godoy ss
-// import filterSort from '../../services/FilterSort';
+import filterSort from '../../services/FilterSort';
 
 const TBody = (props) => {
   const {
     isFetching,
+    order: { column, sort },
   } = useContext(StarWarsContext);
 
   const { allPlanets } = props;
-  // const planetsFiltered = filterSort(allPlanets, order, sort);
+  const planetsFiltered = filterSort(allPlanets, column, sort);
 
   return (
     <tbody>
       {isFetching === false
-        ? allPlanets.map((infoPlaneta) => (
+        ? planetsFiltered.map((infoPlaneta) => (
           <TableBody
             key={Math.floor(Math.random() * 0x100000)}
             data={infoPlaneta}
