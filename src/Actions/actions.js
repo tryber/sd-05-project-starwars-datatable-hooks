@@ -24,28 +24,6 @@ export function updateFilter(payload) {
   };
 }
 
-function Request() {
-  return {
-    type: REQUEST,
-    isLoading: true,
-  };
-}
-
-function requestSucess(payload) {
-  return {
-    type: REQUEST_SUCESS,
-    payload,
-    isLoading: false,
-  };
-}
-
-function requestFail(payload) {
-  return {
-    type: REQUEST_FAIL,
-    payload,
-    isLoading: false,
-  };
-}
 export function headerOrder(payload) {
   return {
     type: ORDENATION,

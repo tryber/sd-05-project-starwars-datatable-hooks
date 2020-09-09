@@ -50,4 +50,4 @@ function ContextSW(props) {
 
 export { ContextSW as Provider, Context };
 
-Context.propType = { children: propType.element.isRequired}
+Context.propType = { children: propType.element.isRequired };
