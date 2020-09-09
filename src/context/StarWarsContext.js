@@ -26,7 +26,7 @@ export const StarWarsProvider = ({ children }) => {
 
   const removeNumericFilter = (removedFilter) => {
     setNumericFilter(
-      numericFilter.filter((filter) => filter.column !== removedFilter)
+      numericFilter.filter((filter) => filter.column !== removedFilter),
     );
   };
 

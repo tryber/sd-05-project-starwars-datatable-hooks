@@ -14,15 +14,15 @@ function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) > Number(filter.value)
+        (planet) => Number(planet[filter.column]) > Number(filter.value),
       );
     case 'menor que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) < Number(filter.value)
+        (planet) => Number(planet[filter.column]) < Number(filter.value),
       );
     case 'igual a':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) === Number(filter.value)
+        (planet) => Number(planet[filter.column]) === Number(filter.value),
       );
     default:
       return allPlanets;
@@ -34,7 +34,7 @@ function filterFunc(data, name, numericFilter) {
 
   if (name !== '') {
     allPlanets = data.filter(
-      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0
+      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0,
     );
   }
   numericFilter.forEach((filter) => {
