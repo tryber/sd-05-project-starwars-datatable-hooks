@@ -59,30 +59,7 @@ export function headerData(payload) {
     payload,
   };
 }
-function small(data) {
-  const planets = data.results.map((e) => {
-    delete e.residents;
-    const t = { ...e };
-    return t;
-  });
-  return Object.entries(planets[0]).map((e) => e[0]);
-}
 
-export function getAPI() {
-  return (dispatch) => {
-    dispatch(Request());
-    const url = 'https://swapi-trybe.herokuapp.com/api/planets';
-    return fetch(`${url}`)
-      .then((resp) => resp.json()
-        .then((e) => {
-          dispatch(requestSucess(e));
-          return e;
-        },
-        )
-        .then((e) => dispatch(headerData(small(e))))
-        .catch((e) => dispatch(requestFail(e))));
-  };
-}
 export function selectionFilter(payload) {
   return {
     type: FILTER_SELECTION,

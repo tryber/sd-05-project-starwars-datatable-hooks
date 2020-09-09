@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import propType from 'prop-types';
 
 const Context = createContext();
 const { Provider } = Context;
@@ -48,3 +49,5 @@ function ContextSW(props) {
 }
 
 export { ContextSW as Provider, Context };
+
+Context.propType = { children: propType.element.isRequired}

@@ -9,7 +9,6 @@ function App() {
       <Aux />
     </Provider>
   );
-
 }
 
 export default (App);
