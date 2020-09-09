@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
-
+// Felipe Vieira
 const ActiveFilters = () => {
   const { numericFilter, removeNumericFilter } = useContext(StarWarsContext);
   return (

@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
-
+// Felipe Vieira
 export const StarWarsContext = createContext();
 
 export const StarWarsProvider = ({ children }) => {
