@@ -21,6 +21,6 @@ const Cabecalho = () => {
       </tr>
     </thead>
   );
-}
+};
 
 export default Cabecalho;

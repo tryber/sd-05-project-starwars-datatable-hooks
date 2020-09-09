@@ -30,13 +30,13 @@ function filterFunc(data, name, filterByNumericValues = 0) {
 
   if (name !== '') {
     allPlanets = data.filter(
-      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0
+      (el) => el.name.toLowerCase().indexOf(name.toLowerCase()) >= 0,
     );
   }
   //   filterByNumericValues.forEach((filter) => {
   //     allPlanets = filterNumber(allPlanets, filter);
   //   });
-
+  console.log(filterByNumericValues)
   if (allPlanets.length === 0) {
     allPlanets = data;
   }
@@ -63,7 +63,7 @@ const Table = () => {
       });
   }, [setData, setIsFetching]);
 
-  let filterByNumericValues = 10;
+  const filterByNumericValues = 10;
   const allPlanets = filterFunc(data, name, filterByNumericValues);
 
   if (isFetching) return <h1>Carregando</h1>;

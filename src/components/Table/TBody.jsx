@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import TableBody from '../TableBody';
 import { StarWarsContext } from '../../context/StarWarsContext';
 // anderson godoy
-//import filterSort from '../../services/FilterSort';
+// import filterSort from '../../services/FilterSort';
 
 const TBody = (props) => {
   const {
@@ -10,7 +11,7 @@ const TBody = (props) => {
   } = useContext(StarWarsContext);
 
   const { allPlanets } = props;
-  //const planetsFiltered = filterSort(allPlanets, order, sort);
+  // const planetsFiltered = filterSort(allPlanets, order, sort);
 
   return (
     <tbody>
@@ -24,7 +25,10 @@ const TBody = (props) => {
         : null}
     </tbody>
   );
-}
+};
+
+Table.propTypes = {
+  allPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default TBody;
-
