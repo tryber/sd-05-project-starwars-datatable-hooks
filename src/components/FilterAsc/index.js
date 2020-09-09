@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
+import PropTypes from 'prop-types';
+import COLUNAS from './colunas';
 
-const options = ['', 'name', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
 const FilterAsc = () => {
+  const rCol = COLUNAS();
+
   const [column, setColumn] = useState('');
   const [sort, setSort] = useState('');
   const { setOrder } = useContext(StarWarsContext);
@@ -26,24 +29,37 @@ const FilterAsc = () => {
     <div>
       <div>
         <select name="column" value={column} onChange={handleChange} data-testid="column-sort">
-          { options.map((item) => <option key={item}>{item}</option>) };
+          { rCol.map((item) => <option key={item}>{item}</option>) };
         </select>
       </div>
-      <input
-        type="radio" data-testid="column-sort-input-asc" name="sort" value="ASC"
-        id="ASC" onClick={handleChange}
-      />
-      <label htmlFor="ASC">ASC</label>
-      <input
-        type="radio" data-testid="column-sort-input-desc" name="sort" value="DESC"
-        id="DESC" onClick={handleChange}
-      />
-      <label htmlFor="DESC">DESC</label>
-      <button type="button" onClick={handleClick} data-testid="column-sort-button">
+      <label htmlFor="ASC">
+        <input
+          type="radio" id="ASC" value="ASC" data-testid="column-sort-input"
+          onClick={handleChange}
+        />
+        ASC
+      </label>
+      <label htmlFor="DESC">
+        <input
+          type="radio" id="DESC" value="DESC" data-testid="column-sort-input"
+          onClick={handleChange}
+        />
+        DSC
+      </label>
+      <button
+        data-testid="column-sort-button"
+        onClick={handleClick}
+      >
         Filtrar
       </button>
     </div>
   );
+}
+
+FilterAsc.propTypes = {
+  columnASC: PropTypes.string.isRequired,
+  sortASC: PropTypes.string.isRequired,
+  sortFilter: PropTypes.func.isRequired,
 };
 
 export default FilterAsc;

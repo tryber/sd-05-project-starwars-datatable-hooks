@@ -10,7 +10,7 @@ const Cabecalho = () => {
 
   useEffect(() => {
     setCabecalho(Object.keys(data[0]).filter((titulo) => (titulo !== 'residents')));
-  }, []);
+  });
 
   return (
     <thead>

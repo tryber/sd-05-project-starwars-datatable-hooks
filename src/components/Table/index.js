@@ -3,6 +3,7 @@ import { StarWarsContext } from '../../context/StarWarsContext';
 import fetchPlanets from '../../services/planets';
 import FilterPlanet from '../FilterPlanet';
 import FilterAsc from '../FilterAsc';
+// import FilterNumeric from '../FilterNumeric';
 import Cabecalho from './Cabecalho';
 import TBody from './TBody';
 // Lucas Staroscky filterNumber
@@ -26,7 +27,7 @@ import TBody from './TBody';
 //   }
 // }
 
-function filterFunc(data, name, filterByNumericValues = 0) {
+function filterFunc(data, name) {
   let allPlanets = [];
 
   if (name !== '') {
@@ -37,7 +38,7 @@ function filterFunc(data, name, filterByNumericValues = 0) {
   //   filterByNumericValues.forEach((filter) => {
   //    allPlanets = filterNumber(allPlanets, filter);
   //   });
-  console.log(filterByNumericValues);
+
   if (allPlanets.length === 0) {
     allPlanets = data;
   }
@@ -64,8 +65,7 @@ const Table = () => {
       });
   }, [setData, setIsFetching]);
 
-  const filterByNumericValues = 10;
-  const allPlanets = filterFunc(data, name, filterByNumericValues);
+  const allPlanets = filterFunc(data, name);
 
   if (isFetching) return <h1>Carregando</h1>;
 
