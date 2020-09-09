@@ -1,5 +1,45 @@
-import { createContext } from 'react';
+import React, { useState, createContext } from 'react';
+import PropTypes from 'prop-types';
 
-const StarWarsContext = createContext();
+export const StarWarsContext = createContext();
 
-export default StarWarsContext;
+export const StarWarsProvider = ({ children }) => {
+  const [data, setData] = useState([]);
+  const [cabecalho, setCabecalho] = useState([]);
+  const [isFetching, setIsFetching] = useState('false');
+  const [filters, setFilters] = useState({
+    filterByName: {
+      name: '',
+    },
+  });
+  const [filterByNumericValues, SetFilterByNumericValues] = useState([]);
+  const [order, setOrder] = useState({
+    column: 'Name',
+    sort: 'ASC',
+  });
+
+  const context = {
+    data,
+    setData,
+    cabecalho,
+    setCabecalho,
+    isFetching,
+    setIsFetching,
+    name: filters.filterByName.name,
+    setFilters,
+    filterByNumericValues,
+    SetFilterByNumericValues,
+    order,
+    setOrder,
+  };
+
+  return (
+    <StarWarsContext.Provider value={context}>
+      {children}
+    </StarWarsContext.Provider>
+  );
+};
+
+StarWarsProvider.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+};
