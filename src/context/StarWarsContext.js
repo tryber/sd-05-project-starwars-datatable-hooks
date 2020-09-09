@@ -20,10 +20,12 @@ export const StarWarsProvider = ({ children }) => {
   const [valueFilter, setValueFilter] = useState('');
   const [numericFilter, setNumericFilter] = useState([]);
 
-  const addNewFilter = (column, comparison, value) => {
+  // Adiciona um novo filtro
+  const setNewFilter = (column, comparison, value) => {
     setNumericFilter([...numericFilter, { column, comparison, value }]);
   };
 
+  // Ao clicar no X o filtro será removido
   const removeNumericFilter = (removedFilter) => {
     setNumericFilter(
       numericFilter.filter((filter) => filter.column !== removedFilter),
@@ -48,7 +50,7 @@ export const StarWarsProvider = ({ children }) => {
     valueFilter,
     setValueFilter,
     numericFilter,
-    addNewFilter,
+    setNewFilter,
     removeNumericFilter,
     sort,
     setSort,

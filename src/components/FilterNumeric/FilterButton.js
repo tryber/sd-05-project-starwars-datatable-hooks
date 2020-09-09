@@ -2,12 +2,13 @@ import React from 'react';
 import { useContext } from 'react';
 import { StarWarsContext } from '../../context/StarWarsContext';
 
+// Adiciona um novo filtro
 const Button = () => {
-  const { addNewFilter, columnFilter, comparisonFilter, valueFilter } = useContext(StarWarsContext);
+  const { setNewFilter, columnFilter, comparisonFilter, valueFilter } = useContext(StarWarsContext);
   return (
     <button
       type="button"
-      onClick={() => addNewFilter(columnFilter, comparisonFilter, valueFilter)}
+      onClick={() => setNewFilter(columnFilter, comparisonFilter, valueFilter)}
       data-testid="button-filter"
     >
       Filter
