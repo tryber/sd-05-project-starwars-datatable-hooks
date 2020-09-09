@@ -27,7 +27,7 @@ const TBody = (props) => {
   );
 };
 
-Table.propTypes = {
+TBody.propTypes = {
   allPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

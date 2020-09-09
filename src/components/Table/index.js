@@ -36,7 +36,7 @@ function filterFunc(data, name, filterByNumericValues = 0) {
   //   filterByNumericValues.forEach((filter) => {
   //     allPlanets = filterNumber(allPlanets, filter);
   //   });
-  console.log(filterByNumericValues)
+  console.log(filterByNumericValues);
   if (allPlanets.length === 0) {
     allPlanets = data;
   }
