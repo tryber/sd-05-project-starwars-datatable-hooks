@@ -8,6 +8,9 @@ export const Provider = ({ children }) => {
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState('');
 
   const context = {
     fetching,
@@ -20,6 +23,12 @@ export const Provider = ({ children }) => {
     setFilterByNumericValues,
     order,
     setOrder,
+    column,
+    setColumn,
+    comparison,
+    setComparison,
+    value,
+    setValue,
   };
 
   return (

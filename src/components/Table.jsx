@@ -2,8 +2,8 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import Header from './Header';
 import Body from './Body';
-// import Select from './Select';
-// import FiltersList from './FiltersList';
+import Select from './Select';
+import FiltersList from './FiltersList';
 // import Order from './Bonus';
 
 class Table extends React.Component {
@@ -12,10 +12,9 @@ class Table extends React.Component {
       <div>
         <h1>StarWars Datatable with Filters</h1>
         <SearchBar />
-        {/*
-        <Select />
         <FiltersList />
-        <Order /> */}
+        <Select />
+        {/* <Order /> */}
         <table>
           <Header />
           <Body />
