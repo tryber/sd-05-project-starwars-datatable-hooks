@@ -3,7 +3,7 @@ import { StarWarsContext } from '../context/StarWarsContext';
 // import SelectOption from './SelectOption';
 
 function SearchBar() {
-  const {setFilterByName} = useContext(StarWarsContext)
+  const { setFilterByName } = useContext(StarWarsContext);
   return (
     <div>
       <input
