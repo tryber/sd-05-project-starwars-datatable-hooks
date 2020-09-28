@@ -27,8 +27,9 @@ function filtrando(byNumeric, planets) {
   return finalPlanets;
 }
 
+// prettier-ignore
 function funcaoOrdenar(planetas, order) {
-  const {sort, column} = order
+  const { sort, column } = order;
   const literal = [
     'name',
     'climate',
@@ -47,17 +48,22 @@ function funcaoOrdenar(planetas, order) {
     return planetas.sort((a, b) => (b[Column] > a[Column] ? 1 : -1));
   }
   if (sort === 'ASC') {
-    return planetas.sort((a, b) => 1 * a[Column] - 1 * b[Column]);
+    return planetas.sort((a, b) => (1 * a[Column]) - (1 * b[Column]));
   }
-  return planetas.sort((a, b) => 1 * b[Column] - 1 * a[Column]);
+  return planetas.sort((a, b) => (1 * b[Column]) - (1 * a[Column]));
 }
 
 // const { filters } = this.props;
 
 export default function Body() {
-  const { planets, setPlanets, filterByNumericValues, filterByName, ordenar, order } = useContext(
-    StarWarsContext,
-  );
+  const {
+    planets,
+    setPlanets,
+    filterByNumericValues,
+    filterByName,
+    ordenar,
+    order,
+  } = useContext(StarWarsContext);
 
   let filterPlanets = filtrando(filterByNumericValues, planets);
 
