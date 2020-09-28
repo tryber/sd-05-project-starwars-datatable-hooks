@@ -19,7 +19,7 @@ export const Provider = ({ children }) => {
     filterByNumericValues,
     setFilterByNumericValues,
     order,
-    setOrder
+    setOrder,
   };
 
   return (
