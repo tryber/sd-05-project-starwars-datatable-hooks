@@ -91,17 +91,3 @@ export default function Body() {
     </tbody>
   );
 }
-
-// ANCHOR mapToProps
-// const mapStateToProps = (state) => ({
-//   planets: state.planetsReducer.planets,
-//   filters: state.filters.filterByName.name,
-//   byNumeric: state.filters.filterByNumericValues,
-//   column: state.filters.order.column,
-//   ordem: state.filters.order.sort,
-//   ordenar: state.filters.ordenar,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   AcionaApi: () => dispatch(AcionaApi()),
-// });
