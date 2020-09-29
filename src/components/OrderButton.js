@@ -23,30 +23,30 @@ export default function OrderButton() {
 
   // prettier-ignore
   return (
-      <div>
-        <select
-          data-testid="column-sort"
-          onChange={(event) => setSelectColumn(event.target.value)
-          }
-        >
-          {colunas.map((value) => (
-            <option key={value} value={value.toLowerCase()}>{value}</option>
-          ))}
-        </select>
-        <input
-          id="ASC" data-testid="column-sort-input-asc" type="radio" name="ordem" value="ASC"
-          onChange={(event) => setSobeOuDesce(event.target.value)}
-        />
-        <label htmlFor="ASC">ASC</label>
-        <input
-          id="DESC" data-testid="column-sort-input-desc" type="radio" name="ordem" value="DESC"
-          onChange={(event) => setSobeOuDesce(event.target.value)}
-        />
-        <label htmlFor="DESC">DESC</label>
-        <button
-          data-testid="column-sort-button"
-          onClick={() => orderFunction(sobeOuDesce, selectColumn)}
-        >CLIQUE AQUI</button>
-      </div>
-    );
+    <div>
+      <select
+        data-testid="column-sort"
+        onChange={(event) => setSelectColumn(event.target.value)
+        }
+      >
+        {colunas.map((value) => (
+          <option key={value} value={value.toLowerCase()}>{value}</option>
+        ))}
+      </select>
+      <input
+        id="ASC" data-testid="column-sort-input-asc" type="radio" name="ordem" value="ASC"
+        onChange={(event) => setSobeOuDesce(event.target.value)}
+      />
+      <label htmlFor="ASC">ASC</label>
+      <input
+        id="DESC" data-testid="column-sort-input-desc" type="radio" name="ordem" value="DESC"
+        onChange={(event) => setSobeOuDesce(event.target.value)}
+      />
+      <label htmlFor="DESC">DESC</label>
+      <button
+        data-testid="column-sort-button"
+        onClick={() => orderFunction(sobeOuDesce, selectColumn)}
+      >CLIQUE AQUI</button>
+    </div>
+  );
 }
