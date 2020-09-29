@@ -57,6 +57,8 @@ function funcaoOrdenar(planetas, order) {
 
 export default function Body() {
   const {
+    isFetching,
+    setIsFetching,
     planets,
     setPlanets,
     filterByNumericValues,
@@ -75,8 +77,11 @@ export default function Body() {
   }
 
   useEffect(() => {
+    setIsFetching(true);
     Api().then((response) => setPlanets(response.results));
-  }, [planets, setPlanets]);
+    setIsFetching(false);
+    console.log(isFetching);
+  }, [setIsFetching, setPlanets]);
 
   return (
     <tbody>

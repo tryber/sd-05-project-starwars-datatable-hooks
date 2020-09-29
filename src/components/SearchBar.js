@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { StarWarsContext } from '../context/StarWarsContext';
-// import SelectOption from './SelectOption';
+import SelectOption from './SelectOption';
 
 function SearchBar() {
   const { setFilterByName } = useContext(StarWarsContext);
@@ -10,7 +10,7 @@ function SearchBar() {
         data-testid="name-filter"
         onChange={(event) => setFilterByName(event.target.value)}
       />
-      {/* <SelectOption /> */}
+      <SelectOption />
     </div>
   );
 }
