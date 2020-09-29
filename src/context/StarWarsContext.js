@@ -14,9 +14,13 @@ const StarWarsProvider = ({ children }) => {
   });
   const [ordenar, setOrdenar] = useState(true);
   const orderFunction = (ordem, coluna) =>
-    setOrder((estadoAtual) => ({ ...estadoAtual, sort: ordem, column: coluna }));
+    setOrder((estadoAtual) => ({
+      ...estadoAtual,
+      sort: ordem,
+      column: coluna,
+    }));
   const byNumericValuesFunction = (valor) =>
-    setFilterByNumericValues((estado) => [...estado, valor]);  
+    setFilterByNumericValues((estado) => [...estado, valor]);
   const context = {
     isFetching,
     setIsFetching,
