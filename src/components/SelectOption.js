@@ -39,7 +39,7 @@ function SelectOption() {
       <select
         onChange={(event) => setColumn(event.target.value)} data-testid="column-filter"
       >
-        {colunas.map((param) => ( //'value' is already declared in the upper scope.
+        {colunas.map((param) => (
           <option key={param} value={param}>{param}</option>
         ))}
       </select>
