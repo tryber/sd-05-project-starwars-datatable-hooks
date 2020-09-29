@@ -37,18 +37,14 @@ function SelectOption() {
   return (
     <div>
       <select
-        onChange={(event) => setColumn(event.target.value)}
-        data-testid="column-filter"
+        onChange={(event) => setColumn(event.target.value)} data-testid="column-filter"
       >
         {colunas.map((value) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
+          <option key={value} value={value}>{value}</option>
         ))}
       </select>
       <select
-        onChange={(event) => setComparison(event.target.value)}
-        data-testid="comparison-filter"
+        onChange={(event) => setComparison(event.target.value)} data-testid="comparison-filter"
       >
         <option value="" />
         <option value="maior que">maior que</option>
@@ -56,9 +52,7 @@ function SelectOption() {
         <option value="igual a">igual a</option>
       </select>
       <input
-        data-testid="value-filter"
-        type="number"
-        onChange={(event) => setValue(event.target.value)}
+        data-testid="value-filter" type="number" onChange={(event) => setValue(event.target.value)}
       />
       <button data-testid="button-filter" onClick={() => hC()}>
         CLIQUE AQUI
@@ -67,18 +61,4 @@ function SelectOption() {
   );
 }
 
-// const mapStateToProps = (state) => ({
-//   filtros: state.filters.filterByNumericValues,
-// });
-
-// // Aprendi com o Felipe a forma de colocar o MapDispatch assim. Depois descobri que deu ruim
-// const mapDispatchToProps = (dispatch) => ({
-//   filter: (a) => dispatch(filterGeneral(a)),
-// });
-
 export default SelectOption;
-
-// SelectOption.propTypes = {
-//   filter: PropTypes.func.isRequired,
-//   filtros: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
