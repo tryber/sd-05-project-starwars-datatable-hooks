@@ -6,13 +6,10 @@ const FiltersList = () => {
   const filters = filterByNumericValues;
 
   const HandleClick = (event) => {
-    const remove = (list) => {
-      setFilterByNumericValues({ ...filterByNumericValues, list });
-    };
     const filterCopy = [...filters];
     const removedArray = filters.map((filterList) => filterList.column);
     filterCopy.splice(removedArray.indexOf(event.target.id), 1);
-    remove(filterCopy);
+    setFilterByNumericValues(filterCopy);
   };
   return (
     <div>
@@ -25,10 +22,6 @@ const FiltersList = () => {
     </div>
   );
 };
-
-/* const mapDispatchToProps = (dispatch) => ({
-  remove: (list) => dispatch(removeFiltersFromList(list)),
-}); */
 
 export default FiltersList;
 

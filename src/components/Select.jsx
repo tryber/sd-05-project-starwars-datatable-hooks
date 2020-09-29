@@ -10,14 +10,11 @@ const Select = () => {
     '', 'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population',
   ]);
   const ComparisonFilter = (event) => {
-    setComparison({ ...comparison, comparison: event.target.value });
-  };
-  const ValueFilter = (event) => {
-    setValue({ ...value, value: event.target.value });
+    setComparison(event.target.value);
   };
   const HandleClick = () => {
-    const filters = setFilterByNumericValues();
-    filters({ column, comparison, value });
+    const filters = setFilterByNumericValues;
+    filters((oldState) => [...oldState, { column, comparison, value }]);
   };
   const filtered = filterByNumericValues;
   const columns = [...columnFilter];
@@ -30,9 +27,9 @@ const Select = () => {
     <div>
       <select
         data-testid="column-filter"
-        onChange={(event) => setColumn({ ...column, column: event.target.value })}
+        onChange={(event) => setColumn(event.target.value)}
       >
-        {columns.map((value) => (<option key={value} value={value}>{value}</option>))}
+        {columns.map((valor) => (<option key={valor} value={valor}>{valor}</option>))}
       </select>
       <select data-testid="comparison-filter" onChange={ComparisonFilter}>
         <option value="comparison">comparison</option>
@@ -40,7 +37,7 @@ const Select = () => {
         <option value="menor que">menor que</option>
         <option value="igual a">igual a</option>
       </select>
-      <input data-testid="value-filter" type="number" onChange={ValueFilter} />
+      <input data-testid="value-filter" type="number" onChange={(e) => setValue(e.target.value)} />
       <button data-testid="button-filter" onClick={HandleClick}>
         Filter
       </button>

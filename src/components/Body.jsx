@@ -54,12 +54,10 @@ const Body = () => {
       setFetching(false);
     });
   }, [setPlanetsData, setFetching]);
-  console.log(planetsData);
 
   let filterAll = FilterPlanets(planetsData, filterByNumericValues);
   filterAll = sortMe(filterAll, order);
   const filters = filterByName.name;
-  console.log(filterByName);
   if (fetching) {
     return (<tbody><tr><td>Loading...</td></tr></tbody>);
     /* Alterado de Div para td pra evitar erro chato de DOM que não prejudica funcionamento porém
@@ -71,7 +69,7 @@ const Body = () => {
         .filter((planet) => planet.name.includes(filters))
         .map((planet) => (
           <tr key={planet.name}>
-            <td>{planet.name}</td>
+            <td data-testid="planet-name">{planet.name}</td>
             <td>{planet.rotation_period}</td>
             <td>{planet.orbital_period}</td>
             <td>{planet.diameter}</td>
