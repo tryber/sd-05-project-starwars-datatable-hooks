@@ -6,7 +6,7 @@ import { StarWarsContext } from '../context/StarWarsContext';
 
 function AllFilters() {
   const { filterByNumericValues, setFilterByNumericValues } = useContext(
-    StarWarsContext
+    StarWarsContext,
   );
 
   function hC(e) {
@@ -18,17 +18,17 @@ function AllFilters() {
   }
   // prettier-ignore
   return (
-      <div>
-        {filterByNumericValues.map((filt) => (
-          <div key={filt.column} data-testid="filter">
-            {`${filt.column} ${filt.comparison} ${filt.value}`}
-            <button id={filt.column} onClick={(e) => hC(e)}>
-              X
-            </button>
-          </div>
-        ))}
-      </div>
-    );
+    <div>
+      {filterByNumericValues.map((filt) => (
+        <div key={filt.column} data-testid="filter">
+          {`${filt.column} ${filt.comparison} ${filt.value}`}
+          <button id={filt.column} onClick={(e) => hC(e)}>
+            X
+          </button>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 // const mapStateToProps = (state) => ({
