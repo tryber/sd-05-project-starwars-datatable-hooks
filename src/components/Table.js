@@ -9,7 +9,7 @@ function Table() {
     componentDidMount,quando montado, toda vez que o
     componente é renderizado é feita umaChamada na API.
   */
-  const {isFetching, setIsFetching, setData, data} = useContext(SWContext);
+  const { isFetching, setIsFetching, setData, data } = useContext(SWContext);
 
   useEffect(() => {
     setIsFetching(true);
@@ -18,7 +18,6 @@ function Table() {
   }, [setIsFetching, setData]);
 
   function renderTable() {
-
     return data.map((planet) => (
       <tr>
         <td>{planet.name}</td>
@@ -93,31 +92,31 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
 /* A function filterByNumber foi retirado do código
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
-const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
-  let planetasExibidos = planetas;
-  filterByNumericValues.forEach((filter) => {
-    planetasExibidos = filterByNumber(planetasExibidos, filter);
-  });
+// const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
+//   let planetasExibidos = planetas;
+//   filterByNumericValues.forEach((filter) => {
+//     planetasExibidos = filterByNumber(planetasExibidos, filter);
+//   });
 
-  if (filtroDeTexto !== '') {
-    planetasExibidos = planetasExibidos.filter((planet) => planet.name
-      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
-  }
+//   if (filtroDeTexto !== '') {
+//     planetasExibidos = planetasExibidos.filter((planet) => planet.name
+//       .toLowerCase().includes(filtroDeTexto.toLowerCase()));
+//   }
 
-  planetasExibidos = planetasExibidos.sort((a, b) => {
-    if (isNaN(a[order.column])) {
-      if (order.sort === 'ASC') {
-        return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
-      }
-      return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
-    }
-    if (order.sort === 'ASC') {
-      return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
-    }
-    return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
-  });
-  return [...planetasExibidos];
-};
+//   planetasExibidos = planetasExibidos.sort((a, b) => {
+//     if (isNaN(a[order.column])) {
+//       if (order.sort === 'ASC') {
+//         return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
+//       }
+//       return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
+//     }
+//     if (order.sort === 'ASC') {
+//       return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
+//     }
+//     return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
+//   });
+//   return [...planetasExibidos];
+// };
 
 /* os states que vou usar mapStateToProps vem do initial_state do reducer*/
 // const mapStateToProps = (state) => ({
