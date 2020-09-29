@@ -16,7 +16,7 @@ function SelectOption() {
   const [value, setValue] = useState(0);
 
   const { filterByNumericValues, byNumericValuesFunction } = useContext(
-    StarWarsContext
+    StarWarsContext,
   );
 
   function hC() {
@@ -39,8 +39,8 @@ function SelectOption() {
       <select
         onChange={(event) => setColumn(event.target.value)} data-testid="column-filter"
       >
-        {colunas.map((value) => (
-          <option key={value} value={value}>{value}</option>
+        {colunas.map((param) => ( //'value' is already declared in the upper scope.
+          <option key={param} value={param}>{param}</option>
         ))}
       </select>
       <select
