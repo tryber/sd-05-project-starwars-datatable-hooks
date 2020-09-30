@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import Headers from './HeaderTabela';
-// import FiltrosDaPagina from './HeaderPagina';
+import FiltrosDaPagina from './HeaderPagina';
 import SWContext from '../context/StarWarsContext';
 import StarWarsPlanetsAPI from '../services/StarWarsPlanetsAPI';
 
@@ -41,7 +41,7 @@ function Table() {
   return (
     <div>
       <div>
-        {/* <FiltrosDaPagina /> */}
+        <FiltrosDaPagina />
       </div>
       <table>
         <Headers />

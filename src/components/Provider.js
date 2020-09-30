@@ -6,11 +6,13 @@ const SWProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const [filterByName, setFilterByName] = useState('');
-  const [filterByNumericValues, setFilterByNumericValues] = useState({
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [removerFiltroDaTela, setRemoverFiltroDaTela] = useState([]);
+  const [order, setOrder] = useState({
     column: 'Name',
     sort: 'ASC',
   });
-
+  console.log('filterByNumericValues', filterByNumericValues);
   const context = {
     data,
     setData,
@@ -20,6 +22,8 @@ const SWProvider = ({ children }) => {
     setFilterByName,
     filterByNumericValues,
     setFilterByNumericValues,
+    order,
+    setOrder,
   };
 
   return (
