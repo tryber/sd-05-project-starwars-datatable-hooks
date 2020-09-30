@@ -39,7 +39,7 @@ const SWProvider = ({ children }) => {
     order,
     setOrder,
     removerFiltroDaTela,
-    setRemoverFiltroDaTela
+    setRemoverFiltroDaTela,
   };
 
   return (
