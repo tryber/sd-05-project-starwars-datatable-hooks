@@ -46,12 +46,14 @@ function FiltrosDaPagina() {
   const {
     filterByNumericValues,
     setFilterByNumericValues,
+    filterByName,
     setFilterByName,
     order,
     setOrder,
-    setRemoverFiltroDaTela
+    setRemoverFiltroDaTela,
   } = useContext(SWContext);
-  console.log('filterByNumericValues', filterByNumericValues)
+  console.log('filterByNumericValues', filterByNumericValues);
+  console.log('filterByName', filterByName);
   function handleColumnChange(event) {
     setColumn(event.target.value);
   }
@@ -64,9 +66,9 @@ function FiltrosDaPagina() {
     setValue(event.target.value);
   }
 
-  function showFilters(filters) {
+  function showFilters() {
     // console.log('showFilters', filters);
-    const teste = filters.map((element) =>
+    const teste = filterByNumericValues.map((element) =>
       <div data-testid="filter">
         <button onClick={() => setRemoverFiltroDaTela(element.column)}>X</button>
         <p>{element.column} {element.comparison} {element.value}</p>
@@ -74,18 +76,6 @@ function FiltrosDaPagina() {
     );
     return teste;
   }
-
-  /*
-  {columns
-    .filter((option) => !filters.map((filter) => filter.column).includes(option))
-    .map((option) => <option value={option}>{option}</option>)
-  }
-  O primeiro map da função renderColumns faz a filtragem do state de
-  filters(column: action.column, comparison: action.comparison, value: action.value),
-  retirando somente column. O segundo filter retira
-  de columns(array que foi declarado acima)a opção que incluso em currentFilterColumns e
-  o terceiro map cria options para cada coluna restante
-  */
 
   function rederSelects() {
     return (
@@ -96,7 +86,8 @@ function FiltrosDaPagina() {
           onChange={handleColumnChange}
         >
           {columns
-            .filter((option) => !filterByNumericValues.map((filter) => filter.column).includes(option))
+            .filter((option) =>
+              !filterByNumericValues.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
         <select
@@ -104,7 +95,8 @@ function FiltrosDaPagina() {
           onChange={handleComparisonChange}
         >
           {options
-            .filter((option) => !filterByNumericValues.map((filter) => filter.column).includes(option))
+            .filter((option) =>
+              !filterByNumericValues.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
       </div>
@@ -132,6 +124,7 @@ function FiltrosDaPagina() {
             onChange={handleSortChange}
           />ASC
         </label>
+
         <label htmlFor="DESC">
           <input
             type="radio"
@@ -198,7 +191,7 @@ function FiltrosDaPagina() {
 
   return (
     <div>
-      {renderProcurar()}
+      {renderProcurar(filterByName)}
       {renderFiltrosValoresNum()}
       {renderFiltersOrder()}
       <div>

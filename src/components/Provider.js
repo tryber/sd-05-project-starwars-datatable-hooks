@@ -5,7 +5,13 @@ import StarWarsContext from '../context/StarWarsContext';
 const SWProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  const [filterByName, setFilterByName] = useState('');
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState(0);
+  const [sortColumn, setSortColumn] = useState('');
+  const [filterByName, setFilterByName] = useState({
+    name: '',
+  });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [removerFiltroDaTela, setRemoverFiltroDaTela] = useState([]);
   const [order, setOrder] = useState({
@@ -14,6 +20,14 @@ const SWProvider = ({ children }) => {
   });
   console.log('filterByNumericValues', filterByNumericValues);
   const context = {
+    column,
+    setColumn,
+    comparison,
+    setComparison,
+    value,
+    setValue,
+    sortColumn,
+    setSortColumn,
     data,
     setData,
     isFetching,
@@ -24,6 +38,8 @@ const SWProvider = ({ children }) => {
     setFilterByNumericValues,
     order,
     setOrder,
+    removerFiltroDaTela,
+    setRemoverFiltroDaTela
   };
 
   return (
