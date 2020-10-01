@@ -1,9 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { filterPlanet } from '../actions/actionFilter';
+import { useEffect } from 'react';
 
-class InputName extends React.Component {
+function InputName() {
+  // useEffect(() => {
+  //   filterPlanet()
+  // })
+  return (
+    <div>
+        <input // campo para filtrar por nome
+          data-testid="name-filter"
+          type="text"
+          onChange={(event) => filterPlanet(event.target.value)}
+        />
+      </div>
+  )
+}
+
+export default InputName;
+
+InputName.propTypes = {
+  filterPlanet: propTypes.func.isRequired,
+};
+
+/* class InputName extends React.Component {
   render() {
     const { searchByName } = this.props;
     return (
@@ -27,3 +48,4 @@ export default connect(null, mapDispatchToProps)(InputName);
 InputName.propTypes = {
   searchByName: propTypes.func.isRequired,
 };
+ */

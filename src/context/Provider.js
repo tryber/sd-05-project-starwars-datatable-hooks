@@ -7,6 +7,9 @@ function Provider(props) { // provê infos
   const [isFetching, setIsFetching] = useState(true);
   const [nombreProcurado, setNombreProcurado] = useState('');
   const [numericFilter, setNumericFilter] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [filterOrder, setFilterOrder] = useState({});
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const { children } = props;
 
@@ -19,6 +22,12 @@ function Provider(props) { // provê infos
     setNombreProcurado,
     numericFilter,
     setNumericFilter,
+    options,
+    setOptions,
+    filterOrder,
+    setFilterOrder,
+    filterByNumericValues,
+    setFilterByNumericValues,
   };
 
   return (

@@ -1,10 +1,104 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import propTypes, { instanceOf } from 'prop-types';
-import { filterByNumber, removeClick } from '../actions/actionFilter';
+import { removeClick } from '../actions/actionFilter';
 import FiltroOrdenado from './FiltroOrdenado';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
+import { useState } from 'react';
 
-class InputNumber extends React.Component {
+function InputNumber() {
+  const {
+    options,
+    setOptions,
+    filterByNumericValues,
+    setFilterByNumericValues
+  } = useContext(StarWarsContext);
+
+  const[state, setState] = useState({column:'', comparison:'', value:0});
+
+  useEffect(() => {
+    setOptions(
+      filterByNumericValues.map((element) => element.column)
+    )
+  }, [filterByNumericValues]);
+
+  function selectParameter(e) {
+    setState({...state, [e.target.id]: e.target.value });
+  }
+
+  function handleClick() {
+    const { column, comparison, value } = state;
+    setFilterByNumericValues((e) => ([...e, {column, comparison, value}]));
+  }
+
+  function seletores(selectedOption) {
+    return (
+      <div>
+        <select id="column" data-testid="column-filter" onChange={(event) => selectParameter(event)}>
+          {selectedOption.map((element) => (
+            <option value={element} key={element}>
+              {element}
+            </option>
+          ))}
+        </select>
+        <select id="comparison" data-testid="comparison-filter" onChange={(event) => selectParameter(event)}>
+          <option value="" disabled selected>
+            Compare
+          </option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
+        </select>
+        <input
+          type="number"
+          id="value"
+          data-testid="value-filter"
+          onChange={(event) => selectParameter(event)}
+        />
+      </div>
+    );
+  }
+
+    let selectedOption = [
+      '',
+      'population',
+      'rotation_period',
+      'diameter',
+      'surface_water',
+      'orbital_period',
+    ];
+    selectedOption = selectedOption.filter((element) => !options.includes(element));
+
+    return (
+      <div>
+        {seletores(selectedOption)}
+        <button data-testid="button-filter" onClick={handleClick}>
+          Adicionar Filtro
+        </button>
+
+        <FiltroOrdenado />
+
+        {filterByNumericValues.map((filtro) => (
+          <div data-testid="filter">
+            <button onClick={removeClick} id={filtro.column}>
+              X
+            </button>
+            {filtro.column}
+          </div>
+        ))}
+      </div>
+    );
+}
+
+export default InputNumber;
+
+InputNumber.propTypes = {
+  options: propTypes.arrayOf(propTypes.string).isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
+}
+
+/* class InputNumber extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,4 +208,4 @@ InputNumber.propTypes = {
   options: propTypes.arrayOf(propTypes.string).isRequired,
   removeClick: propTypes.func.isRequired,
   filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
-};
+}; */
