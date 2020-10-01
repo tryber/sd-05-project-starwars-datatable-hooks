@@ -1,48 +1,46 @@
 import React from 'react';
-import propTypes, { instanceOf } from 'prop-types';
-import { removeClick } from '../actions/actionFilter';
-import FiltroOrdenado from './FiltroOrdenado';
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
 import { useState } from 'react';
+import { removeClick } from '../actions/actionFilter';
+import FiltroOrdenado from './FiltroOrdenado';
+import StarWarsContext from '../context/StarWarsContext';
 
 function InputNumber() {
   const {
     options,
     setOptions,
     filterByNumericValues,
-    setFilterByNumericValues
+    setFilterByNumericValues,
   } = useContext(StarWarsContext);
-
-  const[state, setState] = useState({column:'', comparison:'', value:0});
-
+  const [state, setState] = useState({ column: '', comparison: '', value: 0 });
   useEffect(() => {
     setOptions(
-      filterByNumericValues.map((element) => element.column)
-    )
+      filterByNumericValues.map((element) => element.column),
+    );
   }, [filterByNumericValues]);
-
   function selectParameter(e) {
-    setState({...state, [e.target.id]: e.target.value });
+    setState({ ...state, [e.target.id]: e.target.value });
   }
-
   function handleClick() {
     const { column, comparison, value } = state;
-    setFilterByNumericValues((e) => ([...e, {column, comparison, value}]));
+    setFilterByNumericValues((e) => ([...e, { column, comparison, value }]));
   }
-
   function seletores(selectedOption) {
     return (
       <div>
-        <select id="column" data-testid="column-filter" onChange={(event) => selectParameter(event)}>
+        <select id="column" data-testid="column-filter" onChange={(event) => {
+          selectParameter(event)}}
+        >
           {selectedOption.map((element) => (
             <option value={element} key={element}>
               {element}
             </option>
           ))}
         </select>
-        <select id="comparison" data-testid="comparison-filter" onChange={(event) => selectParameter(event)}>
+        <select id="comparison" data-testid="comparison-filter" onChange={(event) => {
+          selectParameter(event)}}
+        >
           <option value="" disabled selected>
             Compare
           </option>
@@ -60,43 +58,36 @@ function InputNumber() {
     );
   }
 
-    let selectedOption = [
-      '',
-      'population',
-      'rotation_period',
-      'diameter',
-      'surface_water',
-      'orbital_period',
-    ];
-    selectedOption = selectedOption.filter((element) => !options.includes(element));
+  let selectedOption = [
+    '',
+    'population',
+    'rotation_period',
+    'diameter',
+    'surface_water',
+    'orbital_period',
+  ];
+  selectedOption = selectedOption.filter((element) => !options.includes(element));
 
-    return (
-      <div>
-        {seletores(selectedOption)}
-        <button data-testid="button-filter" onClick={handleClick}>
-          Adicionar Filtro
-        </button>
-
-        <FiltroOrdenado />
-
-        {filterByNumericValues.map((filtro) => (
-          <div data-testid="filter">
-            <button onClick={removeClick} id={filtro.column}>
-              X
-            </button>
-            {filtro.column}
-          </div>
-        ))}
-      </div>
+  return (
+    <div>
+      {seletores(selectedOption)}
+      <button data-testid="button-filter" onClick={handleClick}>
+        Adicionar Filtro
+      </button>
+      <FiltroOrdenado />
+      {filterByNumericValues.map((filtro) => (
+        <div data-testid="filter">
+          <button onClick={removeClick} id={filtro.column}>
+            X
+          </button>
+          {filtro.column}
+        </div>
+      ))}
+    </div>
     );
 }
 
 export default InputNumber;
-
-InputNumber.propTypes = {
-  options: propTypes.arrayOf(propTypes.string).isRequired,
-  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
-}
 
 /* class InputNumber extends React.Component {
   constructor(props) {

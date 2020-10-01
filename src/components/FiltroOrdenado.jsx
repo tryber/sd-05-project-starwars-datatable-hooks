@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from 'react';
-import propTypes from 'prop-types';
-import StarWarsContext from '../context/StarWarsContext';
+import React, { useContext } from 'react';
 import { useState } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 
 const optionsHeader = [
   'name',
@@ -49,7 +48,7 @@ function FiltroOrdenado() {
       /> DESC
       <button
         data-testid="column-sort-button"
-        onClick={() => setFilterOrder({column, sort})}
+        onClick={() => setFilterOrder({ column, sort })}
       > Filtrar
       </button>
     </div>
@@ -57,10 +56,6 @@ function FiltroOrdenado() {
 }
 
 export default FiltroOrdenado;
-
-FiltroOrdenado.propTypes = {
-  filterOrder: propTypes.func.isRequired,
-};
 
 /* const optionsHeader = [
   'name',

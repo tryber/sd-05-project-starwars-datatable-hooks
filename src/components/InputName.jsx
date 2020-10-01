@@ -1,7 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { filterPlanet } from '../actions/actionFilter';
-import { useEffect } from 'react';
 
 function InputName() {
   // useEffect(() => {
@@ -9,13 +8,13 @@ function InputName() {
   // })
   return (
     <div>
-        <input // campo para filtrar por nome
+      <input // campo para filtrar por nome
           data-testid="name-filter"
           type="text"
           onChange={(event) => filterPlanet(event.target.value)}
         />
-      </div>
-  )
+    </div>
+  );
 }
 
 export default InputName;
