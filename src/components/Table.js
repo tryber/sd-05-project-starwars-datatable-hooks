@@ -1,10 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { fetchPlanets } from '../actions/actionApi';
-import Cabecalho from './Cabecalho';
-import '../App.css';
-import Infos from './Infos';
+import React, { useContext, useEffect } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
+import getPlanets from '../apiPlanet';
+import Cabecalho from '../components/Cabecalho';
+import Infos from '../components/Infos';
 
 const aplicaComparacao = (planet, filter) => {
   const { column, comparison, value } = filter;
@@ -17,35 +15,51 @@ const aplicaComparacao = (planet, filter) => {
   } return planet;
 };
 
-class Table extends React.Component {
+const Table = () => {
+  const {
+    data,
+    setData,
+    isFetching,
+    setIsFetching,
+    nombreProcurado,
+    numericFilter,
+  } = useContext(StarWarsContext);
 
-  componentDidMount() {
-    const { getPlanets } = this.props;
-    getPlanets();
-  }
+  useEffect(() => {
+    // componentDidMount no redux
+    getPlanets().then((resultado) => {
+      setData(resultado.results);
+      setIsFetching(false);
+    });
+  }, []);
+  let planetas = data;
+  planetas = data.filter((planeta) =>
+  planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
+  numericFilter.forEach((filtro) => {
+    planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
+  });
+
+  return (
+    <div>StarWars Datatable with Filters
+      <table>
+        <Cabecalho />
+        {  // if ternário
+          isFetching === false ? planetas.map((batatinha) => (
+            <Infos batatinha={batatinha} />
+          )) : null
+        }
+      </table>
+    </div>
+  );
+};
+
+export default Table;
+
+/*
+class Table extends React.Component {
 
   render() {
     // results e isFetching estão vindo do mapStateToProps
-    const { results, isFetching, nombreProcurado, numericFilter } = this.props;
-    let planetas = results;
-    planetas = results.filter((planeta) =>
-      planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
-    numericFilter.forEach((filtro) => {
-      planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
-    });
-
-    return (
-      <div>StarWars Datatable with Filters
-        <table>
-          <Cabecalho />
-          {  // if ternário
-            isFetching === false ? planetas.map((batatinha) => (
-              <Infos batatinha={batatinha} />
-            )) : null
-          }
-        </table>
-      </div>
-    );
   }
 }
 
@@ -53,7 +67,7 @@ class Table extends React.Component {
 // e no React faz o papel do render()
 
 const mapStateToProps = (state) => ({ // é executada toda vez que a store é alterada
-  // apiplanetReducer -> reducer/index.js | isFetching -> actions/actionApi.js
+  apiplanetReducer -> reducer/index.js | isFetching -> actions/actionApi.js
   isFetching: state.apiPlanetReducer.isFetching,
   results: state.apiPlanetReducer.batatinhaResults,
   nombreProcurado: state.filters.filterByName.name, // filterByname.
@@ -75,3 +89,4 @@ Table.propTypes = {
   nombreProcurado: propTypes.string.isRequired,
   numericFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
 };
+ */
