@@ -13,7 +13,7 @@ export const Provider = ({ children }) => {
   const [cabecalho, setCabecalho] = useState([]);
   const [name, setName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
-  const [order, setOrder] = useState({column: 'Name', sort: 'ASC',});
+  const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [ordenacaoAtivada, setOrdenacaoAtivada] = useState(true);
   useEffect(() => {
     getPlanets().then((response) => {
