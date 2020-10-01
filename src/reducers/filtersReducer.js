@@ -50,7 +50,7 @@ const filters = (state = INITIAL_FILTER, action) => {
         ...state,
         order: action.title,
         orderActive: true,
-      }
+      };
     default:
       return state;
   }
