@@ -15,7 +15,9 @@ export const Provider = ({ children }) => {
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [ordenacaoAtivada, setOrdenacaoAtivada] = useState(true);
-  // const [filterByName, setFilterByName] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [column, setColumn] = useState('');
+  const [value, setValue] = useState('');
   useEffect(() => {
     getPlanets().then((response) => {
       setData(response);
@@ -38,6 +40,12 @@ export const Provider = ({ children }) => {
     setOrder,
     ordenacaoAtivada,
     setOrdenacaoAtivada,
+    comparison,
+    setComparison,
+    column,
+    setColumn,
+    value,
+    setValue,
   };
   // console.log('Este é o data: ' , data)
   return (

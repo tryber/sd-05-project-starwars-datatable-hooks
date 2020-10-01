@@ -1,34 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
-import selectComparacao from '../actions/selectComparacao';
+import React, { useContext } from 'react';
+import { StarWarsContext } from '../context/StarWarsContext';
+// import { connect } from 'react-redux';
+// import Proptypes from 'prop-types';
+// import selectComparacao from '../actions/selectComparacao';
 
 const arrayValores = ['maior que', 'igual a', 'menor que'];
 
-class SelecionarFaixaValor extends React.Component {
-  render() {
-    return (
-      <div>
-        <select
-          data-testid="comparison-filter" placeholder="Comparação"
-          onChange={(e) => this.props.valorComparacao(e.target.value)}
-        >
-          <option>Comparação</option>
-          { arrayValores.map((faixa) => <option value={faixa}>{faixa}</option>) }
-        </select>
-        <br />
-        <br />
-      </div>
-    );
-  }
+function SelecionarFaixaValor() {
+  const { setComparison: valorComparacao } = useContext(StarWarsContext);
+  return (
+    <div>
+      <select
+        data-testid="comparison-filter" placeholder="Comparação"
+        onChange={(e) => valorComparacao(e.target.value)}
+      >
+        <option>Comparação</option>
+        { arrayValores.map((faixa) => <option value={faixa}>{faixa}</option>) }
+      </select>
+      <br />
+      <br />
+    </div>
+  );
 }
 
-const mapDispatchToProps = (dispatch) => ({
+/* const mapDispatchToProps = (dispatch) => ({
   valorComparacao: (valorSelecionado) => dispatch(selectComparacao(valorSelecionado)),
-});
+}); */
 
-SelecionarFaixaValor.propTypes = {
+/* SelecionarFaixaValor.propTypes = {
   valorComparacao: Proptypes.arrayOf(Proptypes.object).isRequired,
-};
+}; */
 
-export default connect(null, mapDispatchToProps)(SelecionarFaixaValor);
+// export default connect(null, mapDispatchToProps)(SelecionarFaixaValor);
+export default SelecionarFaixaValor;
