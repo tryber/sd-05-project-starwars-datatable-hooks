@@ -12,23 +12,22 @@ function IconeX() {
       <span>Filtros:</span>
       <br />
       <br />
-      {filtros.map((filtro) => (
+      {filtros.map((filtross) => (
         <div data-testid="filter">
           <button
             onClick={(e) => setFilterByNumericValues(filtros.filter(
               (filtro) => filtro.column !== e.target.id))}
-            id={filtro.column}
+            id={filtross.column}
           >
             X
           </button>
-          {filtro.column}{/* |{filtro.comparison}|{filtro.value} */}
+          {filtross.column}{/* |{filtro.comparison}|{filtro.value} */}
         </div>
       ))}
       <br />
       <br />
     </div>
   );
-  
 }
 
 /* const mapStateToProps = (state) => ({

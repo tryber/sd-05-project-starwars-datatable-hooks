@@ -63,7 +63,6 @@ function OrdenarTabela() {
       </button>
     </div>
   );
-  
 }
 
 /* const mapDispatchToProps = (dispatch) => ({
