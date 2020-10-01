@@ -15,6 +15,7 @@ export const Provider = ({ children }) => {
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [ordenacaoAtivada, setOrdenacaoAtivada] = useState(true);
+  // const [filterByName, setFilterByName] = useState('');
   useEffect(() => {
     getPlanets().then((response) => {
       setData(response);
