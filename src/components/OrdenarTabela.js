@@ -1,7 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
-import ordenacao from '../actions/ordenacao';
+import React, { useContext, useState } from 'react';
+// import { connect } from 'react-redux';
+// import Proptypes from 'prop-types';
+// import ordenacao from '../actions/ordenacao';
+import { StarWarsContext } from '../context/StarWarsContext';
 
 const arrayCabecalho = [
   'name',
@@ -19,55 +20,59 @@ const arrayCabecalho = [
   'url',
 ];
 
-class OrdenarTabela extends React.Component {
-  constructor(props) {
+function OrdenarTabela() {
+  const { setOrder: xablau } = useContext(StarWarsContext);
+  const [column, setColumn] = useState('');
+  const [sort, setSort] = useState('');
+
+  /* constructor(props) {
     super(props);
     this.state = {
       column: 'Name',
       sort: 'ASC',
     };
-  }
+  } */
 
-  render() {
-    return (
-      <div>
-        <select
-          data-testid="column-sort"
-          onChange={(e) => this.setState({ column: e.target.value })}
-        >
-          {arrayCabecalho.map((titulo) => (
-            <option value={titulo}>{titulo}</option>
-          ))}
-        </select>
-        <br />
-        <input
-          type="radio" data-testid="column-sort-input" name="order" value="ASC"
-          onClick={(e) => this.setState({ sort: e.target.value })}
-        />{' '}
-        ASC
-        <br />
-        <input
-          type="radio" data-testid="column-sort-input" name="order" value="DESC"
-          onClick={(e) => this.setState({ sort: e.target.value })}
-        />{' '}
-        DESC
-        <button
-          data-testid="column-sort-button"
-          onClick={() => this.props.xablau(this.state)}
-        >
-          Filtrar
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <select
+        data-testid="column-sort"
+        onChange={(e) => setColumn(e.target.value)}
+      >
+        {arrayCabecalho.map((titulo) => (
+          <option value={titulo}>{titulo}</option>
+        ))}
+      </select>
+      <br />
+      <input
+        type="radio" data-testid="column-sort-input-asc" name="order" value="ASC"
+        onClick={(e) => setSort(e.target.value)}
+      />{' '}
+      ASC
+      <br />
+      <input
+        type="radio" data-testid="column-sort-input-desc" name="order" value="DESC"
+        onClick={(e) => setSort(e.target.value)}
+      />{' '}
+      DESC
+      <button
+        data-testid="column-sort-button"
+        onClick={() => xablau({ column, sort })}
+      >
+        Filtrar
+      </button>
+    </div>
+  );
+  
 }
 
-const mapDispatchToProps = (dispatch) => ({
+/* const mapDispatchToProps = (dispatch) => ({
   xablau: (event) => dispatch(ordenacao(event)),
-});
+}); */
 
-OrdenarTabela.propTypes = {
+/* OrdenarTabela.propTypes = {
   xablau: Proptypes.func.isRequired,
-};
+}; */
 
-export default connect(null, mapDispatchToProps)(OrdenarTabela);
+// export default connect(null, mapDispatchToProps)(OrdenarTabela);
+export default OrdenarTabela;

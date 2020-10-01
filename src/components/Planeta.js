@@ -5,7 +5,7 @@ class Planeta extends React.Component {
   render() {
     return (
       <tr>
-        { <td>{this.props.data.name}</td> }
+        { <td data-testid="planet-name">{this.props.data.name}</td> }
         { <td>{this.props.data.rotation_period}</td> }
         { <td>{this.props.data.orbital_period}</td> }
         { <td>{this.props.data.diameter}</td> }

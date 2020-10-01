@@ -6,10 +6,8 @@ import Seletores from './components/Seletores';
 import SelecionarFaixaValor from './components/SelecionarFaixaValor';
 import FiltrarNumeros from './components/FiltrarNumeros';
 import BotaoFiltrar from './components/BotaoFiltrar';
-// import IconeX from './components/IconeX';
-// import OrdenarTabela from './components/OrdenarTabela';
-// <IconeX />
-// <OrdenarTabela />
+import IconeX from './components/IconeX';
+import OrdenarTabela from './components/OrdenarTabela';
 
 function App() {
   return (
@@ -20,6 +18,8 @@ function App() {
         <Seletores />
         <BotaoFiltrar />
         <FiltrarNumeros />
+        <OrdenarTabela />
+        <IconeX />
       </header>
       <Table />
     </Provider>

@@ -1,45 +1,48 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
-import removeFiltros from '../actions/removeFiltros';
+import React, { useContext } from 'react';
+// import { connect } from 'react-redux';
+// import Proptypes from 'prop-types';
+// import removeFiltros from '../actions/removeFiltros';
+import { StarWarsContext } from '../context/StarWarsContext';
 
-class IconeX extends React.Component {
-  render() {
-    const { filtros } = this.props;
-    return (
-      <div>
-        <span>Filtros:</span>
-        <br />
-        <br />
-        {filtros.map((filtro) => (
-          <div data-testid="filter">
-            <button
-              onClick={this.props.handleClick}
-              id={filtro.column}
-            >
-              X
-            </button>
-            {filtro.column}{/* |{filtro.comparison}|{filtro.value} */}
-          </div>
-        ))}
-        <br />
-        <br />
-      </div>
-    );
-  }
+function IconeX() {
+  // const { filtros } = this.props;
+  const { filterByNumericValues: filtros, setFilterByNumericValues } = useContext(StarWarsContext);
+  return (
+    <div>
+      <span>Filtros:</span>
+      <br />
+      <br />
+      {filtros.map((filtro) => (
+        <div data-testid="filter">
+          <button
+            onClick={(e) => setFilterByNumericValues(filtros.filter(
+              (filtro) => filtro.column !== e.target.id))}
+            id={filtro.column}
+          >
+            X
+          </button>
+          {filtro.column}{/* |{filtro.comparison}|{filtro.value} */}
+        </div>
+      ))}
+      <br />
+      <br />
+    </div>
+  );
+  
 }
 
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   filtros: state.filters.filterByNumericValues,
-});
+}); */
 
-const mapDispatchToProps = (dispatch) => ({
+/* const mapDispatchToProps = (dispatch) => ({
   handleClick: (event) => dispatch(removeFiltros(event)),
-});
+}); */
 
-IconeX.propTypes = {
+/* IconeX.propTypes = {
   handleClick: Proptypes.func.isRequired,
   filtros: Proptypes.arrayOf(Proptypes.object).isRequired,
-};
+}; */
 
-export default connect(mapStateToProps, mapDispatchToProps)(IconeX);
+// export default connect(mapStateToProps, mapDispatchToProps)(IconeX);
+export default IconeX;
