@@ -79,6 +79,47 @@ function rederSelects(column, handleColumnChange, filterByNumericValues, handleC
   );
 }
 
+function inputsRenderFiltersOrder(sortOrder, handleSortChange) {
+  return (
+    <div>
+      <label htmlFor="ASC">
+        <input
+          type="radio"
+          id="ASC"
+          value="ASC"
+          data-testid="column-sort-input-asc"
+          checked={sortOrder === 'ASC'}
+          onChange={handleSortChange}
+        />ASC
+      </label>
+
+      <label htmlFor="DESC">
+        <input
+          type="radio"
+          id="DESC"
+          value="DESC"
+          data-testid="column-sort-input-desc"
+          checked={sortOrder === 'DESC'}
+          onChange={handleSortChange}
+        />DESC
+      </label>
+    </div>
+  );
+}
+
+function renderProcurar(setFilterByName) {
+  return (
+    <div>
+      <label htmlFor="search">Procurar: </label>
+      <input
+        type="text"
+        data-testid="name-filter"
+        onChange={(event) => setFilterByName(event.target.value)}
+      />
+    </div>
+  );
+}
+
 function FiltrosDaPagina() {
   const {
     comparison,
@@ -117,34 +158,6 @@ function FiltrosDaPagina() {
     setSortOrder(event.target.value);
   }
 
-  function inputsRenderFiltersOrder() {
-    return (
-      <div>
-        <label htmlFor="ASC">
-          <input
-            type="radio"
-            id="ASC"
-            value="ASC"
-            data-testid="column-sort-input-asc"
-            checked={sortOrder === 'ASC'}
-            onChange={handleSortChange}
-          />ASC
-        </label>
-
-        <label htmlFor="DESC">
-          <input
-            type="radio"
-            id="DESC"
-            value="DESC"
-            data-testid="column-sort-input-desc"
-            checked={sortOrder === 'DESC'}
-            onChange={handleSortChange}
-          />DESC
-        </label>
-      </div>
-    );
-  }
-
   function addFilter(filter) {
     const filters = [...filterByNumericValues];
     filters.push(filter);
@@ -176,38 +189,23 @@ function FiltrosDaPagina() {
         <select data-testid="column-sort" onChange={handleSelectOrderColumn}>
           {AllColumns.map((option) => <option value={option}>{option}</option>)}
         </select>
-        {inputsRenderFiltersOrder()}
+        {inputsRenderFiltersOrder(sortOrder, handleSortChange)}
         <button
           data-testid="column-sort-button"
           onClick={() => {
-            // console.log('Ordem-coluna', sortOrder, sortColumn)
-            setOrder(
-              {
-                column: sortColumn,
-                order: sortOrder,
-              });
+            setOrder({
+              column: sortColumn,
+              order: sortOrder,
+            });
           }}
         >Filtrar</button>
       </div>
     );
   }
 
-  function renderProcurar() {
-    return (
-      <div>
-        <label htmlFor="search">Procurar: </label>
-        <input
-          type="text"
-          data-testid="name-filter"
-          onChange={(event) => setFilterByName(event.target.value)}
-        />
-      </div>
-    );
-  }
-
   return (
     <div>
-      {renderProcurar()}
+      {renderProcurar(setFilterByName)}
       {renderFiltrosValoresNum()}
       {renderFiltersOrder()}
       <div>
