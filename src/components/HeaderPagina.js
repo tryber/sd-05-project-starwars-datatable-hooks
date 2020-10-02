@@ -120,7 +120,13 @@ function renderProcurar(setFilterByName) {
   );
 }
 
-function renderFiltersOrder(handleSelectOrderColumn, sortColumn, sortOrder, handleSortChange, setOrder) {
+function renderFiltersOrder(
+  handleSelectOrderColumn,
+  sortColumn,
+  sortOrder,
+  handleSortChange,
+  setOrder
+) {
   return (
     <div className="order">
       <p>Ordem</p>
@@ -136,6 +142,32 @@ function renderFiltersOrder(handleSelectOrderColumn, sortColumn, sortOrder, hand
             order: sortOrder,
           });
         }}
+      >Filtrar</button>
+    </div>
+  );
+}
+
+function addFilter(filter, filterByNumericValues) {
+  const filters = [...filterByNumericValues];
+  filters.push(filter);
+  return filters;
+}
+
+function renderFiltrosValoresNum(column, handleColumnChange, filterByNumericValues,
+  handleComparisonChange, handleValueChange,
+  comparison, value, setFilterByNumericValues) {
+  return (
+    <div>
+      {rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange)}
+      <input type="number" data-testid="value-filter" onChange={handleValueChange} />
+      <button
+        data-testid="button-filter"
+        onClick={
+          () => setFilterByNumericValues(addFilter({
+            column,
+            comparison,
+            value,
+          }, filterByNumericValues))}
       >Filtrar</button>
     </div>
   );
@@ -179,34 +211,15 @@ function FiltrosDaPagina() {
     setSortOrder(event.target.value);
   }
 
-  function addFilter(filter) {
-    const filters = [...filterByNumericValues];
-    filters.push(filter);
-    return filters;
-  }
 
-  function renderFiltrosValoresNum() {
-    return (
-      <div>
-        {rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange)}
-        <input type="number" data-testid="value-filter" onChange={handleValueChange} />
-        <button
-          data-testid="button-filter"
-          onClick={
-            () => setFilterByNumericValues(addFilter({
-              column,
-              comparison,
-              value,
-            }))}
-        >Filtrar</button>
-      </div>
-    );
-  }
 
   return (
     <div>
       {renderProcurar(setFilterByName)}
-      {renderFiltrosValoresNum()}
+      {renderFiltrosValoresNum(column, handleColumnChange, filterByNumericValues,
+        handleComparisonChange, handleValueChange,
+        comparison, value, setFilterByNumericValues,
+      )}
       {renderFiltersOrder(
         handleSelectOrderColumn,
         sortColumn, sortOrder,
