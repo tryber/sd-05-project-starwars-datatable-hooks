@@ -9,7 +9,7 @@ function Table() {
     componentDidMount,quando montado, toda vez que o
     componente é renderizado é feita umaChamada na API.
   */
-  const { isFetching, setIsFetching, setData, data } = useContext(SWContext);
+  const { isFetching, setIsFetching, setData, data, filterByName, filterByNumericValues, order } = useContext(SWContext);
 
   useEffect(() => {
     setIsFetching(true);
@@ -18,9 +18,9 @@ function Table() {
   }, [setIsFetching, setData]);
 
   function renderTable() {
-    return data.map((planet) => (
+    return filtraPlanetas(data, filterByName, filterByNumericValues, order).map((planet) => (
       <tr>
-        <td>{planet.name}</td>
+        <td data-testid="planet-name">{planet.name}</td>
         <td>{planet.rotation_period}</td>
         <td>{planet.orbital_period}</td>
         <td>{planet.diameter}</td>
@@ -70,53 +70,54 @@ function Table() {
   contêm a action e a action que quero)
 */
 
-// function filterByNumber(arrayPlanets, filterByNumericValues) {
-//   if (filterByNumericValues.comparison === 'maior que') {
-//     return arrayPlanets
-//       .filter((planet) =>
-//         Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
-//   }
-//   if (filterByNumericValues.comparison === 'menor que') {
-//     return arrayPlanets
-//       .filter((planet) =>
-//         Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
-//   }
-//   if (filterByNumericValues.comparison === 'igual a') {
-//     return arrayPlanets
-//       .filter((planet) =>
-//         Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
-//   }
-//   return arrayPlanets;
-// }
+function filterByNumber(arrayPlanets, filterByNumericValues) {
+  if (filterByNumericValues.comparison === 'maior que') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'menor que') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'igual a') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
+  }
+  return arrayPlanets;
+}
 
 /* A function filterByNumber foi retirado do código
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
-// const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
-//   let planetasExibidos = planetas;
-//   filterByNumericValues.forEach((filter) => {
-//     planetasExibidos = filterByNumber(planetasExibidos, filter);
-//   });
+const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
+  let planetasExibidos = planetas;
+  filterByNumericValues.forEach((filter) => {
+    planetasExibidos = filterByNumber(planetasExibidos, filter);
+  });
 
-//   if (filtroDeTexto !== '') {
-//     planetasExibidos = planetasExibidos.filter((planet) => planet.name
-//       .toLowerCase().includes(filtroDeTexto.toLowerCase()));
-//   }
+  if (filtroDeTexto !== '') {
+    planetasExibidos = planetasExibidos.filter((planet) => planet.name
+      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
+  }
 
-//   planetasExibidos = planetasExibidos.sort((a, b) => {
-//     if (isNaN(a[order.column])) {
-//       if (order.sort === 'ASC') {
-//         return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
-//       }
-//       return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
-//     }
-//     if (order.sort === 'ASC') {
-//       return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
-//     }
-//     return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
-//   });
-//   return [...planetasExibidos];
-// };
+  planetasExibidos = planetasExibidos.sort((a, b) => {
+    if (isNaN(a[order.column])) {
+      if (order.sort === 'ASC') {
+        return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
+      }
+      // console.log('order', order);
+      return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
+    }
+    if (order.sort === 'ASC') {
+      return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
+    }
+    return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
+  });
+  return [...planetasExibidos];
+};
 
 /* os states que vou usar mapStateToProps vem do initial_state do reducer*/
 // const mapStateToProps = (state) => ({

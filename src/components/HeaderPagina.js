@@ -43,6 +43,7 @@ function FiltrosDaPagina() {
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState(0);
   const [sortColumn, setSortColumn] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
   const {
     filterByNumericValues,
     setFilterByNumericValues,
@@ -52,8 +53,8 @@ function FiltrosDaPagina() {
     setOrder,
     setRemoverFiltroDaTela,
   } = useContext(SWContext);
-  console.log('filterByNumericValues', filterByNumericValues);
-  console.log('filterByName', filterByName);
+  // console.log('filterByNumericValues', filterByNumericValues);
+  // console.log('filterByName', filterByName);
   function handleColumnChange(event) {
     setColumn(event.target.value);
   }
@@ -67,13 +68,17 @@ function FiltrosDaPagina() {
   }
 
   function showFilters() {
-    // console.log('showFilters', filters);
     const teste = filterByNumericValues.map((element) =>
       <div data-testid="filter">
-        <button onClick={() => setRemoverFiltroDaTela(element.column)}>X</button>
+        <button onClick={() => {
+          console.log("cu", element);
+          console.log("cu2", filterByNumericValues);
+          setFilterByNumericValues(filterByNumericValues.filter((filter) => filter.column != element.column));
+        }}>X</button>
         <p>{element.column} {element.comparison} {element.value}</p>
       </div>,
     );
+    console.log('showFilters', teste);
     return teste;
   }
 
@@ -108,7 +113,7 @@ function FiltrosDaPagina() {
   }
 
   function handleSortChange(event) {
-    setOrder(event.target.value);
+    setSortOrder(event.target.value);
   }
 
   function inputsRenderFiltersOrder() {
@@ -119,8 +124,8 @@ function FiltrosDaPagina() {
             type="radio"
             id="ASC"
             value="ASC"
-            data-testid="column-sort-input"
-            checked={order === 'ASC'}
+            data-testid="column-sort-input-asc"
+            checked={sortOrder === 'ASC'}
             onChange={handleSortChange}
           />ASC
         </label>
@@ -130,13 +135,19 @@ function FiltrosDaPagina() {
             type="radio"
             id="DESC"
             value="DESC"
-            data-testid="column-sort-input"
-            checked={order === 'DESC'}
+            data-testid="column-sort-input-desc"
+            checked={sortOrder === 'DESC'}
             onChange={handleSortChange}
           />DESC
         </label>
       </div>
     );
+  }
+
+  function addFilter(filter) {
+    let filters = [...filterByNumericValues];
+    filters.push(filter);
+    return filters;
   }
 
   function renderFiltrosValoresNum() {
@@ -147,11 +158,11 @@ function FiltrosDaPagina() {
         <button
           data-testid="button-filter"
           onClick={
-            () => setFilterByNumericValues([{
+            () => setFilterByNumericValues(addFilter({
               column,
               comparison,
               value,
-            }])}
+            }))}
         >Filtrar</button>
       </div>
     );
@@ -167,10 +178,14 @@ function FiltrosDaPagina() {
         {inputsRenderFiltersOrder()}
         <button
           data-testid="column-sort-button"
-          onClick={() => setOrder(
-            sortColumn,
-            order,
-          )}
+          onClick={() => {
+            // console.log('Ordem-coluna', sortOrder, sortColumn)
+            setOrder(
+              {
+                column: sortColumn,
+                order: sortOrder,
+              })
+          }}
         >Filtrar</button>
       </div>
     );
@@ -191,7 +206,7 @@ function FiltrosDaPagina() {
 
   return (
     <div>
-      {renderProcurar(filterByName)}
+      {renderProcurar()}
       {renderFiltrosValoresNum()}
       {renderFiltersOrder()}
       <div>
