@@ -50,6 +50,14 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) =
   return [...planetasExibidos];
 };
 
+function renderUseEffect(setIsFetching, setData) {
+  useEffect(() => {
+    setIsFetching(true);
+    StarWarsPlanetsAPI().then((resp) => setData(resp.results));
+    setIsFetching(false);
+  }, [setIsFetching, setData]);
+}
+
 function Table() {
   const {
     isFetching,
@@ -61,11 +69,7 @@ function Table() {
     order,
   } = useContext(SWContext);
 
-  useEffect(() => {
-    setIsFetching(true);
-    StarWarsPlanetsAPI().then((resp) => setData(resp.results));
-    setIsFetching(false);
-  }, [setIsFetching, setData]);
+  renderUseEffect(setIsFetching, setData);
 
   function renderTable() {
     return filtraPlanetas(data, filterByName, filterByNumericValues, order).map((planet) => (
