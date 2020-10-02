@@ -153,9 +153,16 @@ function addFilter(filter, filterByNumericValues) {
   return filters;
 }
 
-function renderFiltrosValoresNum(column, handleColumnChange, filterByNumericValues,
-  handleComparisonChange, handleValueChange,
-  comparison, value, setFilterByNumericValues) {
+function renderFiltrosValoresNum(
+  column,
+  handleColumnChange,
+  filterByNumericValues,
+  handleComparisonChange,
+  handleValueChange,
+  comparison,
+  value,
+  setFilterByNumericValues
+) {
   return (
     <div>
       {rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange)}
@@ -218,9 +225,7 @@ function FiltrosDaPagina() {
         handleSortChange,
         setOrder,
       )}
-      <div>
-        <p>Filtros {showFilters(filterByNumericValues, setFilterByNumericValues)}</p>
-      </div>
+      <p>Filtros {showFilters(filterByNumericValues, setFilterByNumericValues)}</p>
     </div>
   );
 }
