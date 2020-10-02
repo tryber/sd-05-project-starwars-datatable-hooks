@@ -4,12 +4,47 @@ import FiltrosDaPagina from './HeaderPagina';
 import SWContext from '../context/StarWarsContext';
 import StarWarsPlanetsAPI from '../services/StarWarsPlanetsAPI';
 
+const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
+  let planetasExibidos = planetas;
+  filterByNumericValues.forEach((filter) => {
+    planetasExibidos = filterByNumber(planetasExibidos, filter);
+  });
+
+  if (filtroDeTexto !== '') {
+    planetasExibidos = planetasExibidos.filter((planet) => planet.name
+      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
+  }
+
+  planetasExibidos = planetasExibidos.sort((a, b) => {
+    if (isNaN(a[order.column])) {
+      if (order.sort === 'ASC') {
+        return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
+      }
+      // console.log('order', order);
+      return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
+    }
+    if (order.sort === 'ASC') {
+      return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
+    }
+    return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
+  });
+  return [...planetasExibidos];
+};
+
 function Table() {
   /*
     componentDidMount,quando montado, toda vez que o
     componente é renderizado é feita umaChamada na API.
   */
-  const { isFetching, setIsFetching, setData, data, filterByName, filterByNumericValues, order } = useContext(SWContext);
+  const {
+    isFetching,
+    setIsFetching,
+    setData,
+    data,
+    filterByName,
+    filterByNumericValues,
+    order,
+  } = useContext(SWContext);
 
   useEffect(() => {
     setIsFetching(true);
@@ -91,33 +126,6 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
 
 /* A function filterByNumber foi retirado do código
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
-
-const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
-  let planetasExibidos = planetas;
-  filterByNumericValues.forEach((filter) => {
-    planetasExibidos = filterByNumber(planetasExibidos, filter);
-  });
-
-  if (filtroDeTexto !== '') {
-    planetasExibidos = planetasExibidos.filter((planet) => planet.name
-      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
-  }
-
-  planetasExibidos = planetasExibidos.sort((a, b) => {
-    if (isNaN(a[order.column])) {
-      if (order.sort === 'ASC') {
-        return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
-      }
-      // console.log('order', order);
-      return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
-    }
-    if (order.sort === 'ASC') {
-      return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
-    }
-    return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
-  });
-  return [...planetasExibidos];
-};
 
 /* os states que vou usar mapStateToProps vem do initial_state do reducer*/
 // const mapStateToProps = (state) => ({

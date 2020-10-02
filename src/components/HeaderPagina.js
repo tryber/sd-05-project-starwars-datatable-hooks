@@ -74,7 +74,8 @@ function FiltrosDaPagina() {
           console.log("cu", element);
           console.log("cu2", filterByNumericValues);
           setFilterByNumericValues(filterByNumericValues.filter((filter) => filter.column != element.column));
-        }}>X</button>
+        }}
+        >X</button>
         <p>{element.column} {element.comparison} {element.value}</p>
       </div>,
     );
@@ -145,7 +146,7 @@ function FiltrosDaPagina() {
   }
 
   function addFilter(filter) {
-    let filters = [...filterByNumericValues];
+    const filters = [...filterByNumericValues];
     filters.push(filter);
     return filters;
   }
@@ -184,7 +185,7 @@ function FiltrosDaPagina() {
               {
                 column: sortColumn,
                 order: sortOrder,
-              })
+              });
           }}
         >Filtrar</button>
       </div>
