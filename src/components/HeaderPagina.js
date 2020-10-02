@@ -39,22 +39,26 @@ const options = [
 ];
 
 function FiltrosDaPagina() {
-  const [column, setColumn] = useState('');
-  const [comparison, setComparison] = useState('');
-  const [value, setValue] = useState(0);
-  const [sortColumn, setSortColumn] = useState('');
-  const [sortOrder, setSortOrder] = useState('');
   const {
+    comparison,
+    setComparison,
+    column,
+    setColumn,
+    value,
+    setValue,
     filterByNumericValues,
     setFilterByNumericValues,
     setFilterByName,
     setOrder,
+    sortColumn,
+    setSortColumn,
+    sortOrder,
+    setSortOrder,
   } = useContext(SWContext);
-  // console.log('filterByNumericValues', filterByNumericValues);
-  // console.log('filterByName', filterByName);
+
   function handleColumnChange(event) {
     setColumn(event.target.value);
-  }
+  }  
 
   function handleComparisonChange(event) {
     setComparison(event.target.value);

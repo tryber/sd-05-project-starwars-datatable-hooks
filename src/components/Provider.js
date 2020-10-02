@@ -9,6 +9,7 @@ const SWProvider = ({ children }) => {
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState(0);
   const [sortColumn, setSortColumn] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [removerFiltroDaTela, setRemoverFiltroDaTela] = useState([]);
@@ -16,7 +17,6 @@ const SWProvider = ({ children }) => {
     column: 'Name',
     sort: 'ASC',
   });
-  // console.log('filterByNumericValues', filterByNumericValues);
   const context = {
     column,
     setColumn,
@@ -38,6 +38,8 @@ const SWProvider = ({ children }) => {
     setOrder,
     removerFiltroDaTela,
     setRemoverFiltroDaTela,
+    sortOrder,
+    setSortOrder,
   };
 
   return (
