@@ -125,7 +125,7 @@ function renderFiltersOrder(
   sortColumn,
   sortOrder,
   handleSortChange,
-  setOrder
+  setOrder,
 ) {
   return (
     <div className="order">
@@ -190,29 +190,21 @@ function FiltrosDaPagina() {
     sortOrder,
     setSortOrder,
   } = useContext(SWContext);
-
   function handleColumnChange(event) {
     setColumn(event.target.value);
   }
-
   function handleComparisonChange(event) {
     setComparison(event.target.value);
   }
-
   function handleValueChange(event) {
     setValue(event.target.value);
   }
-
   function handleSelectOrderColumn(event) {
     setSortColumn(event.target.value);
   }
-
   function handleSortChange(event) {
     setSortOrder(event.target.value);
   }
-
-
-
   return (
     <div>
       {renderProcurar(setFilterByName)}
