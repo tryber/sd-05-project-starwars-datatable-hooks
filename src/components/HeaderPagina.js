@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import SWContext from '../context/StarWarsContext';
-// import PropTypes from 'prop-types';
 
 /*
 columns representa a lista com todas as opções possíveis de coluna
@@ -54,6 +53,32 @@ function showFilters(filterByNumericValues, setFilterByNumericValues) {
   return teste;
 }
 
+function rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange) {
+  return (
+    <div>
+      <select
+        data-testid="column-filter"
+        value={column}
+        onChange={handleColumnChange}
+      >
+        {columns
+          .filter((option) =>
+            !filterByNumericValues.map((filter) => filter.column).includes(option))
+          .map((option) => <option value={option}>{option}</option>)}
+      </select>
+      <select
+        data-testid="comparison-filter"
+        onChange={handleComparisonChange}
+      >
+        {options
+          .filter((option) =>
+            !filterByNumericValues.map((filter) => filter.column).includes(option))
+          .map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+  );
+}
+
 function FiltrosDaPagina() {
   const {
     comparison,
@@ -82,34 +107,6 @@ function FiltrosDaPagina() {
 
   function handleValueChange(event) {
     setValue(event.target.value);
-  }
-
-  
-
-  function rederSelects() {
-    return (
-      <div>
-        <select
-          data-testid="column-filter"
-          value={column}
-          onChange={handleColumnChange}
-        >
-          {columns
-            .filter((option) =>
-              !filterByNumericValues.map((filter) => filter.column).includes(option))
-            .map((option) => <option value={option}>{option}</option>)}
-        </select>
-        <select
-          data-testid="comparison-filter"
-          onChange={handleComparisonChange}
-        >
-          {options
-            .filter((option) =>
-              !filterByNumericValues.map((filter) => filter.column).includes(option))
-            .map((option) => <option value={option}>{option}</option>)}
-        </select>
-      </div>
-    );
   }
 
   function handleSelectOrderColumn(event) {
@@ -157,7 +154,7 @@ function FiltrosDaPagina() {
   function renderFiltrosValoresNum() {
     return (
       <div>
-        {rederSelects()}
+        {rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange)}
         <input type="number" data-testid="value-filter" onChange={handleValueChange} />
         <button
           data-testid="button-filter"
