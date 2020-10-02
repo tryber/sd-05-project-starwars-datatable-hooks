@@ -47,11 +47,8 @@ function FiltrosDaPagina() {
   const {
     filterByNumericValues,
     setFilterByNumericValues,
-    filterByName,
     setFilterByName,
-    order,
     setOrder,
-    setRemoverFiltroDaTela,
   } = useContext(SWContext);
   // console.log('filterByNumericValues', filterByNumericValues);
   // console.log('filterByName', filterByName);
@@ -73,9 +70,9 @@ function FiltrosDaPagina() {
         <button
           onClick={() => {
             setFilterByNumericValues(filterByNumericValues.filter((filter) =>
-              filter.column !== element.column)
-          );
-        }}
+              filter.column !== element.column),
+            );
+          }}
         >X</button>
         <p>{element.column} {element.comparison} {element.value}</p>
       </div>,

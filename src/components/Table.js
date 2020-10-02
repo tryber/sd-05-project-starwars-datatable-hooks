@@ -51,10 +51,6 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) =
 };
 
 function Table() {
-  /*
-    componentDidMount,quando montado, toda vez que o
-    componente é renderizado é feita umaChamada na API.
-  */
   const {
     isFetching,
     setIsFetching,
@@ -91,7 +87,6 @@ function Table() {
     ));
   }
 
-  // console.log('table', this.props);
   return (
     <div>
       <div>
