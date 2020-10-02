@@ -70,10 +70,11 @@ function FiltrosDaPagina() {
   function showFilters() {
     const teste = filterByNumericValues.map((element) =>
       <div data-testid="filter">
-        <button onClick={() => {
-          console.log("cu", element);
-          console.log("cu2", filterByNumericValues);
-          setFilterByNumericValues(filterByNumericValues.filter((filter) => filter.column != element.column));
+        <button
+          onClick={() => {
+            setFilterByNumericValues(filterByNumericValues.filter((filter) =>
+              filter.column !== element.column)
+          );
         }}
         >X</button>
         <p>{element.column} {element.comparison} {element.value}</p>

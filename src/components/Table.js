@@ -4,6 +4,25 @@ import FiltrosDaPagina from './HeaderPagina';
 import SWContext from '../context/StarWarsContext';
 import StarWarsPlanetsAPI from '../services/StarWarsPlanetsAPI';
 
+function filterByNumber(arrayPlanets, filterByNumericValues) {
+  if (filterByNumericValues.comparison === 'maior que') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'menor que') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'igual a') {
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
+  }
+  return arrayPlanets;
+}
+
 const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
   let planetasExibidos = planetas;
   filterByNumericValues.forEach((filter) => {
@@ -104,25 +123,6 @@ function Table() {
   vai ser três infos(o state, o reducer que
   contêm a action e a action que quero)
 */
-
-function filterByNumber(arrayPlanets, filterByNumericValues) {
-  if (filterByNumericValues.comparison === 'maior que') {
-    return arrayPlanets
-      .filter((planet) =>
-        Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
-  }
-  if (filterByNumericValues.comparison === 'menor que') {
-    return arrayPlanets
-      .filter((planet) =>
-        Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
-  }
-  if (filterByNumericValues.comparison === 'igual a') {
-    return arrayPlanets
-      .filter((planet) =>
-        Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
-  }
-  return arrayPlanets;
-}
 
 /* A function filterByNumber foi retirado do código
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
