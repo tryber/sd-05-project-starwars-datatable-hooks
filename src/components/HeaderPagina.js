@@ -153,14 +153,14 @@ function addFilter(filter, filterByNumericValues) {
   return filters;
 }
 
-function renderFiltrosValoresNum(handleColumnChange, handleComparisonChange,handleValueChange) {
-const {
-  column,
-  filterByNumericValues,
-  comparison,
-  value,
-  setFilterByNumericValues
-} = useContext(SWContext);
+function renderFiltrosValoresNum(handleColumnChange, handleComparisonChange, handleValueChange) {
+  const {
+    column,
+    filterByNumericValues,
+    comparison,
+    value,
+    setFilterByNumericValues,
+  } = useContext(SWContext);
   return (
     <div>
       {rederSelects(column, handleColumnChange, filterByNumericValues, handleComparisonChange)}
@@ -180,11 +180,8 @@ const {
 
 function FiltrosDaPagina() {
   const {
-    comparison,
     setComparison,
-    column,
     setColumn,
-    value,
     setValue,
     filterByNumericValues,
     setFilterByNumericValues,
