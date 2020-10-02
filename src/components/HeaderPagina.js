@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import SWContext from '../context/StarWarsContext';
 // import PropTypes from 'prop-types';
 
@@ -38,6 +38,22 @@ const options = [
   'igual a',
 ];
 
+function showFilters(filterByNumericValues, setFilterByNumericValues) {
+  const teste = filterByNumericValues.map((element) =>
+    <div data-testid="filter">
+      <button
+        onClick={() => {
+          setFilterByNumericValues(filterByNumericValues.filter((filter) =>
+            filter.column !== element.column),
+          );
+        }}
+      >X</button>
+      <p>{element.column} {element.comparison} {element.value}</p>
+    </div>,
+  );
+  return teste;
+}
+
 function FiltrosDaPagina() {
   const {
     comparison,
@@ -58,7 +74,7 @@ function FiltrosDaPagina() {
 
   function handleColumnChange(event) {
     setColumn(event.target.value);
-  }  
+  }
 
   function handleComparisonChange(event) {
     setComparison(event.target.value);
@@ -68,22 +84,7 @@ function FiltrosDaPagina() {
     setValue(event.target.value);
   }
 
-  function showFilters() {
-    const teste = filterByNumericValues.map((element) =>
-      <div data-testid="filter">
-        <button
-          onClick={() => {
-            setFilterByNumericValues(filterByNumericValues.filter((filter) =>
-              filter.column !== element.column),
-            );
-          }}
-        >X</button>
-        <p>{element.column} {element.comparison} {element.value}</p>
-      </div>,
-    );
-    console.log('showFilters', teste);
-    return teste;
-  }
+  
 
   function rederSelects() {
     return (
@@ -213,7 +214,7 @@ function FiltrosDaPagina() {
       {renderFiltrosValoresNum()}
       {renderFiltersOrder()}
       <div>
-        <p>Filtros {showFilters(filterByNumericValues)}</p>
+        <p>Filtros {showFilters(filterByNumericValues, setFilterByNumericValues)}</p>
       </div>
     </div>
   );
