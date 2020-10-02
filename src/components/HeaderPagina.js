@@ -120,6 +120,27 @@ function renderProcurar(setFilterByName) {
   );
 }
 
+function renderFiltersOrder(handleSelectOrderColumn, sortColumn, sortOrder, handleSortChange, setOrder) {
+  return (
+    <div className="order">
+      <p>Ordem</p>
+      <select data-testid="column-sort" onChange={handleSelectOrderColumn}>
+        {AllColumns.map((option) => <option value={option}>{option}</option>)}
+      </select>
+      {inputsRenderFiltersOrder(sortOrder, handleSortChange)}
+      <button
+        data-testid="column-sort-button"
+        onClick={() => {
+          setOrder({
+            column: sortColumn,
+            order: sortOrder,
+          });
+        }}
+      >Filtrar</button>
+    </div>
+  );
+}
+
 function FiltrosDaPagina() {
   const {
     comparison,
@@ -182,32 +203,16 @@ function FiltrosDaPagina() {
     );
   }
 
-  function renderFiltersOrder() {
-    return (
-      <div className="order">
-        <p>Ordem</p>
-        <select data-testid="column-sort" onChange={handleSelectOrderColumn}>
-          {AllColumns.map((option) => <option value={option}>{option}</option>)}
-        </select>
-        {inputsRenderFiltersOrder(sortOrder, handleSortChange)}
-        <button
-          data-testid="column-sort-button"
-          onClick={() => {
-            setOrder({
-              column: sortColumn,
-              order: sortOrder,
-            });
-          }}
-        >Filtrar</button>
-      </div>
-    );
-  }
-
   return (
     <div>
       {renderProcurar(setFilterByName)}
       {renderFiltrosValoresNum()}
-      {renderFiltersOrder()}
+      {renderFiltersOrder(
+        handleSelectOrderColumn,
+        sortColumn, sortOrder,
+        handleSortChange,
+        setOrder,
+      )}
       <div>
         <p>Filtros {showFilters(filterByNumericValues, setFilterByNumericValues)}</p>
       </div>
