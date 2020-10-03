@@ -4,7 +4,8 @@ import Context from '../context/StarWarsContext';
 
 const NumericFilter = () => {
   const {
-    numericFunction,removeFilter,selectedOption: options,filterByNumericValues} = useContext(Context);
+    numericFunction, removeFilter, selectedOption: options, filterByNumericValues } 
+    = useContext(Context);
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [valor, setValor] = useState('');
@@ -15,7 +16,7 @@ const NumericFilter = () => {
         <select data-testid="column-filter" onChange={(event) => setColumn(event.target.value)}>
           <option value="" disabled defaultValue />
           {options.filter((el) => !filtros.includes(el)).map((el) => (
-              <option value={el} key={el}>{el}</option>
+            <option value={el} key={el}>{el}</option>
             ))}
         </select>
         <select
@@ -36,7 +37,8 @@ const NumericFilter = () => {
         type="number" data-testid="value-filter" onChange={(event) => setValor(event.target.value)}
       />
       <button
-        data-testid="button-filter" onClick={() => numericFunction({ column, comparison, value: valor })}
+        data-testid="button-filter" onClick={() => numericFunction(
+        { column, comparison, value: valor })}
       >Acionar</button>
       <div>
         {filtros.map((filtro) => (

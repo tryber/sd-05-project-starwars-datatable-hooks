@@ -26,8 +26,6 @@ const TituloNumerico = [
 ];
 
 const Body = () => {
-  // função para ordenar, recebe um array de planetas
-  // ordena através do column selecionado, em ordem ascendente ou descendente
   const {
     filterByName: nomeProcurado,
     selectedOption: options,
@@ -53,8 +51,7 @@ const Body = () => {
   /* Filtro que transforma .name do objeto planeta em letras minusculas,
     procurando o index(posição) do nome dentro da propriedade name do objeto planeta. */
   planets = planets.filter(
-    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0
-  );
+    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0);
 
   filterByNumericValues.forEach((filtro) => {
     planets = planets.filter((planeta) => applyComparison(planeta, filtro));
