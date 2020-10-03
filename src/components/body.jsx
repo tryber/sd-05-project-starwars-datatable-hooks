@@ -27,9 +27,7 @@ const TituloNumerico = [
 
 const Body = () => {
   const {
-    filterByName: nomeProcurado,
-    selectedOption: options,
-    order,
+    filterByName: nomeProcurado, order,
     filterByNumericValues,
     data: planetas,
   } = useContext(Context);

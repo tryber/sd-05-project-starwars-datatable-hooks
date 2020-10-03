@@ -2,10 +2,8 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import Context from '../context/StarWarsContext';
 
-const NumericFilter = () => {
-  const {
-    numericFunction, removeFilter, selectedOption: options, filterByNumericValues } 
-    = useContext(Context);
+const NumericFilter = () => { const { numericFunction, removeFilter, 
+  selectedOption: options, filterByNumericValues } = useContext(Context);
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [valor, setValor] = useState('');
