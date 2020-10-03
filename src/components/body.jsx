@@ -26,30 +26,31 @@ const TituloNumerico = [
 ];
 
 const Body = () => {
-  const {
-    filterByName: nomeProcurado, order,
-    filterByNumericValues,
-    data: planetas,
-  } = useContext(Context);
-  function OrdemEProgresso(planetas) {
+  const { filterByName: nomeProcurado, order, filterByNumericValues, data: planetas } = useContext(
+    Context,
+  );
+  function OrdemEProgresso(planetinhas) {
     const { column, sort } = order;
+    let planetasOrdenados;
     if (TituloNumerico.includes(order.column)) {
-      if (sort === 'ASC') {
-        return planetas.sort((a, b) => a[column.toLowerCase()] - b[column.toLowerCase()]);
-      }
-      return planetas.sort((a, b) => b[column.toLowerCase()] - a[column.toLowerCase()]);
+      planetasOrdenados = planetinhas.sort(
+        (a, b) => a[column.toLowerCase()] - b[column.toLowerCase()],
+      );
+    } else {
+      planetasOrdenados = planetinhas.sort((a, b) => (a.name < b.name ? -1 : 1));
     }
     if (sort === 'ASC') {
-      return planetas.sort((a, b) => (a.name < b.name ? -1 : 1));
+      return planetasOrdenados;
     }
-    return planetas.sort((a, b) => (a.name > b.name ? -1 : 1));
+    return planetasOrdenados.reverse();
   }
   let planets = planetas;
 
   /* Filtro que transforma .name do objeto planeta em letras minusculas,
     procurando o index(posição) do nome dentro da propriedade name do objeto planeta. */
   planets = planets.filter(
-    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0);
+    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0,
+  );
 
   filterByNumericValues.forEach((filtro) => {
     planets = planets.filter((planeta) => applyComparison(planeta, filtro));

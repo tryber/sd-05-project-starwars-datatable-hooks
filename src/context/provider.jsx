@@ -1,4 +1,5 @@
-import React, { useState, PropTypes } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import SWContext from './StarWarsContext';
 
 const Provider = ({ children }) => {
