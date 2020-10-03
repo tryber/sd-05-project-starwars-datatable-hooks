@@ -1,15 +1,10 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import Context from '../context/StarWarsContext';
-import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
 
 const NumericFilter = () => {
   const {
-    numericFunction,
-    removeFilter,
-    selectedOption: options,
-    filterByNumericValues,
-  } = useContext(Context);
+    numericFunction,removeFilter,selectedOption: options,filterByNumericValues} = useContext(Context);
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [valor, setValor] = useState('');
@@ -19,14 +14,12 @@ const NumericFilter = () => {
       <div>
         <select data-testid="column-filter" onChange={(event) => setColumn(event.target.value)}>
           <option value="" disabled defaultValue />
-          {options
-            .filter((el) => !filtros.includes(el)).map((el) => (
+          {options.filter((el) => !filtros.includes(el)).map((el) => (
               <option value={el} key={el}>{el}</option>
             ))}
         </select>
         <select
-          data-testid="comparison-filter"
-          onChange={(event) => setComparison(event.target.value)}
+          data-testid="comparison-filter" onChange={(event) => setComparison(event.target.value)}
         >
           <option value="">Choose your comparison</option>
           <option value="menor que">menor que</option>
@@ -40,13 +33,10 @@ const NumericFilter = () => {
     <div>
       {selectButton(options, filtros)}
       <input
-        type="number"
-        data-testid="value-filter"
-        onChange={(event) => setValor(event.target.value)}
+        type="number" data-testid="value-filter" onChange={(event) => setValor(event.target.value)}
       />
       <button
-        data-testid="button-filter"
-        onClick={() => numericFunction({ column, comparison, value: valor })}
+        data-testid="button-filter" onClick={() => numericFunction({ column, comparison, value: valor })}
       >Acionar</button>
       <div>
         {filtros.map((filtro) => (

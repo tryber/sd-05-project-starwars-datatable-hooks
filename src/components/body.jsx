@@ -53,7 +53,7 @@ const Body = () => {
   /* Filtro que transforma .name do objeto planeta em letras minusculas,
     procurando o index(posição) do nome dentro da propriedade name do objeto planeta. */
   planets = planets.filter(
-    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0;
+    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0
   );
 
   filterByNumericValues.forEach((filtro) => {

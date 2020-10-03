@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Children } from 'react';
 import SWContext from './StarWarsContext';
 
 const Provider = ({ children }) => {
@@ -45,3 +46,7 @@ const Provider = ({ children }) => {
 };
 
 export default Provider;
+
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
