@@ -1,7 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
 import Context from '../context/StarWarsContext';
 import Planeta from './planeta';
-import { useContext } from 'react';
 
 const applyComparison = (planeta, filtro) => {
   const { column, comparison, value } = filtro;
@@ -53,7 +53,7 @@ const Body = () => {
   /* Filtro que transforma .name do objeto planeta em letras minusculas,
     procurando o index(posição) do nome dentro da propriedade name do objeto planeta. */
   planets = planets.filter(
-    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0
+    (planeta) => planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0;
   );
 
   filterByNumericValues.forEach((filtro) => {
@@ -70,12 +70,5 @@ const Body = () => {
     </tbody>
   );
 };
-const mapStateToProps = (state) => ({
-  planetas: state.reducerApi.data,
-  nomeProcurado: state.filters.filterByName.name,
-  filterByNumericValues: state.filters.filterByNumericValues,
-  options: state.filters.selectedOption,
-  order: state.filters.order,
-});
 
 export default Body;

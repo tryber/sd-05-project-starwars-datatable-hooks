@@ -18,11 +18,11 @@ const Provider = ({ children }) => {
     setOrder((initialState) => ({ ...initialState, [orderState]: orderValue }));
   };
   const numericFunction = (numericValue) => {
-    setFilterByNumericValues((initialState) => ([ ...initialState, numericValue ]));
+    setFilterByNumericValues((initialState) => ([...initialState, numericValue]));
   };
   const removeFilter = (nomeDoFiltro) => {
     setFilterByNumericValues((initialState) =>
-      initialState.filter((filtro) => filtro.column !== nomeDoFiltro)
+      initialState.filter((filtro) => filtro.column !== nomeDoFiltro),
     );
   };
   const context = {

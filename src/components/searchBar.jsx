@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Context from '../context/StarWarsContext';
-import { pegandoNomeAction } from '../actions';
+import React from 'react';
 import { useContext } from 'react';
+import Context from '../context/StarWarsContext';
 
 const SearchBar = () => {
   const { setFilterByName: pegarNome } = useContext(Context);
@@ -13,9 +12,5 @@ const SearchBar = () => {
     />
   );
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  pegarNome: (name) => dispatch(pegandoNomeAction(name)),
-});
 
 export default SearchBar;

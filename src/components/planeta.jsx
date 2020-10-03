@@ -1,8 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-//Função Planeta cria <tr>Uma Linha</tr>, seleciona as chaves do objeto planeta e cria 
-// um <td>table data</td> para cada chave.
+/* Função Planeta cria <tr>Uma Linha</tr>, seleciona as chaves do objeto planeta e cria
+um <td>table data</td> para cada chave. */
 function Planeta(props) {
   const { planeta } = props;
   return (

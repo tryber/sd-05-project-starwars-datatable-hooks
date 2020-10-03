@@ -48,7 +48,7 @@ export const ordenaFiltro = (titulo) => ({
   titulo,
 });
 // Função que excuta a API.
-/* Por estar trabalhando com redux, a função não retorna de cara um objeto. 
+/* Por estar trabalhando com redux, a função não retorna de cara um objeto.
 O retorno dessa função é quem despacha as actions (objetos) para o reducer */
 export function fetchApi() {
   return (dispatch) => {

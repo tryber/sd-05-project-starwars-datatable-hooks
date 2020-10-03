@@ -1,7 +1,6 @@
 import React from 'react';
-import Context from '../context/StarWarsContext';
-import { ordenaFiltro } from '../actions';
 import { useContext, useState } from 'react';
+import Context from '../context/StarWarsContext';
 
 const arrayCabecalho = [
   'name',
@@ -54,9 +53,5 @@ const Bonus = () => {
     </div>
   );
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  ordem: (event) => dispatch(ordenaFiltro(event)),
-});
 
 export default Bonus;
