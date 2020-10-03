@@ -2,8 +2,9 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import Context from '../context/StarWarsContext';
 
-const NumericFilter = () => { const { numericFunction, removeFilter, 
-  selectedOption: options, filterByNumericValues } = useContext(Context);
+const NumericFilter = () => {
+  const { numericFunction, removeFilter, selectedOption: options, filterByNumericValues }
+  = useContext(Context);
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [valor, setValor] = useState('');
@@ -35,15 +36,12 @@ const NumericFilter = () => { const { numericFunction, removeFilter,
         type="number" data-testid="value-filter" onChange={(event) => setValor(event.target.value)}
       />
       <button
-        data-testid="button-filter" onClick={() => numericFunction(
-        { column, comparison, value: valor })}
+        data-testid="button-filter" onClick={() => numericFunction({ column, comparison, value: valor })}
       >Acionar</button>
       <div>
-        {filtros.map((filtro) => (
-          <div data-testid="filter" key={filtro}>
-            <button onClick={(event) => removeFilter(event.target.id)} id={filtro}>X</button>
-            {filtro}
-          </div>
+        {filtros.map((filtro) => ( <div data-testid="filter" key={filtro}>
+        <button onClick={(event) => removeFilter(event.target.id)} id={filtro}>X</button>{filtro}
+      </div>
         ))}
       </div>
     </div>
