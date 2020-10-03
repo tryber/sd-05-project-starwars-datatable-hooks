@@ -34,7 +34,7 @@ const Bonus = () => {
       </select>
       <input
         type="radio"
-        data-testid="column-sort-input"
+        data-testid="column-sort-input-asc"
         name="sort"
         value="ASC"
         onClick={(e) => setSort(e.target.value)}
@@ -42,7 +42,7 @@ const Bonus = () => {
       ASC
       <input
         type="radio"
-        data-testid="column-sort-input"
+        data-testid="column-sort-input-desc"
         name="sort"
         value="DESC"
         onClick={(e) => setSort(e.target.value)}

@@ -7,7 +7,7 @@ function Planeta(props) {
   const { planeta } = props;
   return (
     <tr>
-      <td>{planeta.name}</td>
+      <td data-testid="planet-name">{planeta.name}</td>
       <td>{planeta.rotation_period}</td>
       <td>{planeta.orbital_period}</td>
       <td>{planeta.diameter}</td>
