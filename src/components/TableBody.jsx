@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
-const Table = () => {
+const TableBody = () => {
   const { data, loading } = useContext(StarWarsContext);
   return (
     !loading ? data.map((planet) => (
@@ -15,8 +15,16 @@ const Table = () => {
         <td>{planet.terrain}</td>
         <td>{planet.surface_water}</td>
         <td>{planet.population}</td>
+        <td>
+          {planet.films.map((film) => (
+            <span key={film}>{film}</span>
+          ))}
+        </td>
+        <td>{planet.created}</td>
+        <td>{planet.edited}</td>
+        <td>{planet.url}</td>
       </tr>)) : <div>loading...</div>
   );
 };
 
-export default Table;
+export default TableBody;
