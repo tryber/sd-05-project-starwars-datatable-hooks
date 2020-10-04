@@ -6,16 +6,16 @@ import api from '../services/api';
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true);
-    api.then(data => setData(data.results));
+    api.then((response => setData(response.results));
     setLoading(false);
-  },[]);
+  }, []);
 
   const state = {
     data,
     loading,
-  }
+  };
 
   return (
     <StarWarsContext.Provider value={state}>
