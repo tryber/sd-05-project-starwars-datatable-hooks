@@ -4,11 +4,11 @@ import Table from './components/Table';
 import './App.css';
 
 function App() {
-  return(
+  return (
     <Provider>
       <Table />
     </Provider>
-  )  
+  );
 }
 
 export default App;

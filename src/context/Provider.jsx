@@ -8,7 +8,7 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    api.then((response => setData(response.results));
+    api.then((response => setData(response.results)));
     setLoading(false);
   }, []);
 
