@@ -1,13 +1,29 @@
-import React, { useContext } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
+import React from 'react';
+import TableBody from './Table';
 
-const Table = () => {
-  const { data, loading } = useContext(StarWarsContext);
+function Table() {
   return (
-    !loading ? data.map(
-     (e) => <table><tbody><tr><td>{e.name}</td></tr></tbody></table>) : <div>loading...</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rotation Period</th>
+          <th>Orbital Period</th>
+          <th>Diameter</th>
+          <th>Climate</th>
+          <th>Gravity</th>
+          <th>Terrain</th>
+          <th>Surface Water</th>
+          <th>Population</th>
+          <th>Film</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <TableBody />
+    </table>
   );
-};
-
+}
 
 export default Table;
