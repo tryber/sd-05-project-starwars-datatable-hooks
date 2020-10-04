@@ -1,15 +1,7 @@
-import React, {useState, useEffect } from 'react';
-
-import getPlanets from '../services/api.js'
+import React, { useContext } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 const Table = () => {
-
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    getPlanets().then(data => setData(data.results));
-    setLoading(false);
-  },[]);
+  const { data, loading } = useContext(StarWarsContext);
   return (
     !loading ? data.map(
       (e) =>  {
