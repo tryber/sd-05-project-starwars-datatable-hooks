@@ -1,12 +1,11 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import StarWarsContext from './StarWarsContext'
-import api from '../services/api'
+import StarWarsContext from './StarWarsContext';
+import api from '../services/api';
 
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  
   useEffect(()=>{
     setLoading(true);
     api.then(data => setData(data.results));
@@ -26,7 +25,7 @@ const Provider = ({ children }) => {
 };
 
 Provider.propTypes = {
-  chlidren: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Provider;
