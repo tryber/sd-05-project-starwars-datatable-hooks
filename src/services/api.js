@@ -11,6 +11,6 @@ export default async function getPlanets() {
     return data;
   } catch (error) {
     console.log(error);
-    return;
+    return null;
   }
 }
