@@ -15,7 +15,7 @@ const Table = () => {
         <td>{planet.terrain}</td>
         <td>{planet.surface_water}</td>
         <td>{planet.population}</td>
-        </tr>) : <div>loading...</div>
+      </tr>)) : <div>loading...</div>
   );
 };
 
