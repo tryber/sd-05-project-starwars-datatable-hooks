@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { removeClick } from '../actions/actionFilter';
 import FiltroOrdenado from './FiltroOrdenado';
 import StarWarsContext from '../context/StarWarsContext';
 
@@ -61,15 +60,12 @@ function InputNumber() {
     filterByNumericValues,
     setFilterByNumericValues,
   } = useContext(StarWarsContext);
-
   const [state, setState] = useState({ column: '', comparison: '', value: 0 });
-
   useEffect(() => {
     setOptions(
       filterByNumericValues.map((element) => element.column),
     );
   }, [filterByNumericValues]);
-
   let selectedOption = [
     '',
     'population',
@@ -96,8 +92,9 @@ function InputNumber() {
         <div data-testid="filter">
           <button
             onClick={function removeClick() {
-              filterByNumericValues.filter((filtro) =>
-                filtro.column !== state.column)}}
+              filterByNumericValues.filter((filter) =>
+                filter.column !== state.column);
+            }}
             id={filtro.column}
           >
             X

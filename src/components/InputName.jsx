@@ -12,19 +12,19 @@ function InputName() {
   return (
     <div>
       <input // campo para filtrar por nome
-          data-testid="name-filter"
-          type="text"
-          onChange={(event) => filterPlanet(event.target.value)}
-        />
+        data-testid="name-filter"
+        type="text"
+        onChange={(event) => filterPlanet(event.target.value)}
+      />
     </div>
   );
 }
 
 export default InputName;
 
-InputName.propTypes = {
-  filterPlanet: propTypes.func.isRequired,
-};
+// InputName.propTypes = {
+//   filterPlanet: propTypes.func.isRequired,
+// };
 
 /* class InputName extends React.Component {
   render() {

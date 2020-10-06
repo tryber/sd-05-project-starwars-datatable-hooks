@@ -20,14 +20,14 @@ const optionsHeader = [
 
 function FiltroOrdenado() {
   const { setFilterOrder } = useContext(StarWarsContext);
-  const [state, setState] = useState({column: '', sort: ''});
+  const [state, setState] = useState({ column: '', sort: '' });
 
   function selectedOrder(e) {
-    setState({...state, [e.target.id]: e.target.value})
+    setState({ ...state, [e.target.id]: e.target.value });
   }
 
   function handleClick() {
-    const { column, sort } = state
+    const { column, sort } = state;
     setFilterOrder((e) => ([...e, { column, sort }]));
   }
 
