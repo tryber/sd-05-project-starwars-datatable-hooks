@@ -6,7 +6,6 @@ function Provider(props) { // provê infos
   const [data, setData] = useState([]); // valores, responsabilidades
   const [isFetching, setIsFetching] = useState(true);
   const [nombreProcurado, setNombreProcurado] = useState('');
-  const [numericFilter, setNumericFilter] = useState([]);
   const [options, setOptions] = useState([]);
   const [filterOrder, setFilterOrder] = useState({});
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
@@ -14,20 +13,18 @@ function Provider(props) { // provê infos
   const { children } = props;
 
   const context = { // pode ser batatinha
-    data,
-    setData,
-    isFetching,
-    setIsFetching,
-    nombreProcurado,
-    setNombreProcurado,
-    numericFilter,
-    setNumericFilter,
+    data, // ok
+    setData, // ok
+    isFetching, // ok
+    setIsFetching, // ok
+    nombreProcurado, // ok
+    setNombreProcurado, // ok
     options,
     setOptions,
-    filterOrder,
-    setFilterOrder,
-    filterByNumericValues,
-    setFilterByNumericValues,
+    filterOrder, // ok
+    setFilterOrder, // ok
+    filterByNumericValues, // ok
+    setFilterByNumericValues, // ok
   };
 
   return (

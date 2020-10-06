@@ -20,35 +20,45 @@ const optionsHeader = [
 
 function FiltroOrdenado() {
   const { setFilterOrder } = useContext(StarWarsContext);
-  const [column, setColumn] = useState('');
-  const [sort, setSort] = useState('');
+  const [state, setState] = useState({column: '', sort: ''});
+
+  function selectedOrder(e) {
+    setState({...state, [e.target.id]: e.target.value})
+  }
+
+  function handleClick() {
+    const { column, sort } = state
+    setFilterOrder((e) => ([...e, { column, sort }]));
+  }
 
   return (
     <div>
       <select
-        data-testid="column-sort" onChange={(event) =>
-          setColumn(event.target.value)}
+        id="column" data-testid="column-sort" onChange={(event) =>
+          selectedOrder(event)}
       >
         {optionsHeader.map((option) =>
           <option value={option}>{option}</option>)}
       </select>
       <input
+        id="sort"
         value="ASC"
         data-testid="column-sort-input"
         name="order"
         type="radio"
-        onClick={(event) => setSort(event.target.value)}
+        onClick={(event) => selectedOrder(event)}
       /> ASC
       <input
+        id="sort"
         value="DESC"
         data-testid="column-sort-input"
         name="order"
         type="radio"
-        onClick={(event) => setSort(event.target.value)}
+        onClick={(event) => selectedOrder(event)}
       /> DESC
       <button
         data-testid="column-sort-button"
-        onClick={() => setFilterOrder({ column, sort })}
+        onClick={handleClick}
       > Filtrar
       </button>
     </div>

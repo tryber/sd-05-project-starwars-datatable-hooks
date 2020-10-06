@@ -6,6 +6,54 @@ import { removeClick } from '../actions/actionFilter';
 import FiltroOrdenado from './FiltroOrdenado';
 import StarWarsContext from '../context/StarWarsContext';
 
+// seleciona input de filtros por numeros e comparação
+function selectParameter(event, setState, state) {
+  setState({ ...state, [event.target.id]: event.target.value });
+}
+
+// botao para adicionar o filtro por numeros
+function handleClick(event, state, setFilterByNumericValues) {
+  const { column, comparison, value } = state;
+  setFilterByNumericValues((e) => ([...e, { column, comparison, value }]));
+}
+
+// inputs de colunas, comparação e valor numerico
+function seletores(selectedOption, state, setState) {
+  return (
+    <div>
+      <select
+        id="column"
+        data-testid="column-filter"
+        onChange={(event) => { selectParameter(event, setState, state); }}
+      >
+        {selectedOption.map((element) => (
+          <option value={element} key={element}>
+            {element}
+          </option>
+        ))}
+      </select>
+      <select
+        id="comparison"
+        data-testid="comparison-filter"
+        onChange={(event) => selectParameter(event, setState, state)}
+      >
+        <option value="" disabled selected>
+          Compare
+        </option>
+        <option value="maior que">maior que</option>
+        <option value="menor que">menor que</option>
+        <option value="igual a">igual a</option>
+      </select>
+      <input
+        type="number"
+        id="value"
+        data-testid="value-filter"
+        onChange={(event) => selectParameter(event, setState, state)}
+      />
+    </div>
+  );
+}
+
 function InputNumber() {
   const {
     options,
@@ -13,50 +61,14 @@ function InputNumber() {
     filterByNumericValues,
     setFilterByNumericValues,
   } = useContext(StarWarsContext);
+
   const [state, setState] = useState({ column: '', comparison: '', value: 0 });
+
   useEffect(() => {
     setOptions(
       filterByNumericValues.map((element) => element.column),
     );
   }, [filterByNumericValues]);
-  function selectParameter(e) {
-    setState({ ...state, [e.target.id]: e.target.value });
-  }
-  function handleClick() {
-    const { column, comparison, value } = state;
-    setFilterByNumericValues((e) => ([...e, { column, comparison, value }]));
-  }
-  function seletores(selectedOption) {
-    return (
-      <div>
-        <select id="column" data-testid="column-filter" onChange={(event) => {
-          selectParameter(event)}}
-        >
-          {selectedOption.map((element) => (
-            <option value={element} key={element}>
-              {element}
-            </option>
-          ))}
-        </select>
-        <select id="comparison" data-testid="comparison-filter" onChange={(event) => {
-          selectParameter(event)}}
-        >
-          <option value="" disabled selected>
-            Compare
-          </option>
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
-        </select>
-        <input
-          type="number"
-          id="value"
-          data-testid="value-filter"
-          onChange={(event) => selectParameter(event)}
-        />
-      </div>
-    );
-  }
 
   let selectedOption = [
     '',
@@ -70,21 +82,31 @@ function InputNumber() {
 
   return (
     <div>
-      {seletores(selectedOption)}
-      <button data-testid="button-filter" onClick={handleClick}>
+      {seletores(selectedOption, state, setState)}
+      <button
+        data-testid="button-filter"
+        onClick={(e) => {
+          handleClick(e, state, setFilterByNumericValues);
+        }}
+      >
         Adicionar Filtro
       </button>
       <FiltroOrdenado />
       {filterByNumericValues.map((filtro) => (
         <div data-testid="filter">
-          <button onClick={removeClick} id={filtro.column}>
+          <button
+            onClick={function removeClick() {
+              filterByNumericValues.filter((filtro) =>
+                filtro.column !== state.column)}}
+            id={filtro.column}
+          >
             X
           </button>
           {filtro.column}
         </div>
       ))}
     </div>
-    );
+  );
 }
 
 export default InputNumber;

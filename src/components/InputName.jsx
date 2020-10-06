@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
-import { filterPlanet } from '../actions/actionFilter';
+import StarWarsContext from '../context/StarWarsContext';
 
 function InputName() {
-  // useEffect(() => {
-  //   filterPlanet()
-  // })
+  const { setNombreProcurado } = useContext(StarWarsContext);
+
+  function filterPlanet(e) {
+    setNombreProcurado(e);
+  }
+
   return (
     <div>
       <input // campo para filtrar por nome

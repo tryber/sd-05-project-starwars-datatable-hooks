@@ -22,7 +22,7 @@ const Table = () => {
     isFetching,
     setIsFetching,
     nombreProcurado,
-    numericFilter,
+    filterByNumericValues,
   } = useContext(StarWarsContext);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Table = () => {
   let planetas = data;
   planetas = data.filter((planeta) =>
   planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
-  numericFilter.forEach((filtro) => {
+  filterByNumericValues.forEach((filtro) => {
     planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
   });
 
