@@ -62,9 +62,7 @@ function InputNumber() {
   } = useContext(StarWarsContext);
   const [state, setState] = useState({ column: '', comparison: '', value: 0 });
   useEffect(() => {
-    setOptions(
-      filterByNumericValues.map((element) => element.column),
-    );
+    setOptions(filterByNumericValues.map((element) => element.column));
   }, [filterByNumericValues]);
   let selectedOption = [
     '',
@@ -75,7 +73,6 @@ function InputNumber() {
     'orbital_period',
   ];
   selectedOption = selectedOption.filter((element) => !options.includes(element));
-
   return (
     <div>
       {seletores(selectedOption, state, setState)}
@@ -84,8 +81,7 @@ function InputNumber() {
         onClick={(e) => {
           handleClick(e, state, setFilterByNumericValues);
         }}
-      >
-        Adicionar Filtro
+      > Adicionar Filtro
       </button>
       <FiltroOrdenado />
       {filterByNumericValues.map((filtro) => (
@@ -96,8 +92,7 @@ function InputNumber() {
                 filter.column !== state.column);
             }}
             id={filtro.column}
-          >
-            X
+          > X
           </button>
           {filtro.column}
         </div>

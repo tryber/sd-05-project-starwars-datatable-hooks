@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import propTypes from 'prop-types';
 import StarWarsContext from '../context/StarWarsContext';
 
 function InputName() {
@@ -21,10 +20,6 @@ function InputName() {
 }
 
 export default InputName;
-
-// InputName.propTypes = {
-//   filterPlanet: propTypes.func.isRequired,
-// };
 
 /* class InputName extends React.Component {
   render() {
