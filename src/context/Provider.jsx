@@ -1,7 +1,6 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
-
 
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
@@ -9,8 +8,6 @@ const Provider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState({ name: '' });
   const [results, setResults] = useState([]);
   const [type, setType] = useState([]);
-  
-
 
   const state = {
     data,

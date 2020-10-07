@@ -9,15 +9,15 @@ const TableBody = () => {
     getPlanets().then((response) => setData(response.results));
     setLoading(false);
     setType(data);
-  }, [ setData, loading, ]);
+  }, [ setData, loading ]);
   useEffect(() => {
     console.log(searchTerm);
     searchTerm === '' ? setType(data) : setType(results)
     setResults(data.filter(
       planets => planets.name.toLowerCase().includes(searchTerm.name)
       ));
-  }, [searchTerm,]);
-  console.log(type)
+  }, [ searchTerm ]);
+  console.log(type);
   return (
     type.map((planet) => (
       <tr key={planet.name}>
