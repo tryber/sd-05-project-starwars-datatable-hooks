@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
-import getPlanets from '../services/api';
+
 
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    getPlanets().then((response) => setData(response.results));
-    setLoading(false);
-  }, []);
+  const [searchTerm, setSearchTerm] = useState({ name: '' });
+  const [results, setResults] = useState([]);
+  const [type, setType] = useState([]);
+  
+
 
   const state = {
     data,
+    setData,
     loading,
+    setLoading,
+    searchTerm,
+    setSearchTerm,
+    results,
+    setResults,
+    type,
+    setType,
   };
 
   return (
@@ -25,7 +33,7 @@ const Provider = ({ children }) => {
 };
 
 Provider.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Provider;

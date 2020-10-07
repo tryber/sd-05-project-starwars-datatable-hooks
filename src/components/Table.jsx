@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 import TableBody from './TableBody';
 
-function Table() {
+const Table = () => {
+  const { loading } = useContext(StarWarsContext);
   return (
+    !loading ?
     <table>
       <thead>
         <tr>
@@ -22,7 +25,7 @@ function Table() {
         </tr>
       </thead>
       <TableBody />
-    </table>
+    </table> : <div>Loading...</div>
   );
 }
 
