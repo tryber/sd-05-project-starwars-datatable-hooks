@@ -53,6 +53,15 @@ function seletores(selectedOption, state, setState) {
   );
 }
 
+const opcoes = [
+  '',
+  'population',
+  'rotation_period',
+  'diameter',
+  'surface_water',
+  'orbital_period',
+];
+
 function InputNumber() {
   const {
     options,
@@ -60,18 +69,14 @@ function InputNumber() {
     filterByNumericValues,
     setFilterByNumericValues,
   } = useContext(StarWarsContext);
+
   const [state, setState] = useState({ column: '', comparison: '', value: 0 });
+
   useEffect(() => {
     setOptions(filterByNumericValues.map((element) => element.column));
   }, [filterByNumericValues]);
-  let selectedOption = [
-    '',
-    'population',
-    'rotation_period',
-    'diameter',
-    'surface_water',
-    'orbital_period',
-  ];
+
+  let selectedOption = opcoes;
   selectedOption = selectedOption.filter((element) => !options.includes(element));
   return (
     <div>
@@ -87,9 +92,9 @@ function InputNumber() {
       {filterByNumericValues.map((filtro) => (
         <div data-testid="filter">
           <button
-            onClick={function removeClick() {
-              filterByNumericValues.filter((filter) =>
-                filter.column !== state.column);
+            onClick={function removeClick(event) {
+              setFilterByNumericValues(filterByNumericValues.filter((filter) =>
+                filter.column !== event.target.id));
             }}
             id={filtro.column}
           > X

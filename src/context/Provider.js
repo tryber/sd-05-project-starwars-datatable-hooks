@@ -7,7 +7,7 @@ function Provider(props) { // provê infos
   const [isFetching, setIsFetching] = useState(true);
   const [nombreProcurado, setNombreProcurado] = useState('');
   const [options, setOptions] = useState([]);
-  const [filterOrder, setFilterOrder] = useState({});
+  const [filterOrder, setFilterOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const { children } = props;

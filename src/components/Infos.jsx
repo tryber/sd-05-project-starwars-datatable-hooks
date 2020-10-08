@@ -10,7 +10,7 @@ function Infos(sacola) { // a props se chama sacola =D
   return (
     <tbody>
       <tr>
-        <td>{batatinha.name}</td>
+        <td data-testid="planet-name">{batatinha.name}</td>
         <td>{batatinha.rotation_period}</td>
         <td>{batatinha.orbital_period}</td>
         <td>{batatinha.diameter}</td>

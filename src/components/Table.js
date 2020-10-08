@@ -12,7 +12,29 @@ const aplicaComparacao = (planet, filter) => {
     return Number(planet[column]) < Number(value);
   } else if (comparison === 'igual a') {
     return Number(planet[column]) === Number(value);
-  } return planet;
+  }
+  return planet;
+};
+
+const ordenaPlaneta = (planetas, filterOrder) => {
+  const numericColumn = [
+    'rotation_period',
+    'orbital_period',
+    'diameter',
+    'surface_water',
+    'population',
+  ];
+  const { column, sort } = filterOrder;
+  if (numericColumn.includes(column.toLowerCase())) {
+    if (sort === 'ASC') {
+      return planetas.sort((a, b) => a[column.toLowerCase()] - b[column.toLowerCase()]);
+    }
+    return planetas.sort((a, b) => b[column.toLowerCase()] - a[column.toLowerCase()]);
+  }
+  if (sort === 'ASC') {
+    return planetas.sort((a, b) => (a[column.toLowerCase()] < b[column.toLowerCase()] ? -1 : 1));
+  }
+  return planetas.sort((a, b) => (b[column.toLowerCase()] < a[column.toLowerCase()] ? -1 : 1));
 };
 
 const Table = () => {
@@ -23,6 +45,7 @@ const Table = () => {
     setIsFetching,
     nombreProcurado,
     filterByNumericValues,
+    filterOrder,
   } = useContext(StarWarsContext);
 
   useEffect(() => {
@@ -33,20 +56,21 @@ const Table = () => {
     });
   }, []);
   let planetas = data;
-  planetas = data.filter((planeta) =>
-  planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
+  planetas = data.filter(
+    (planeta) => planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0,
+  );
   filterByNumericValues.forEach((filtro) => {
     planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
   });
-
+  planetas = ordenaPlaneta(planetas, filterOrder);
   return (
-    <div>StarWars Datatable with Filters
+    <div>
+      StarWars Datatable with Filters
       <table>
         <Cabecalho />
-        {  // if ternário
-          isFetching === false ? planetas.map((batatinha) => (
-            <Infos batatinha={batatinha} />
-          )) : null
+        {
+          // if ternário
+          isFetching === false ? planetas.map((batatinha) => <Infos batatinha={batatinha} />) : null
         }
       </table>
     </div>

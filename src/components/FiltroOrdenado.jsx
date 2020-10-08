@@ -28,7 +28,8 @@ function FiltroOrdenado() {
 
   function handleClick() {
     const { column, sort } = state;
-    setFilterOrder((e) => ([...e, { column, sort }]));
+    setFilterOrder(() => ({ column, sort }));
+    // setFilterOrder(state) mesma coisa da linha de cima
   }
 
   return (
@@ -43,7 +44,7 @@ function FiltroOrdenado() {
       <input
         id="sort"
         value="ASC"
-        data-testid="column-sort-input"
+        data-testid="column-sort-input-asc"
         name="order"
         type="radio"
         onClick={(event) => selectedOrder(event)}
@@ -51,14 +52,14 @@ function FiltroOrdenado() {
       <input
         id="sort"
         value="DESC"
-        data-testid="column-sort-input"
+        data-testid="column-sort-input-desc"
         name="order"
         type="radio"
         onClick={(event) => selectedOrder(event)}
       /> DESC
       <button
         data-testid="column-sort-button"
-        onClick={handleClick}
+        onClick={(e) => handleClick(e)}
       > Filtrar
       </button>
     </div>
