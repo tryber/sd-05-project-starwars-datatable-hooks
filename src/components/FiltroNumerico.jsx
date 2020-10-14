@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class FiltroNumerico extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export default class FiltroNumerico extends Component {
   render() {
     const { filtraCombineAction, filterSelected, remove } = this.props;
     let rS = ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'];
-    rS = rS.filter((s) => !filterSelected.includes(s));
+    //                                                                                                                                                        rS = rS.filter((s) => !filterSelected.includes(s));
     return (
       <div>
         <select onChange={(event) => this.hC(event)} data-testid="column-filter" name="column">
@@ -48,10 +47,3 @@ export default class FiltroNumerico extends Component {
     );
   }
 }
-
-FiltroNumerico.propTypes = {
-  filtraCombineAction: PropTypes.func.isRequired,
-  filterSelected: PropTypes.func.isRequired,
-  tiraX: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
-};

@@ -1,4 +1,4 @@
-import requisicaoAPI from '../api/data';
+/* import requisicaoAPI from '../api/data';
 
 const ACTIONS = {
   REQUEST_API,
@@ -51,3 +51,4 @@ export function fetchAllPlanets() {
     return requisicaoAPI().then((dados) => dispatch(receiveApi(dados)));
   };
 }
+ */

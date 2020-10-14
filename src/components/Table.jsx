@@ -19,8 +19,6 @@ const colunasNumericas = [
   'orbital_period',
 ];
 
-// Live com Hugão meu ídolo
-
 function ordenaCol(filtroPorPlaneta, reduxOrder) {
   if (colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
@@ -50,20 +48,12 @@ export default class Table extends Component {
 
   render() {
     const { planetas, name, filtragemPlanetas, reduxOrder } = this.props;
-
-    /*     consulta filter sem modificar anterior:
-    https://desenvolvimentoparaweb.com/javascript/map-filter-
-    reduce-javascript/#:~:text=%2F%2F%20array.-,filter
-    (%20(%20elem%2C%20index%2C%20arr%20)%20%3D%3E%20arr,
-    elemento%20ser%C3%A1%20mantido%20ou%20descartado. */
-
-    let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
+    /* let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
     filtragemPlanetas.forEach((filtro) => {
       filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => pegaFiltro(filtro, planeta));
     });
     filtroPorPlaneta = ordenaCol(filtroPorPlaneta, reduxOrder);
-
-    // filtroPorPlaneta = chama a func que fará o filtro
+ */
     return (
       <div>
         StarWars Datatable with Filters
@@ -74,8 +64,8 @@ export default class Table extends Component {
         <br />
         <table>
           <Head />
-          {filtroPorPlaneta.map((planeta) => (
-            <Body data={planeta} />
+       {/*    {filtroPorPlaneta.map((planeta) => (
+            <Body data={planeta} /> */}
           ))}
         </table>
       </div>
