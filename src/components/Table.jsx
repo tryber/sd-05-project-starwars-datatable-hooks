@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 import Body from './Body';
 import Head from './Head';
 
@@ -22,29 +23,49 @@ const colunasNumericas = [
 function ordenaCol(filtroPorPlaneta, reduxOrder) {
   if (colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
-      return filtroPorPlaneta.sort((a, b) =>
-        a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
+      return filtroPorPlaneta.sort(
+        (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
       );
     }
-    return filtroPorPlaneta.sort((b, a) =>
-      a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
+    return filtroPorPlaneta.sort(
+      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
     );
   }
   if (reduxOrder.sort === 'ASC') {
     return filtroPorPlaneta.sort((a, b) =>
-      (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
+      a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1
     );
   }
   return filtroPorPlaneta.sort((a, b) =>
-    (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1),
+    a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1
   );
 }
 
-export default class Table extends Component {
-  componentDidMount() {
-    const { getFetch } = this.props;
-    getFetch();
-  }
+function Table() {
+  const { data: planetas, filterByName: name, filterByNumericValues } = useContext(StarWarsContext);
+  let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
+  filterByNumericValues.forEach((filtro) => {
+    filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => pegaFiltro(filtro, planeta));
+  });
+  return (
+    <div>
+      StarWars Datatable with Filters
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <table>
+        <Head />
+        {filtroPorPlaneta.map((planeta) => (
+        <Body data={planeta} />
+      ))}
+      </table>
+    </div>
+  );
+}
+
+/* export default class Table extends Component {
 
   render() {
     const { planetas, name, filtragemPlanetas, reduxOrder } = this.props;
@@ -53,22 +74,12 @@ export default class Table extends Component {
       filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => pegaFiltro(filtro, planeta));
     });
     filtroPorPlaneta = ordenaCol(filtroPorPlaneta, reduxOrder);
- */
     return (
       <div>
-        StarWars Datatable with Filters
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <table>
-          <Head />
-       {/*    {filtroPorPlaneta.map((planeta) => (
-            <Body data={planeta} /> */}
-          ))}
-        </table>
+        
       </div>
     );
   }
-}
+} */
+
+export default Table;

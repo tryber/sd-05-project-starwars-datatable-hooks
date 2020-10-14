@@ -7,10 +7,9 @@ function Provider(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cabecalho, setCabecalho] = useState([]);
-  const [name, setName] = useState('');
+  const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
-  const [ordenacaoAtivada, setOrdenacaoAtivada] = useState(true);
   const [comparison, setComparison] = useState('');
   const [column, setColumn] = useState('');
   const [value, setValue] = useState('');
@@ -30,14 +29,12 @@ function Provider(props) {
     setIsLoading,
     cabecalho,
     setCabecalho,
-    name,
-    setName,
+    filterByName,
+    setFilterByName,
     filterByNumericValues,
     setFilterByNumericValues,
     order,
     setOrder,
-    ordenacaoAtivada,
-    setOrdenacaoAtivada,
     comparison,
     setComparison,
     column,
