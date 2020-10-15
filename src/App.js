@@ -4,7 +4,7 @@ import Provider from './context/Provider';
 import Table from './components/Table';
 import FiltroNumerico from './components/FiltroNumerico';
 import Filter from './components/Filter';
-// import AscDesc from './components/AscDesc';
+import AscDesc from './components/AscDesc';
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
         <Filter />
         <br />
         <FiltroNumerico />
-        {/* <br />
+        <br />
         <br />
         <AscDesc />
-        <br /> */}
+        <br />
         <Table />
       </header>
     </Provider>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 
 const colunaInicial = [
   'name',
@@ -17,58 +17,48 @@ const colunaInicial = [
   'url',
 ];
 
-export default class AscDesc extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: 'Name',
-      sort: 'ASC',
-    };
-  }
-
-  render() {
-    const { sort, column } = this.state;
-    return (
-      <div>
-        <select
-          data-testid="column-sort"
-          onChange={(e) => this.setState({ column: e.target.value })}
-        >
-          {colunaInicial.map((e) => (
-            <option value={e} key={e}>
-              {e}
-            </option>
-          ))}
-        </select>
-        <input
-          name="ordenar"
-          value="ASC"
-          type="radio"
-          data-testid="column-sort-input"
-          defaultChecked
-          onChange={(e) => this.setState({ sort: e.target.value })}
-        />
-        ASC
-        <input
-          name="ordenar"
-          value="DESC"
-          type="radio"
-          data-testid="column-sort-input"
-          onChange={(e) => this.setState({ sort: e.target.value })}
-        />
-        DESC
-        <button
-          type="button"
-          data-testid="column-sort-button"
-          onClick={() => this.props.ordenado(sort, column)}
-        >
-          Selecionar
-        </button>
-      </div>
-    );
-  }
+function AscDesc() {
+  const [column, setColumn] = useState('');
+  const [sort, setSort] = useState('ASC');
+  const { setReduxOrder } = useContext(StarWarsContext);
+  return (
+    <div>
+      <select
+        data-testid="column-sort"
+        onChange={(event) => setColumn({ column: event.target.value })}
+      >
+        {colunaInicial.map((event) => (
+          <option value={event} key={event}>
+            {event}
+          </option>
+        ))}
+      </select>
+      <input
+        name="ordenar"
+        value="ASC"
+        type="radio"
+        data-testid="column-sort-input"
+        defaultChecked
+        onChange={(event) => setSort({ sort: event.target.value })}
+      />
+      ASC
+      <input
+        name="ordenar"
+        value="DESC"
+        type="radio"
+        data-testid="column-sort-input"
+        onChange={(event) => setSort({ sort: event })}
+      />
+      DESC
+      <button
+        type="button"
+        data-testid="column-sort-button"
+        onClick={() => setReduxOrder(sort, column)}
+      >
+        Selecionar
+      </button>
+    </div>
+  );
 }
 
-AscDesc.propTypes = {
-  ordenado: PropTypes.func.isRequired,
-};
+export default AscDesc;

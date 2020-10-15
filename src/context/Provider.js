@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
 import getPlanets from '../api/data';
 
+// consultado repo Hugão meu ídolo para reflexão
+// e construção do Provider
+
 function Provider(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +15,7 @@ function Provider(props) {
   const [reduxOrder, setReduxOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [comparison, setComparison] = useState('');
   const [column, setColumn] = useState('');
-  const [value, setValue] = useState('');
+  const [sort, setSort] = useState('ASC');
 
   useEffect(() => {
     getPlanets()
@@ -40,8 +43,8 @@ function Provider(props) {
     setComparison,
     column,
     setColumn,
-    value,
-    setValue,
+    sort,
+    setSort,
   };
   return <StarWarsContext.Provider value={contexto}>{props.children}</StarWarsContext.Provider>;
 }
