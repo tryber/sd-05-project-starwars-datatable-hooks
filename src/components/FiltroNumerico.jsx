@@ -1,49 +1,59 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
+import StarWarsContext from '../context/StarWarsContext';
 
-export default class FiltroNumerico extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: '',
-      comparison: '',
-      value: '',
-    };
-    this.hC = this.hC.bind(this);
-  }
+const rS = ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'];
 
-  hC(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
-
-  render() {
-    const { filtraCombineAction, filterSelected, remove } = this.props;
-    let rS = ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'];
-    //                                                                                                                                                        rS = rS.filter((s) => !filterSelected.includes(s));
-    return (
-      <div>
-        <select onChange={(event) => this.hC(event)} data-testid="column-filter" name="column">
-          {rS.map((e) => (
-            <option value={e}>{e}</option>
-          ))}
-        </select>
-        <select onChange={(e) => this.hC(e)} data-testid="comparison-filter" name="comparison">
-          <option>Comparison</option>
-          <option value="maior que">maior que</option>
-          <option value="igual a">igual a</option>
-          <option value="menor que">menor que</option>
-        </select>
-        <input onChange={(event) => this.hC(event)} data-testid="value-filter" name="value" />
-        <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)} />
-        {remove.map((x) => (
-          <div data-testid="filter">
-            <button onClick={this.props.tiraX} id={x.column}>
-              X
-            </button>
-            {x.column}
-          </div>
+function FiltroNumerico() {
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [value, setValue] = useState('');
+  const { filterByNumericValues, setFilterByNumericValues } = useContext(StarWarsContext);
+  return (
+    <div>
+      <select
+        onChange={(event) => setColumn(event.target.value)}
+        data-testid="column-filter"
+        name="column"
+      >
+        {rS.map((event) => (
+          <option value={event}>{event}</option>
         ))}
-      </div>
-    );
-  }
+      </select>
+      <select
+        onChange={(event) => setComparison(event.target.value)}
+        data-testid="comparison-filter"
+        name="comparison"
+      >
+        <option>Comparison</option>
+        <option value="maior que">maior que</option>
+        <option value="igual a">igual a</option>
+        <option value="menor que">menor que</option>
+      </select>
+      <input
+        onChange={(event) => setValue(event.target.value)}
+        data-testid="value-filter"
+        name="value"
+      />
+      <button
+        data-testid="button-filter"
+        onClick={() =>
+          setFilterByNumericValues([...filterByNumericValues, { column, comparison, value }])
+        }
+      >
+        Submete
+      </button>
+    </div>
+  );
 }
+
+
+/* {remove.map((x) => (
+      <div data-testid="filter">
+        <button onClick={this.props.tiraX} id={x.column}>
+          X
+        </button>
+        {x.column}
+      </div>
+    ))} */
+
+export default FiltroNumerico;

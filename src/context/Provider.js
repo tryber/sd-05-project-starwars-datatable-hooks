@@ -9,17 +9,18 @@ function Provider(props) {
   const [cabecalho, setCabecalho] = useState([]);
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
-  const [order, setOrder] = useState({ column: 'Name', sort: 'ASC' });
+  const [reduxOrder, setReduxOrder] = useState({ column: 'Name', sort: 'ASC' });
   const [comparison, setComparison] = useState('');
   const [column, setColumn] = useState('');
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    getPlanets().then((response) => {
-      setData(response);
-      setCabecalho(Object.keys(response[0]).filter((titulo) => (titulo !== 'residents')));
-    })
-    .then(() => setIsLoading(false));
+    getPlanets()
+      .then((response) => {
+        setData(response);
+        setCabecalho(Object.keys(response[0]).filter((titulo) => titulo !== 'residents'));
+      })
+      .then(() => setIsLoading(false));
   }, []);
 
   const contexto = {
@@ -33,8 +34,8 @@ function Provider(props) {
     setFilterByName,
     filterByNumericValues,
     setFilterByNumericValues,
-    order,
-    setOrder,
+    reduxOrder,
+    setReduxOrder,
     comparison,
     setComparison,
     column,
@@ -48,5 +49,5 @@ function Provider(props) {
 export default Provider;
 
 Provider.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.func.isRequired,
 };

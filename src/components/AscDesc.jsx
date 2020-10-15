@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const colunaInicial = [
   'name',
@@ -67,3 +68,7 @@ export default class AscDesc extends Component {
     );
   }
 }
+
+AscDesc.propTypes = {
+  ordenado: PropTypes.func.isRequired,
+};

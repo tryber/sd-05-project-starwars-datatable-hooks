@@ -3,6 +3,8 @@ import StarWarsContext from '../context/StarWarsContext';
 import Body from './Body';
 import Head from './Head';
 
+// live Neneco & Zambis 14/10/20
+
 function pegaFiltro(filtroPlanetario, planetas) {
   const { value, comparison, column } = filtroPlanetario;
   if (comparison === 'maior que') {
@@ -20,24 +22,31 @@ const colunasNumericas = [
   'orbital_period',
 ];
 
-function ordenaCol(filtroPorPlaneta, reduxOrder) {
+export function OrdenaCol() {
+  const { filterByName: name, reduxOrder, data: planetas, filterByNumericValues } = useContext(
+    StarWarsContext,
+  );
+  let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
+  filterByNumericValues.forEach((filtro) => {
+    filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => pegaFiltro(filtro, planeta));
+  });
   if (colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
       return filtroPorPlaneta.sort(
-        (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+        (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
       );
     }
     return filtroPorPlaneta.sort(
-      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
     );
   }
   if (reduxOrder.sort === 'ASC') {
     return filtroPorPlaneta.sort((a, b) =>
-      a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1
+      (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
     );
   }
   return filtroPorPlaneta.sort((a, b) =>
-    a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1
+    (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1),
   );
 }
 
@@ -58,8 +67,8 @@ function Table() {
       <table>
         <Head />
         {filtroPorPlaneta.map((planeta) => (
-        <Body data={planeta} />
-      ))}
+          <Body data={planeta} />
+        ))}
       </table>
     </div>
   );
@@ -76,7 +85,7 @@ function Table() {
     filtroPorPlaneta = ordenaCol(filtroPorPlaneta, reduxOrder);
     return (
       <div>
-        
+        cc
       </div>
     );
   }
