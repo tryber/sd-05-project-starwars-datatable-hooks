@@ -44,18 +44,18 @@ function FiltroNumerico() {
       >
         Submete
       </button>
-      {filterByNumericValues.map((x) => (
-        <div data-testid="filter">
-          <button onClick={filterByNumericValues} id={x.column}>
-            X
-          </button>
-          {x.column}
-        </div>
-      ))}
     </div>
   );
 }
 
+/* {filterByNumericValues.map((x) => (
+  <div data-testid="filter">
+    <button onClick={filterByNumericValues} id={x.column}>
+      X
+    </button>
+    {x.column}
+  </div>
+))} */
 /* {remove.map((x) => (
       <div data-testid="filter">
         <button onClick={this.props.tiraX} id={x.column}>
