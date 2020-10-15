@@ -77,19 +77,4 @@ function Table() {
   );
 }
 
-/*   render() {
-    const { planetas, name, filtragemPlanetas, reduxOrder } = this.props;
-    /* let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
-    filtragemPlanetas.forEach((filtro) => {
-      filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => pegaFiltro(filtro, planeta));
-    });
-    filtroPorPlaneta = ordenaCol(filtroPorPlaneta, reduxOrder);
-    return (
-      <div>
-        cc
-      </div>
-    );
-  }
-} */
-
 export default Table;

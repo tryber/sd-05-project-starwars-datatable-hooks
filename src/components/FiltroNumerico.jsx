@@ -16,7 +16,9 @@ function FiltroNumerico() {
         name="column"
       >
         {rS.map((event) => (
-          <option value={event} key={event}>{event}</option>
+          <option value={event} key={event}>
+            {event}
+          </option>
         ))}
       </select>
       <select
@@ -42,10 +44,17 @@ function FiltroNumerico() {
       >
         Submete
       </button>
+      {filterByNumericValues.map((x) => (
+        <div data-testid="filter">
+          <button onClick={filterByNumericValues} id={x.column}>
+            X
+          </button>
+          {x.column}
+        </div>
+      ))}
     </div>
   );
 }
-
 
 /* {remove.map((x) => (
       <div data-testid="filter">
