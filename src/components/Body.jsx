@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Body(props) {
   const { data } = props;
-  // console.log(data)
   if (data.length === 0) return <h1>Carregando</h1>;
   return (
     <tr>
@@ -24,3 +24,7 @@ function Body(props) {
 }
 
 export default Body;
+
+Body.propTypes = {
+  data: PropTypes.func.isRequired,
+};

@@ -24,7 +24,7 @@ const colunasNumericas = [
 
 export function OrdenaCol() {
   const { filterByName: name, reduxOrder, data: planetas, filterByNumericValues } = useContext(
-    StarWarsContext
+    StarWarsContext,
   );
   let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
   filterByNumericValues.forEach((filtro) => {
@@ -33,20 +33,20 @@ export function OrdenaCol() {
   if (colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
       return filtroPorPlaneta.sort(
-        (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+        (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
       );
     }
     return filtroPorPlaneta.sort(
-      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
     );
   }
   if (reduxOrder.sort === 'ASC') {
     return filtroPorPlaneta.sort((a, b) =>
-      a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1
+      (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
     );
   }
   return filtroPorPlaneta.sort((a, b) =>
-    a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1
+    (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1),
   );
 }
 
