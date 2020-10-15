@@ -16,7 +16,7 @@ function FiltroNumerico() {
         name="column"
       >
         {rS.map((event) => (
-          <option value={event}>{event}</option>
+          <option value={event} key={event}>{event}</option>
         ))}
       </select>
       <select

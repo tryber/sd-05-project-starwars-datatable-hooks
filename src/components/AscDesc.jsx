@@ -18,15 +18,12 @@ const colunaInicial = [
 ];
 
 function AscDesc() {
-  const [column, setColumn] = useState('');
+  const [column, setColumn] = useState('Name');
   const [sort, setSort] = useState('ASC');
   const { setReduxOrder } = useContext(StarWarsContext);
   return (
     <div>
-      <select
-        data-testid="column-sort"
-        onChange={(event) => setColumn({ column: event.target.value })}
-      >
+      <select data-testid="column-sort" onChange={(event) => setColumn(event.target.value)}>
         {colunaInicial.map((event) => (
           <option value={event} key={event}>
             {event}
@@ -37,23 +34,23 @@ function AscDesc() {
         name="ordenar"
         value="ASC"
         type="radio"
-        data-testid="column-sort-input"
+        data-testid="column-sort-input-asc"
         defaultChecked
-        onChange={(event) => setSort({ sort: event.target.value })}
+        onChange={(event) => setSort(event.target.value)}
       />
       ASC
       <input
         name="ordenar"
         value="DESC"
         type="radio"
-        data-testid="column-sort-input"
-        onChange={(event) => setSort({ sort: event })}
+        data-testid="column-sort-input-desc"
+        onChange={(event) => setSort(event.target.value)}
       />
       DESC
       <button
         type="button"
         data-testid="column-sort-button"
-        onClick={() => setReduxOrder(sort, column)}
+        onClick={() => setReduxOrder({ sort, column })}
       >
         Selecionar
       </button>
