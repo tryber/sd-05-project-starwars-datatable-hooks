@@ -1,25 +1,10 @@
 import React, { useContext } from 'react';
 import SWContext from '../context/swContext';
 
-function TBody() {
-  const { data, filterByName: names } = useContext(SWContext);
-  let planetasAlterados = data;
-
-  return (
-    <tbody>
-      {planetasAlterados
-        .filter((planeta) => planeta.name.includes(names))
-        .map((planeta) => bodyRender(planeta))}
-    </tbody>
-  );
-}
-
-export default TBody;
-
 function bodyRender(planeta) {
   return (
     <tr key={planeta.name}>
-      <td>{planeta.name}</td>
+      <td data-testid="planet-name">{planeta.name}</td>
       <td>{planeta.rotation_period}</td>
       <td>{planeta.orbital_period}</td>
       <td>{planeta.diameter}</td>
@@ -44,80 +29,52 @@ const colunasNumericas = [
   'surface_water',
 ];
 
-/* class TBody extends Component {
-  constructor(props) {
-    super(props);
-    this.filtroNumerico = this.filtroNumerico.bind(this);
-  }
-
-  filtroNumerico(planetas) {
-    const { filtros } = this.props;
-    let planetasFiltrados = planetas;
-    filtros.forEach((filtro) => {
-      const { column, comparison, value } = filtro;
-      if (comparison === 'maior que') {
-        planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] > Number(value));
-      }
-      if (comparison === 'menor que') {
-        planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] < Number(value));
-      }
-      if (comparison === 'igual a') {
-        planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] === value);
-      }
-    });
-    return planetasFiltrados;
-  }
-
-  ordenaPlaneta(planetasAlterados) {
-    const { ordem } = this.props;
-    let ordenado = [];
-    if (colunasNumericas.includes(ordem.column)) {
-      ordenado = planetasAlterados.sort(
-        (a, b) => Number(a[ordem.column]) - Number(b[ordem.column])
-      );
-    } else {
-      ordenado = planetasAlterados.sort((a, b) =>
-        a[ordem.column.toLowerCase()] > b[ordem.column.toLowerCase()] ? 1 : -1
-      );
+function FiltroNumerico(planetas) {
+  const { filterByNumericValues: filtros } = useContext(SWContext);
+  let planetasFiltrados = planetas;
+  filtros.forEach((filtro) => {
+    const { column, comparison, value } = filtro;
+    if (comparison === 'maior que') {
+      planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] > Number(value));
     }
-    if (ordem.sort === 'DESC') {
-      return ordenado.reverse();
+    if (comparison === 'menor que') {
+      planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] < Number(value));
     }
-    return ordenado;
-  }
-
-  render() {
-    const { planetas, names, filtros } = this.props;
-    let planetasAlterados = planetas;
-    if (filtros.length > 0) {
-      planetasAlterados = this.filtroNumerico(planetas);
+    if (comparison === 'igual a') {
+      planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] === value);
     }
-
-    planetasAlterados = this.ordenaPlaneta(planetasAlterados);
-
-    return (
-      <tbody>
-        {planetasAlterados
-          .filter((planeta) => planeta.name.includes(names))
-          .map((planeta) => bodyRender(planeta))}
-      </tbody>
-    );
-  }
+  });
+  return planetasFiltrados;
 }
 
-const mapStateToProps = (state) => ({
-  planetas: state.apiReducer.data.results,
-  names: state.filters.filterByName.name,
-  filtros: state.filters.filterByNumericValues,
-  ordem: state.filters.order,
-});
+function OrdenaPlaneta(planetasAlterados) {
+  const { order: ordem } = useContext(SWContext);
+  let ordenado = [];
+  if (colunasNumericas.includes(ordem.column)) {
+    ordenado = planetasAlterados.sort((a, b) => Number(a[ordem.column]) - Number(b[ordem.column]));
+  } else {
+    ordenado = planetasAlterados.sort((a, b) =>
+      (a[ordem.column.toLowerCase()] > b[ordem.column.toLowerCase()] ? 1 : -1),
+    );
+  }
+  if (ordem.sort === 'DESC') {
+    return ordenado.reverse();
+  }
+  return ordenado;
+}
 
-export default connect(mapStateToProps)(TBody);
+function TBody() {
+  const { data, filterByName: names } = useContext(SWContext);
+  let planetasAlterados = FiltroNumerico(data);
+  planetasAlterados = OrdenaPlaneta(planetasAlterados);
 
-TBody.propTypes = {
-  planetas: PropTypes.instanceOf(Array).isRequired,
-  names: PropTypes.string.isRequired,
-  filtros: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
-  ordem: PropTypes.instanceOf(Object).isRequired,
-};
- */
+  return (
+    <tbody>
+      {planetasAlterados
+        .filter((planeta) => planeta.name.includes(names))
+        .map((planeta) => bodyRender(planeta))}
+    </tbody>
+  );
+}
+
+export default TBody;

@@ -7,7 +7,7 @@ function THead() {
   return (
     <tr>
       {Object.keys(data[0]).map((cabecalho) =>
-        cabecalho === 'residents' ? false : <th key={cabecalho}>{cabecalho}</th>,
+        (cabecalho === 'residents' ? false : <th key={cabecalho}>{cabecalho}</th>),
       )}
     </tr>
   );

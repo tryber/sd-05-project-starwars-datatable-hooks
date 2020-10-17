@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import SWContext from '../context/swContext';
+import SortFilter from './SortFilter';
 
 const colunas = [
   'selected',
@@ -24,28 +25,33 @@ function criaColunas(setColunm, filtrosUsados) {
   );
 }
 
+function DeletaFiltro(filterByNumericValues, column) {
+  return filterByNumericValues.filter((filtro) => filtro.column !== column);
+}
+
+function SelectComparison(setComparison) {
+  return (
+    <select data-testid="comparison-filter" onChange={(event) => setComparison(event.target.value)}>
+      {comparacoes.map((comparacao) => (
+        <option key={comparacao}>{comparacao}</option>
+      ))}
+    </select>
+  );
+}
+
 function SearchBar() {
   const { filterByNumericValues, setFilterByNumericValues, setFilterByName } = useContext(
-    SWContext
+    SWContext,
   );
-  
   const [column, setColumn] = useState('');
   const [comparison, setComparison] = useState('');
   const [value, setValue] = useState('');
-  const filtrosUsados = filterByNumericValues.map((value) => value.column);
-
+  const filtrosUsados = filterByNumericValues.map((filtro1) => filtro1.column);
   return (
     <div>
       <input data-testid="name-filter" onChange={(event) => setFilterByName(event.target.value)} />
       {criaColunas(setColumn, filtrosUsados)}
-      <select
-        data-testid="comparison-filter"
-        onChange={(event) => setComparison(event.target.value)}
-      >
-        {comparacoes.map((comparacao) => (
-          <option key={comparacao}>{comparacao}</option>
-        ))}
-      </select>
+      {SelectComparison(setComparison)}
       <input
         data-testid="value-filter"
         type="number"
@@ -60,121 +66,24 @@ function SearchBar() {
         BUSCAR
       </button>
       <div>
-        {filterByNumericValues.map((value) => (
-          <div data-testid="filter" key={value.column}>
-            {`${value.column} ${value.comparison} ${value.value}`}
-            {/* <button onClick={() => deletaFiltros(value.column)}>X</button> */}
+        {filterByNumericValues.map((filtro) => (
+          <div data-testid="filter" key={filtro.column}>
+            {`${filtro.column} ${filtro.comparison} ${filtro.value}`}
+            <button
+              onClick={() =>
+                setFilterByNumericValues(DeletaFiltro(filterByNumericValues, filtro.column))
+              }
+            >
+              X
+            </button>
           </div>
         ))}
       </div>
-      {/* <div>
+      <div>
         <SortFilter />
-      </div> */}
+      </div>
     </div>
   );
 }
 
 export default SearchBar;
-
-/* import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { filtraNomesAction, filtraValoresAction, deletFilterAction } from '../action';
-import SortFilter from './SortFilter';
-
-
-
-class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: '',
-      comparison: '',
-      value: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChangeColunm = this.handleChangeColunm.bind(this);
-    this.handleChangeComparison = this.handleChangeComparison.bind(this);
-    this.handleChangeValue = this.handleChangeValue.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const { filtrarNomes } = this.props;
-    filtrarNomes(event.target.value);
-  }
-
-  handleChangeColunm(event) {
-    this.setState({ column: event.target.value });
-  }
-
-  handleChangeComparison(event) {
-    this.setState({ comparison: event.target.value });
-  }
-
-  handleChangeValue(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit() {
-    const { filtrarPlanetas } = this.props;
-    const { column, comparison, value } = this.state;
-    // if (column !== '' || comparison !== '' || typeof value * 1 === 'number') {
-    filtrarPlanetas(column, comparison, value);
-    // this.setState({ column: '', comparison: '', value: '' });
-  }
-
-  render() {
-    const { filtrosUsados, resumoFiltros, deletaFiltros } = this.props;
-    return (
-      <div>
-        <input data-testid="name-filter" onChange={this.handleChange} />
-        {criaColunas(this.handleChangeColunm, filtrosUsados)}
-        <select data-testid="comparison-filter" onChange={this.handleChangeComparison}>
-          {comparacoes.map((comparacao) => (
-            <option key={comparacao}>{comparacao}</option>
-          ))}
-        </select>
-        <input data-testid="value-filter" type="number" onChange={this.handleChangeValue} />
-        <button data-testid="button-filter" onClick={this.handleSubmit}>
-          BUSCAR
-        </button>
-        <div>
-          {resumoFiltros.map((value) => (
-            <div data-testid="filter" key={value.column}>
-              {`${value.column} ${value.comparison} ${value.value}`}
-              <button onClick={() => deletaFiltros(value.column)}>X</button>
-            </div>
-          ))}
-        </div>
-        <div>
-          <SortFilter />
-        </div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  filtrosUsados: state.filters.filterByNumericValues.map((value) => value.column),
-  resumoFiltros: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  filtrarNomes: (name) => dispatch(filtraNomesAction(name)),
-  filtrarPlanetas: (column, comparison, value) =>
-    dispatch(filtraValoresAction(column, comparison, value)),
-  deletaFiltros: (column) => dispatch(deletFilterAction(column)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
-
-SearchBar.propTypes = {
-  filtrarNomes: PropTypes.instanceOf(Object).isRequired,
-  filtrarPlanetas: PropTypes.instanceOf(Object).isRequired,
-  deletaFiltros: PropTypes.func.isRequired,
-  resumoFiltros: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
-  filtrosUsados: PropTypes.arrayOf(String).isRequired,
-};
- */

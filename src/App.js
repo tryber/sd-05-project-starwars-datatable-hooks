@@ -6,7 +6,7 @@ import SWProvider from './context/provider';
 function App() {
   return (
     <SWProvider>
-    <Table />
+      <Table />
     </SWProvider>
   );
 }
