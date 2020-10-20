@@ -4,10 +4,10 @@ import StarWarsContext from './StarWarsContext';
 
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ name: '' });
-  const [results, setResults] = useState([]);
-  const [type, setType] = useState([]);
+  const [results, setResults] = useState({ results: [] });
+  const [type, setType] = useState({ vetor: [] });
 
   const state = {
     data,

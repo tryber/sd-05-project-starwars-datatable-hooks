@@ -1,24 +1,21 @@
-import React, {useContext, } from 'react';
+import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const FilterName = () => {
-
-  const { searchTerm, setSearchTerm, } = useContext(StarWarsContext);
-
-
-      return (
-        <div>
+  const { setSearchTerm } = useContext(StarWarsContext);
+  return (
+    <div>
       <input
         data-testid="name-filter"
         type="text"
         placeholder="Type a planet name"
         onChange={
-          event => setSearchTerm({ ...searchTerm, name: event.target.value })
+          (event) => setSearchTerm({ name: event.target.value })
         }
       />
     </div>
   );
-}
+};
 
 export default FilterName;
 
