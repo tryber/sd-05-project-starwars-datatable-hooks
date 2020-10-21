@@ -6,9 +6,6 @@ const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ name: '' });
-  const [results, setResults] = useState({ results: [] });
-  const [type, setType] = useState({ vetor: [] });
-
   const state = {
     data,
     setData,
@@ -16,10 +13,6 @@ const Provider = ({ children }) => {
     setLoading,
     searchTerm,
     setSearchTerm,
-    results,
-    setResults,
-    type,
-    setType,
   };
 
   return (
