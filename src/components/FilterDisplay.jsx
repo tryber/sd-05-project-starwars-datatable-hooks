@@ -42,7 +42,7 @@ const FilterDisplay = () => {
           <button onClick={() => removeObj(filter)}>X</button>
         </div>
       ))}
-  </div>
+    </div>
   );
 };
 

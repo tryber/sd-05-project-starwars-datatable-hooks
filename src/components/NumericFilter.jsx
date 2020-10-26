@@ -3,17 +3,8 @@ import StarWarsContext from '../context/StarWarsContext';
 
 const NumericFilter = () => {
   const {
-     filterColumns,
-     column,
-     setColumn,
-     comparison,
-     setComparison,
-     value,
-     setValue,
-     numericFilter,
-     setNumericFilter,
-     controller,
-     setController,
+     filterColumns, column, setColumn, comparison, setComparison, value,
+     setValue, numericFilter, setNumericFilter, controller, setController,
   } = useContext(StarWarsContext);
 
   const handleColumn = (e) => setColumn(e.target.value);
@@ -24,9 +15,7 @@ const NumericFilter = () => {
     if (column === 'rotation_period') {
       if (controller.rotation_period === true) {
         setNumericFilter([...numericFilter, {
-          column,
-          comparison,
-          value,
+          column, comparison, value,
         }]);
         setController({ ...controller, rotation_period: false });
       } else { alert('filtro repetido'); }
@@ -34,9 +23,7 @@ const NumericFilter = () => {
     if (column === 'orbital_period') {
       if (controller.orbital_period === true) {
         setNumericFilter([...numericFilter, {
-          column,
-          comparison,
-          value,
+          column, comparison, value,
         }]);
         setController({ ...controller, orbital_period: false });
       } else { alert('filtro repetido'); }
@@ -44,9 +31,7 @@ const NumericFilter = () => {
     if (column === 'diameter') {
       if (controller.diameter === true) {
         setNumericFilter([...numericFilter, {
-          column,
-          comparison,
-          value,
+          column, comparison, value,
         }]);
         setController({ ...controller, diameter: false });
       } else { alert('filtro repetido'); }
@@ -54,9 +39,7 @@ const NumericFilter = () => {
     if (column === 'surface_water') {
       if (controller.surface_water === true) {
         setNumericFilter([...numericFilter, {
-          column,
-          comparison,
-          value,
+          column, comparison, value,
         }]);
         setController({ ...controller, surface_water: false });
       } else { alert('filtro repetido'); }
@@ -64,9 +47,7 @@ const NumericFilter = () => {
     if (column === 'population') {
       if (controller.population === true) {
         setNumericFilter([...numericFilter, {
-          column,
-          comparison,
-          value,
+          column, comparison, value,
         }]);
         setController({ ...controller, population: false });
       } else { alert('filtro repetido'); }
