@@ -6,7 +6,7 @@ const FilterDisplay = () => {
     numericFilter,
     setNumericFilter,
     controller,
-    setController
+    setController,
   } = useContext(StarWarsContext);
 
   const removeObj = (filter) => {
@@ -23,27 +23,27 @@ const FilterDisplay = () => {
         setController({ ...controller, diameter: true });
         break;
       case 'surface_water':
-        setController({ ...controller, surface_water: true });  
-      break;
-        case 'population':
+        setController({ ...controller, surface_water: true });
+        break;
+      case 'population':
         setController({ ...controller, population: true });
         break;
       default:
-        console.log(`Sorry, no match found...`);
-      }
-      };
-    return (
-      <div>
-        { numericFilter.map((filter) => (
-          <div key={filter.column}>
-            coluna:{filter.column}
-            comparação: {filter.comparison}
-            valor: {filter.value}
-            <button onClick={() => removeObj(filter)}>X</button>
-          </div>
-        ))}
-    </div>
-    );
+        console.log('Sorry, no match found...');
+    }
+  };
+  return (
+    <div>
+      { numericFilter.map((filter) => (
+        <div key={filter.column}>
+          coluna:{filter.column}
+          comparação: {filter.comparison}
+          valor: {filter.value}
+          <button onClick={() => removeObj(filter)}>X</button>
+        </div>
+      ))}
+  </div>
+  );
 };
 
 export default FilterDisplay;
