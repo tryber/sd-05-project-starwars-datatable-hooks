@@ -7,24 +7,24 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [filterName, setFilterName] = useState({
     filterName: {
-      name: ''
+      name: '',
     },
   });
-  const [numericFilter, setNumericFilter] = useState([])
+  const [numericFilter, setNumericFilter] = useState([]);
   const [column, setColumn] = useState();
   const [comparison, setComparison] = useState();
   const [value, setValue] = useState();
   const [controller, setController] = useState(
     {
-    rotation_period: true,
-    orbital_period:  true,
-    diameter: true,
-    surface_water:true,
-    population:true
-    }
-    )
+      rotation_period: true,
+      orbital_period: true,
+      diameter: true,
+      surface_water: true,
+      population: true,
+    },
+    );
   const [filterColumns, setFilterColumns] = useState([
-    'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population'
+    'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population',
   ]);
   const state = {
     data,

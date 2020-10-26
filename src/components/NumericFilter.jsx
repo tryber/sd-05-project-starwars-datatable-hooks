@@ -97,14 +97,15 @@ setController({ ...controller, 'population': false });
         onChange={handleValue}
       />
 
-      <button data-testid="button-filter"
-      onClick={clickHandler}
-      >Filtrar
+      <button
+        data-testid="button-filter"
+        onClick={clickHandler}
+      >
+        Filtrar
       </button>
 
     </div>
   );
-
 };
 
 export default NumericFilter;

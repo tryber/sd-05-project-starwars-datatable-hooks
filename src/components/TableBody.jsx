@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 
 
 const TableBody = () => {
-  const { data, filters } = useContext(StarWarsContext);
+  const { data } = useContext(StarWarsContext);
   return (
     // data filter desenvolvido com a ajuda do colega de turma PR Zambelli
     data./*filter(
