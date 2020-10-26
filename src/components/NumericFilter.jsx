@@ -5,8 +5,8 @@ const NumericFilter = () => {
   const {
      filterColumns,
      column,
-     setColumn, 
-     comparison, 
+     setColumn,
+     comparison,
      setComparison,
      value,
      setValue,
@@ -15,7 +15,7 @@ const NumericFilter = () => {
      controller,
      setController,
   } = useContext(StarWarsContext);
-  
+
   const handleColumn = (e) => setColumn(e.target.value);
   const handleComparison = (e) => setComparison(e.target.value);
   const handleValue = (e) => setValue(e.target.value);
@@ -25,7 +25,7 @@ const NumericFilter = () => {
       if(controller.rotation_period === true) {
         setNumericFilter([...numericFilter, {
           column: column,
-          comparison: comparison,
+          comparison: (comparison) => comparison,
           value: value,
         }]);
         setController({ ...controller, rotation_period: false });
@@ -35,7 +35,7 @@ const NumericFilter = () => {
       if(controller.orbital_period === true) {
         setNumericFilter([...numericFilter, {
           column: column,
-          comparison: comparison,
+          comparison: (comparison) => comparison,
           value: value,
         }]);
         setController({ ...controller, orbital_period: false });
@@ -44,8 +44,8 @@ const NumericFilter = () => {
     if(column === 'diameter') {
       if(controller.diameter === true) {
         setNumericFilter([...numericFilter, {
-          column: column,
-          comparison: comparison,
+          column: (column) => column,
+          comparison: (comparison) => comparison,
           value: value,
         }]);
         setController({ ...controller, diameter: false });
@@ -55,7 +55,7 @@ const NumericFilter = () => {
       if(controller.surface_water === true) {
         setNumericFilter([...numericFilter, {
           column: column,
-          comparison: comparison,
+          comparison: (comparison) => comparison,
           value: value,
         }]);
         setController({ ...controller, surface_water: false });
@@ -65,7 +65,7 @@ const NumericFilter = () => {
       if(controller.population === true) {
         setNumericFilter([...numericFilter, {
           column: column,
-          comparison: comparison,
+          comparison: (comparison) => comparison,
           value: value,
         }]);
         setController({ ...controller, population: false });
