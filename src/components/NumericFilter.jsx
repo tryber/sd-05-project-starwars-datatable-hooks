@@ -21,52 +21,52 @@ const NumericFilter = () => {
   const handleValue = (e) => setValue(e.target.value);
 
   function clickHandler() {
-    if(column === 'rotation_period') {
-      if(controller.rotation_period === true) {
+    if (column === 'rotation_period') {
+      if (controller.rotation_period === true) {
         setNumericFilter([...numericFilter, {
-          column: column,
-          comparison: (comparison) => comparison,
-          value: value,
+          column,
+          comparison,
+          value,
         }]);
         setController({ ...controller, rotation_period: false });
       } else { alert('filtro repetido'); }
     }
-    if(column === 'orbital_period') {
-      if(controller.orbital_period === true) {
+    if (column === 'orbital_period') {
+      if (controller.orbital_period === true) {
         setNumericFilter([...numericFilter, {
-          column: column,
-          comparison: (comparison) => comparison,
-          value: value,
+          column,
+          comparison,
+          value,
         }]);
         setController({ ...controller, orbital_period: false });
       } else { alert('filtro repetido'); }
     }
-    if(column === 'diameter') {
-      if(controller.diameter === true) {
+    if (column === 'diameter') {
+      if (controller.diameter === true) {
         setNumericFilter([...numericFilter, {
-          column: (column) => column,
-          comparison: (comparison) => comparison,
-          value: value,
+          column,
+          comparison,
+          value,
         }]);
         setController({ ...controller, diameter: false });
       } else { alert('filtro repetido'); }
     }
-    if(column === 'surface_water') {
-      if(controller.surface_water === true) {
+    if (column === 'surface_water') {
+      if (controller.surface_water === true) {
         setNumericFilter([...numericFilter, {
-          column: column,
-          comparison: (comparison) => comparison,
-          value: value,
+          column,
+          comparison,
+          value,
         }]);
         setController({ ...controller, surface_water: false });
       } else { alert('filtro repetido'); }
     }
-    if(column === 'population') {
-      if(controller.population === true) {
+    if (column === 'population') {
+      if (controller.population === true) {
         setNumericFilter([...numericFilter, {
-          column: column,
-          comparison: (comparison) => comparison,
-          value: value,
+          column,
+          comparison,
+          value,
         }]);
         setController({ ...controller, population: false });
       } else { alert('filtro repetido'); }
