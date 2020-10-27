@@ -3,11 +3,11 @@ import StarWarsContext from '../context/StarWarsContext';
 
 
 const TableBody = () => {
-  const { data, filters } = useContext(StarWarsContext);
+  const { data, filterName } = useContext(StarWarsContext);
   return (
     // data filter desenvolvido com a ajuda do colega de turma PR Zambelli
     data.filter(
-      (planets) => (filters.filterName.name !== '' ? planets.name.toLowerCase().includes(filters.filterName.name) : true),
+      (planets) => (filterName.name !== '' ? planets.name.toLowerCase().includes(filterName.name) : true),
     ).map(
       (planet) => (
         <tr key={planet.name}>

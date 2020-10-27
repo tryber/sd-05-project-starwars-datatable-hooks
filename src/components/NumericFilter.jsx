@@ -1,16 +1,33 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
-import ClickHandler from '../services/ClickHandler'
 
 const NumericFilter = () => {
   const {
-     filterColumns, setColumn, setComparison, setValue,
+    column,
+    comparison,
+    value,
+    numericFilter,
+    setNumericFilter,
+    controller,
+    setController,
+    filterColumns,
+    setColumn,
+    setComparison,
+    setValue,
   } = useContext(StarWarsContext);
 
   const handleColumn = (e) => setColumn(e.target.value);
   const handleComparison = (e) => setComparison(e.target.value);
   const handleValue = (e) => setValue(e.target.value);
-
+  const ClickHandler = () => {
+    const col = { ...{ column } };
+    if (controller[col.column] === true){
+      setNumericFilter([...numericFilter, {
+        column, comparison, value,
+      }]);
+      setController({...controller, [column]: false });  
+    } else { alert('filtro repetido'); }
+  }
   return (
     <div>
       <select
