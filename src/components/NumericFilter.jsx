@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import ClickHandler from '../services/ClickHandler'
 
 const NumericFilter = () => {
   const {
-     filterColumns, column, setColumn, comparison, setComparison, value,
-     setValue, numericFilter, setNumericFilter, controller, setController,
+     filterColumns, setColumn, setComparison, setValue,
   } = useContext(StarWarsContext);
 
   const handleColumn = (e) => setColumn(e.target.value);
@@ -48,7 +48,7 @@ const NumericFilter = () => {
 
       <button
         data-testid="button-filter"
-        onClick={clickHandler}
+        onClick={ClickHandler}
       >
         Filtrar
       </button>
