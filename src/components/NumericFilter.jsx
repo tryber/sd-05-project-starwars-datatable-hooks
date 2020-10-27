@@ -20,7 +20,7 @@ const NumericFilter = () => {
           }]);
           setController({ ...controller, rotation_period: false });
         } else { alert('filtro repetido'); }
-    
+
         break;
       case 'orbital_period':
         if (controller.orbital_period === true) {
@@ -29,7 +29,7 @@ const NumericFilter = () => {
           }]);
           setController({ ...controller, orbital_period: false });
         } else { alert('filtro repetido'); }
-        
+
         break;
       case 'diameter':
         if (controller.diameter === true) {
@@ -39,29 +39,29 @@ const NumericFilter = () => {
           setController({ ...controller, diameter: false });
         } else { alert('filtro repetido'); }
 
+      break;
+      case 'surface_water':
+        if (controller.surface_water === true) {
+          setNumericFilter([...numericFilter, {
+          column, comparison, value,
+          }]);
+          setController({ ...controller, surface_water: false });
+        } else { alert('filtro repetido'); }
+  
         break;
-        case 'surface_water':
-          if (controller.surface_water === true) {
-            setNumericFilter([...numericFilter, {
-              column, comparison, value,
-            }]);
-            setController({ ...controller, surface_water: false });
-          } else { alert('filtro repetido'); }
-          
-          break;
-        case 'population':
-          if (controller.population === true) {
-            setNumericFilter([...numericFilter, {
+      case 'population':
+        if (controller.population === true) {
+          setNumericFilter([...numericFilter, {
             column, comparison, value,
-            }]);
-            setController({ ...controller, population: false });
-          } else { alert('filtro repetido'); }
-      
+          }]);
+          setController({ ...controller, population: false });
+        } else { alert('filtro repetido'); }
+
         break;
       default: console.log('Sorry, no match found...');
         break;
     }
-  }
+  };
   return (
     <div>
 
