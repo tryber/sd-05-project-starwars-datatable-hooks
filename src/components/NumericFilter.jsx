@@ -28,14 +28,16 @@ const NumericFilter = () => {
         {filterColumns.map((item) => <option key={item} value={item}>{item}</option>)}
       </select>
 
-      <select data-testid="comparison-filter" /* value={} */ onChange={handleComparison} name="comparison">
+      <select data-testid="comparison-filter" /* value={} */
+      onChange={handleComparison} name="comparison">
         <option value="">Comparação</option>
         <option value="maior que">maior que</option>
         <option value="menor que">menor que</option>
         <option value="igual a">igual a</option>
       </select>
 
-      <input name="input" /* value={} */ type="text" data-testid="value-filter" onChange={handleValue} />
+      <input name="input" /* value={} */ type="text"
+      data-testid="value-filter" onChange={handleValue} />
 
       <button data-testid="button-filter" onClick={ClickHandler}>
         Filtrar
