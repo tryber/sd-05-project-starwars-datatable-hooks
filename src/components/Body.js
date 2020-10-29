@@ -42,12 +42,12 @@ const orderAscDesc = (filtro, column, sort) => {
 function Body() {
   const { data, filters, order } = useContext(StarWarsContext);
   const name = filters.filterByName.name;
-  const arrayFilters = filters.filterByNumericValues;
-  const column = order.column.toLowerCase();
-  const sort = order.sort;
+  const todosFilters = filters.filterByNumericValues;
+  const coluna = order.column.toLowerCase();
+  const ordenar = order.ordenar;
 
-  const filtro = opcaoFiltro(data, name, arrayFilters);
-  const sorted = orderAscDesc(filtro, column, sort);
+  const filtrar = opcaoFiltro(data, name, todosFilters);
+  const organizar = orderAscDesc(filtrar, coluna, ordenar);
 
   return (
     <table>
@@ -61,10 +61,12 @@ function Body() {
         </tr>
       </thead>
       <tbody>
-        {sorted.map(({ residents, ...planet }) => (
+        {organizar.map(({ residents, ...planet }) => (
           <tr key={planet.name}>
-              <td data-testid="planet-name">{planet.name}</td>
-              {Object.values(planet).filter((value) => value !== planet.name).map((value) => (
+            <td data-testid="planet-name">{planet.name}</td>
+            {Object.values(planet)
+              .filter((value) => value !== planet.name)
+              .map((value) => (
                 <td key={value}>{value}</td>
               ))}
           </tr>

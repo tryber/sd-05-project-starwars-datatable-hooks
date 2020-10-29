@@ -18,7 +18,7 @@ class Provider extends Component {
       order: { column: 'Name', sort: 'ASC' },
     };
     this.funcaoApi = this.funcaoApi.bind(this);
-    this.handlePlanetDataSucess = this.handlePlanetDataSucess.bind(this);
+    this.handleData = this.handleData.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleNumeric = this.handleNumeric.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
@@ -29,10 +29,10 @@ class Provider extends Component {
     const { isLoading } = this.state;
     if (isLoading) return;
     this.setState({ isLoading: true });
-    endpoint().then(this.handlePlanetDataSucess);
+    endpoint().then(this.handleData);
   }
 
-  handlePlanetDataSucess(json) {
+  handleData(json) {
     this.setState({
       isLoading: false,
       data: json.results,
@@ -50,11 +50,11 @@ class Provider extends Component {
     });
   }
 
-  handleNumeric(obj) {
+  handleNumeric(e) {
     this.setState({
       filters: {
         ...this.state.filters,
-        filterByNumericValues: [...this.state.filters.filterByNumericValues, obj],
+        filterByNumericValues: [...this.state.filters.filterByNumericValues, e],
       },
     });
   }
