@@ -1,4 +1,4 @@
-// fetch failed on last evaluator step push
+// fetch failed on last evaluator step push again
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
