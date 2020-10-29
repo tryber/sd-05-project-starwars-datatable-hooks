@@ -1,4 +1,4 @@
-//fetch failed on last evaluator step push
+// fetch failed on last evaluator step push
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
@@ -14,7 +14,7 @@ const TableBody = () => {
         case 'menor que':
           option = Number(planets[filtro.column]) < Number(filtro.value); break;
         case 'igual a':
-          option = Number(planets[filtro.column]) === Number(filtro.value); break; 
+          option = Number(planets[filtro.column]) === Number(filtro.value); break;
         default:
           console.log('select a valid option!');
           break;
