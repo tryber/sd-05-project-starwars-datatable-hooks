@@ -21,7 +21,8 @@ const NumericFilter = () => {
     <div>
       <select data-testid="column-filter" onChange={handleColumn} name="column">
         <option value="">Colunas</option>
-        {filterColumns.map((item) => <option key={item} value={item}>{item}</option>)}
+        {filterColumns.filter((filtro) => !numericFilter.map((filter) => filter.column)
+        .includes(filtro)).map((item) => <option key={item} value={item}>{item}</option>)}
       </select>
       <select
         data-testid="comparison-filter"

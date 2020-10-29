@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const FilterName = () => {
-  const { filterName, setFilterName } = useContext(StarWarsContext);
+  const { setFilterName } = useContext(StarWarsContext);
   return (
     <div>
       <input
@@ -10,7 +10,7 @@ const FilterName = () => {
         type="text"
         placeholder="Type a planet name"
         onChange={
-          (event) => (setFilterName({ ...filterName, name: event.target.value }))}
+          (event) => (setFilterName(event.target.value))}
       />
     </div>
   );

@@ -5,11 +5,7 @@ import StarWarsContext from './StarWarsContext';
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterName, setFilterName] = useState({
-    filterName: {
-      name: '',
-    },
-  });
+  const [filterName, setFilterName] = useState('');
   const [numericFilter, setNumericFilter] = useState([]);
   const [column, setColumn] = useState();
   const [comparison, setComparison] = useState();
