@@ -35,7 +35,9 @@ const Table = () => {
             <th>Url</th>
           </tr>
         </thead>
-        <TableBody />
+        <tbody>
+          <TableBody />
+        </tbody>
       </table> : <div>Loading...</div>
   );
 };
