@@ -5,15 +5,11 @@ import getPlanets from '../services/api';
 
 const Table = () => {
   const { loading, setLoading, setData } = useContext(StarWarsContext);
-  async function fetchBookList() {
-    await getPlanets().then((response) => {
-      setData(response.results);
-    });
-    setLoading(false);
-  }
-
   useEffect(() => {
-    fetchBookList();
+    getPlanets().then((response) => {
+      setData(response.results);
+      setLoading(false);
+    });
   }, []);
   return (
     !loading ?
