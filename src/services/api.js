@@ -16,17 +16,28 @@ const url = 'https://swapi-trybe.herokuapp.com/api/planets';
 // }
 
 // sugestão do Vitor Caciquinho
-async function getPlanets() {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('erro');
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
+// async function getPlanets() {
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error('erro');
+//     }
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
+// export default getPlanets;
+
+const getPlanets = () => (
+  fetch(url)
+  .then((response) => response.json().then(
+    (data) => (
+      response.ok ? Promise.resolve(data) : Promise.reject(data)),
+    ),
+  )
+);
+
 export default getPlanets;
