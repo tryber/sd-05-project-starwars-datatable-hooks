@@ -2,12 +2,7 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const FilterOrder = () => {
-  const {
-    columns,
-    setSortOrder,
-    radio,
-    setAtribute,
-  } = useContext(StarWarsContext);
+  const { columns, setSortOrder, radio, setAtribute } = useContext(StarWarsContext);
   const handleSort = () => {
     if (radio[0].checked === true) {
       setSortOrder(true);
@@ -25,9 +20,17 @@ const FilterOrder = () => {
         <option value="">Colunas</option>
         {columns.map((item) => <option key={item} value={item}>{item}</option>)}
       </select>
-      <input type="radio" data-testid="column-sort-input-asc" name="order" value="" /* onClick={handleSort} */ />
+      <input
+        type="radio"
+        data-testid="column-sort-input-asc"
+        name="order"
+      />
       <label htmlFor="asc">ASC</label>
-      <input type="radio" data-testid="column-sort-input-desc" name="order" value="" /* onClick={handleSort} */ />
+      <input
+        type="radio"
+        data-testid="column-sort-input-desc"
+        name="order"
+      />
       <label htmlFor="dcs">DCS</label>
       <button
         data-testid="column-sort-button"
@@ -35,7 +38,7 @@ const FilterOrder = () => {
         onClick={handleSort}
       >
           Ordenar
-        </button>
+      </button>
     </div>
   );
 };
