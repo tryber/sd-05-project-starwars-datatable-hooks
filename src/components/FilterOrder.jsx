@@ -25,9 +25,9 @@ const FilterOrder = () => {
         <option value="">Colunas</option>
         {columns.map((item) => <option key={item} value={item}>{item}</option>)}
       </select>
-      <input type="radio" id="asc" name="order" value="" /* onClick={handleSort} */ />
+      <input type="radio" data-testid="column-sort-input-asc" name="order" value="" /* onClick={handleSort} */ />
       <label htmlFor="asc">ASC</label>
-      <input type="radio" id="dcs" name="order" value="" /* onClick={handleSort} */ />
+      <input type="radio" data-testid="column-sort-input-desc" name="order" value="" /* onClick={handleSort} */ />
       <label htmlFor="dcs">DCS</label>
       <button
         data-testid="column-sort-button"

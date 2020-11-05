@@ -32,7 +32,7 @@ const TableBody = () => {
     if (isNaN(objA) || isNaN(objB)) {
       comparacaoSort = objB < objA ? 1 : -1;
     } else {
-      comparacaoSort = objB - objA;
+      comparacaoSort = objA - objB;
     }
     if (sortOrder) {
       return comparacaoSort;
