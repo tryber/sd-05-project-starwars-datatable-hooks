@@ -22,6 +22,25 @@ const Provider = ({ children }) => {
   const [filterColumns, setFilterColumns] = useState([
     'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population',
   ]);
+  const [sortOrder, setSortOrder] = useState(true);
+  const [atribute, setAtribute] = useState('name');
+  const [radio, setRadio] = useState(document.getElementsByName('order'));
+  const [columns, setColumns] = useState([
+    'name',
+    'rotation_period',
+    'orbital_period',
+    'diameter',
+    'climate',
+    'gravity',
+    'terrain',
+    'surface_water',
+    'population',
+    'films',
+    'created',
+    'edited',
+    'url',
+  ]);
+  const [planetasSort, setPlanetasSort] = useState(data);
   const state = {
     data,
     setData,
@@ -41,6 +60,16 @@ const Provider = ({ children }) => {
     setNumericFilter,
     controller,
     setController,
+    sortOrder,
+    setSortOrder,
+    atribute,
+    setAtribute,
+    radio,
+    setRadio,
+    columns,
+    setColumns,
+    planetasSort,
+    setPlanetasSort,
   };
 
   return (

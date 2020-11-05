@@ -5,6 +5,7 @@ import NumericFilter from './components/NumericFilter';
 import Table from './components/Table';
 import './App.css';
 import FilterDisplay from './components/FilterDisplay';
+import FilterOrder from './components/FilterOrder';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <FilterName />
       <NumericFilter />
       <FilterDisplay />
+      <FilterOrder />
       <Table />
     </Provider>
   );

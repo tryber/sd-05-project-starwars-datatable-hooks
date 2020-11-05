@@ -35,7 +35,10 @@ const FilterDisplay = () => {
   return (
     <div>
       { numericFilter.map((filter) => (
-        <div key={filter.column}>
+        <div
+          key={filter.column}
+          data-testid="filter"
+        >
           coluna:{filter.column}
           comparação: {filter.comparison}
           valor: {filter.value}

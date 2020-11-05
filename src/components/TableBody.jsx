@@ -1,9 +1,11 @@
 // fetch failed on last evaluator step push x4
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+// data filter desenvolvido com a ajuda do colega de turma PR Zambelli
+import TableFunction from '../helpers/TableFunction';
 
 const TableBody = () => {
-  const { data, filterName, numericFilter } = useContext(StarWarsContext);
+  const { data, numericFilter, sortOrder, atribute, setPlanetasSort } = useContext(StarWarsContext);
   let planetasDoHugo = data;
   numericFilter.forEach((filtro) => {
     planetasDoHugo = planetasDoHugo.filter((planets) => {
@@ -21,32 +23,23 @@ const TableBody = () => {
       }
       return option;
     },
-);
+    );
   });
+  setPlanetasSort(planetasDoHugo.sort((a, b) => {
+    const objA = a[atribute].toLowerCase();
+    const objB = b[atribute].toLowerCase();
+    let comparacaoSort;
+    if (isNaN(objA) || isNaN(objB)) {
+      comparacaoSort = objB < objA ? 1 : -1;
+    } else {
+      comparacaoSort = objB - objA;
+    }
+    if (sortOrder) {
+      return comparacaoSort;
+    } return comparacaoSort * (-1);
+  }));
   return (
-    // data filter desenvolvido com a ajuda do colega de turma PR Zambelli
-    planetasDoHugo.filter(
-      (planets) => (filterName !== '' ? planets.name.toLowerCase().includes(filterName) : data)).map(
-        (planet) => (
-          <tr key={planet.name}>
-            <td>{planet.name}</td>
-            <td>{planet.rotation_period}</td>
-            <td>{planet.orbital_period}</td>
-            <td>{planet.diameter}</td>
-            <td>{planet.climate}</td>
-            <td>{planet.gravity}</td>
-            <td>{planet.terrain}</td>
-            <td>{planet.surface_water}</td>
-            <td>{planet.population}</td>
-            <td>
-              {planet.films.map((film) => (<span key={film}>{film}</span>))}
-            </td>
-            <td>{planet.created}</td>
-            <td>{planet.edited}</td>
-            <td>{planet.url}</td>
-          </tr>
-        ),
-      )
+    <TableFunction />
   );
 };
 
