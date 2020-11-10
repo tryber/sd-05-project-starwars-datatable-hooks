@@ -2,7 +2,6 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 // data filter desenvolvido com a ajuda do colega de turma PR Zambelli
-
 const TableBody = () => {
   const { data, numericFilter, sortOrder, atribute, filterName } = useContext(StarWarsContext);
   let planetasDoHugo = data;
