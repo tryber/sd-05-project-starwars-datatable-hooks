@@ -17,7 +17,7 @@ class Provider extends Component {
       },
       order: { column: 'Name', sort: 'ASC' },
     };
-    this.funcaoApi = this.funcaoApi.bind(this);
+    this.handleLoading = this.handleLoading.bind(this)
     this.handleData = this.handleData.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleNumeric = this.handleNumeric.bind(this);
@@ -25,11 +25,8 @@ class Provider extends Component {
     this.handleOrder = this.handleOrder.bind(this);
   }
 
-  funcaoApi() {
-    const { isLoading } = this.state;
-    if (isLoading) return;
-    this.setState({ isLoading: true });
-    endpoint().then(this.handleData);
+  handleLoading(e){
+    this.setState({isLoading: e})
   }
 
   handleData(e) {
@@ -82,7 +79,9 @@ class Provider extends Component {
   render() {
     const contextValue = {
       ...this.state,
-      endpoint: this.funcaoApi,
+      endpoint: endpoint,
+      handleLoading: this.handleLoading,
+      handleData: this.handleData,
       filterName: this.handleName,
       setFilters: this.handleNumeric,
       removeContext: this.handleRemove,

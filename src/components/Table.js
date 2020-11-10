@@ -7,11 +7,17 @@ import Filters from './Filters';
 import Order from './Order';
 
 function Table() {
-  const { isLoading, data, endpoint, filterName } = useContext(StarWarsContext);
+  const { isLoading, data, endpoint, filterName, handleLoading, handleData } = useContext(StarWarsContext);
   const PlanetsOk = data.length > 0;
 
   useEffect(() => {
-    endpoint();
+    if (isLoading) return;
+
+    endpoint().then(data => {
+      handleData(data)
+      handleLoading(false)
+    }
+    );
   }, [endpoint]);
 
   return (
