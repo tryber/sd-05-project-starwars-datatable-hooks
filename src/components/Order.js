@@ -1,3 +1,5 @@
+// useState retorna o valor inicial e o setState re-renderiza para novo valor
+// useContext será atualizado sempre que for renderizado novamento e o valor contexto alterado
 import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
@@ -18,9 +20,11 @@ const colunas = [
 ];
 
 function Order() {
-  const { changeOrder } = useContext(StarWarsContext);
+  const { orderContext } = useContext(StarWarsContext);
+
   const [column, setColumn] = useState('Name');
   const [order, setOrder] = useState('ASC');
+
   return (
     <div>
       <label htmlFor="ASC">
@@ -54,7 +58,7 @@ function Order() {
       <button
         type="button"
         data-testid="column-sort-button"
-        onClick={() => changeOrder({ column, order })}
+        onClick={() => orderContext(column, order)}
       >
         Filtrar
       </button>

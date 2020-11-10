@@ -1,3 +1,4 @@
+// useEffect mesmo que componenteDidMount
 import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 import Body from './Body';

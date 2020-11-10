@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 function Filters() {
-  const { filters, remover } = useContext(StarWarsContext);
+  const { filters, removeContext } = useContext(StarWarsContext);
   const todosFiltros = filters.filterByNumericValues;
   return (
     <div>
       {todosFiltros.map((filter) => (
         <span data-testid="filter" key={filter.value}>
           <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
-          <button type="button" onClick={() => remover(filter)}>
+          <button type="button" onClick={() => removeContext(filter)}>
             X
           </button>
         </span>

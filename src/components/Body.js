@@ -1,3 +1,8 @@
+// Referencias: https://pt-br.reactjs.org/docs/hooks-reference.html#usestate
+// Projeto em grupo app receitas
+// Projeto Sidnei, Felipe, Giu, Renata, Marina - T5
+// Repositorio T4 e T3
+// https://edrodrigues.com.br/blog/criando-tabelas-com-filtros-%E2%80%8B%E2%80%8Busando-react/
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
@@ -44,7 +49,7 @@ function Body() {
   const name = filters.filterByName.name;
   const todosFilters = filters.filterByNumericValues;
   const coluna = order.column.toLowerCase();
-  const ordenar = order.ordenar;
+  const ordenar = order.sort;
 
   const filtrar = opcaoFiltro(data, name, todosFilters);
   const organizar = orderAscDesc(filtrar, coluna, ordenar);
@@ -75,5 +80,4 @@ function Body() {
     </table>
   );
 }
-
 export default Body;

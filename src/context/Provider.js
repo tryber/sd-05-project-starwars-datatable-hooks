@@ -32,39 +32,39 @@ class Provider extends Component {
     endpoint().then(this.handleData);
   }
 
-  handleData(json) {
+  handleData(e) {
     this.setState({
       isLoading: false,
-      data: json.results,
+      data: e.results,
     });
   }
 
-  handleName(inputName) {
+  handleName(input) {
     this.setState({
       filters: {
         ...this.state.filters,
         filterByName: {
-          name: inputName,
+          name: input,
         },
       },
     });
   }
 
-  handleNumeric(e) {
+  handleNumeric(num) {
     this.setState({
       filters: {
         ...this.state.filters,
-        filterByNumericValues: [...this.state.filters.filterByNumericValues, e],
+        filterByNumericValues: [...this.state.filters.filterByNumericValues, num],
       },
     });
   }
 
-  handleRemove(filter) {
+  handleRemove(filtro) {
     this.setState({
       filters: {
         ...this.state.filters,
         filterByNumericValues: [
-          ...this.state.filters.filterByNumericValues.filter((item) => item !== filter),
+          ...this.state.filters.filterByNumericValues.filter((item) => item !== filtro),
         ],
       },
     });
@@ -85,8 +85,8 @@ class Provider extends Component {
       endpoint: this.funcaoApi,
       filterName: this.handleName,
       setFilters: this.handleNumeric,
-      remover: this.handleRemove,
-      changeOrder: this.handleOrder,
+      removeContext: this.handleRemove,
+      orderContext: this.handleOrder,
     };
 
     const { children } = this.props;
