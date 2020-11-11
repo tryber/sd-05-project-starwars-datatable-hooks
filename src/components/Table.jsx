@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 import TableBody from './TableBody';
-import starWarsAPI from '../service/api';
+import starWarsAPI from '../service/starWarsAPI';
 
 const Table = () => {
   const { loading, setLoading, setData } = useContext(StarWarsContext);
