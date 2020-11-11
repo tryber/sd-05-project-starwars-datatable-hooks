@@ -1,6 +1,6 @@
 // fetch failed on last evaluator step push x4
 import React, { useContext } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
+import StarWarsContext from '../service/StarWarsContext';
 // data filter desenvolvido com a ajuda do colega de turma PR Zambelli
 
 const TableBody = () => {

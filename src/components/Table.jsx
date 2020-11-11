@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
+import StarWarsContext from '../service/StarWarsContext';
 import TableBody from './TableBody';
 import starWarsAPI from '../service/starWarsAPI';
 

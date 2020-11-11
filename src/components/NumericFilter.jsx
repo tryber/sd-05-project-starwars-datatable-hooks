@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
+import StarWarsContext from '../service/StarWarsContext';
 
 const NumericFilter = () => {
   const { column, comparison, value, numericFilter, setNumericFilter, controller, setController,

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import StarWarsContext from '../context/StarWarsContext';
+import StarWarsContext from '../service/StarWarsContext';
 
 const FilterOrder = () => {
   const { columns, setSortOrder, radio, setAtribute } = useContext(StarWarsContext);

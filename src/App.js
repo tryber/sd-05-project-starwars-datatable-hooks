@@ -1,5 +1,5 @@
 import React from 'react';
-import Provider from './context/Provider';
+import Provider from './service/Provider';
 import FilterName from './components/FilterName';
 import NumericFilter from './components/NumericFilter';
 import Table from './components/Table';
