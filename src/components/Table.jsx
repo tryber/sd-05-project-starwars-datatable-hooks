@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 import TableBody from './TableBody';
-import getPlanets from '../service/api';
+import starWarsAPI from '../service/api';
 
 const Table = () => {
   const { loading, setLoading, setData } = useContext(StarWarsContext);
   useEffect(() => {
-    getPlanets().then((response) => {
+    starWarsAPI().then((response) => {
       setData(response.results);
       setLoading(false);
     });
