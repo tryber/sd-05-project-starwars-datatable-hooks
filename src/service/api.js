@@ -4,16 +4,16 @@ const url = 'https://swapi.dev/api/planets/';
 // uso de try-catch para lidar com erros
 // função assincrona com o uso de await para promises usadas
 
-// export default async function getPlanets() {
-//   try {
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//     return null;
-//   }
-// }
+export default async function getPlanets() {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
 
 // sugestão do Vitor Caciquinho
 // async function getPlanets() {
@@ -31,13 +31,13 @@ const url = 'https://swapi.dev/api/planets/';
 // }
 // export default getPlanets;
 
-const getPlanets = () => (
-  fetch(url)
-  .then((response) => response.json().then(
-    (data) => (
-      response.ok ? Promise.resolve(data) : Promise.reject(data)),
-    ),
-  )
-);
+// const getPlanets = () => (
+//   fetch(url)
+//   .then((response) => response.json().then(
+//     (data) => (
+//       response.ok ? Promise.resolve(data) : Promise.reject(data)),
+//     ),
+//   )
+// );
 
-export default getPlanets;
+// export default getPlanets;
